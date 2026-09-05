@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Trav AI V1</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:#0f172a;
+    color:#e5e7eb;
+}
+
+.container{
+    max-width:1400px;
+    margin:auto;
+    padding:20px;
+}
+
+h1{
+    margin:0 0 5px;
+    font-size:32px;
+}
+
+.subtitle{
+    color:#94a3b8;
+    margin-bottom:20px;
+}
+
+.panel{
+    background:#1e293b;
+    border:1px solid #334155;
+    border-radius:12px;
+    padding:18px;
+    margin-bottom:18px;
+}
+
+.controls{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:12px;
+}
+
+label{
+    display:block;
+    color:#cbd5e1;
+    font-size:13px;
+    margin-bottom:5px;
+}
+
+input,select,button,textarea{
+    width:100%;
+    border-radius:8px;
+    border:1px solid #475569;
+    background:#0f172a;
+    color:#fff;
+    padding:10px;
+    font-size:14px;
+}
+
+button{
+    cursor:pointer;
+    background:#334155;
+    font-weight:bold;
+}
+
+button:hover{
+    background:#475569;
+}
+
+button.primary{
+    background:#2563eb;
+}
+
+button.primary:hover{
+    background:#1d4ed8;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:15px;
+}
+
+.race{
+    background:#0f172a;
+    border:1px solid #334155;
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.raceHeader{
+    padding:12px;
+    background:#172033;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.raceHeader strong{
+    font-size:18px;
+}
+
+.horse{
+    display:grid;
+    grid-template-columns:35px 1fr 70px 70px;
+    gap:8px;
+    align-items:center;
+    padding:9px 10px;
+    border-top:1px solid #263449;
+}
+
+.horseNum{
+    font-weight:bold;
+    font-size:18px;
+}
+
+.horseName{
+    font-weight:bold;
+}
+
+.small{
+    font-size:11px;
+    color:#94a3b8;
+}
+
+.badge{
+    display:inline-block;
+    padding:3px 6px;
+    border-radius:5px;
+    font-size:11px;
+    font-weight:bold;
+    margin-left:5px;
+}
+
+.value{
+    background:#14532d;
+    color:#bbf7d0;
+}
+
+.bad{
+    background:#7f1d1d;
+    color:#fecaca;
+}
+
+.neutral{
+    background:#334155;
+    color:#cbd5e1;
+}
+
+.rank{
+    text-align:right;
+    font-weight:bold;
+}
+
+.system{
+    font-size:22px;
+    letter-spacing:2px;
+    line-height:1.8;
+    background:#020617;
+    border-radius:10px;
+    padding:15px;
+    word-break:break-word;
+}
+
+.statGrid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:10px;
+}
+
+.stat{
+    background:#0f172a;
+    padding:12px;
+    border-radius:8px;
+}
+
+.statTitle{
+    color:#94a3b8;
+    font-size:12px;
+}
+
+.statValue{
+    font-size:22px;
+    font-weight:bold;
+    margin-top:4px;
+}
+
+textarea{
+    min-height:250px;
+    font-family:monospace;
+}
+
+.warning{
+    background:#422006;
+    border:1px solid #92400e;
+    color:#fed7aa;
+    padding:12px;
+    border-radius:8px;
+    margin-top:12px;
+}
+
+.ok{
+    background:#052e16;
+    border:1px solid #166534;
+    color:#bbf7d0;
+    padding:12px;
+    border-radius:8px;
+    margin-top:12px;
+}
+
+@media(max-width:700px){
+    .horse{
+        grid-template-columns:30px 1fr 60px;
+    }
+
+    .horse .odds{
+        display:none;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🐎 Trav AI V1</h1>
+<div class="subtitle">
+ATG-systemmotor – sannolikhet, värde, spikar och garderingar
+</div>
+
+<div class="panel">
+
+<h2>1. Inställningar</h2>
+
+<div class="controls">
+
+<div>
+<label>Spelform</label>
+<select id="game">
+<option>V75</option>
+<option>V86</option>
+<option>V64</option>
+<option>V65</option>
+<option>V5</option>
+<option>V4</option>
+</select>
+</div>
+
+<div>
+<label>Insats (kr)</label>
+<input id="budget" type="number" value="384" min="1">
+</div>
+
+<div>
+<label>Strategi</label>
+<select id="strategy">
+<option value="balanced">⚖️ Balanserad</option>
+<option value="value">💰 Värde</option>
+<option value="safe">🛡️ Säker</option>
+<option value="skrall">🔥 Skräll</option>
+<option value="maxvalue">☠️ Maxvärde</option>
+</select>
+</div>
+
+<div>
+<label>Minsta värde (%)</label>
+<input id="minValue" type="number" value="5">
+</div>
+
+<div>
+<label>Max antal hästar per lopp</label>
+<select id="maxHorses">
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3" selected>3</option>
+<option value="4">4</option>
+<option value="5">5</option>
+<option value="6">6</option>
+<option value="8">8</option>
+</select>
+</div>
+
+</div>
+
+<br>
+
+<button class="primary" onclick="generateSystem()">
+GENERERA SYSTEM
+</button>
+
+</div>
+
+
+<div class="panel">
+
+<h2>2. Mata in loppdata</h2>
+
+<p class="small">
+V1 använder manuell data. I senare version kopplar vi detta mot aktuell data.
+Format per rad:
+<b>nummer;namn;streck%;odds;form;vinst%;plats%</b>
+</p>
+
+<textarea id="dataInput"></textarea>
+
+<br><br>
+
+<button onclick="loadExample()">
+Ladda exempeldata
+</button>
+
+<button onclick="clearData()">
+Rensa
+</button>
+
+</div>
+
+
+<div class="panel">
+
+<h2>3. Resultat</h2>
+
+<div id="stats"></div>
+
+</div>
+
+
+<div class="panel">
+
+<h2>4. Färdigt system</h2>
+
+<div id="systemOutput" class="system">
+Ingen analys ännu.
+</div>
+
+<br>
+
+<button onclick="copySystem()">
+KOPIERA SYSTEM
+</button>
+
+</div>
+
+
+<div class="panel">
+
+<h2>5. AI-analys per avdelning</h2>
+
+<div id="analysis" class="grid">
+</div>
+
+</div>
+
+
+<div class="panel">
+
+<h2>6. Viktigaste värdehästarna</h2>
+
+<div id="valueList">
+Ingen analys ännu.
+</div>
+
+</div>
+
+
+<div class="panel">
+
+<h2>7. Modellkontroll</h2>
+
+<div id="modelControl">
+V1 – ingen historisk backtest ännu.
+</div>
+
+</div>
+
+</div>
+
+
+<script>
+
+let races = [];
+
+
+/* ==============================
+   EXEMPEL
+============================== */
+
+function loadExample(){
+
+const example = `1|1|5|7.50|7|8|22
+1|2|18|3.20|8|22|48
+1|3|32|2.10|9|35|62
+1|4|7|8.80|6|9|25
+1|5|24|4.20|8|27|54
+1|6|4|12.00|5|6|18
+
+2|1|42|2.00|9|45|68
+2|2|8|8.50|7|10|27
+2|3|17|5.20|8|19|42
+2|4|21|4.50|8|23|47
+2|5|12|7.00|6|13|31
+
+3|1|5|14.00|6|7|20
+3|2|14|5.50|8|15|37
+3|3|38|2.30|9|42|65
+3|4|22|4.10|8|24|49
+3|5|10|7.50|7|11|28
+3|6|6|11.00|6|8|21
+
+4|1|55|1.65|10|57|78
+4|2|8|10.00|6|9|22
+4|3|14|6.50|8|16|37
+4|4|18|4.80|9|21|45
+4|5|5|15.00|5|6|18
+
+5|1|9|8.00|7|11|29
+5|2|27|3.10|8|29|52
+5|3|41|2.00|9|44|69
+5|4|13|6.00|7|15|34
+5|5|4|16.00|6|5|16
+
+6|1|12|6.00|8|14|35
+6|2|31|2.60|9|34|59
+6|3|18|4.20|8|20|44
+6|4|8|9.00|7|9|25
+6|5|25|3.30|9|27|54
+
+7|1|6|11.00|7|8|21
+7|2|16|5.50|8|17|39
+7|3|48|1.85|10|51|74
+7|4|19|4.60|8|21|46
+7|5|11|7.00|7|13|30`;
+
+document.getElementById("dataInput").value=example;
+
+}
+
+
+function clearData(){
+document.getElementById("dataInput").value="";
+}
+
+
+/* ==============================
+   PARSA DATA
+============================== */
+
+function parseData(){
+
+const text=document.getElementById("dataInput").value.trim();
+
+if(!text) return [];
+
+const lines=text.split(/\r?\n/);
+
+let result={};
+
+for(const line of lines){
+
+if(!line.trim()) continue;
+
+const p=line.split("|");
+
+if(p.length<8) continue;
+
+const race=Number(p[0]);
+const number=Number(p[1]);
+const name=p[1];
+const displayName="Häst "+number;
+
+const horse={
+    race:race,
+    number:number,
+    name:displayName,
+    realName:p[1],
+    stake:num(p[2]),
+    odds:num(p[3]),
+    form:num(p[4]),
+    winPct:num(p[5]),
+    placePct:num(p[6]),
+    extra:num(p[7])
+};
+
+if(!result[race]) result[race]=[];
+
+result[race].push(horse);
+
+}
+
+return Object.values(result).sort((a,b)=>a[0].race-b[0].race);
+
+}
+
+
+function num(v){
+
+const n=parseFloat(String(v).replace(",","."));
+
+return Number.isFinite(n)?n:0;
+
+}
+
+
+/* ==============================
+   AI-MODELL
+============================== */
+
+function analyseHorse(h){
+
+/*
+V1 är en heuristisk modell.
+
+Senare version:
+- riktig statistisk modell
+- historisk backtest
+- walk-forward
+- kalibrering
+- kusk/tränare
+- bana
+- distans
+- startspår
+*/
+
+let score=0;
+
+
+/* Form */
+
+score += h.form * 4;
+
+
+/* Vinstprocent */
+
+score += h.winPct * 0.45;
+
+
+/* Platsprocent */
+
+score += h.placePct * 0.10;
+
+
+/* Streckprocent används svagt */
+
+score += h.stake * 0.10;
+
+
+/* Odds */
+
+if(h.odds>0){
+    score += Math.min(h.odds,15)*1.5;
+}
+
+
+/*
+Startspår:
+V1 ger bara liten påverkan.
+*/
+
+if(h.number<=3){
+    score += 2;
+}
+
+if(h.number>=7){
+    score -= 1;
+}
+
+
+/*
+Normalisera ungefärlig sannolikhet
+*/
+
+return score;
+
+}
+
+
+function calculateProbabilities(horses){
+
+let scores=horses.map(analyseHorse);
+
+let total=scores.reduce((a,b)=>a+b,0);
+
+if(total<=0){
+    return horses.map(()=>100/horses.length);
+}
+
+return scores.map(s=>100*s/total);
+
+}
+
+
+/* ==============================
+   VÄRDE
+============================== */
+
+function calculateValue(h,prob){
+
+/*
+Enkel värdeindikator.
+
+AI-sannolikhet kontra marknadens
+streckprocent.
+*/
+
+const market=h.stake;
+
+return prob-market;
+
+}
+
+
+/* ==============================
+   STRATEGI
+============================== */
+
+function rankRace(horses){
+
+const probs=calculateProbabilities(horses);
+
+let list=horses.map((h,i)=>{
+
+const prob=probs[i];
+
+const value=calculateValue(h,prob);
+
+const fairOdds=prob>0 ? 100/prob : 99;
+
+return {
+    ...h,
+    aiProb:prob,
+    value:value,
+    fairOdds:fairOdds
+};
+
+});
+
+list.sort((a,b)=>b.aiProb-a.aiProb);
+
+return list;
+
+}
+
+
+/* ==============================
+   SYSTEM
+============================== */
+
+function chooseHorses(ranked){
+
+const strategy=document.getElementById("strategy").value;
+const max=parseInt(document.getElementById("maxHorses").value);
+const minValue=num(document.getElementById("minValue").value);
+
+if(strategy==="safe"){
+
+return ranked
+    .slice(0,Math.min(2,max))
+    .map(x=>x.number);
+
+}
+
+
+if(strategy==="value"){
+
+const values=ranked
+    .filter(x=>x.value>=minValue)
+    .sort((a,b)=>b.value-a.value)
+    .slice(0,max);
+
+if(values.length) return values.map(x=>x.number);
+
+return ranked.slice(0,Math.min(2,max)).map(x=>x.number);
+
+}
+
+
+if(strategy==="skrall"){
+
+const candidates=ranked
+    .filter(x=>x.stake<20)
+    .sort((a,b)=>b.value-a.value)
+    .slice(0,max);
+
+if(candidates.length) return candidates.map(x=>x.number);
+
+return ranked.slice(0,Math.min(2,max)).map(x=>x.number);
+
+}
+
+
+if(strategy==="maxvalue"){
+
+const candidates=ranked
+    .filter(x=>x.value>=minValue)
+    .sort((a,b)=>b.value-a.value)
+    .slice(0,max);
+
+if(candidates.length) return candidates.map(x=>x.number);
+
+return ranked.slice(0,max).map(x=>x.number);
+
+}
+
+
+/* balanced */
+
+const result=[];
+
+result.push(ranked[0].number);
+
+for(let i=1;i<ranked.length && result.length<max;i++){
+
+if(
+    ranked[i].value>=minValue ||
+    ranked[i].aiProb>=ranked[0].aiProb*0.65
+){
+    result.push(ranked[i].number);
+}
+
+}
+
+return result;
+
+}
+
+
+/* ==============================
+   ANTAL RADER
+============================== */
+
+function rowCount(system){
+
+return system.reduce((total,race)=>{
+    return total*race.length;
+},1);
+
+}
+
+
+/* ==============================
+   BUDGETOPTIMERING
+============================== */
+
+function optimizeBudget(races){
+
+const budget=Math.max(1,num(document.getElementById("budget").value));
+
+let systems=races.map(r=>r.slice());
+
+let count=rowCount(systems);
+
+
+/*
+Minska garderingar tills systemet
+ryms inom budget.
+*/
+
+while(count>budget){
+
+let bestIndex=-1;
+let bestPenalty=Infinity;
+
+for(let i=0;i<systems.length;i++){
+
+if(systems[i].length<=1) continue;
+
+const ranked=races[i];
+
+const current=systems[i];
+
+const removable=current[current.length-1];
+
+const horse=ranked.find(x=>x.number===removable);
+
+const penalty=horse ? horse.aiProb : 0;
+
+if(penalty<bestPenalty){
+    bestPenalty=penalty;
+    bestIndex=i;
+}
+
+}
+
+if(bestIndex===-1) break;
+
+systems[bestIndex]=systems[bestIndex].slice(0,-1);
+
+count=rowCount(systems);
+
+}
+
+return systems;
+
+}
+
+
+/* ==============================
+   GENERERA
+============================== */
+
+function generateSystem(){
+
+races=parseData();
+
+if(!races.length){
+
+alert("Ingen data hittades. Klicka på 'Ladda exempeldata' eller mata in lopp.");
+return;
+
+}
+
+
+let rankedRaces=races.map(rankRace);
+
+let selections=rankedRaces.map(r=>chooseHorses(r));
+
+let systems=optimizeBudget(
+    selections.map((s,i)=>{
+
+        return s.map(n=>
+            rankedRaces[i].find(h=>h.number===n)
+        );
+
+    })
+);
+
+
+renderStats(rankedRaces,systems);
+
+renderSystem(systems);
+
+renderAnalysis(rankedRaces,systems);
+
+renderValueList(rankedRaces);
+
+renderModelControl();
+
+}
+
+
+/* ==============================
+   SYSTEMVISNING
+============================== */
+
+function renderSystem(systems){
+
+const game=document.getElementById("game").value;
+
+let text=game+"\n\n";
+
+systems.forEach((race,i)=>{
+
+text+=
+"Avd "+(i+1)+": "+
+race.map(h=>h.number).join(" ")+"\n";
+
+});
+
+const rows=rowCount(systems);
+
+const budget=num(document.getElementById("budget").value);
+
+const stake=rows;
+
+text+=
+"\nAntal rader: "+rows+
+"\nRadinsats: 1 kr"+
+"\nFaktisk insats: "+stake+" kr"+
+"\nBudget: "+budget+" kr";
+
+if(stake<budget){
+
+text+=
+"\n\nSystemet använder inte hela budgeten eftersom "+
+"den här V1-versionen bygger kompletta kombinationer.";
+
+}
+
+document.getElementById("systemOutput").innerText=text;
+
+}
+
+
+/* ==============================
+   STATISTIK
+============================== */
+
+function renderStats(ranked,systems){
+
+const rows=rowCount(systems);
+
+const budget=num(document.getElementById("budget").value);
+
+let singles=0;
+let doubles=0;
+let triples=0;
+let wide=0;
+
+systems.forEach(r=>{
+
+if(r.length===1) singles++;
+else if(r.length===2) doubles++;
+else if(r.length===3) triples++;
+else wide++;
+
+});
+
+document.getElementById("stats").innerHTML=`
+
+<div class="statGrid">
+
+<div class="stat">
+<div class="statTitle">Spelform</div>
+<div class="statValue">${document.getElementById("game").value}</div>
+</div>
+
+<div class="stat">
+<div class="statTitle">Avdelningar</div>
+<div class="statValue">${ranked.length}</div>
+</div>
+
+<div class="stat">
+<div class="statTitle">Antal rader</div>
+<div class="statValue">${rows}</div>
+</div>
+
+<div class="stat">
+<div class="statTitle">Insats</div>
+<div class="statValue">${rows} kr</div>
+</div>
+
+<div class="stat">
+<div class="statTitle">Budget</div>
+<div class="statValue">${budget} kr</div>
+</div>
+
+<div class="stat">
+<div class="statTitle">Spikar</div>
+<div class="statValue">${singles}</div>
+</div>
+
+<div class="stat">
+<div class="statTitle">Dubbla</div>
+<div class="statValue">${doubles}</div>
+</div>
+
+<div class="stat">
+<div class="statTitle">Trippla+</div>
+<div class="statValue">${triples+wide}</div>
+</div>
+
+</div>
+
+`;
+
+}
+
+
+/* ==============================
+   ANALYS
+============================== */
+
+function renderAnalysis(rankedRaces,systems){
+
+let html="";
+
+rankedRaces.forEach((race,i)=>{
+
+const selected=systems[i].map(h=>h.number);
+
+html+=`
+
+<div class="race">
+
+<div class="raceHeader">
+
+<strong>Avd ${i+1}</strong>
+
+<span>
+${selected.length===1?"SPIK":
+selected.length===2?"LÅS":
+"GARDERING"}
+</span>
+
+</div>
+`;
+
+race.forEach((h,index)=>{
+
+let badge="neutral";
+let label="Neutral";
+
+if(h.value>=15){
+    badge="value";
+    label="STORT VÄRDE";
+}
+else if(h.value>=5){
+    badge="value";
+    label="VÄRDE";
+}
+else if(h.value<=-10){
+    badge="bad";
+    label="ÖVERSTRECKAD";
+}
+
+const isSelected=selected.includes(h.number);
+
+html+=`
+
+<div class="horse">
+
+<div class="horseNum">
+${h.number}
+</div>
+
+<div>
+
+<div class="horseName">
+${h.name}
+
+${isSelected ?
+`<span class="badge value">VALD</span>`:""}
+
+</div>
+
+<div class="small">
+
+AI ${h.aiProb.toFixed(1)}% ·
+Streck ${h.stake.toFixed(1)}% ·
+Värde ${h.value>=0?"+":""}${h.value.toFixed(1)}%
+
+</div>
+
+</div>
+
+<div class="rank">
+
+${h.aiProb.toFixed(0)}%
+
+</div>
+
+<div class="odds">
+
+${h.odds.toFixed(2)}
+
+</div>
+
+</div>
+
+`;
+
+});
+
+html+=`</div>`;
+
+});
+
+document.getElementById("analysis").innerHTML=html;
+
+}
+
+
+/* ==============================
+   VÄRDELISTA
+============================== */
+
+function renderValueList(rankedRaces){
+
+let all=[];
+
+rankedRaces.forEach((race,i)=>{
+
+race.forEach(h=>{
+
+all.push({
+    ...h,
+    avd:i+1
+});
+
+});
+
+});
+
+all.sort((a,b)=>b.value-a.value);
+
+let html="<div class='grid'>";
+
+all.slice(0,15).forEach(h=>{
+
+html+=`
+
+<div class="race">
+
+<div class="raceHeader">
+
+<strong>Avd ${h.avd} – Häst ${h.number}</strong>
+
+<span class="badge value">
+
+${h.value>=0?"+":""}${h.value.toFixed(1)}%
+
+</span>
+
+</div>
+
+<div style="padding:15px">
+
+AI-vinstchans:
+<b>${h.aiProb.toFixed(1)}%</b>
+
+<br>
+
+Streck:
+<b>${h.stake.toFixed(1)}%</b>
+
+<br>
+
+Odds:
+<b>${h.odds.toFixed(2)}</b>
+
+<br>
+
+Beräknat fair odds:
+<b>${h.fairOdds.toFixed(2)}</b>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+html+="</div>";
+
+document.getElementById("valueList").innerHTML=html;
+
+}
+
+
+/* ==============================
+   MODELLKONTROLL
+============================== */
+
+function renderModelControl(){
+
+document.getElementById("modelControl").innerHTML=`
+
+<div class="ok">
+
+<b>V1-motorn kör.</b><br><br>
+
+Datakälla: Manuell inmatning<br>
+Modell: Heuristisk AI V1<br>
+Historisk backtest: Ej implementerad<br>
+Live ATG-data: Ej implementerad<br>
+Kusk/tränare: Ej implementerat<br>
+Bana/distans: Ej implementerat<br>
+Kalibrering: Ej implementerad<br>
+Walk-forward: Ej implementerad
+
+</div>
+
+<div class="warning">
+
+<b>Viktigt:</b> V1 är en prototyp för att bygga
+själva analys- och systemmotorn. Värdeprocenten ska
+inte betraktas som en verifierad spelmodell ännu.
+
+Nästa steg är att mata motorn med historiska lopp
+och mäta om dess signaler faktiskt ger positiv ROI.
+
+</div>
+
+`;
+
+}
+
+
+/* ==============================
+   KOPIERA
+============================== */
+
+function copySystem(){
+
+const text=document.getElementById("systemOutput").innerText;
+
+navigator.clipboard.writeText(text)
+.then(()=>{
+
+alert("Systemet är kopierat.");
+
+})
+.catch(()=>{
+
+alert("Kunde inte kopiera automatiskt.");
+
+});
+
+}
+
+
+/* ==============================
+   START
+============================== */
+
+loadExample();
+
+</script>
+
+</body>
+</html>

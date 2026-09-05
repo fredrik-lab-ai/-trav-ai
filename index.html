@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Trav AI V2.1</title>
+<title>Trav AI V2.2</title>
 
 <style>
 *{box-sizing:border-box}
@@ -28,10 +28,6 @@ h1{
 
 h2{
     margin-top:0;
-}
-
-h3{
-    margin-bottom:10px;
 }
 
 .subtitle{
@@ -120,19 +116,6 @@ textarea{
     margin-top:4px;
 }
 
-.grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
-    gap:14px;
-}
-
-.card{
-    background:#09111f;
-    border:1px solid #26364f;
-    border-radius:10px;
-    padding:14px;
-}
-
 table{
     width:100%;
     border-collapse:collapse;
@@ -162,49 +145,6 @@ th{
     color:#fde68a;
 }
 
-.badge{
-    display:inline-block;
-    padding:3px 7px;
-    border-radius:5px;
-    font-size:11px;
-    font-weight:bold;
-}
-
-.green{
-    background:#064e3b;
-    color:#a7f3d0;
-}
-
-.red{
-    background:#7f1d1d;
-    color:#fecaca;
-}
-
-.yellow{
-    background:#78350f;
-    color:#fde68a;
-}
-
-.gray{
-    background:#334155;
-    color:#cbd5e1;
-}
-
-.system{
-    background:#020617;
-    border:1px solid #334155;
-    border-radius:10px;
-    padding:15px;
-    font-family:Consolas,monospace;
-    font-size:18px;
-    line-height:1.7;
-}
-
-.small{
-    font-size:12px;
-    color:#94a3b8;
-}
-
 .alert{
     padding:12px;
     border-radius:8px;
@@ -226,18 +166,6 @@ th{
     border:1px solid #991b1b;
 }
 
-.rank1{
-    font-weight:bold;
-}
-
-.valueRow{
-    background:#052e16;
-}
-
-.overRow{
-    background:#2a1111;
-}
-
 @media(max-width:700px){
 
     .container{
@@ -251,24 +179,24 @@ th{
     table{
         font-size:11px;
     }
-
 }
 </style>
 </head>
+
 
 <body>
 
 <div class="container">
 
-<h1>🐎 Trav AI V2.1</h1>
+<h1>🐎 Trav AI V2.2</h1>
 
 <div class="subtitle">
-Separat AI • marknad • värde • walk-forward • OOS
+Historisk travanalys • AI • marknad • värde • walk-forward
 </div>
 
 
 <!-- =====================================================
-     INSTÄLLNINGAR
+INSTÄLLNINGAR
 ===================================================== -->
 
 <div class="panel">
@@ -281,7 +209,6 @@ Separat AI • marknad • värde • walk-forward • OOS
 <label>Spelform</label>
 
 <select id="game">
-
 <option>V75</option>
 <option>V86</option>
 <option>V85</option>
@@ -290,13 +217,11 @@ Separat AI • marknad • värde • walk-forward • OOS
 <option>V5</option>
 <option>V4</option>
 <option>DD</option>
-
 </select>
 </div>
 
 
 <div>
-
 <label>AI-vikt</label>
 
 <select id="aiWeight">
@@ -318,13 +243,11 @@ Separat AI • marknad • värde • walk-forward • OOS
 </option>
 
 </select>
-
 </div>
 
 
 <div>
-
-<label>Minsta värde</label>
+<label>Minsta värde %</label>
 
 <select id="minValue">
 
@@ -336,12 +259,10 @@ Separat AI • marknad • värde • walk-forward • OOS
 <option value="15">15 %</option>
 
 </select>
-
 </div>
 
 
 <div>
-
 <label>Minsta odds</label>
 
 <input
@@ -350,12 +271,10 @@ type="number"
 value="1.50"
 step="0.10"
 >
-
 </div>
 
 
 <div>
-
 <label>Max odds</label>
 
 <input
@@ -364,13 +283,11 @@ type="number"
 value="20"
 step="0.50"
 >
-
 </div>
 
 
 <div>
-
-<label>Min historik</label>
+<label>Min historik häst</label>
 
 <input
 id="minHistory"
@@ -378,7 +295,6 @@ type="number"
 value="3"
 min="0"
 >
-
 </div>
 
 </div>
@@ -396,7 +312,7 @@ KÖR BACKTEST
 
 
 <!-- =====================================================
-     DATA
+DATA
 ===================================================== -->
 
 <div class="panel">
@@ -419,13 +335,15 @@ Exempel:
 
 <br>
 
-2026-01-10,1,1,Häst A,Kusk A,Tränare A,2140,auto,4.50,18,2,15.2,0,15000
+2026-01-01,1,1,Häst A,Kusk A,Tränare A,2140,auto,2.40,42,1,14.2,0,30000
 
 </p>
+
 
 <textarea id="dataInput"></textarea>
 
 <br><br>
+
 
 <div class="controls">
 
@@ -435,6 +353,7 @@ onclick="loadExample()"
 >
 LADDA TESTDATA
 </button>
+
 
 <button
 class="secondary"
@@ -449,7 +368,7 @@ RENSA
 
 
 <!-- =====================================================
-     MODELLRESULTAT
+RESULTAT
 ===================================================== -->
 
 <div class="panel">
@@ -464,7 +383,7 @@ Ingen körning ännu.
 
 
 <!-- =====================================================
-     TRAIN VALIDATION OOS
+SPLIT
 ===================================================== -->
 
 <div class="panel">
@@ -479,7 +398,7 @@ Ingen körning ännu.
 
 
 <!-- =====================================================
-     VÄRDE
+VÄRDE
 ===================================================== -->
 
 <div class="panel">
@@ -494,7 +413,7 @@ Ingen körning ännu.
 
 
 <!-- =====================================================
-     KALIBRERING
+KALIBRERING
 ===================================================== -->
 
 <div class="panel">
@@ -509,12 +428,12 @@ Ingen körning ännu.
 
 
 <!-- =====================================================
-     SENASTE PREDIKTIONER
+PREDIKTIONER
 ===================================================== -->
 
 <div class="panel">
 
-<h2>7. Exempel på modellens beslut</h2>
+<h2>7. Modellens senaste beslut</h2>
 
 <div id="predictions">
 Ingen körning ännu.
@@ -524,7 +443,7 @@ Ingen körning ännu.
 
 
 <!-- =====================================================
-     DATA CONTROL
+DATAKONTROLL
 ===================================================== -->
 
 <div class="panel">
@@ -542,85 +461,96 @@ Ingen körning ännu.
 
 <script>
 
-/* =========================================================
-   GLOBALA VARIABLER
-========================================================= */
+/* =====================================================
+GLOBALT
+===================================================== */
 
-let DATA=[];
-let RACES=[];
-let PRED=[];
+let DATA = [];
+let RACES = [];
+let PRED = [];
 
 
-/* =========================================================
-   NUMERISK HJÄLP
-========================================================= */
+/* =====================================================
+NUM
+===================================================== */
 
-function num(v){
+function num(value){
 
-    if(v===null || v===undefined)
+    if(
+        value === null ||
+        value === undefined ||
+        value === ""
+    ){
         return NaN;
+    }
 
-    const n=parseFloat(
-        String(v)
+    const n = parseFloat(
+        String(value)
         .replace(",",".")
         .replace("%","")
         .trim()
     );
 
-    return Number.isFinite(n)
-        ? n
-        : NaN;
-
+    return Number.isFinite(n) ? n : NaN;
 }
 
 
-/* =========================================================
-   DATUM
-========================================================= */
+/* =====================================================
+DATUM
+===================================================== */
 
-function dateValue(v){
+function parseDate(value){
 
-    if(!v)
+    if(!value)
         return NaN;
 
-    const s=String(v).trim();
+    const s = String(value).trim();
 
     let d;
 
     if(/^\d{4}-\d{2}-\d{2}$/.test(s)){
 
-        d=new Date(s+"T00:00:00");
+        d = new Date(
+            s + "T00:00:00"
+        );
 
     }
-    else if(/^\d{2}[./-]\d{2}[./-]\d{4}$/.test(s)){
+    else if(
+        /^\d{2}[./-]\d{2}[./-]\d{4}$/.test(s)
+    ){
 
-        const p=s.split(/[./-]/);
+        const p =
+            s.split(/[./-]/);
 
-        d=new Date(
-            `${p[2]}-${p[1]}-${p[0]}T00:00:00`
+        d = new Date(
+            p[2] +
+            "-" +
+            p[1] +
+            "-" +
+            p[0] +
+            "T00:00:00"
         );
 
     }
     else{
 
-        d=new Date(s);
+        d = new Date(s);
 
     }
 
     return Number.isFinite(d.getTime())
         ? d.getTime()
         : NaN;
-
 }
 
 
-/* =========================================================
-   TESTDATA
-========================================================= */
+/* =====================================================
+EXEMPEL DATA
+===================================================== */
 
 function loadExample(){
 
-const rows=[
+    const rows = [
 
 "date,race,number,horse,driver,trainer,distance,starttype,odds,stake,finish,time,galop,earnings",
 
@@ -659,47 +589,66 @@ const rows=[
 "2026-01-05,1,5,Häst E,Kusk E,Tränare E,2140,auto,16.00,5,6,15.4,0,0",
 "2026-01-05,1,6,Häst F,Kusk F,Tränare F,2140,auto,30.00,3,5,15.0,0,3000"
 
-];
+    ];
 
-document.getElementById("dataInput").value=
-    rows.join("\n");
+    document.getElementById(
+        "dataInput"
+    ).value = rows.join("\n");
 
 }
 
+
+/* =====================================================
+RENSA
+===================================================== */
 
 function clearData(){
 
-    document.getElementById("dataInput").value="";
+    document.getElementById(
+        "dataInput"
+    ).value = "";
 
 }
 
 
-/* =========================================================
-   CSV PARSER
-========================================================= */
+/* =====================================================
+CSV PARSER
+===================================================== */
 
 function parseCSVLine(line){
 
-    const out=[];
+    const result=[];
 
     let current="";
-    let quote=false;
+    let quoted=false;
 
-    for(let i=0;i<line.length;i++){
+
+    for(
+        let i=0;
+        i<line.length;
+        i++
+    ){
 
         const c=line[i];
 
+
         if(c==='"'){
 
-            quote=!quote;
-
+            quoted=!quoted;
             continue;
 
         }
 
-        if(c==="," && !quote){
 
-            out.push(current);
+        if(
+            c==="," &&
+            !quoted
+        ){
+
+            result.push(
+                current
+            );
+
             current="";
 
         }
@@ -711,42 +660,57 @@ function parseCSVLine(line){
 
     }
 
-    out.push(current);
 
-    return out;
+    result.push(
+        current
+    );
+
+
+    return result;
 
 }
 
 
-/* =========================================================
-   PARSE DATA
-========================================================= */
+/* =====================================================
+DATA PARSER
+===================================================== */
 
 function parseData(){
 
-    const text=
-        document.getElementById("dataInput")
-        .value
-        .trim();
+    const text =
+        document.getElementById(
+            "dataInput"
+        ).value.trim();
+
 
     if(!text)
         return [];
 
-    const lines=
+
+    const lines =
         text.split(/\r?\n/);
+
 
     if(lines.length<2)
         return [];
 
-    const header=
-        parseCSVLine(lines[0])
-        .map(x=>x.trim().toLowerCase());
 
-    const idx={};
+    const headers =
+        parseCSVLine(
+            lines[0]
+        ).map(
+            x=>x.trim().toLowerCase()
+        );
 
-    header.forEach((h,i)=>{
-        idx[h]=i;
-    });
+
+    const index={};
+
+
+    headers.forEach(
+        (h,i)=>{
+            index[h]=i;
+        }
+    );
 
 
     const required=[
@@ -760,12 +724,17 @@ function parseData(){
     ];
 
 
-    for(const r of required){
+    for(
+        const field of required
+    ){
 
-        if(idx[r]===undefined){
+        if(
+            index[field]===undefined
+        ){
 
             throw new Error(
-                "Saknar kolumn: "+r
+                "Saknar kolumn: "+
+                field
             );
 
         }
@@ -773,172 +742,224 @@ function parseData(){
     }
 
 
-    const result=[];
+    const data=[];
 
 
-    for(let i=1;i<lines.length;i++){
+    for(
+        let i=1;
+        i<lines.length;
+        i++
+    ){
 
         if(!lines[i].trim())
             continue;
 
-        const p=parseCSVLine(lines[i]);
+
+        const p =
+            parseCSVLine(
+                lines[i]
+            );
 
 
-        const row={
+        data.push({
 
-            date:String(
-                p[idx.date] || ""
-            ).trim(),
+            date:
+                String(
+                    p[index.date]||""
+                ).trim(),
 
-            dateTs:dateValue(
-                p[idx.date]
-            ),
+            dateTs:
+                parseDate(
+                    p[index.date]
+                ),
 
-            race:num(
-                p[idx.race]
-            ),
+            race:
+                num(
+                    p[index.race]
+                ),
 
-            number:num(
-                p[idx.number]
-            ),
+            number:
+                num(
+                    p[index.number]
+                ),
 
-            horse:String(
-                p[idx.horse] || ""
-            ).trim(),
+            horse:
+                String(
+                    p[index.horse]||""
+                ).trim(),
 
             driver:
-                idx.driver!==undefined
-                ?String(p[idx.driver]||"").trim()
+                index.driver!==undefined
+                ?String(
+                    p[index.driver]||""
+                ).trim()
                 :"",
 
             trainer:
-                idx.trainer!==undefined
-                ?String(p[idx.trainer]||"").trim()
+                index.trainer!==undefined
+                ?String(
+                    p[index.trainer]||""
+                ).trim()
                 :"",
 
             distance:
-                idx.distance!==undefined
-                ?num(p[idx.distance])
+                index.distance!==undefined
+                ?num(p[index.distance])
                 :NaN,
 
             starttype:
-                idx.starttype!==undefined
-                ?String(p[idx.starttype]||"").trim()
+                index.starttype!==undefined
+                ?String(
+                    p[index.starttype]||""
+                ).trim()
                 :"",
 
-            odds:num(
-                p[idx.odds]
-            ),
+            odds:
+                num(
+                    p[index.odds]
+                ),
 
-            stake:num(
-                p[idx.stake]
-            ),
+            stake:
+                num(
+                    p[index.stake]
+                ),
 
-            finish:num(
-                p[idx.finish]
-            ),
+            finish:
+                num(
+                    p[index.finish]
+                ),
 
             time:
-                idx.time!==undefined
-                ?num(p[idx.time])
+                index.time!==undefined
+                ?num(p[index.time])
                 :NaN,
 
             galop:
-                idx.galop!==undefined
-                ?num(p[idx.galop])
+                index.galop!==undefined
+                ?num(p[index.galop])
                 :0,
 
             earnings:
-                idx.earnings!==undefined
-                ?num(p[idx.earnings])
+                index.earnings!==undefined
+                ?num(p[index.earnings])
                 :0
 
-        };
-
-
-        result.push(row);
+        });
 
     }
 
 
-    return result;
+    return data;
 
 }
 
 
-/* =========================================================
-   SORTERING
-========================================================= */
+/* =====================================================
+SORTERA
+===================================================== */
 
 function sortData(data){
 
-    return data.sort((a,b)=>{
+    return data.sort(
+        (a,b)=>{
 
-        if(Number.isFinite(a.dateTs) &&
-           Number.isFinite(b.dateTs)){
+            if(
+                Number.isFinite(a.dateTs) &&
+                Number.isFinite(b.dateTs)
+            ){
 
-            if(a.dateTs!==b.dateTs)
-                return a.dateTs-b.dateTs;
+                if(
+                    a.dateTs!==b.dateTs
+                ){
 
-        }
-        else{
+                    return(
+                        a.dateTs-b.dateTs
+                    );
 
-            const d=
-                a.date.localeCompare(
-                    b.date
+                }
+
+            }
+            else{
+
+                const d =
+                    a.date.localeCompare(
+                        b.date
+                    );
+
+                if(d!==0)
+                    return d;
+
+            }
+
+
+            if(
+                a.race!==b.race
+            ){
+
+                return(
+                    a.race-b.race
                 );
 
-            if(d!==0)
-                return d;
+            }
+
+
+            return(
+                a.number-b.number
+            );
 
         }
-
-
-        if(a.race!==b.race)
-            return a.race-b.race;
-
-
-        return a.number-b.number;
-
-    });
+    );
 
 }
 
 
-/* =========================================================
-   GRUPPERA LOPP
-========================================================= */
+/* =====================================================
+GRUPPERA LOPP
+===================================================== */
 
 function groupRaces(data){
 
     const groups={};
 
 
-    data.forEach(x=>{
+    data.forEach(
+        row=>{
 
-        const key=
-            x.date+"|"+x.race;
-
-
-        if(!groups[key])
-            groups[key]=[];
-
-
-        groups[key].push(x);
-
-    });
+            const key =
+                row.date+
+                "|" +
+                row.race;
 
 
-    return Object.values(groups)
-        .sort((a,b)=>{
+            if(!groups[key])
+                groups[key]=[];
+
+
+            groups[key].push(
+                row
+            );
+
+        }
+    );
+
+
+    return Object.values(
+        groups
+    ).sort(
+        (a,b)=>{
 
             const da=
-                Number.isFinite(a[0].dateTs)
+                Number.isFinite(
+                    a[0].dateTs
+                )
                 ?a[0].dateTs
                 :0;
 
+
             const db=
-                Number.isFinite(b[0].dateTs)
+                Number.isFinite(
+                    b[0].dateTs
+                )
                 ?b[0].dateTs
                 :0;
 
@@ -947,18 +968,22 @@ function groupRaces(data){
                 return da-db;
 
 
-            return a[0].race-b[0].race;
+            return(
+                a[0].race-
+                b[0].race
+            );
 
-        });
+        }
+    );
 
 }
 
 
-/* =========================================================
-   HÄSTSTATE
-========================================================= */
+/* =====================================================
+HÄST STATE
+===================================================== */
 
-function newHorse(){
+function newHorseState(){
 
     return {
 
@@ -970,31 +995,33 @@ function newHorse(){
 
         earnings:0,
 
-        lastResults:[],
+        results:[],
 
-        lastTimes:[],
+        times:[],
 
-        lastGalops:[],
+        galops:[],
 
-        lastDistances:[],
-
-        lastDate:null
+        distances:[]
 
     };
 
 }
 
 
-/* =========================================================
-   FEATURES
-========================================================= */
+/* =====================================================
+FEATURES
+===================================================== */
 
-function features(h,state){
+function getFeatures(
+    horse,
+    state
+){
 
     const f={};
 
 
-    f.starts=state.starts;
+    f.starts=
+        state.starts;
 
 
     f.winRate=
@@ -1009,17 +1036,17 @@ function features(h,state){
         :0;
 
 
-    const results=
-        state.lastResults.slice(-5);
+    const recent=
+        state.results.slice(-5);
 
 
-    if(results.length){
+    if(recent.length){
 
         f.form=
-            results.reduce(
-                (a,b)=>a+b,
+            recent.reduce(
+                (sum,x)=>sum+x,
                 0
-            )/results.length;
+            )/recent.length;
 
     }
     else{
@@ -1030,52 +1057,32 @@ function features(h,state){
 
 
     const times=
-        state.lastTimes
+        state.times
         .slice(-5)
-        .filter(Number.isFinite);
+        .filter(
+            Number.isFinite
+        );
 
 
-    if(times.length){
-
-        f.avgTime=
-            times.reduce(
-                (a,b)=>a+b,
-                0
-            )/times.length;
-
-    }
-    else{
-
-        f.avgTime=0;
-
-    }
-
-
-    const gals=
-        state.lastGalops.slice(-5);
-
-
-    f.galopRate=
-        gals.length
-        ?gals.reduce(
+    f.avgTime=
+        times.length
+        ?times.reduce(
             (a,b)=>a+b,
             0
-        )/gals.length
+        )/times.length
         :0;
 
 
-    const distances=
-        state.lastDistances
-        .slice(-5)
-        .filter(Number.isFinite);
+    const galops=
+        state.galops.slice(-5);
 
 
-    f.avgDistance=
-        distances.length
-        ?distances.reduce(
+    f.galopRate=
+        galops.length
+        ?galops.reduce(
             (a,b)=>a+b,
             0
-        )/distances.length
+        )/galops.length
         :0;
 
 
@@ -1084,99 +1091,80 @@ function features(h,state){
 }
 
 
-/* =========================================================
-   AI SCORE
-========================================================= */
+/* =====================================================
+AI SCORE
+===================================================== */
 
-function aiScore(h,f){
+function calculateAIScore(
+    horse,
+    features
+){
 
     let score=1;
 
 
-    /*
-    Vinsthistorik
-    */
+    score +=
+        features.winRate*4;
+
 
     score +=
-        f.winRate*4.0;
+        features.placeRate*1.5;
 
 
     /*
-    Plats
+    Form.
+    Lägre placeringstal = bättre.
     */
 
-    score +=
-        f.placeRate*1.5;
+    if(features.form<=2)
+        score+=2.0;
 
+    else if(features.form<=3)
+        score+=1.4;
 
-    /*
-    Form
-    */
+    else if(features.form<=4)
+        score+=0.8;
 
-    if(f.form<=2)
-        score+=2.2;
-
-    else if(f.form<=3)
-        score+=1.5;
-
-    else if(f.form<=4)
-        score+=0.9;
-
-    else if(f.form<=5)
+    else if(features.form<=5)
         score+=0.3;
 
-    else if(f.form>=7)
-        score-=0.8;
-
-    else if(f.form>=6)
-        score-=0.2;
+    else if(features.form>=7)
+        score-=0.7;
 
 
     /*
-    Galopprisken
+    Galopp.
     */
 
     score -=
-        f.galopRate*2.5;
+        features.galopRate*2.0;
 
 
     /*
-    Startnummer.
-    Endast mycket liten påverkan
-    i V2.1.
-    */
-
-    if(h.number<=3)
-        score+=0.12;
-
-    if(h.number>=9)
-        score-=0.06;
-
-
-    /*
-    Distans.
-    Vi använder bara mycket liten
-    neutraliserad påverkan.
+    Liten spårseffekt.
     */
 
     if(
-        Number.isFinite(h.distance) &&
-        Number.isFinite(f.avgDistance)
+        Number.isFinite(
+            horse.number
+        )
     ){
 
-        const diff=
-            Math.abs(
-                h.distance-f.avgDistance
-            );
-
-        if(diff<=100)
+        if(horse.number<=3)
             score+=0.10;
 
-        if(diff>=600)
-            score-=0.10;
+        if(horse.number>=9)
+            score-=0.05;
 
     }
 
+
+    /*
+    Odds får INTE användas
+    i AI-modellen.
+
+    Marknaden hålls separat.
+    */
 
     return Math.max(
         score,
@@ -1186,34 +1174,42 @@ function aiScore(h,f){
 }
 
 
-/* =========================================================
-   AI PROBABILITETER
-========================================================= */
+/* =====================================================
+AI PROBABILITETER
+===================================================== */
 
-function aiProbabilities(race,states){
+function getAIProbabilities(
+    race,
+    states
+){
 
     const scores=[];
 
 
-    race.forEach(h=>{
+    race.forEach(
+        horse=>{
 
-        const state=
-            states[h.horse] ||
-            newHorse();
+            const state =
+                states[horse.horse] ||
+                newHorseState();
 
 
-        const f=
-            features(
-                h,
-                state
+            const features =
+                getFeatures(
+                    horse,
+                    state
+                );
+
+
+            scores.push(
+                calculateAIScore(
+                    horse,
+                    features
+                )
             );
 
-
-        scores.push(
-            aiScore(h,f)
-        );
-
-    });
+        }
+    );
 
 
     const total=
@@ -1233,47 +1229,58 @@ function aiProbabilities(race,states){
 
 
     return scores.map(
-        s=>100*s/total
+        score=>
+            100*score/total
     );
 
 }
 
 
-/* =========================================================
-   MARKNAD
-========================================================= */
+/* =====================================================
+MARKNADSPROBABILITETER
+===================================================== */
 
-function marketProbabilities(race){
+function getMarketProbabilities(
+    race
+){
 
-    let raw=
-        race.map(h=>{
+    const raw =
+        race.map(
+            horse=>{
 
-            if(
-                Number.isFinite(h.stake) &&
-                h.stake>0
-            ){
+                if(
+                    Number.isFinite(
+                        horse.stake
+                    ) &&
+                    horse.stake>0
+                ){
 
-                return h.stake;
+                    return horse.stake;
+
+                }
+
+
+                if(
+                    Number.isFinite(
+                        horse.odds
+                    ) &&
+                    horse.odds>0
+                ){
+
+                    return(
+                        100/horse.odds
+                    );
+
+                }
+
+
+                return 0;
 
             }
+        );
 
 
-            if(
-                Number.isFinite(h.odds) &&
-                h.odds>0
-            ){
-
-                return 100/h.odds;
-
-            }
-
-
-            return 0;
-
-        });
-
-
-    let total=
+    const total =
         raw.reduce(
             (a,b)=>a+b,
             0
@@ -1296,58 +1303,50 @@ function marketProbabilities(race){
 }
 
 
-/* =========================================================
-   KALIBRERING
-========================================================= */
+/* =====================================================
+KALIBRERING
+===================================================== */
 
-function calibrateArray(ai){
+function calibrateAI(ai){
 
-    /*
-    Försiktig shrinkage mot
-    neutral sannolikhet.
+    const calibrated =
+        ai.map(
+            p=>{
 
-    Viktigt:
-    kalibreringen används endast
-    på AI-delen.
-    */
+                const x=p/100;
 
-    const result=
-        ai.map(p=>{
+                return(
+                    0.85*x+
+                    0.15*(1/3)
+                );
 
-            const x=p/100;
-
-            const shrunk=
-                0.85*x+
-                0.15*(1/3);
-
-            return shrunk;
-
-        });
+            }
+        );
 
 
-    const sum=
-        result.reduce(
+    const total=
+        calibrated.reduce(
             (a,b)=>a+b,
             0
         );
 
 
-    if(sum<=0)
+    if(total<=0)
         return ai.slice();
 
 
-    return result.map(
-        x=>100*x/sum
+    return calibrated.map(
+        x=>100*x/total
     );
 
 }
 
 
-/* =========================================================
-   BLEND
-========================================================= */
+/* =====================================================
+BLEND
+===================================================== */
 
-function blendProbabilities(
+function blend(
     ai,
     market,
     weight
@@ -1356,7 +1355,11 @@ function blendProbabilities(
     const result=[];
 
 
-    for(let i=0;i<ai.length;i++){
+    for(
+        let i=0;
+        i<ai.length;
+        i++
+    ){
 
         result.push(
 
@@ -1369,7 +1372,9 @@ function blendProbabilities(
 
 
     const normalized=
-        normalize(result);
+        normalize(
+            result
+        );
 
 
     return normalized.map(
@@ -1379,13 +1384,13 @@ function blendProbabilities(
 }
 
 
-/* =========================================================
-   NORMALIZE
-========================================================= */
+/* =====================================================
+NORMALIZE
+===================================================== */
 
 function normalize(arr){
 
-    const clean=
+    const clean =
         arr.map(
             x=>
                 Number.isFinite(x)
@@ -1394,7 +1399,7 @@ function normalize(arr){
         );
 
 
-    const total=
+    const total =
         clean.reduce(
             (a,b)=>a+b,
             0
@@ -1417,153 +1422,46 @@ function normalize(arr){
 }
 
 
-/* =========================================================
-   EV
-========================================================= */
+/* =====================================================
+EV
+===================================================== */
 
-function expectedValue(prob,odds){
+function calculateEV(
+    probability,
+    odds
+){
 
     if(
-        !Number.isFinite(prob) ||
-        prob<=0
+        !Number.isFinite(
+            probability
+        )
     )
         return NaN;
 
 
     if(
-        !Number.isFinite(odds) ||
+        !Number.isFinite(
+            odds
+        ) ||
         odds<=0
     )
         return NaN;
 
 
     return(
-        (prob/100)*odds
-    )-1;
+        probability/100
+    )*
+    odds-
+    1;
 
 }
 
 
-/* =========================================================
-   STATE UPDATE
-========================================================= */
+/* =====================================================
+STATISTIK
+===================================================== */
 
-function updateState(states,race){
-
-    race.forEach(h=>{
-
-        const key=h.horse;
-
-
-        if(!states[key])
-            states[key]=newHorse();
-
-
-        const s=states[key];
-
-
-        s.starts++;
-
-
-        if(h.finish===1)
-            s.wins++;
-
-
-        if(
-            Number.isFinite(h.finish) &&
-            h.finish>=1 &&
-            h.finish<=3
-        ){
-
-            s.places++;
-
-        }
-
-
-        if(
-            Number.isFinite(
-                h.earnings
-            )
-        ){
-
-            s.earnings+=
-                h.earnings;
-
-        }
-
-
-        if(
-            Number.isFinite(
-                h.finish
-            )
-        ){
-
-            s.lastResults.push(
-                h.finish
-            );
-
-        }
-
-
-        if(
-            Number.isFinite(
-                h.time
-            )
-        ){
-
-            s.lastTimes.push(
-                h.time
-            );
-
-        }
-
-
-        s.lastGalops.push(
-            h.galop>0
-            ?1
-            :0
-        );
-
-
-        if(
-            Number.isFinite(
-                h.distance
-            )
-        ){
-
-            s.lastDistances.push(
-                h.distance
-            );
-
-        }
-
-
-        s.lastResults=
-            s.lastResults.slice(-10);
-
-        s.lastTimes=
-            s.lastTimes.slice(-10);
-
-        s.lastGalops=
-            s.lastGalops.slice(-10);
-
-        s.lastDistances=
-            s.lastDistances.slice(-10);
-
-
-        s.lastDate=
-            h.date;
-
-    });
-
-}
-
-
-/* =========================================================
-   BETTING STATISTICS
-========================================================= */
-
-function newStats(){
+function createStats(){
 
     return {
 
@@ -1586,7 +1484,7 @@ function newStats(){
 }
 
 
-function addPredictionStats(
+function addStats(
     stats,
     prediction
 ){
@@ -1607,7 +1505,7 @@ function addPredictionStats(
 
         stats.wins++;
 
-        stats.profit+=
+        stats.profit +=
             prediction.odds-1;
 
     }
@@ -1634,16 +1532,23 @@ function addPredictionStats(
         stats.profit;
 
 
-    if(dd>stats.maxDD)
+    if(
+        dd>
+        stats.maxDD
+    ){
+
         stats.maxDD=dd;
+
+    }
 
 }
 
 
-function roi(stats){
+function getROI(stats){
 
-    if(!stats.stake)
+    if(stats.stake<=0)
         return 0;
+
 
     return(
         100*
@@ -1654,10 +1559,11 @@ function roi(stats){
 }
 
 
-function hitRate(stats){
+function getHitRate(stats){
 
-    if(!stats.bets)
+    if(stats.bets<=0)
         return 0;
+
 
     return(
         100*
@@ -1668,71 +1574,145 @@ function hitRate(stats){
 }
 
 
-/* =========================================================
-   PREDIKTION
-========================================================= */
+/* =====================================================
+UPPDATERA STATE
+===================================================== */
 
-function makePrediction(
-    race,
-    states
+function updateStates(
+    states,
+    race
 ){
 
-    const weight=
-        num(
-            document.getElementById(
-                "aiWeight"
-            ).value
-        );
+    race.forEach(
+        horse=>{
+
+            const key=
+                horse.horse;
 
 
-    const ai=
-        aiProbabilities(
-            race,
-            states
-        );
+            if(
+                !states[key]
+            ){
+
+                states[key]=
+                    newHorseState();
+
+            }
 
 
-    const calibratedAI=
-        calibrateArray(
-            ai
-        );
+            const state=
+                states[key];
 
 
-    const market=
-        marketProbabilities(
-            race
-        );
+            state.starts++;
 
 
-    const blend=
-        blendProbabilities(
-            calibratedAI,
-            market,
-            weight
-        );
+            if(
+                horse.finish===1
+            ){
+
+                state.wins++;
+
+            }
 
 
-    return {
+            if(
+                Number.isFinite(
+                    horse.finish
+                ) &&
+                horse.finish>=1 &&
+                horse.finish<=3
+            ){
 
-        ai:ai,
+                state.places++;
 
-        calibratedAI:
-            calibratedAI,
+            }
 
-        market:market,
 
-        blend:blend
+            if(
+                Number.isFinite(
+                    horse.earnings
+                )
+            ){
 
-    };
+                state.earnings +=
+                    horse.earnings;
+
+            }
+
+
+            if(
+                Number.isFinite(
+                    horse.finish
+                )
+            ){
+
+                state.results.push(
+                    horse.finish
+                );
+
+            }
+
+
+            if(
+                Number.isFinite(
+                    horse.time
+                )
+            ){
+
+                state.times.push(
+                    horse.time
+                );
+
+            }
+
+
+            state.galops.push(
+                horse.galop>0
+                ?1
+                :0
+            );
+
+
+            if(
+                Number.isFinite(
+                    horse.distance
+                )
+            ){
+
+                state.distances.push(
+                    horse.distance
+                );
+
+            }
+
+
+            state.results=
+                state.results.slice(-10);
+
+
+            state.times=
+                state.times.slice(-10);
+
+
+            state.galops=
+                state.galops.slice(-10);
+
+
+            state.distances=
+                state.distances.slice(-10);
+
+        }
+    );
 
 }
 
 
-/* =========================================================
-   BETTING DECISION
-========================================================= */
+/* =====================================================
+BETTING BESLUT
+===================================================== */
 
-function chooseValueBet(
+function chooseBet(
     race,
     prediction
 ){
@@ -1770,18 +1750,18 @@ function chooseValueBet(
         i++
     ){
 
-        const h=
+        const horse=
             race[i];
 
 
-        const p=
+        const probability=
             prediction.blend[i];
 
 
         const ev=
-            expectedValue(
-                p,
-                h.odds
+            calculateEV(
+                probability,
+                horse.odds
             );
 
 
@@ -1800,9 +1780,10 @@ function chooseValueBet(
 
             index:i,
 
-            horse:h,
+            horse:horse,
 
-            probability:p,
+            probability:
+                probability,
 
             ev:ev,
 
@@ -1819,14 +1800,11 @@ function chooseValueBet(
 
     /*
     Välj högsta EV.
-
-    Det är viktigt:
-    vi väljer inte automatiskt
-    högsta sannolikhet.
     */
 
     candidates.sort(
-        (a,b)=>b.ev-a.ev
+        (a,b)=>
+            b.ev-a.ev
     );
 
 
@@ -1834,7 +1812,7 @@ function chooseValueBet(
         candidates[0];
 
 
-    const eligible=
+    const qualifies=
         best.ev>=minValue/100 &&
         best.horse.odds>=minOdds &&
         best.horse.odds<=maxOdds;
@@ -1844,7 +1822,7 @@ function chooseValueBet(
 
         ...best,
 
-        bet:eligible,
+        bet:qualifies,
 
         win:
             best.horse.finish===1
@@ -1854,24 +1832,25 @@ function chooseValueBet(
 }
 
 
-/* =========================================================
-   BACKTEST
-========================================================= */
+/* =====================================================
+BACKTEST
+===================================================== */
 
 function runBacktest(){
 
+    let data;
+
+
     try{
 
-        DATA=
-            sortData(
-                parseData()
-            );
+        data=
+            parseData();
 
     }
-    catch(e){
+    catch(error){
 
         alert(
-            e.message
+            error.message
         );
 
         return;
@@ -1879,7 +1858,7 @@ function runBacktest(){
     }
 
 
-    if(!DATA.length){
+    if(!data.length){
 
         alert(
             "Ingen data hittades."
@@ -1888,6 +1867,10 @@ function runBacktest(){
         return;
 
     }
+
+
+    DATA=
+        sortData(data);
 
 
     RACES=
@@ -1907,6 +1890,14 @@ function runBacktest(){
         );
 
 
+    const weight=
+        num(
+            document.getElementById(
+                "aiWeight"
+            ).value
+        );
+
+
     const split1=
         Math.floor(
             RACES.length*0.60
@@ -1921,13 +1912,13 @@ function runBacktest(){
 
     const stats={
 
-        all:newStats(),
+        all:createStats(),
 
-        train:newStats(),
+        train:createStats(),
 
-        validation:newStats(),
+        validation:createStats(),
 
-        oos:newStats()
+        oos:createStats()
 
     };
 
@@ -1940,141 +1931,195 @@ function runBacktest(){
 
 
             /*
-            1.
-            Förutsäg först.
+            PREDIKTION FÖRE LOPPET
             */
 
-            const prediction=
-                makePrediction(
+            const ai=
+                getAIProbabilities(
                     race,
                     states
                 );
 
 
-            /*
-            2.
-            Kontrollera historik.
-            */
-
-            const historyReady=
-                race.some(
-                    h=>
-                        states[h.horse] &&
-                        states[h.horse].starts>=minHistory
+            const calibratedAI=
+                calibrateAI(
+                    ai
                 );
 
 
-            if(historyReady){
+            const market=
+                getMarketProbabilities(
+                    race
+                );
 
-                const bet=
-                    chooseValueBet(
-                        race,
+
+            const blended=
+                blend(
+                    calibratedAI,
+                    market,
+                    weight
+                );
+
+
+            const bet=
+                chooseBet(
+                    race,
+                    {
+
+                        ai:ai,
+
+                        calibratedAI:
+                            calibratedAI,
+
+                        market:
+                            market,
+
+                        blend:
+                            blended
+
+                    }
+                );
+
+
+            /*
+            Kräver historik.
+            */
+
+            let historyReady=false;
+
+
+            race.forEach(
+                horse=>{
+
+                    const state=
+                        states[
+                            horse.horse
+                        ];
+
+
+                    if(
+                        state &&
+                        state.starts>=
+                        minHistory
+                    ){
+
+                        historyReady=true;
+
+                    }
+
+                }
+            );
+
+
+            if(
+                historyReady &&
+                bet
+            ){
+
+                const dataset=
+                    index<split1
+                    ?"Train"
+                    :
+                    index<split2
+                    ?"Validation"
+                    :
+                    "OOS";
+
+
+                const prediction={
+
+                    date:
+                        race[0].date,
+
+                    race:
+                        race[0].race,
+
+                    number:
+                        bet.horse.number,
+
+                    horse:
+                        bet.horse.horse,
+
+                    odds:
+                        bet.horse.odds,
+
+                    ai:
+                        bet.ai,
+
+                    calibratedAI:
+                        calibratedAI[
+                            bet.index
+                        ],
+
+                    market:
+                        market[
+                            bet.index
+                        ],
+
+                    blend:
+                        bet.probability,
+
+                    edge:
+                        bet.edge,
+
+                    ev:
+                        bet.ev*100,
+
+                    bet:
+                        bet.bet,
+
+                    win:
+                        bet.win,
+
+                    dataset:
+                        dataset
+
+                };
+
+
+                PRED.push(
+                    prediction
+                );
+
+
+                addStats(
+                    stats.all,
+                    prediction
+                );
+
+
+                if(
+                    dataset==="Train"
+                ){
+
+                    addStats(
+                        stats.train,
                         prediction
                     );
 
-
-                if(bet){
-
-                    const p={
-
-                        date:
-                            race[0].date,
-
-                        race:
-                            race[0].race,
-
-                        horse:
-                            bet.horse.horse,
-
-                        number:
-                            bet.horse.number,
-
-                        odds:
-                            bet.horse.odds,
-
-                        ai:
-                            prediction.ai[
-                                bet.index
-                            ],
-
-                        calibratedAI:
-                            prediction.calibratedAI[
-                                bet.index
-                            ],
-
-                        market:
-                            prediction.market[
-                                bet.index
-                            ],
-
-                        blend:
-                            prediction.blend[
-                                bet.index
-                            ],
-
-                        edge:
-                            bet.edge,
-
-                        ev:
-                            bet.ev*100,
-
-                        bet:
-                            bet.bet,
-
-                        win:
-                            bet.win,
-
-                        dataset:
-                            index<split1
-                            ?"Train"
-                            :
-                            index<split2
-                            ?"Validation"
-                            :
-                            "OOS"
-
-                    };
+                }
 
 
-                    PRED.push(p);
+                if(
+                    dataset==="Validation"
+                ){
 
-
-                    stats.all.add(
-                        p
+                    addStats(
+                        stats.validation,
+                        prediction
                     );
 
-
-                    if(
-                        p.dataset==="Train"
-                    ){
-
-                        stats.train.add(
-                            p
-                        );
-
-                    }
+                }
 
 
-                    if(
-                        p.dataset==="Validation"
-                    ){
+                if(
+                    dataset==="OOS"
+                ){
 
-                        stats.validation.add(
-                            p
-                        );
-
-                    }
-
-
-                    if(
-                        p.dataset==="OOS"
-                    ){
-
-                        stats.oos.add(
-                            p
-                        );
-
-                    }
+                    addStats(
+                        stats.oos,
+                        prediction
+                    );
 
                 }
 
@@ -2082,12 +2127,11 @@ function runBacktest(){
 
 
             /*
-            3.
-            Uppdatera historiken först
-            EFTER loppet.
+            RESULTATET ANVÄNDS
+            FÖRST HÄR.
             */
 
-            updateState(
+            updateStates(
                 states,
                 race
             );
@@ -2115,18 +2159,18 @@ function runBacktest(){
     renderPredictions();
 
 
-    renderDataControl(
-        stats
-    );
+    renderDataControl();
 
 }
 
 
-/* =========================================================
-   STATS
-========================================================= */
+/* =====================================================
+RENDER STATS
+===================================================== */
 
-function renderStats(stats){
+function renderStats(
+    stats
+){
 
     const s=
         stats.all;
@@ -2139,6 +2183,7 @@ function renderStats(stats){
     <div class="statgrid">
 
         <div class="stat">
+
             <div class="statTitle">
                 Lopp analyserade
             </div>
@@ -2146,10 +2191,12 @@ function renderStats(stats){
             <div class="statValue">
                 ${s.races}
             </div>
+
         </div>
 
 
         <div class="stat">
+
             <div class="statTitle">
                 Värdespel
             </div>
@@ -2157,10 +2204,12 @@ function renderStats(stats){
             <div class="statValue">
                 ${s.bets}
             </div>
+
         </div>
 
 
         <div class="stat">
+
             <div class="statTitle">
                 Vinster
             </div>
@@ -2168,21 +2217,25 @@ function renderStats(stats){
             <div class="statValue">
                 ${s.wins}
             </div>
+
         </div>
 
 
         <div class="stat">
+
             <div class="statTitle">
-                Träffprocent
+                Träff
             </div>
 
             <div class="statValue">
-                ${hitRate(s).toFixed(2)}%
+                ${getHitRate(s).toFixed(2)}%
             </div>
+
         </div>
 
 
         <div class="stat">
+
             <div class="statTitle">
                 Profit
             </div>
@@ -2190,25 +2243,31 @@ function renderStats(stats){
             <div class="statValue">
                 ${s.profit.toFixed(2)}
             </div>
+
         </div>
 
 
         <div class="stat">
+
             <div class="statTitle">
                 ROI
             </div>
 
             <div class="statValue ${
-                roi(s)>=0
+                getROI(s)>=0
                 ?"good"
                 :"bad"
             }">
-                ${roi(s).toFixed(2)}%
+
+                ${getROI(s).toFixed(2)}%
+
             </div>
+
         </div>
 
 
         <div class="stat">
+
             <div class="statTitle">
                 Max DD
             </div>
@@ -2216,34 +2275,26 @@ function renderStats(stats){
             <div class="statValue">
                 ${s.maxDD.toFixed(2)}
             </div>
+
         </div>
 
     </div>
 
 
-    <div class="alert ${
-        roi(s)>=0
-        ?"good"
-        :"warn"
-    }">
+    <div class="alert warn">
 
-    <b>
-    V2.1 är tekniskt körbar.
-    </b>
+        <b>V2.2 testläge</b>
 
-    <br><br>
+        <br><br>
 
-    AI och marknad hålls separerade.
-    Prognosen görs före resultatet och
-    hästens historik uppdateras först
-    efter loppet.
+        Motorn fungerar nu utan att blanda
+        ihop AI- och marknadsdata.
 
-    <br><br>
+        <br><br>
 
-    ROI är dock inte ett bevis på att
-    modellen fungerar i verkligheten.
-    Det krävs riktig historisk data och
-    framför allt positiv OOS-prestanda.
+        Testdatan är syntetisk och ska
+        inte användas för att bedöma
+        spelmodellens lönsamhet.
 
     </div>
 
@@ -2252,11 +2303,13 @@ function renderStats(stats){
 }
 
 
-/* =========================================================
-   SPLITS
-========================================================= */
+/* =====================================================
+RENDER SPLIT
+===================================================== */
 
-function renderSplits(stats){
+function renderSplits(
+    stats
+){
 
     const rows=[
 
@@ -2302,7 +2355,7 @@ function renderSplits(stats){
         ([name,s])=>{
 
             const r=
-                roi(s);
+                getROI(s);
 
 
             html+=`
@@ -2326,7 +2379,7 @@ function renderSplits(stats){
                 </td>
 
                 <td>
-                    ${hitRate(s).toFixed(2)}%
+                    ${getHitRate(s).toFixed(2)}%
                 </td>
 
                 <td>
@@ -2340,7 +2393,7 @@ function renderSplits(stats){
                 }">
 
                     <b>
-                    ${r.toFixed(2)}%
+                        ${r.toFixed(2)}%
                     </b>
 
                 </td>
@@ -2357,7 +2410,23 @@ function renderSplits(stats){
     );
 
 
-    html+=`</table>`;
+    html+=`
+
+    </table>
+
+    <br>
+
+    <div class="small">
+
+    <b>OOS är den viktigaste siffran.</b>
+
+    Modellen får inte använda resultatet
+    från framtida lopp när den gör sin
+    prognos.
+
+    </div>
+
+    `;
 
 
     document.getElementById(
@@ -2367,9 +2436,9 @@ function renderSplits(stats){
 }
 
 
-/* =========================================================
-   VALUE BUCKETS
-========================================================= */
+/* =====================================================
+VALUE RESULTS
+===================================================== */
 
 function renderValueResults(){
 
@@ -2378,7 +2447,7 @@ function renderValueResults(){
         document.getElementById(
             "valueResults"
         ).innerHTML=
-            "Inga prediktioner.";
+            "Inga spel hittades.";
 
         return;
 
@@ -2400,7 +2469,7 @@ function renderValueResults(){
 
     let html=`
 
-    <h3>EV</h3>
+    <h3>EV-zoner</h3>
 
     <table>
 
@@ -2431,11 +2500,15 @@ function renderValueResults(){
 
 
             const s=
-                newStats();
+                createStats();
 
 
             arr.forEach(
-                x=>s.add(x)
+                x=>
+                    addStats(
+                        s,
+                        x
+                    )
             );
 
 
@@ -2460,16 +2533,16 @@ function renderValueResults(){
                 </td>
 
                 <td>
-                    ${hitRate(s).toFixed(2)}%
+                    ${getHitRate(s).toFixed(2)}%
                 </td>
 
                 <td class="${
-                    roi(s)>=0
+                    getROI(s)>=0
                     ?"good"
                     :"bad"
                 }">
 
-                    ${roi(s).toFixed(2)}%
+                    ${getROI(s).toFixed(2)}%
 
                 </td>
 
@@ -2491,7 +2564,7 @@ function renderValueResults(){
 
     <br>
 
-    <h3>AI-edge mot marknad</h3>
+    <h3>AI-edge</h3>
 
     <table>
 
@@ -2507,7 +2580,7 @@ function renderValueResults(){
     `;
 
 
-    const edges=[
+    const edgeBuckets=[
 
         [0,5],
         [5,10],
@@ -2519,7 +2592,7 @@ function renderValueResults(){
     ];
 
 
-    edges.forEach(
+    edgeBuckets.forEach(
         ([lo,hi])=>{
 
             const arr=
@@ -2532,11 +2605,15 @@ function renderValueResults(){
 
 
             const s=
-                newStats();
+                createStats();
 
 
             arr.forEach(
-                x=>s.add(x)
+                x=>
+                    addStats(
+                        s,
+                        x
+                    )
             );
 
 
@@ -2561,12 +2638,12 @@ function renderValueResults(){
                 </td>
 
                 <td class="${
-                    roi(s)>=0
+                    getROI(s)>=0
                     ?"good"
                     :"bad"
                 }">
 
-                    ${roi(s).toFixed(2)}%
+                    ${getROI(s).toFixed(2)}%
 
                 </td>
 
@@ -2578,7 +2655,11 @@ function renderValueResults(){
     );
 
 
-    html+=`</table>`;
+    html+=`
+
+    </table>
+
+    `;
 
 
     document.getElementById(
@@ -2588,9 +2669,9 @@ function renderValueResults(){
 }
 
 
-/* =========================================================
-   KALIBRERING
-========================================================= */
+/* =====================================================
+CALIBRATION
+===================================================== */
 
 function renderCalibration(){
 
@@ -2615,7 +2696,7 @@ function renderCalibration(){
 
     <tr>
 
-        <th>AI-prob.</th>
+        <th>AI</th>
         <th>Antal</th>
         <th>Förväntat</th>
         <th>Faktiskt</th>
@@ -2664,9 +2745,11 @@ function renderCalibration(){
 
             const expected=
                 arr.reduce(
-                    (a,b)=>a+b.ai,
+                    (sum,x)=>
+                        sum+x.ai,
                     0
-                )/arr.length;
+                )/
+                arr.length;
 
 
             const actual=
@@ -2678,7 +2761,8 @@ function renderCalibration(){
 
 
             const diff=
-                actual-expected;
+                actual-
+                expected;
 
 
             html+=`
@@ -2723,7 +2807,11 @@ function renderCalibration(){
     );
 
 
-    html+=`</table>`;
+    html+=`
+
+    </table>
+
+    `;
 
 
     document.getElementById(
@@ -2733,9 +2821,9 @@ function renderCalibration(){
 }
 
 
-/* =========================================================
-   SENASTE PREDIKTIONER
-========================================================= */
+/* =====================================================
+PREDIKTIONER
+===================================================== */
 
 function renderPredictions(){
 
@@ -2752,7 +2840,8 @@ function renderPredictions(){
 
 
     const arr=
-        PRED.slice(-20)
+        PRED
+        .slice(-20)
         .reverse();
 
 
@@ -2783,11 +2872,7 @@ function renderPredictions(){
 
             html+=`
 
-            <tr class="${
-                x.bet
-                ?"valueRow"
-                :""
-            }">
+            <tr>
 
                 <td>
                     ${x.date}
@@ -2798,7 +2883,8 @@ function renderPredictions(){
                 </td>
 
                 <td>
-                    ${x.number} – ${x.horse}
+                    ${x.number} -
+                    ${x.horse}
                 </td>
 
                 <td>
@@ -2833,16 +2919,16 @@ function renderPredictions(){
                     ${x.odds.toFixed(2)}
                 </td>
 
-                <td>
+                <td class="${
+                    x.win
+                    ?"good"
+                    :"bad"
+                }">
 
                     ${
-                        x.bet
-                        ?(
-                            x.win
-                            ?'<span class="badge green">VINST</span>'
-                            :'<span class="badge red">FÖRLUST</span>'
-                        )
-                        :'<span class="badge gray">EJ SPEL</span>'
+                        x.win
+                        ?"VINST"
+                        :"FÖRLUST"
                     }
 
                 </td>
@@ -2855,7 +2941,11 @@ function renderPredictions(){
     );
 
 
-    html+=`</table>`;
+    html+=`
+
+    </table>
+
+    `;
 
 
     document.getElementById(
@@ -2865,11 +2955,11 @@ function renderPredictions(){
 }
 
 
-/* =========================================================
-   DATA CONTROL
-========================================================= */
+/* =====================================================
+DATA CONTROL
+===================================================== */
 
-function renderDataControl(stats){
+function renderDataControl(){
 
     const invalid=
         DATA.filter(
@@ -2885,7 +2975,7 @@ function renderDataControl(stats){
         );
 
 
-    const nanPred=
+    const nan=
         PRED.filter(
             x=>
                 !Number.isFinite(x.ai) ||
@@ -2896,16 +2986,19 @@ function renderDataControl(stats){
         );
 
 
-    const dates=
-        [...new Set(
-            DATA.map(x=>x.date)
-        )]
-        .sort();
-
-
-    const horses=
+    const horseCount=
         new Set(
-            DATA.map(x=>x.horse)
+            DATA.map(
+                x=>x.horse
+            )
+        ).size;
+
+
+    const dateCount=
+        new Set(
+            DATA.map(
+                x=>x.date
+            )
         ).size;
 
 
@@ -2948,7 +3041,7 @@ function renderDataControl(stats){
             </div>
 
             <div class="statValue">
-                ${horses}
+                ${horseCount}
             </div>
 
         </div>
@@ -2961,7 +3054,7 @@ function renderDataControl(stats){
             </div>
 
             <div class="statValue">
-                ${dates.length}
+                ${dateCount}
             </div>
 
         </div>
@@ -2987,7 +3080,7 @@ function renderDataControl(stats){
             </div>
 
             <div class="statValue">
-                ${nanPred.length}
+                ${nan.length}
             </div>
 
         </div>
@@ -2997,29 +3090,28 @@ function renderDataControl(stats){
 
     <div class="alert ${
         invalid.length===0 &&
-        nanPred.length===0
+        nan.length===0
         ?"good"
         :"bad"
     }">
 
     ${
         invalid.length===0 &&
-        nanPred.length===0
+        nan.length===0
 
-        ?"<b>✓ Datakontroll OK</b>"
+        ?"✓ Datakontroll OK"
 
-        :"<b>⚠ Datakontrollen hittade problem</b>"
+        :"⚠ Datakontrollen hittade fel"
     }
 
     <br><br>
 
-    Viktig kontroll:
+    Prognosen görs före loppet.
 
-    modellen uppdaterar hästens historik
-    först efter att loppet är färdigkört.
+    <br>
 
-    Resultatet från samma lopp används
-    alltså inte för att skapa prognosen.
+    Historiken uppdateras först efter
+    att loppresultatet har registrerats.
 
     </div>
 
@@ -3028,9 +3120,9 @@ function renderDataControl(stats){
 }
 
 
-/* =========================================================
-   START
-========================================================= */
+/* =====================================================
+START
+===================================================== */
 
 loadExample();
 

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>TRAV AI V31</title>
+<title>TRAV AI V31.1</title>
 
 <style>
 :root{
@@ -34,7 +34,7 @@ header{
   position:sticky;
   top:0;
   z-index:20;
-  background:rgba(7,11,20,.95);
+  background:rgba(7,11,20,.96);
   backdrop-filter:blur(14px);
   border-bottom:1px solid var(--line);
 }
@@ -76,7 +76,9 @@ header{
   box-shadow:0 0 12px var(--green);
 }
 
-.dot.error{background:var(--red)}
+.dot.error{
+  background:var(--red);
+}
 
 main{
   max-width:1550px;
@@ -91,7 +93,9 @@ main{
 }
 
 @media(max-width:1000px){
-  .layout{grid-template-columns:1fr}
+  .layout{
+    grid-template-columns:1fr;
+  }
 }
 
 .panel{
@@ -102,10 +106,17 @@ main{
   box-shadow:0 15px 50px rgba(0,0,0,.25);
 }
 
-h2,h3{margin-top:0}
+h2,h3{
+  margin-top:0;
+}
 
-h2{font-size:20px}
-h3{font-size:15px}
+h2{
+  font-size:20px;
+}
+
+h3{
+  font-size:15px;
+}
 
 label{
   display:block;
@@ -135,8 +146,13 @@ button{
   font-weight:900;
 }
 
-button:hover{filter:brightness(1.12)}
-button:disabled{opacity:.5}
+button:hover{
+  filter:brightness(1.12);
+}
+
+button:disabled{
+  opacity:.5;
+}
 
 .btn-main{
   margin-top:20px;
@@ -180,6 +196,7 @@ button:disabled{opacity:.5}
   margin-top:5px;
   color:var(--muted);
   font-size:10px;
+  line-height:1.45;
 }
 
 .message{
@@ -190,7 +207,9 @@ button:disabled{opacity:.5}
   font-size:12px;
 }
 
-.message.show{display:block}
+.message.show{
+  display:block;
+}
 
 .message.info{
   background:#10243b;
@@ -219,7 +238,9 @@ button:disabled{opacity:.5}
   background:#202b42;
 }
 
-.progress.show{display:block}
+.progress.show{
+  display:block;
+}
 
 .progress-bar{
   height:100%;
@@ -236,11 +257,15 @@ button:disabled{opacity:.5}
 }
 
 @media(max-width:1200px){
-  .cards{grid-template-columns:repeat(3,1fr)}
+  .cards{
+    grid-template-columns:repeat(3,1fr);
+  }
 }
 
 @media(max-width:650px){
-  .cards{grid-template-columns:repeat(2,1fr)}
+  .cards{
+    grid-template-columns:repeat(2,1fr);
+  }
 }
 
 .card{
@@ -266,6 +291,7 @@ button:disabled{opacity:.5}
 .red{color:var(--red)}
 .blue{color:var(--blue)}
 .orange{color:var(--orange)}
+.muted{color:var(--muted)}
 
 .quality{
   margin-top:14px;
@@ -287,7 +313,26 @@ button:disabled{opacity:.5}
   font-size:10px;
 }
 
-.quality-item b{color:var(--text)}
+.quality-item b{
+  color:var(--text);
+}
+
+.history-state{
+  margin-top:12px;
+  padding:10px;
+  border-radius:9px;
+  background:#1b1820;
+  border:1px solid #443346;
+  color:var(--yellow);
+  font-size:10px;
+  line-height:1.45;
+}
+
+.history-state.loaded{
+  background:#0d2922;
+  border-color:#236b55;
+  color:var(--green);
+}
 
 .race{
   margin-bottom:18px;
@@ -334,6 +379,21 @@ button:disabled{opacity:.5}
   font-weight:900;
 }
 
+.badge.spike{
+  background:#403512;
+  color:var(--yellow);
+}
+
+.badge.lock{
+  background:#12352d;
+  color:var(--green);
+}
+
+.badge.guard{
+  background:#252d43;
+  color:#b5c2da;
+}
+
 .horse-head,
 .horse{
   display:grid;
@@ -363,10 +423,15 @@ button:disabled{opacity:.5}
   border-bottom:1px solid rgba(42,57,88,.65);
 }
 
-.horse:last-child{border-bottom:0}
+.horse:last-child{
+  border-bottom:0;
+}
 
 @media(max-width:1250px){
-  .horse-head{display:none}
+
+  .horse-head{
+    display:none;
+  }
 
   .horse{
     grid-template-columns:
@@ -377,7 +442,9 @@ button:disabled{opacity:.5}
       85px;
   }
 
-  .optional{display:none!important}
+  .optional{
+    display:none!important;
+  }
 }
 
 .number{
@@ -400,10 +467,12 @@ button:disabled{opacity:.5}
   margin-top:4px;
   color:var(--muted);
   font-size:9px;
-  line-height:1.4;
+  line-height:1.45;
 }
 
-.metric{text-align:right}
+.metric{
+  text-align:right;
+}
 
 .metric-label{
   color:var(--muted);
@@ -500,9 +569,13 @@ button:disabled{opacity:.5}
   border-bottom:1px solid rgba(56,217,150,.15);
 }
 
-.system-row:last-child{border-bottom:0}
+.system-row:last-child{
+  border-bottom:0;
+}
 
-.system-row strong{color:var(--yellow)}
+.system-row strong{
+  color:var(--yellow);
+}
 
 .system-horse{
   display:inline-block;
@@ -548,14 +621,14 @@ hr{
 <header>
 <div class="header-inner">
 
-  <div class="logo">
-    TRAV <span>AI</span> V31
-  </div>
+<div class="logo">
+TRAV <span>AI</span> V31.1
+</div>
 
-  <div class="status">
-    <div id="statusDot" class="dot"></div>
-    <span id="statusText">Kontrollerar V29...</span>
-  </div>
+<div class="status">
+<div id="statusDot" class="dot"></div>
+<span id="statusText">Kontrollerar V29...</span>
+</div>
 
 </div>
 </header>
@@ -566,135 +639,219 @@ hr{
 <div class="layout">
 
 
-<!-- ====================================================== -->
-<!-- VÄNSTER -->
-<!-- ====================================================== -->
+<!-- ======================================================
+     VÄNSTER
+====================================================== -->
 
 <section class="panel">
 
 <h2>TRAV AI</h2>
 
 <label>Spelform</label>
+
 <select id="game">
-  <option>V85</option>
-  <option>V86</option>
-  <option>V75</option>
-  <option>V65</option>
-  <option>V64</option>
-  <option>V5</option>
-  <option>V4</option>
-  <option>V3</option>
-  <option>GS75</option>
-  <option>DD</option>
+<option>V85</option>
+<option>V86</option>
+<option>V75</option>
+<option>V65</option>
+<option>V64</option>
+<option>V5</option>
+<option>V4</option>
+<option>V3</option>
+<option>GS75</option>
+<option>DD</option>
 </select>
 
+
 <label>Datum</label>
-<input id="date" type="date">
+
+<input
+id="date"
+type="date"
+>
+
 
 <label>Budget kr</label>
-<input id="budget" type="number" value="500" min="1">
+
+<input
+id="budget"
+type="number"
+value="500"
+min="1"
+>
+
 
 <label>Max hästar per lopp</label>
-<input id="maxHorses" type="number" value="5" min="1" max="15">
+
+<input
+id="maxHorses"
+type="number"
+value="5"
+min="1"
+max="15"
+>
+
 
 <label>Min AI-vinstchans %</label>
-<input id="minAI" type="number" value="6" min="0" max="100">
+
+<input
+id="minAI"
+type="number"
+value="6"
+min="0"
+max="100"
+>
+
 
 <label>Min VALUE %</label>
-<input id="minEdge" type="number" value="0" min="-100" max="200">
+
+<input
+id="minEdge"
+type="number"
+value="0"
+min="-100"
+max="200"
+>
+
 
 <label>Max galopprisk %</label>
-<input id="maxGallop" type="number" value="35" min="0" max="100">
 
-<button id="analyzeBtn" class="btn-main">
-  HÄMTA & ANALYSERA
+<input
+id="maxGallop"
+type="number"
+value="35"
+min="0"
+max="100"
+>
+
+
+<button
+id="analyzeBtn"
+class="btn-main"
+>
+HÄMTA & ANALYSERA
 </button>
 
-<button id="clearBtn" class="btn-danger">
-  Rensa
+
+<button
+id="clearBtn"
+class="btn-danger"
+>
+Rensa
 </button>
 
 
 <div class="source">
 
-  <div id="sourceStatus" class="source-title">
-    V29 kontrolleras...
-  </div>
+<div
+id="sourceStatus"
+class="source-title"
+>
+V29 kontrolleras...
+</div>
 
-  <div id="sourceText" class="source-small">
-    Cloudflare Worker
-  </div>
+<div
+id="sourceText"
+class="source-small"
+>
+Cloudflare Worker
+</div>
 
-  <div id="progress" class="progress">
-    <div id="progressBar" class="progress-bar"></div>
-  </div>
+<div
+id="progress"
+class="progress"
+>
+<div
+id="progressBar"
+class="progress-bar"
+></div>
+</div>
 
 </div>
 
 
 <div class="quality">
 
-  <strong style="font-size:11px">
-    DATAKVALITET
-  </strong>
+<strong style="font-size:11px">
+DATAKVALITET
+</strong>
 
-  <div id="qualityGrid" class="quality-grid">
+<div
+id="qualityGrid"
+class="quality-grid"
+>
 
-    <div class="quality-item">
-      Lopp: <b>–</b>
-    </div>
+<div class="quality-item">
+Lopp: <b>–</b>
+</div>
 
-    <div class="quality-item">
-      Hästar: <b>–</b>
-    </div>
+<div class="quality-item">
+Hästar: <b>–</b>
+</div>
 
-    <div class="quality-item">
-      Aktiva: <b>–</b>
-    </div>
+<div class="quality-item">
+Aktiva: <b>–</b>
+</div>
 
-    <div class="quality-item">
-      Strykningar: <b>–</b>
-    </div>
+<div class="quality-item">
+Strykningar: <b>–</b>
+</div>
 
-    <div class="quality-item">
-      Balans: <b>–</b>
-    </div>
+<div class="quality-item">
+Balans: <b>–</b>
+</div>
 
-    <div class="quality-item">
-      Trend: <b>–</b>
-    </div>
+<div class="quality-item">
+Trend: <b>–</b>
+</div>
 
-    <div class="quality-item">
-      Parser: <b>–</b>
-    </div>
+<div class="quality-item">
+Parser: <b>–</b>
+</div>
 
-    <div class="quality-item">
-      Datum: <b>–</b>
-    </div>
+<div class="quality-item">
+Datum: <b>–</b>
+</div>
 
-  </div>
+</div>
 
+</div>
+
+
+<div
+id="historyState"
+class="history-state"
+>
+⚠ Historik saknas – AI:n kör dagens data
+utan att låtsas att form/kusk/galopp är
+verifierad statistik.
 </div>
 
 
 <div class="info">
 
-<strong>V31 – analysmotor</strong><br><br>
+<strong>V31.1 – modellstatus</strong>
 
-Modellen väger ihop dagens marknadsdata,
-startspår, distans, balans och strecktrend.
+<br><br>
 
-När historisk data finns används även:
-form, kusk, tränare och galopphistorik.
+<strong>AI %</strong> är modellens relativa
+sannolikhetsfördelning inom loppet.
+
+<br><br>
+
+<strong>V85 %</strong> är marknadens streckandel
+och ska inte betraktas som faktisk
+vinstsannolikhet.
 
 <br><br>
 
 <strong>VALUE</strong> =
-AI-vinstchans minus marknadens V85-andel.
+AI % − V85 %.
 
 <br><br>
 
-V85 % är inte en verifierad vinstsannolikhet.
+Historik används automatiskt när en
+historik-CSV finns laddad.
 
 </div>
 
@@ -704,19 +861,27 @@ V85 % är inte en verifierad vinstsannolikhet.
 
 <h3>Historisk data</h3>
 
-<label>Historik CSV</label>
+<label>
+Historik CSV
+</label>
 
 <input
-  id="historyFile"
-  type="file"
-  accept=".csv,text/csv"
+id="historyFile"
+type="file"
+accept=".csv,text/csv"
 >
 
 <div class="source-small">
 
-Exempel:
+Kolumner som stöds:
+
 datum,lopp,start,häst,kusk,tränare,
 placering,tid,distans,galopp,odds
+
+<br><br>
+
+Minst häst + placering krävs för
+formstatistik.
 
 </div>
 
@@ -726,68 +891,109 @@ placering,tid,distans,galopp,odds
 
 <h3>Reserv-startlista</h3>
 
-<label>Startlista CSV</label>
+<label>
+Startlista CSV
+</label>
 
 <input
-  id="startFile"
-  type="file"
-  accept=".csv,text/csv"
+id="startFile"
+type="file"
+accept=".csv,text/csv"
 >
 
 </section>
 
 
-<!-- ====================================================== -->
-<!-- HÖGER -->
-<!-- ====================================================== -->
+<!-- ======================================================
+     HÖGER
+====================================================== -->
 
 <section>
 
-<div id="message" class="message"></div>
+<div
+id="message"
+class="message"
+></div>
 
 
 <div class="cards">
 
-  <div class="card">
-    <div class="card-title">LOPP</div>
-    <div id="cardRaces" class="card-value">0</div>
-  </div>
+<div class="card">
+<div class="card-title">LOPP</div>
+<div
+id="cardRaces"
+class="card-value"
+>
+0
+</div>
+</div>
 
-  <div class="card">
-    <div class="card-title">HÄSTAR</div>
-    <div id="cardHorses" class="card-value">0</div>
-  </div>
+<div class="card">
+<div class="card-title">HÄSTAR</div>
+<div
+id="cardHorses"
+class="card-value"
+>
+0
+</div>
+</div>
 
-  <div class="card">
-    <div class="card-title">AKTIVA</div>
-    <div id="cardActive" class="card-value green">0</div>
-  </div>
+<div class="card">
+<div class="card-title">AKTIVA</div>
+<div
+id="cardActive"
+class="card-value green"
+>
+0
+</div>
+</div>
 
-  <div class="card">
-    <div class="card-title">STRUKNA</div>
-    <div id="cardScratched" class="card-value red">0</div>
-  </div>
+<div class="card">
+<div class="card-title">STRUKNA</div>
+<div
+id="cardScratched"
+class="card-value red"
+>
+0
+</div>
+</div>
 
-  <div class="card">
-    <div class="card-title">AI-TOPP</div>
-    <div id="cardTop" class="card-value green">–</div>
-  </div>
+<div class="card">
+<div class="card-title">AI-TOPP</div>
+<div
+id="cardTop"
+class="card-value green"
+>
+–
+</div>
+</div>
 
-  <div class="card">
-    <div class="card-title">SYSTEM</div>
-    <div id="cardSystem" class="card-value yellow">–</div>
-  </div>
+<div class="card">
+<div class="card-title">SYSTEM</div>
+<div
+id="cardSystem"
+class="card-value yellow"
+>
+–
+</div>
+</div>
 
 </div>
 
 
-<div id="results" class="panel">
+<div
+id="results"
+class="panel"
+>
 
 <div class="empty">
 
-<strong>TRAV AI V31</strong>
+<strong>
+TRAV AI V31.1
+</strong>
 
-Hämta dagens startlista och kör AI-analysen.
+Hämta dagens startlista och kör
+AI-analysen.
 
 </div>
 
@@ -801,22 +1007,24 @@ Hämta dagens startlista och kör AI-analysen.
 
 
 <div class="footer">
-TRAV AI V31 – analys, historik, form, marknad,
-VALUE, balans, trend, galopprisk och systemgenerator.
+TRAV AI V31.1 – marknad, form, balans,
+trend, startläge, distans, VALUE,
+galopprisk och systemgenerator.
 </div>
 
 
 <script>
 
 /* ============================================================
-   TRAV AI V31
-   ============================================================ */
+   KONFIGURATION
+============================================================ */
 
 const PROXY =
 "https://trav-ai-proxy.fredrik-widingsel.workers.dev";
 
 const DATA_URL =
 PROXY + "/data";
+
 
 let historyData=[];
 let startData=[];
@@ -825,1933 +1033,2356 @@ let lastData=null;
 
 
 /* ============================================================
-   BAS
-   ============================================================ */
+   BASFUNKTIONER
+============================================================ */
 
 function todayISO(){
 
-  const d=new Date();
+const d=new Date();
 
-  return [
-    d.getFullYear(),
-    String(d.getMonth()+1).padStart(2,"0"),
-    String(d.getDate()).padStart(2,"0")
-  ].join("-");
+return [
+d.getFullYear(),
+String(d.getMonth()+1).padStart(2,"0"),
+String(d.getDate()).padStart(2,"0")
+].join("-");
 }
 
-document.getElementById("date").value=todayISO();
+
+document.getElementById("date").value=
+todayISO();
 
 
 function text(v){
 
-  if(v===null || v===undefined)
-    return "";
+if(v===null || v===undefined)
+return "";
 
-  return String(v).trim();
+return String(v).trim();
 }
 
 
 function num(v){
 
-  if(v===null || v===undefined || v==="")
-    return 0;
+if(v===null || v===undefined || v==="")
+return 0;
 
-  const n=parseFloat(
-    String(v)
-      .replace(",",".")
-      .replace("%","")
-      .trim()
-  );
+const n=parseFloat(
+String(v)
+.replace(",",".")
+.replace("%","")
+.trim()
+);
 
-  return Number.isFinite(n)?n:0;
+return Number.isFinite(n)?n:0;
 }
 
 
 function clamp(v,min,max){
 
-  return Math.max(
-    min,
-    Math.min(max,v)
-  );
+return Math.max(
+min,
+Math.min(max,v)
+);
 }
 
 
 function norm(v){
 
-  return text(v)
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g,"")
-    .replace(/[^a-z0-9]/g,"");
+return text(v)
+.toLowerCase()
+.normalize("NFD")
+.replace(/[\u0300-\u036f]/g,"")
+.replace(/[^a-z0-9]/g,"");
 }
 
 
 function escapeHTML(v){
 
-  return text(v)
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+return text(v)
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
 }
 
 
 /* ============================================================
    CSV
-   ============================================================ */
+============================================================ */
 
 function parseCSV(csv){
 
-  const rows=[];
-  let row=[];
-  let cell="";
-  let quote=false;
+const rows=[];
+let row=[];
+let cell="";
+let quote=false;
 
-  for(let i=0;i<csv.length;i++){
+for(let i=0;i<csv.length;i++){
 
-    const c=csv[i];
-    const next=csv[i+1];
+const c=csv[i];
+const next=csv[i+1];
 
-    if(c==='"' && quote && next==='"'){
-      cell+='"';
-      i++;
-      continue;
-    }
+if(c==='"' && quote && next==='"'){
 
-    if(c==='"'){
-      quote=!quote;
-      continue;
-    }
+cell+='"';
+i++;
+continue;
 
-    if((c===";" || c===",") && !quote){
+}
 
-      row.push(cell);
-      cell="";
-      continue;
-    }
+if(c==='"'){
 
-    if(c==="\n" && !quote){
+quote=!quote;
+continue;
 
-      row.push(cell);
+}
 
-      if(row.some(x=>text(x)!==""))
-        rows.push(row);
+if(
+(c===";" || c===",") &&
+!quote
+){
 
-      row=[];
-      cell="";
-      continue;
-    }
+row.push(cell);
+cell="";
+continue;
 
-    if(c!=="\r")
-      cell+=c;
-  }
+}
 
-  row.push(cell);
+if(
+c==="\n" &&
+!quote
+){
 
-  if(row.some(x=>text(x)!==""))
-    rows.push(row);
+row.push(cell);
 
-  if(rows.length<2)
-    return [];
+if(
+row.some(
+x=>text(x)!==""
+)
+)
+rows.push(row);
 
-  const headers=rows[0].map(x=>text(x));
+row=[];
+cell="";
+continue;
 
-  return rows.slice(1).map(r=>{
+}
 
-    const o={};
+if(c!=="\r")
+cell+=c;
 
-    headers.forEach((h,i)=>{
-      o[h]=r[i]??"";
-    });
+}
 
-    return o;
-  });
+row.push(cell);
+
+if(
+row.some(
+x=>text(x)!==""
+)
+)
+rows.push(row);
+
+
+if(rows.length<2)
+return [];
+
+
+const headers=
+rows[0].map(
+x=>text(x)
+);
+
+
+return rows
+.slice(1)
+.map(r=>{
+
+const o={};
+
+headers.forEach(
+(h,i)=>{
+o[h]=r[i]??"";
+}
+);
+
+return o;
+
+});
+
 }
 
 
 function getField(row,keys){
 
-  for(const wanted of keys){
+for(const wanted of keys){
 
-    const wantedNorm=norm(wanted);
+const wn=norm(wanted);
 
-    for(const actual of Object.keys(row)){
+for(const actual of Object.keys(row)){
 
-      if(norm(actual)===wantedNorm){
+if(norm(actual)===wn){
 
-        if(
-          row[actual]!==undefined &&
-          row[actual]!==null &&
-          row[actual]!==""
-        )
-          return row[actual];
-      }
-    }
-  }
+if(
+row[actual]!==undefined &&
+row[actual]!==null &&
+row[actual]!==""
+)
+return row[actual];
 
-  return "";
+}
+
+}
+
+}
+
+return "";
 }
 
 
 function normalizeHistoryRow(row){
 
-  return {
+return {
 
-    date:getField(row,[
-      "datum","date"
-    ]),
+date:getField(
+row,
+[
+"datum",
+"date"
+]
+),
 
-    race:getField(row,[
-      "lopp","race","avdelning"
-    ]),
+race:getField(
+row,
+[
+"lopp",
+"race",
+"avdelning"
+]
+),
 
-    start:getField(row,[
-      "start","startnummer","spår","spar"
-    ]),
+start:getField(
+row,
+[
+"start",
+"startnummer",
+"spår",
+"spar"
+]
+),
 
-    horse:getField(row,[
-      "häst","hast","horse","horseName"
-    ]),
+horse:getField(
+row,
+[
+"häst",
+"hast",
+"horse",
+"horsename"
+]
+),
 
-    driver:getField(row,[
-      "kusk","driver"
-    ]),
+driver:getField(
+row,
+[
+"kusk",
+"driver"
+]
+),
 
-    trainer:getField(row,[
-      "tränare","tranare","trainer"
-    ]),
+trainer:getField(
+row,
+[
+"tränare",
+"tranare",
+"trainer"
+]
+),
 
-    position:num(getField(row,[
-      "placering","position","place","finish"
-    ])),
+position:num(
+getField(
+row,
+[
+"placering",
+"position",
+"place",
+"finish"
+]
+)
+),
 
-    time:getField(row,[
-      "tid","time","rekord"
-    ]),
+time:getField(
+row,
+[
+"tid",
+"time",
+"rekord"
+]
+),
 
-    distance:num(getField(row,[
-      "distans","distance"
-    ])),
+distance:num(
+getField(
+row,
+[
+"distans",
+"distance"
+]
+)
+),
 
-    gallop:getField(row,[
-      "galopp","gallop","g"
-    ]),
+gallop:getField(
+row,
+[
+"galopp",
+"gallop",
+"g"
+]
+),
 
-    odds:num(getField(row,[
-      "odds","vinnarodds"
-    ])),
+odds:num(
+getField(
+row,
+[
+"odds",
+"vinnarodds"
+]
+)
+),
 
-    raw:row
-  };
+raw:row
+
+};
+
 }
 
 
 /* ============================================================
-   FILER
-   ============================================================ */
+   FILUPPLADDNING
+============================================================ */
 
-document.getElementById("historyFile")
-.addEventListener("change",async e=>{
+document.getElementById(
+"historyFile"
+)
+.addEventListener(
+"change",
+async e=>{
 
-  const file=e.target.files[0];
+const file=e.target.files[0];
 
-  if(!file)
-    return;
+if(!file)
+return;
 
-  try{
+try{
 
-    const csv=await file.text();
+const csv=
+await file.text();
 
-    historyData=
-      parseCSV(csv)
-      .map(normalizeHistoryRow)
-      .filter(x=>x.horse);
-
-    showMessage(
-      "Historik laddad: "+
-      historyData.length+
-      " starter.",
-      "success"
-    );
-
-  }catch(err){
-
-    showMessage(
-      "Historikfel: "+err.message,
-      "error"
-    );
-  }
-});
+historyData=
+parseCSV(csv)
+.map(
+normalizeHistoryRow
+)
+.filter(
+x=>x.horse
+);
 
 
-document.getElementById("startFile")
-.addEventListener("change",async e=>{
+const state=
+document.getElementById(
+"historyState"
+);
 
-  const file=e.target.files[0];
+if(historyData.length){
 
-  if(!file)
-    return;
+state.className=
+"history-state loaded";
 
-  try{
+state.innerHTML=
+"✓ Historik laddad: "+
+historyData.length+
+" starter. AI:n använder nu historisk formdata.";
 
-    const csv=await file.text();
+}else{
 
-    startData=
-      parseCSV(csv)
-      .map(normalizeHistoryRow)
-      .filter(x=>x.horse);
+state.className=
+"history-state";
 
-    showMessage(
-      "Startlista laddad: "+
-      startData.length+
-      " hästar.",
-      "success"
-    );
+state.innerHTML=
+"⚠ CSV-filen innehåller ingen användbar historik.";
 
-  }catch(err){
-
-    showMessage(
-      "Startlistafel: "+err.message,
-      "error"
-    );
-  }
-});
-
-
-/* ============================================================
-   V29
-   ============================================================ */
-
-async function checkProxy(){
-
-  try{
-
-    const r=await fetch(
-      PROXY+"/health",
-      {
-        cache:"no-store"
-      }
-    );
-
-    if(!r.ok)
-      throw new Error(
-        "HTTP "+r.status
-      );
-
-    const d=await r.json();
-
-    if(!d.ok)
-      throw new Error("Proxyfel");
-
-    document.getElementById(
-      "statusDot"
-    ).className="dot online";
-
-    document.getElementById(
-      "statusText"
-    ).textContent=
-      "V29 online";
-
-    document.getElementById(
-      "sourceStatus"
-    ).textContent=
-      "V29 Worker: ONLINE";
-
-    document.getElementById(
-      "sourceText"
-    ).textContent=
-      "Travet.se via Cloudflare";
-
-  }catch(err){
-
-    document.getElementById(
-      "statusDot"
-    ).className="dot error";
-
-    document.getElementById(
-      "statusText"
-    ).textContent=
-      "Proxyfel";
-
-    document.getElementById(
-      "sourceStatus"
-    ).textContent=
-      "V29: FEL";
-
-    document.getElementById(
-      "sourceText"
-    ).textContent=
-      err.message;
-  }
 }
 
 
-async function fetchV29(){
+showMessage(
+"Historik laddad: "+
+historyData.length+
+" starter.",
+"success"
+);
 
-  const r=await fetch(
-    DATA_URL,
-    {
-      cache:"no-store"
-    }
-  );
 
-  if(!r.ok)
-    throw new Error(
-      "V29 HTTP "+r.status
-    );
+}catch(err){
 
-  const d=await r.json();
+showMessage(
+"Historikfel: "+
+err.message,
+"error"
+);
 
-  if(
-    !d ||
-    d.ok===false
-  )
-    throw new Error(
-      d?.error ||
-      "V29 returnerade fel"
-    );
-
-  return d;
 }
+
+}
+);
+
+
+document.getElementById(
+"startFile"
+)
+.addEventListener(
+"change",
+async e=>{
+
+const file=e.target.files[0];
+
+if(!file)
+return;
+
+try{
+
+const csv=
+await file.text();
+
+startData=
+parseCSV(csv)
+.map(
+normalizeHistoryRow
+)
+.filter(
+x=>x.horse
+);
+
+showMessage(
+"Reserv-startlista laddad: "+
+startData.length+
+" hästar.",
+"success"
+);
+
+}catch(err){
+
+showMessage(
+"Startlistafel: "+
+err.message,
+"error"
+);
+
+}
+
+}
+);
 
 
 /* ============================================================
-   HISTORIK
-   ============================================================ */
+   HISTORIKSÖKNING
+============================================================ */
 
 function historyFor(name){
 
-  const n=norm(name);
+const n=norm(name);
 
-  if(!n)
-    return [];
+if(!n)
+return [];
 
-  return historyData.filter(
-    h=>norm(h.horse)===n
-  );
+return historyData.filter(
+h=>norm(h.horse)===n
+);
+
 }
 
 
 function historyForm(name){
 
-  const hist=
-    historyFor(name);
+const hist=
+historyFor(name);
 
-  if(!hist.length)
-    return 50;
+if(!hist.length)
+return null;
 
-  const recent=
-    hist.slice(-10);
 
-  let points=0;
-  let count=0;
+const recent=
+hist
+.filter(
+x=>x.position>0
+)
+.slice(-10);
 
-  for(const r of recent){
 
-    const p=num(r.position);
+if(!recent.length)
+return null;
 
-    if(!p)
-      continue;
 
-    count++;
+let points=0;
 
-    if(p===1) points+=100;
-    else if(p===2) points+=85;
-    else if(p===3) points+=72;
-    else if(p===4) points+=62;
-    else if(p===5) points+=54;
-    else if(p<=7) points+=40;
-    else points+=20;
-  }
+for(const r of recent){
 
-  if(!count)
-    return 50;
+const p=r.position;
 
-  return clamp(
-    points/count,
-    0,
-    100
-  );
+if(p===1)
+points+=100;
+
+else if(p===2)
+points+=88;
+
+else if(p===3)
+points+=76;
+
+else if(p===4)
+points+=65;
+
+else if(p===5)
+points+=55;
+
+else if(p<=7)
+points+=40;
+
+else
+points+=20;
+
+}
+
+
+return clamp(
+points/recent.length,
+0,
+100
+);
+
 }
 
 
 function historyWinRate(name){
 
-  const hist=
-    historyFor(name);
+const hist=
+historyFor(name)
+.filter(
+x=>x.position>0
+);
 
-  if(!hist.length)
-    return 0;
+if(!hist.length)
+return null;
 
-  const valid=
-    hist.filter(
-      h=>num(h.position)>0
-    );
+return (
+hist.filter(
+x=>x.position===1
+).length /
+hist.length
+)*100;
 
-  if(!valid.length)
-    return 0;
-
-  return (
-    valid.filter(
-      h=>num(h.position)===1
-    ).length /
-    valid.length
-  )*100;
 }
 
 
 function historyPlaceRate(name){
 
-  const hist=
-    historyFor(name);
+const hist=
+historyFor(name)
+.filter(
+x=>x.position>0
+);
 
-  if(!hist.length)
-    return 0;
+if(!hist.length)
+return null;
 
-  const valid=
-    hist.filter(
-      h=>num(h.position)>0
-    );
+return (
+hist.filter(
+x=>x.position<=3
+).length /
+hist.length
+)*100;
 
-  if(!valid.length)
-    return 0;
-
-  return (
-    valid.filter(
-      h=>num(h.position)<=3
-    ).length /
-    valid.length
-  )*100;
 }
 
 
 function historyGallopRate(name){
 
-  const hist=
-    historyFor(name);
+const hist=
+historyFor(name);
 
-  if(!hist.length)
-    return null;
+if(!hist.length)
+return null;
 
-  let valid=0;
-  let g=0;
 
-  for(const r of hist){
+const known=
+hist.filter(
+x=>text(x.gallop)
+);
 
-    const value=
-      text(r.gallop);
+if(!known.length)
+return null;
 
-    if(!value)
-      continue;
 
-    valid++;
+const galopp=
+known.filter(
+x=>
+/galopp|gallop/i.test(
+text(x.gallop)
+) ||
+/^g$/i.test(
+text(x.gallop)
+)
+);
 
-    if(
-      /galopp|gallop/i.test(value) ||
-      /^g$/i.test(value)
-    )
-      g++;
-  }
 
-  if(!valid)
-    return null;
+return (
+galopp.length/
+known.length
+)*100;
 
-  return (
-    g/valid
-  )*100;
 }
 
 
 function historyDistanceScore(
-  name,
-  distance
+name,
+distance
 ){
 
-  const hist=
-    historyFor(name);
+const hist=
+historyFor(name);
 
-  if(!hist.length || !distance)
-    return 50;
+if(!hist.length || !distance)
+return null;
 
-  const same=
-    hist.filter(
-      h =>
-        h.distance &&
-        Math.abs(
-          h.distance-distance
-        )<=100
-    );
 
-  if(!same.length)
-    return 50;
+const same=
+hist.filter(
+h=>
+h.distance &&
+Math.abs(
+h.distance-distance
+)<=100
+);
 
-  const good=
-    same.filter(
-      h =>
-        h.position>0 &&
-        h.position<=3
-    ).length;
 
-  return clamp(
-    45+(good/same.length)*55,
-    0,
-    100
-  );
+if(!same.length)
+return null;
+
+
+const valid=
+same.filter(
+h=>h.position>0
+);
+
+
+if(!valid.length)
+return null;
+
+
+const good=
+valid.filter(
+h=>h.position<=3
+).length;
+
+
+return clamp(
+35+
+(good/valid.length)*65,
+0,
+100
+);
+
 }
 
 
 /* ============================================================
-   KUSK / TRÄNARE
-   ============================================================ */
+   KUSK
+============================================================ */
 
 function driverScore(h){
 
-  if(!h.driver)
-    return 50;
-
-  const key=norm(h.driver);
-
-  const rows=
-    historyData.filter(
-      r=>norm(r.driver)===key
-    );
-
-  if(rows.length<5)
-    return 50;
-
-  const valid=
-    rows.filter(
-      r=>r.position>0
-    );
-
-  if(!valid.length)
-    return 50;
-
-  const wins=
-    valid.filter(
-      r=>r.position===1
-    ).length;
-
-  return clamp(
-    35+(wins/valid.length)*130,
-    20,
-    100
-  );
-}
+if(!h.driver)
+return null;
 
 
-function trainerScore(h){
+const rows=
+historyData.filter(
+r=>norm(r.driver)===norm(h.driver)
+);
 
-  if(!h.trainer)
-    return 50;
 
-  const key=norm(h.trainer);
+if(rows.length<5)
+return null;
 
-  const rows=
-    historyData.filter(
-      r=>norm(r.trainer)===key
-    );
 
-  if(rows.length<5)
-    return 50;
+const valid=
+rows.filter(
+r=>r.position>0
+);
 
-  const valid=
-    rows.filter(
-      r=>r.position>0
-    );
 
-  if(!valid.length)
-    return 50;
+if(!valid.length)
+return null;
 
-  const wins=
-    valid.filter(
-      r=>r.position===1
-    ).length;
 
-  return clamp(
-    40+(wins/valid.length)*120,
-    25,
-    100
-  );
+const win=
+valid.filter(
+r=>r.position===1
+).length /
+valid.length;
+
+
+return clamp(
+35+
+win*130,
+20,
+100
+);
+
 }
 
 
 /* ============================================================
-   DAGENS DATA
-   ============================================================ */
+   TRÄNARE
+============================================================ */
+
+function trainerScore(h){
+
+if(!h.trainer)
+return null;
+
+
+const rows=
+historyData.filter(
+r=>norm(r.trainer)===norm(h.trainer)
+);
+
+
+if(rows.length<5)
+return null;
+
+
+const valid=
+rows.filter(
+r=>r.position>0
+);
+
+
+if(!valid.length)
+return null;
+
+
+const win=
+valid.filter(
+r=>r.position===1
+).length /
+valid.length;
+
+
+return clamp(
+40+
+win*120,
+25,
+100
+);
+
+}
+
+
+/* ============================================================
+   DAGENS SIGNALER
+============================================================ */
 
 function balanceScore(h){
 
-  const b=
-    norm(h.balance);
+const b=
+norm(h.balance);
 
-  if(!b)
-    return 50;
+if(!b)
+return 50;
 
-  if(
-    b.includes("barfota")
-  )
-    return 58;
 
-  if(
-    b.includes("skor")
-  )
-    return 50;
+if(
+b.includes("barfota")
+)
+return 58;
 
-  return 50;
+
+if(
+b.includes("skor")
+)
+return 50;
+
+
+return 50;
 }
 
 
 function trendScore(h){
 
-  if(
-    h.trend_direction==="up"
-  ){
+if(
+h.trend_direction==="up"
+){
 
-    return clamp(
-      50+
-      Math.abs(
-        num(h.trend_change)
-      )*5,
-      50,
-      85
-    );
-  }
+return clamp(
+55+
+Math.abs(
+num(h.trend_change)
+)*4,
+55,
+85
+);
 
-  if(
-    h.trend_direction==="down"
-  ){
+}
 
-    return clamp(
-      50-
-      Math.abs(
-        num(h.trend_change)
-      )*5,
-      15,
-      50
-    );
-  }
 
-  return 50;
+if(
+h.trend_direction==="down"
+){
+
+return clamp(
+45-
+Math.abs(
+num(h.trend_change)
+)*4,
+15,
+45
+);
+
+}
+
+
+return 50;
 }
 
 
 function startScore(h,race){
 
-  const n=num(h.number);
+const n=
+num(h.number);
 
-  if(!n)
-    return 50;
+if(!n)
+return 50;
 
-  const method=
-    norm(race.start_method);
 
-  if(method==="auto"){
+const method=
+norm(race.start_method);
 
-    if(n===1) return 90;
-    if(n===2 || n===3) return 82;
-    if(n<=5) return 74;
-    if(n<=7) return 65;
-    if(n===8) return 58;
 
-    return 48;
-  }
+if(method==="auto"){
 
-  if(method==="volt"){
+if(n===1)
+return 90;
 
-    if(n<=3) return 78;
-    if(n<=6) return 68;
-    if(n<=9) return 58;
+if(n===2 || n===3)
+return 82;
 
-    return 48;
-  }
+if(n<=5)
+return 74;
 
-  return 55;
+if(n<=7)
+return 65;
+
+if(n===8)
+return 58;
+
+return 48;
+
 }
 
 
-function distanceScore(h,race){
+if(method==="volt"){
 
-  const d=num(race.distance);
+if(n<=3)
+return 78;
 
-  if(!d)
-    return 50;
+if(n<=6)
+return 68;
 
-  let score=50;
+if(n<=9)
+return 58;
 
-  if(d===2140)
-    score+=4;
+return 48;
 
-  if(d===1640)
-    score+=2;
-
-  if(d>=2600)
-    score-=2;
-
-  score+=
-    (historyDistanceScore(
-      h.name,
-      d
-    )-50)*0.35;
-
-  return clamp(
-    score,
-    0,
-    100
-  );
 }
 
+
+return 55;
+
+}
+
+
+function distanceScore(
+h,
+race
+){
+
+const d=
+num(race.distance);
+
+if(!d)
+return 50;
+
+
+const hist=
+historyDistanceScore(
+h.name,
+d
+);
+
+
+if(hist!==null){
+
+return clamp(
+50+
+(hist-50)*0.45,
+0,
+100
+);
+
+}
+
+
+if(d===2140)
+return 54;
+
+if(d===1640)
+return 53;
+
+if(d>=2600)
+return 48;
+
+
+return 50;
+
+}
+
+
+/* ============================================================
+   GALOPP
+============================================================ */
 
 function gallopRisk(h){
 
-  const hist=
-    historyGallopRate(h.name);
+const hist=
+historyGallopRate(
+h.name
+);
 
-  if(hist!==null)
-    return clamp(
-      hist,
-      0,
-      100
-    );
 
-  /*
-    Vi sätter INTE 10% som om det vore
-    verklig statistik.
+/*
+  Utan historik:
 
-    Utan historik är risk okänd.
-    15 används endast som neutral modellrisk.
-  */
+  Vi visar "okänd" istället för
+  att presentera ett påhittat
+  statistikvärde.
+*/
 
-  return 15;
+if(hist===null)
+return null;
+
+
+return clamp(
+hist,
+0,
+100
+);
+
 }
 
 
 /* ============================================================
-   AI-MODELL
-   ============================================================ */
+   MODELL
+============================================================ */
 
-function calculateModel(h,race){
+function calculateModel(
+h,
+race
+){
 
-  const form=
-    historyForm(h.name);
+const form=
+historyForm(
+h.name
+);
 
-  const wins=
-    historyWinRate(h.name);
+const wins=
+historyWinRate(
+h.name
+);
 
-  const places=
-    historyPlaceRate(h.name);
+const places=
+historyPlaceRate(
+h.name
+);
 
-  const driver=
-    driverScore(h);
+const driver=
+driverScore(h);
 
-  const trainer=
-    trainerScore(h);
+const trainer=
+trainerScore(h);
 
-  const balance=
-    balanceScore(h);
+const balance=
+balanceScore(h);
 
-  const trend=
-    trendScore(h);
+const trend=
+trendScore(h);
 
-  const start=
-    startScore(h,race);
+const start=
+startScore(h,race);
 
-  const distance=
-    distanceScore(h,race);
+const distance=
+distanceScore(
+h,
+race
+);
 
-  const gallop=
-    gallopRisk(h);
+const gallop=
+gallopRisk(h);
 
-  const market=
-    num(h.v85);
-
-
-  const hasHistory=
-    historyFor(h.name).length>0;
-
-
-  /*
-    Historik finns:
-    marknad blir sekundär.
-
-    Historik saknas:
-    dagens objektiva signaler används,
-    men modellen överdriver inte precisionen.
-  */
-
-  let score=0;
-
-  if(hasHistory){
-
-    score=
-
-      form*0.25 +
-
-      start*0.12 +
-
-      distance*0.10 +
-
-      driver*0.10 +
-
-      trainer*0.08 +
-
-      balance*0.07 +
-
-      trend*0.08 +
-
-      places*0.08 +
-
-      wins*0.04 +
-
-      market*0.08;
-
-  }else{
-
-    score=
-
-      start*0.18 +
-
-      distance*0.12 +
-
-      balance*0.10 +
-
-      trend*0.14 +
-
-      market*0.30 +
-
-      50*0.16;
-  }
+const market=
+num(h.v85);
 
 
-  /*
-    Galopprisk.
-  */
-
-  score -=
-    gallop*0.20;
+const hasHistory=
+historyFor(h.name).length>0;
 
 
-  /*
-    Positiv trend.
-  */
-
-  if(
-    h.trend_direction==="up"
-  ){
-
-    score +=
-      Math.min(
-        5,
-        Math.abs(
-          num(h.trend_change)
-        )*1.5
-      );
-  }
+let score=0;
 
 
-  /*
-    Balansförändring.
+/*
+  HISTORIK FINNS
+*/
 
-    Om hästen går från skor till barfota
-    ger modellen en liten positiv signal.
-  */
+if(hasHistory){
 
-  const current=
-    norm(h.balance);
+score=
 
-  const previous=
-    norm(h.balance_last);
+(form ?? 50)*0.27 +
 
-  if(
-    current.includes("barfota") &&
-    previous.includes("skor")
-  ){
+start*0.12 +
 
-    score+=3;
-  }
+distance*0.10 +
+
+(driver ?? 50)*0.09 +
+
+(trainer ?? 50)*0.07 +
+
+balance*0.07 +
+
+trend*0.08 +
+
+(places ?? 50)*0.07 +
+
+(wins ?? 50)*0.03 +
+
+market*0.10;
+
+}
 
 
-  return {
+/*
+  HISTORIK SAKNAS
 
-    raw:clamp(
-      score,
-      1,
-      100
-    ),
+  Marknaden används som prior,
+  men modellen bygger inte hela
+  sannolikheten på strecken.
+*/
 
-    form,
-    wins,
-    places,
-    driver,
-    trainer,
-    balance,
-    trend,
-    start,
-    distance,
-    gallop,
-    market,
+else{
 
-    historyCount:
-      historyFor(h.name).length
-  };
+score=
+
+start*0.18 +
+
+distance*0.12 +
+
+balance*0.10 +
+
+trend*0.14 +
+
+market*0.28 +
+
+50*0.18;
+
+}
+
+
+/*
+  Galopp endast som
+  verifierad historik.
+*/
+
+if(gallop!==null){
+
+score -=
+gallop*0.16;
+
+}
+
+
+/*
+  Positiv trend.
+*/
+
+if(
+h.trend_direction==="up"
+){
+
+score+=
+Math.min(
+5,
+Math.abs(
+num(h.trend_change)
+)*1.3
+);
+
+}
+
+
+/*
+  Balansförändring.
+*/
+
+const current=
+norm(h.balance);
+
+const previous=
+norm(h.balance_last);
+
+
+if(
+current.includes("barfota") &&
+previous.includes("skor")
+){
+
+score+=3;
+
+}
+
+
+return {
+
+raw:
+clamp(
+score,
+1,
+100
+),
+
+form,
+wins,
+places,
+driver,
+trainer,
+balance,
+trend,
+start,
+distance,
+gallop,
+market,
+
+historyCount:
+historyFor(
+h.name
+).length
+
+};
+
 }
 
 
 /* ============================================================
-   NORMALISERA V29
-   ============================================================ */
+   V29 NORMALISERING
+============================================================ */
 
 function normalizeV29(data){
 
-  const rows=[];
+const rows=[];
 
-  if(
-    !data ||
-    !Array.isArray(data.races)
-  )
-    return rows;
-
-
-  for(const race of data.races){
-
-    if(
-      !race ||
-      !Array.isArray(race.horses)
-    )
-      continue;
+if(
+!data ||
+!Array.isArray(data.races)
+)
+return rows;
 
 
-    for(const h of race.horses){
+for(
+const race of data.races
+){
 
-      if(!h)
-        continue;
+if(
+!race ||
+!Array.isArray(
+race.horses
+)
+)
+continue;
 
-      rows.push({
 
-        race:Number(race.number),
+for(
+const h of race.horses
+){
 
-        raceName:
-          race.name ||
-          "V85-"+race.number,
+if(!h)
+continue;
 
-        distance:
-          num(race.distance),
 
-        start_method:
-          race.start_method,
+rows.push({
 
-        start_time:
-          race.start_time,
+race:Number(
+race.number
+),
 
-        additional:
-          race.additional,
+raceName:
+race.name ||
+"V85-"+race.number,
 
-        number:
-          Number(h.number),
+distance:
+num(race.distance),
 
-        name:
-          h.name,
+start_method:
+race.start_method,
 
-        v85:
-          num(h.v85),
+start_time:
+race.start_time,
 
-        balance:
-          h.balance,
+additional:
+race.additional,
 
-        balance_last:
-          h.balance_last,
+number:
+Number(h.number),
 
-        trend:
-          h.trend,
+name:
+h.name,
 
-        trend_direction:
-          h.trend_direction,
+v85:
+num(h.v85),
 
-        trend_change:
-          h.trend_change,
+balance:
+h.balance,
 
-        scratched:
-          !!h.scratched,
+balance_last:
+h.balance_last,
 
-        scratch_reason:
-          h.scratch_reason
-      });
-    }
-  }
+trend:
+h.trend,
 
-  return rows;
+trend_direction:
+h.trend_direction,
+
+trend_change:
+h.trend_change,
+
+scratched:
+!!h.scratched,
+
+scratch_reason:
+h.scratch_reason
+
+});
+
+}
+
+}
+
+return rows;
+
 }
 
 
 /* ============================================================
    ANALYS
-   ============================================================ */
+============================================================ */
 
 function analyze(rows){
 
-  const groups={};
-
-  for(const h of rows){
-
-    if(h.scratched)
-      continue;
-
-    const key=
-      String(h.race);
-
-    if(!groups[key])
-      groups[key]=[];
-
-    groups[key].push(h);
-  }
+const groups={};
 
 
-  const races=[];
+for(
+const h of rows
+){
+
+if(h.scratched)
+continue;
 
 
-  Object.keys(groups)
-  .sort(
-    (a,b)=>num(a)-num(b)
-  )
-  .forEach(key=>{
-
-    const horses=
-      groups[key];
-
-    const race=
-      horses[0];
+const key=
+String(h.race);
 
 
-    const scored=
-      horses.map(h=>{
-
-        const model=
-          calculateModel(
-            h,
-            race
-          );
-
-        return {
-          ...h,
-          ...model
-        };
-      });
+if(!groups[key])
+groups[key]=[];
 
 
-    /*
-      Relativ vinstchans inom loppet.
-    */
+groups[key].push(h);
 
-    const total=
-      scored.reduce(
-        (sum,h)=>sum+h.raw,
-        0
-      );
+}
 
 
-    scored.forEach(h=>{
-
-      h.aiPercent=
-        total>0
-          ? h.raw/total*100
-          : 100/scored.length;
+const races=[];
 
 
-      h.edge=
-        h.aiPercent-h.v85;
+Object.keys(groups)
+.sort(
+(a,b)=>num(a)-num(b)
+)
+.forEach(
+key=>{
+
+const horses=
+groups[key];
+
+const race=
+horses[0];
 
 
-      h.valueRatio=
-        h.v85>0
-          ? h.aiPercent/h.v85
-          : h.aiPercent;
+const scored=
+horses.map(
+h=>{
+
+const model=
+calculateModel(
+h,
+race
+);
+
+return {
+...h,
+...model
+};
+
+}
+);
 
 
-      h.rank=0;
-    });
+const total=
+scored.reduce(
+(sum,h)=>sum+h.raw,
+0
+);
 
 
-    scored.sort(
-      (a,b)=>
-        b.aiPercent-a.aiPercent
-    );
+scored.forEach(
+h=>{
+
+h.aiPercent=
+total>0
+? h.raw/total*100
+:100/scored.length;
 
 
-    scored.forEach(
-      (h,i)=>{
-        h.rank=i+1;
-      }
-    );
+h.edge=
+h.aiPercent-h.v85;
 
 
-    races.push({
+h.valueRatio=
+h.v85>0
+?h.aiPercent/h.v85
+:0;
 
-      number:
-        race.race,
-
-      name:
-        race.raceName,
-
-      distance:
-        race.distance,
-
-      start_method:
-        race.start_method,
-
-      start_time:
-        race.start_time,
-
-      additional:
-        race.additional,
-
-      horses:
-        scored
-    });
-
-  });
+}
+);
 
 
-  return races;
+scored.sort(
+(a,b)=>
+b.aiPercent-a.aiPercent
+);
+
+
+races.push({
+
+number:
+race.race,
+
+name:
+race.raceName,
+
+distance:
+race.distance,
+
+start_method:
+race.start_method,
+
+start_time:
+race.start_time,
+
+additional:
+race.additional,
+
+horses:
+scored
+
+});
+
+}
+);
+
+
+return races;
+
 }
 
 
 /* ============================================================
    VAL
-   ============================================================ */
+============================================================ */
 
-function picksForRace(race){
+function picksForRace(
+race
+){
 
-  const minAI=
-    num(
-      document.getElementById(
-        "minAI"
-      ).value
-    );
+const minAI=
+num(
+document.getElementById(
+"minAI"
+).value
+);
 
-  const minEdge=
-    num(
-      document.getElementById(
-        "minEdge"
-      ).value
-    );
+const minEdge=
+num(
+document.getElementById(
+"minEdge"
+).value
+);
 
-  const maxGallop=
-    num(
-      document.getElementById(
-        "maxGallop"
-      ).value
-    );
-
-
-  const sorted=
-    [...race.horses]
-    .sort(
-      (a,b)=>
-        b.aiPercent-a.aiPercent
-    );
+const maxGallop=
+num(
+document.getElementById(
+"maxGallop"
+).value
+);
 
 
-  let eligible=
-    sorted.filter(
-      h=>
-        h.aiPercent>=minAI &&
-        h.edge>=minEdge &&
-        h.gallop<=maxGallop
-    );
+const sorted=
+[...race.horses]
+.sort(
+(a,b)=>
+b.aiPercent-a.aiPercent
+);
 
 
-  /*
-    Vi lämnar aldrig ett lopp tomt.
-  */
+let eligible=
+sorted.filter(
+h=>{
 
-  if(!eligible.length)
-    eligible=
-      sorted.slice(0,1);
-
-
-  const top=eligible[0];
+const gallopOK=
+h.gallop===null ||
+h.gallop<=maxGallop;
 
 
-  /*
-    SPIK:
-    endast om modellen har tydlig dominans.
-  */
+return (
+h.aiPercent>=minAI &&
+h.edge>=minEdge &&
+gallopOK
+);
 
-  if(
-    top &&
-    top.aiPercent>=30 &&
-    top.edge>=3 &&
-    top.gallop<=25
-  ){
-
-    return eligible.slice(0,1);
-  }
+}
+);
 
 
-  /*
-    LÅS:
-    två tydliga kandidater.
-  */
+/*
+  Aldrig tomt lopp.
+*/
 
-  if(
-    top &&
-    top.aiPercent>=20
-  ){
+if(!eligible.length){
 
-    return eligible.slice(
-      0,
-      Math.min(
-        2,
-        eligible.length
-      )
-    );
-  }
+eligible=
+sorted.slice(0,1);
 
-
-  /*
-    Gardering.
-  */
-
-  return eligible.slice(
-    0,
-    Math.min(
-      4,
-      eligible.length
-    )
-  );
 }
 
 
-function typeFor(picks){
+/*
+  SPIK
 
-  if(picks.length===1)
-    return "SPIK";
+  Kräver både modellstyrka
+  och positivt VALUE.
+*/
 
-  if(picks.length===2)
-    return "LÅS";
+const top=
+eligible[0];
 
-  return "GARDERING";
+
+if(
+top &&
+top.aiPercent>=28 &&
+top.edge>=2 &&
+(
+top.gallop===null ||
+top.gallop<=25
+)
+){
+
+return [
+top
+];
+
+}
+
+
+/*
+  LÅS
+*/
+
+if(
+top &&
+top.aiPercent>=19
+){
+
+return eligible.slice(
+0,
+Math.min(
+2,
+eligible.length
+)
+);
+
+}
+
+
+/*
+  GARDERING
+*/
+
+return eligible.slice(
+0,
+Math.min(
+4,
+eligible.length
+)
+);
+
 }
 
 
 /* ============================================================
    SYSTEM
-   ============================================================ */
+============================================================ */
 
-function buildSystem(races,budget){
+function buildSystem(
+races,
+budget
+){
 
-  const unit=0.50;
+const unit=0.50;
 
-  const target=
-    Math.max(
-      1,
-      Math.floor(
-        budget/unit
-      )
-    );
-
-
-  /*
-    Första versionen:
-    AI-bestämda spikar/lås/garderingar.
-  */
-
-  const choices=
-    races.map(
-      race=>
-        picksForRace(race)
-    );
+const target=
+Math.max(
+1,
+Math.floor(
+budget/unit
+)
+);
 
 
-  function lines(){
-
-    return choices.reduce(
-      (total,choice)=>
-        total*
-        Math.max(
-          1,
-          choice.length
-        ),
-      1
-    );
-  }
+const choices=
+races.map(
+race=>
+picksForRace(
+race
+)
+);
 
 
-  /*
-    Om systemet är för dyrt:
-    reducera den svagaste extra hästen
-    från det lopp där borttagningen påverkar
-    systemets kvalitet minst.
+function lines(){
 
-    Vi behåller alltid minst en häst.
-  */
+return choices.reduce(
+(total,choice)=>
+total*
+Math.max(
+1,
+choice.length
+),
+1
+);
 
-  while(lines()>target){
-
-    let candidate=null;
-
-
-    for(
-      let i=0;
-      i<choices.length;
-      i++
-    ){
-
-      if(choices[i].length<=1)
-        continue;
+}
 
 
-      const weakest=
-        choices[i][
-          choices[i].length-1
-        ];
+/*
+  Reducera tills budget
+  klaras.
+*/
+
+while(
+lines()>target
+){
+
+let candidate=null;
 
 
-      if(
-        !candidate ||
-        weakest.aiPercent >
-        candidate.horse.aiPercent
-      ){
+for(
+let i=0;
+i<choices.length;
+i++
+){
 
-        candidate={
-          index:i,
-          horse:weakest
-        };
-      }
-    }
+if(
+choices[i].length<=1
+)
+continue;
 
 
-    if(!candidate)
-      break;
+const weakest=
+choices[i][
+choices[i].length-1
+];
 
 
-    choices[
-      candidate.index
-    ].pop();
-  }
+if(
+!candidate ||
+weakest.aiPercent>
+candidate.horse.aiPercent
+){
+
+candidate={
+index:i,
+horse:weakest
+};
+
+}
+
+}
+
+if(!candidate)
+break;
 
 
-  return {
+choices[
+candidate.index
+].pop();
 
-    choices,
+}
 
-    lines:lines(),
 
-    cost:
-      lines()*unit
-  };
+return {
+
+choices,
+
+lines:lines(),
+
+cost:
+lines()*unit
+
+};
+
+}
+
+
+/* ============================================================
+   TYPE
+============================================================ */
+
+function typeFor(
+picks
+){
+
+if(picks.length===1)
+return "SPIK";
+
+if(picks.length===2)
+return "LÅS";
+
+return "GARDERING";
+
 }
 
 
 /* ============================================================
    RENDER
-   ============================================================ */
+============================================================ */
 
-function renderResults(races){
+function renderResults(
+races,
+scratchedCount
+){
 
-  analyzedRaces=races;
-
-  let html="";
-
-
-  for(const race of races){
-
-    const sorted=
-      [...race.horses]
-      .sort(
-        (a,b)=>
-          b.aiPercent-a.aiPercent
-      );
+analyzedRaces=
+races;
 
 
-    const max=
-      Number(
-        document.getElementById(
-          "maxHorses"
-        ).value
-      );
+let html="";
 
 
-    const display=
-      sorted.slice(
-        0,
-        max
-      );
+for(
+const race of races
+){
+
+const sorted=
+[...race.horses]
+.sort(
+(a,b)=>
+b.aiPercent-a.aiPercent
+);
 
 
-    const picks=
-      picksForRace(race);
+const max=
+Number(
+document.getElementById(
+"maxHorses"
+).value
+);
 
 
-    const type=
-      typeFor(picks);
+const display=
+sorted.slice(
+0,
+max
+);
 
 
-    html+=`
+const picks=
+picksForRace(
+race
+);
+
+
+const type=
+typeFor(picks);
+
+
+const badgeClass=
+type==="SPIK"
+?"spike"
+:type==="LÅS"
+?"lock"
+:"guard";
+
+
+html+=`
 
 <div class="race">
 
 <div class="race-head">
 
-  <div>
+<div>
 
-    <div class="race-title">
-      V85-${race.number}
-    </div>
+<div class="race-title">
+V85-${race.number}
+</div>
 
-    <div class="race-meta">
+<div class="race-meta">
 
-      ${race.distance || "?"} m
-      · ${escapeHTML(
-          race.start_method || "?"
-        )}
-      · ${escapeHTML(
-          race.start_time || "?"
-        )}
+${race.distance || "?"} m
+· ${escapeHTML(
+race.start_method || "?"
+)}
+· ${escapeHTML(
+race.start_time || "?"
+)}
 
-      ${
-        race.additional
-          ? ` · +${race.additional} m`
-          : ""
-      }
+${
+race.additional
+?` · +${race.additional} m`
+:""
+}
 
-    </div>
+</div>
 
-  </div>
+</div>
 
 
-  <div class="badges">
+<div class="badges">
 
-    <div class="badge">
-      ${type}
-    </div>
+<div class="badge ${badgeClass}">
+${type}
+</div>
 
-    <div class="badge">
-      ${race.horses.length} aktiva
-    </div>
+<div class="badge">
+${race.horses.length} aktiva
+</div>
 
-  </div>
+</div>
 
 </div>
 
 
 <div class="horse-head">
 
-  <div>SPÅR</div>
-  <div>HÄST</div>
-  <div>AI</div>
-  <div>MARKNAD</div>
-  <div>VALUE</div>
-  <div>FORM</div>
-  <div>KUSK</div>
-  <div>GALOPP</div>
-  <div>VAL</div>
+<div>SPÅR</div>
+<div>HÄST</div>
+<div>AI</div>
+<div>MARKNAD</div>
+<div>VALUE</div>
+<div>FORM</div>
+<div>KUSK</div>
+<div>GALOPP</div>
+<div>VAL</div>
 
 </div>
+
 `;
 
 
-    for(const h of display){
+for(
+const h of display
+){
 
-      const selected=
-        picks.some(
-          p=>p.number===h.number
-        );
-
-
-      let pickClass="";
-
-
-      if(selected){
-
-        if(
-          type==="SPIK"
-        )
-          pickClass="spike";
-
-        else if(
-          h.edge>=5
-        )
-          pickClass="value";
-
-        else
-          pickClass="top";
-      }
+const selected=
+picks.some(
+p=>p.number===h.number
+);
 
 
-      const trend=
-        h.trend_direction==="up"
-          ? `<span class="green">↑</span>`
-          : h.trend_direction==="down"
-          ? `<span class="red">↓</span>`
-          : h.trend_direction==="unchanged"
-          ? "→"
-          : "";
+let pickClass="";
 
 
-      const historyLabel=
-        h.historyCount>0
-          ? `Historik ${h.historyCount}`
-          : "Ingen historik";
+if(selected){
+
+if(type==="SPIK")
+pickClass="spike";
+
+else if(h.edge>=5)
+pickClass="value";
+
+else
+pickClass="top";
+
+}
 
 
-      html+=`
+const trend=
+h.trend_direction==="up"
+?`<span class="green">↑</span>`
+:h.trend_direction==="down"
+?`<span class="red">↓</span>`
+:h.trend_direction==="unchanged"
+?"→"
+:"";
+
+
+const historyLabel=
+h.historyCount>0
+?`Historik ${h.historyCount}`
+:"Ingen historik";
+
+
+const formDisplay=
+h.form!==null
+?h.form.toFixed(0)
+:"–";
+
+
+const driverDisplay=
+h.driver!==null
+?h.driver.toFixed(0)
+:"–";
+
+
+const gallopDisplay=
+h.gallop!==null
+?h.gallop.toFixed(0)+"%"
+:"okänd";
+
+
+const balanceText=
+h.balance
+?escapeHTML(h.balance)
+:"–";
+
+
+const lastBalance=
+cleanBalanceLast(
+h.balance_last
+);
+
+
+html+=`
 
 <div class="horse">
 
-  <div class="number">
-    ${h.number}
-  </div>
+<div class="number">
+${h.number}
+</div>
 
 
-  <div>
+<div>
 
-    <div class="name">
-      ${escapeHTML(h.name)}
-    </div>
+<div class="name">
+${escapeHTML(h.name)}
+</div>
 
-    <div class="sub">
+<div class="sub">
 
-      ${trend}
+${trend}
 
-      ${
-        h.balance
-          ? " · "+escapeHTML(h.balance)
-          : ""
-      }
+${
+balanceText
+? " · "+balanceText
+:""
+}
 
-      ${
-        h.balance_last
-          ? " · senast: "+
-            escapeHTML(
-              h.balance_last
-            )
-          : ""
-      }
+${
+lastBalance
+? " · senast: "+
+escapeHTML(lastBalance)
+:""
+}
 
-      · ${historyLabel}
-
-    </div>
-
-  </div>
-
-
-  <div class="metric">
-
-    <div class="metric-label">
-      AI
-    </div>
-
-    <div class="metric-value green">
-      ${h.aiPercent.toFixed(1)}%
-    </div>
-
-  </div>
-
-
-  <div class="metric">
-
-    <div class="metric-label">
-      V85
-    </div>
-
-    <div class="metric-value">
-      ${h.v85.toFixed(1)}%
-    </div>
-
-  </div>
-
-
-  <div class="metric">
-
-    <div class="metric-label">
-      VALUE
-    </div>
-
-    <div class="metric-value ${
-      h.edge>=0
-        ? "green"
-        : "red"
-    }">
-
-      ${
-        h.edge>=0
-          ? "+"
-          : ""
-      }${h.edge.toFixed(1)}%
-
-    </div>
-
-  </div>
-
-
-  <div class="metric optional">
-
-    <div class="metric-label">
-      FORM
-    </div>
-
-    <div class="metric-value">
-      ${h.form.toFixed(0)}
-    </div>
-
-  </div>
-
-
-  <div class="metric optional">
-
-    <div class="metric-label">
-      KUSK
-    </div>
-
-    <div class="metric-value">
-      ${h.driver.toFixed(0)}
-    </div>
-
-  </div>
-
-
-  <div class="metric optional">
-
-    <div class="metric-label">
-      GALOPP
-    </div>
-
-    <div class="metric-value ${
-      h.gallop>25
-        ? "red"
-        : "green"
-    }">
-
-      ${h.gallop.toFixed(0)}%
-
-    </div>
-
-  </div>
-
-
-  <div class="pick ${pickClass}">
-
-    ${
-      selected
-        ? (
-            type==="SPIK"
-              ? "★ SPIK"
-              : "VAL"
-          )
-        : "–"
-    }
-
-  </div>
+ · ${historyLabel}
 
 </div>
+
+</div>
+
+
+<div class="metric">
+
+<div class="metric-label">
+AI
+</div>
+
+<div class="metric-value green">
+${h.aiPercent.toFixed(1)}%
+</div>
+
+</div>
+
+
+<div class="metric">
+
+<div class="metric-label">
+V85
+</div>
+
+<div class="metric-value">
+${h.v85.toFixed(1)}%
+</div>
+
+</div>
+
+
+<div class="metric">
+
+<div class="metric-label">
+VALUE
+</div>
+
+<div class="metric-value ${
+h.edge>=0
+?"green"
+:"red"
+}">
+
+${
+h.edge>=0
+?"+"
+:""
+}${h.edge.toFixed(1)}%
+
+</div>
+
+</div>
+
+
+<div class="metric optional">
+
+<div class="metric-label">
+FORM
+</div>
+
+<div class="metric-value">
+${formDisplay}
+</div>
+
+</div>
+
+
+<div class="metric optional">
+
+<div class="metric-label">
+KUSK
+</div>
+
+<div class="metric-value">
+${driverDisplay}
+</div>
+
+</div>
+
+
+<div class="metric optional">
+
+<div class="metric-label">
+GALOPP
+</div>
+
+<div class="metric-value ${
+h.gallop!==null
+?(
+h.gallop>25
+?"red"
+:"green"
+)
+:"muted"
+}">
+
+${gallopDisplay}
+
+</div>
+
+</div>
+
+
+<div class="pick ${pickClass}">
+
+${
+selected
+?(
+type==="SPIK"
+?"★ SPIK"
+:"VAL"
+)
+:"–"
+}
+
+</div>
+
+</div>
+
 `;
-    }
+
+}
 
 
-    html+=`
+html+=`
 
 <div class="recommend">
 
-  <div class="recommend-title">
-    AI-REKOMMENDATION
-  </div>
+<div class="recommend-title">
+AI-REKOMMENDATION
+</div>
 
-  <div class="recommend-main">
+<div class="recommend-main">
 
-    ${picks.map(
-      p=>
-        `${p.number} ${escapeHTML(p.name)}`
-    ).join(" · ")}
+${picks.map(
+p=>
+`${p.number} ${escapeHTML(p.name)}`
+).join(" · ")}
 
-  </div>
+</div>
 
-  <div class="reason">
+<div class="reason">
 
-    ${reasonFor(picks)}
-
-  </div>
+${reasonFor(picks)}
 
 </div>
 
 </div>
+
+</div>
+
 `;
-  }
+
+}
 
 
-  document.getElementById(
-    "results"
-  ).innerHTML=html;
+document.getElementById(
+"results"
+).innerHTML=
+html;
 
 
-  renderSystem(races);
+renderSystem(
+races
+);
 
-  updateCards(races);
+
+updateCards(
+races,
+scratchedCount
+);
+
+}
+
+
+/* ============================================================
+   BALANSRENSNING
+============================================================ */
+
+function cleanBalanceLast(
+value
+){
+
+let s=text(value);
+
+if(!s)
+return "";
+
+
+/*
+  V29 kan ibland ge:
+
+  Barfota runt om
+  (Barfota runt om senast)
+
+  eller
+
+  Barfota runt om
+  (Skor runt om senast)
+*/
+
+const match=
+s.match(
+/\((.*?)senast\)/i
+);
+
+
+if(match){
+
+return match[1]
+.trim();
+
+}
+
+
+/*
+  Om hela strängen innehåller
+  "senast" men ingen parentes.
+*/
+
+s=
+s.replace(
+/\s*senast.*$/i,
+""
+);
+
+return s.trim();
+
 }
 
 
 /* ============================================================
    MOTIVERING
-   ============================================================ */
+============================================================ */
 
-function reasonFor(picks){
+function reasonFor(
+picks
+){
 
-  if(!picks.length)
-    return "Ingen kvalificerad kandidat.";
-
-
-  const p=picks[0];
-
-  const reasons=[];
+if(!picks.length)
+return "Ingen kvalificerad kandidat.";
 
 
-  if(p.form>=65 && p.historyCount)
-    reasons.push("stark historisk form");
+const p=picks[0];
+
+const reasons=[];
 
 
-  if(p.start>=75)
-    reasons.push("bra startläge");
+if(
+p.historyCount &&
+p.form!==null &&
+p.form>=65
+){
+
+reasons.push(
+"stark historisk form"
+);
+
+}
 
 
-  if(p.distance>=65)
-    reasons.push("bra distansprofil");
+if(
+p.start>=75
+){
+
+reasons.push(
+"bra startläge"
+);
+
+}
 
 
-  if(p.driver>=60 && p.historyCount)
-    reasons.push("stark kuskprofil");
+if(
+p.distance>=65
+){
+
+reasons.push(
+"bra distansprofil"
+);
+
+}
 
 
-  if(p.trainer>=60 && p.historyCount)
-    reasons.push("stark tränarprofil");
+if(
+p.driver!==null &&
+p.driver>=60
+){
+
+reasons.push(
+"stark kuskprofil"
+);
+
+}
 
 
-  if(p.trend_direction==="up")
-    reasons.push("positiv strecktrend");
+if(
+p.trainer!==null &&
+p.trainer>=60
+){
+
+reasons.push(
+"stark tränarprofil"
+);
+
+}
 
 
-  if(p.edge>=5)
-    reasons.push("högt VALUE");
+if(
+p.trend_direction==="up"
+){
+
+reasons.push(
+"positiv strecktrend"
+);
+
+}
 
 
-  if(p.gallop<=12 && p.historyCount)
-    reasons.push("låg historisk galopprisk");
+if(
+p.edge>=5
+){
+
+reasons.push(
+"högt VALUE"
+);
+
+}
 
 
-  if(!reasons.length)
-    reasons.push(
-      "högst sammanvägd modellscore"
-    );
+if(
+p.gallop!==null &&
+p.gallop<=12
+){
+
+reasons.push(
+"låg historisk galopprisk"
+);
+
+}
 
 
-  return reasons.join(" · ")+".";
+if(!reasons.length){
+
+reasons.push(
+"högst sammanvägd modellscore"
+);
+
+}
+
+
+return reasons.join(" · ")+".";
 }
 
 
 /* ============================================================
    SYSTEMVISNING
-   ============================================================ */
+============================================================ */
 
-function renderSystem(races){
+function renderSystem(
+races
+){
 
-  const budget=
-    num(
-      document.getElementById(
-        "budget"
-      ).value
-    ) || 1;
-
-
-  const system=
-    buildSystem(
-      races,
-      budget
-    );
+const budget=
+num(
+document.getElementById(
+"budget"
+).value
+)||1;
 
 
-  let html=`
+const system=
+buildSystem(
+races,
+budget
+);
+
+
+let html=`
 
 <div class="system">
 
 <div class="system-head">
 
-  <div class="system-title">
-    FÖRESLAGET SYSTEM
-  </div>
+<div class="system-title">
+FÖRESLAGET SYSTEM
+</div>
 
-  <div class="system-cost">
-    ${system.cost.toFixed(2)} kr
-  </div>
+<div class="system-cost">
+${system.cost.toFixed(2)} kr
+</div>
 
 </div>
 
 <div class="source-small">
-  ${system.lines} rader · 0,50 kr/rad
+${system.lines} rader · 0,50 kr/rad
 </div>
 
 <hr>
+
 `;
 
 
-  system.choices.forEach(
-    (choice,index)=>{
+system.choices.forEach(
+(choice,index)=>{
 
-      const type=
-        choice.length===1
-          ? "SPIK"
-          : choice.length===2
-          ? "LÅS"
-          : "GARDERING";
+const type=
+choice.length===1
+?"SPIK"
+:choice.length===2
+?"LÅS"
+:"GARDERING";
 
 
-      html+=`
+html+=`
 
 <div class="system-row">
 
-  <strong>
-    V85-${index+1}
-  </strong>
+<strong>
+V85-${index+1}
+</strong>
 
-  <div>
+<div>
 
-    ${choice.map(
-      h=>`
+${choice.map(
+h=>`
 
-      <span class="system-horse">
+<span class="system-horse">
 
-        ${h.number}
-        ${escapeHTML(h.name)}
+${h.number}
+${escapeHTML(h.name)}
 
-        <span style="opacity:.65">
-          ${h.aiPercent.toFixed(1)}%
-        </span>
+<span style="opacity:.65">
+${h.aiPercent.toFixed(1)}%
+</span>
 
-      </span>
+</span>
 
-      `
-    ).join("")}
-
-  </div>
-
-  <div class="${
-    type==="SPIK"
-      ? "green"
-      : type==="LÅS"
-      ? "yellow"
-      : "orange"
-  }">
-
-    ${type}
-
-  </div>
+`
+).join("")}
 
 </div>
+
+<div class="${
+type==="SPIK"
+?"green"
+:type==="LÅS"
+?"yellow"
+:"orange"
+}">
+
+${type}
+
+</div>
+
+</div>
+
 `;
-    }
-  );
+
+}
+);
 
 
-  html+=`
+html+=`
 
 <hr>
 
@@ -2763,535 +3394,774 @@ flex-wrap:wrap;
 ">
 
 <div>
-  <div class="source-small">
-    BUDGET
-  </div>
-  <strong>
-    ${budget.toFixed(2)} kr
-  </strong>
+
+<div class="source-small">
+BUDGET
 </div>
+
+<strong>
+${budget.toFixed(2)} kr
+</strong>
+
+</div>
+
 
 <div>
-  <div class="source-small">
-    SYSTEMKOSTNAD
-  </div>
-  <strong class="green">
-    ${system.cost.toFixed(2)} kr
-  </strong>
+
+<div class="source-small">
+SYSTEMKOSTNAD
 </div>
+
+<strong class="green">
+${system.cost.toFixed(2)} kr
+</strong>
+
+</div>
+
 
 <div>
-  <div class="source-small">
-    RADER
-  </div>
-  <strong>
-    ${system.lines}
-  </strong>
+
+<div class="source-small">
+RADER
 </div>
+
+<strong>
+${system.lines}
+</strong>
 
 </div>
 
 </div>
+
+</div>
+
 `;
 
 
-  document.getElementById(
-    "results"
-  ).insertAdjacentHTML(
-    "beforeend",
-    html
-  );
+document.getElementById(
+"results"
+).insertAdjacentHTML(
+"beforeend",
+html
+);
+
 }
 
 
 /* ============================================================
    KORT
-   ============================================================ */
+============================================================ */
 
-function updateCards(races){
+function updateCards(
+races,
+scratchedCount
+){
 
-  const horses=
-    races.flatMap(
-      r=>r.horses
-    );
-
-
-  document.getElementById(
-    "cardRaces"
-  ).textContent=
-    races.length;
+const horses=
+races.flatMap(
+r=>r.horses
+);
 
 
-  document.getElementById(
-    "cardHorses"
-  ).textContent=
-    horses.length;
+document.getElementById(
+"cardRaces"
+).textContent=
+races.length;
 
 
-  document.getElementById(
-    "cardActive"
-  ).textContent=
-    horses.length;
+document.getElementById(
+"cardHorses"
+).textContent=
+horses.length+
+scratchedCount;
 
 
-  document.getElementById(
-    "cardScratched"
-  ).textContent=
-    0;
+document.getElementById(
+"cardActive"
+).textContent=
+horses.length;
 
 
-  if(horses.length){
-
-    const top=
-      [...horses].sort(
-        (a,b)=>
-          b.aiPercent-a.aiPercent
-      )[0];
+document.getElementById(
+"cardScratched"
+).textContent=
+scratchedCount;
 
 
-    document.getElementById(
-      "cardTop"
-    ).textContent=
-      `${top.number} ${top.name}`;
-  }
+if(horses.length){
+
+const top=
+[...horses]
+.sort(
+(a,b)=>
+b.aiPercent-a.aiPercent
+)[0];
 
 
-  const system=
-    buildSystem(
-      races,
-      num(
-        document.getElementById(
-          "budget"
-        ).value
-      ) || 1
-    );
+document.getElementById(
+"cardTop"
+).textContent=
+`${top.number} ${top.name}`;
+
+}
 
 
-  document.getElementById(
-    "cardSystem"
-  ).textContent=
-    system.cost.toFixed(2)+" kr";
+const system=
+buildSystem(
+races,
+num(
+document.getElementById(
+"budget"
+).value
+)||1
+);
+
+
+document.getElementById(
+"cardSystem"
+).textContent=
+system.cost.toFixed(2)+
+" kr";
+
 }
 
 
 /* ============================================================
    KVALITET
-   ============================================================ */
+============================================================ */
 
-function updateQuality(data){
+function updateQuality(
+data
+){
 
-  const q=
-    data.quality || {};
+const q=
+data.quality || {};
 
 
-  document.getElementById(
-    "qualityGrid"
-  ).innerHTML=`
+document.getElementById(
+"qualityGrid"
+).innerHTML=`
 
 <div class="quality-item">
-  Lopp:
-  <b>${q.race_count ?? data.races_count ?? "–"}</b>
+Lopp:
+<b>
+${data.races_count ??
+q.race_count ??
+data.races?.length ??
+"–"}
+</b>
 </div>
 
 <div class="quality-item">
-  Hästar:
-  <b>${q.horses_total ?? data.horses_total ?? "–"}</b>
+Hästar:
+<b>
+${data.horses_total ??
+q.horses_total ??
+"–"}
+</b>
 </div>
 
 <div class="quality-item">
-  Aktiva:
-  <b>${data.horses_active ?? "–"}</b>
+Aktiva:
+<b>
+${data.horses_active ??
+"–"}
+</b>
 </div>
 
 <div class="quality-item">
-  Strykningar:
-  <b>${data.horses_scratched ?? "–"}</b>
+Strykningar:
+<b>
+${data.horses_scratched ??
+"–"}
+</b>
 </div>
 
 <div class="quality-item">
-  Balans:
-  <b>${q.horses_with_balance ?? "–"}</b>
+Balans:
+<b>
+${q.horses_with_balance ??
+"–"}
+</b>
 </div>
 
 <div class="quality-item">
-  Trend:
-  <b>${q.horses_with_trend ?? "–"}</b>
+Trend:
+<b>
+${q.horses_with_trend ??
+"–"}
+</b>
 </div>
 
 <div class="quality-item">
-  Parser:
-  <b>${
-    q.parser_rows_parsed!==undefined
-      ? q.parser_rows_parsed+
-        "/"+
-        (q.parser_rows_seen ?? "?")
-      : "–"
-  }</b>
+Parser:
+<b>
+${
+q.parser_rows_parsed!==undefined
+?q.parser_rows_parsed+
+"/"+
+(q.parser_rows_seen??"?")
+:"–"
+}
+</b>
 </div>
 
 <div class="quality-item">
-  Datum:
-  <b>${data.page_date || "–"}</b>
+Datum:
+<b>
+${data.page_date||"–"}
+</b>
 </div>
+
 `;
+
 }
 
 
 /* ============================================================
-   HUVUDKÖRNING
-   ============================================================ */
+   HUVUDANALYS
+============================================================ */
 
 async function runAnalysis(){
 
-  const btn=
-    document.getElementById(
-      "analyzeBtn"
-    );
+const btn=
+document.getElementById(
+"analyzeBtn"
+);
+
+btn.disabled=true;
+
+btn.textContent=
+"HÄMTAR DATA...";
 
 
-  btn.disabled=true;
-
-  btn.textContent=
-    "HÄMTAR DATA...";
+setProgress(10);
 
 
-  setProgress(10);
+try{
+
+showMessage(
+"Hämtar dagens V85 från V29...",
+"info"
+);
 
 
-  try{
-
-    showMessage(
-      "Hämtar dagens V85 från V29...",
-      "info"
-    );
+let data=null;
 
 
-    let data=null;
+try{
+
+data=
+await fetchV29();
+
+lastData=data;
+
+}catch(err){
+
+console.error(
+"V29:",
+err
+);
+
+}
 
 
-    try{
-
-      data=
-        await fetchV29();
-
-      lastData=data;
-
-    }catch(err){
-
-      console.error(
-        "V29:",
-        err
-      );
-    }
+setProgress(35);
 
 
-    setProgress(35);
+let rows=[];
 
 
-    let rows=[];
+if(data){
+
+updateQuality(
+data
+);
 
 
-    if(data){
-
-      updateQuality(data);
-
-      rows=
-        normalizeV29(data);
+rows=
+normalizeV29(
+data
+);
 
 
-      document.getElementById(
-        "sourceStatus"
-      ).textContent=
-        `V29: ${rows.length} hästar`;
+document.getElementById(
+"sourceStatus"
+).textContent=
+`V29: ${rows.length} hästar`;
 
 
-      document.getElementById(
-        "sourceText"
-      ).textContent=
-        `${
-          data.track || "Bana"
-        } · ${
-          data.page_date || "datum"
-        }`;
-    }
+document.getElementById(
+"sourceText"
+).textContent=
+`${data.track||"Bana"} · ${data.page_date||"datum"}`;
+
+}
 
 
-    /*
-      CSV-reserv.
-    */
+if(
+!rows.length &&
+startData.length
+){
 
-    if(
-      !rows.length &&
-      startData.length
-    ){
+rows=[
+...startData
+];
 
-      rows=[
-        ...startData
-      ];
+showMessage(
+"V29 saknar data – använder CSV.",
+"info"
+);
 
-      showMessage(
-        "V29 saknar data – använder CSV.",
-        "info"
-      );
-    }
+}
 
 
-    if(!rows.length){
+if(!rows.length){
 
-      throw new Error(
-        "Ingen startlista kunde hämtas."
-      );
-    }
+throw new Error(
+"Ingen startlista kunde hämtas."
+);
 
-
-    setProgress(55);
+}
 
 
-    showMessage(
-      `${rows.length} hästar analyseras...`,
-      "info"
-    );
+setProgress(55);
 
 
-    const races=
-      analyze(rows);
+showMessage(
+`${rows.length} hästar analyseras...`,
+"info"
+);
 
 
-    setProgress(80);
+const races=
+analyze(
+rows
+);
 
 
-    renderResults(races);
+setProgress(80);
 
 
-    setProgress(100);
+/*
+  VIKTIGT:
+
+  V29 innehåller även strukna hästar.
+  De ska inte räknas som aktiva,
+  men de ska räknas i strykningskortet.
+*/
+
+const scratchedCount=
+data &&
+data.horses_scratched!==undefined
+?num(data.horses_scratched)
+:rows.filter(
+x=>x.scratched
+).length;
 
 
-    const all=
-      races.flatMap(
-        r=>r.horses
-      );
+renderResults(
+races,
+scratchedCount
+);
 
 
-    const top=
-      [...all].sort(
-        (a,b)=>
-          b.aiPercent-a.aiPercent
-      )[0];
+setProgress(100);
 
 
-    showMessage(
-      `Analysen klar: ${
-        races.length
-      } lopp. AI-topp: ${
-        top.number
-      } ${
-        top.name
-      } ${
-        top.aiPercent.toFixed(1)
-      }%.`,
-      "success"
-    );
+const all=
+races.flatMap(
+r=>r.horses
+);
 
 
-  }catch(err){
-
-    console.error(err);
-
-
-    showMessage(
-      "Analysfel: "+err.message,
-      "error"
-    );
+const top=
+[...all]
+.sort(
+(a,b)=>
+b.aiPercent-a.aiPercent
+)[0];
 
 
-    document.getElementById(
-      "results"
-    ).innerHTML=`
+showMessage(
+`Analysen klar: ${races.length} lopp. AI-topp: ${top.number} ${top.name} ${top.aiPercent.toFixed(1)}%.`,
+"success"
+);
+
+
+}catch(err){
+
+console.error(err);
+
+
+showMessage(
+"Analysfel: "+
+err.message,
+"error"
+);
+
+
+document.getElementById(
+"results"
+).innerHTML=`
 
 <div class="empty">
 
-<strong>ANALYSEN KUNDE INTE KÖRAS</strong>
+<strong>
+ANALYSEN KUNDE INTE KÖRAS
+</strong>
 
-${escapeHTML(err.message)}
+${escapeHTML(
+err.message
+)}
 
 <br><br>
 
 Kontrollera V29 /data.
 
 </div>
+
 `;
-  }
+
+}
 
 
-  finally{
+finally{
 
-    btn.disabled=false;
+btn.disabled=false;
 
-    btn.textContent=
-      "HÄMTA & ANALYSERA";
+btn.textContent=
+"HÄMTA & ANALYSERA";
 
-    setTimeout(
-      ()=>setProgress(0),
-      700
-    );
-  }
+
+setTimeout(
+()=>setProgress(0),
+700
+);
+
+}
+
 }
 
 
 /* ============================================================
-   UI
-   ============================================================ */
+   V29 HEALTH
+============================================================ */
 
-function showMessage(message,type){
+async function checkProxy(){
 
-  const el=
-    document.getElementById(
-      "message"
-    );
+try{
 
-  el.className=
-    "message show "+type;
+const r=
+await fetch(
+PROXY+"/health",
+{
+cache:"no-store"
+}
+);
 
-  el.textContent=message;
+
+if(!r.ok){
+
+throw new Error(
+"HTTP "+r.status
+);
+
 }
 
 
-function setProgress(value){
-
-  const box=
-    document.getElementById(
-      "progress"
-    );
-
-  const bar=
-    document.getElementById(
-      "progressBar"
-    );
+const d=
+await r.json();
 
 
-  if(value<=0){
-
-    box.classList.remove("show");
-
-    bar.style.width="0%";
-
-    return;
-  }
+if(!d.ok)
+throw new Error(
+"Proxyfel"
+);
 
 
-  box.classList.add("show");
+document.getElementById(
+"statusDot"
+).className=
+"dot online";
 
-  bar.style.width=
-    clamp(
-      value,
-      0,
-      100
-    )+"%";
+
+document.getElementById(
+"statusText"
+).textContent=
+"V29 online";
+
+
+document.getElementById(
+"sourceStatus"
+).textContent=
+"V29 Worker: ONLINE";
+
+
+document.getElementById(
+"sourceText"
+).textContent=
+"Cloudflare Worker";
+
+
+}catch(err){
+
+document.getElementById(
+"statusDot"
+).className=
+"dot error";
+
+
+document.getElementById(
+"statusText"
+).textContent=
+"Proxyfel";
+
+
+document.getElementById(
+"sourceStatus"
+).textContent=
+"V29: FEL";
+
+
+document.getElementById(
+"sourceText"
+).textContent=
+err.message;
+
+}
+
+}
+
+
+/* ============================================================
+   FETCH
+============================================================ */
+
+async function fetchV29(){
+
+const r=
+await fetch(
+DATA_URL,
+{
+cache:"no-store"
+}
+);
+
+
+if(!r.ok){
+
+throw new Error(
+"V29 HTTP "+
+r.status
+);
+
+}
+
+
+const d=
+await r.json();
+
+
+if(
+!d ||
+d.ok===false
+){
+
+throw new Error(
+d?.error ||
+"V29 returnerade fel"
+);
+
+}
+
+
+return d;
+
+}
+
+
+/* ============================================================
+   MEDDELANDE
+============================================================ */
+
+function showMessage(
+message,
+type
+){
+
+const el=
+document.getElementById(
+"message"
+);
+
+el.className=
+"message show "+
+type;
+
+el.textContent=
+message;
+
+}
+
+
+/* ============================================================
+   PROGRESS
+============================================================ */
+
+function setProgress(
+value
+){
+
+const box=
+document.getElementById(
+"progress"
+);
+
+const bar=
+document.getElementById(
+"progressBar"
+);
+
+
+if(value<=0){
+
+box.classList.remove(
+"show"
+);
+
+bar.style.width=
+"0%";
+
+return;
+
+}
+
+
+box.classList.add(
+"show"
+);
+
+bar.style.width=
+clamp(
+value,
+0,
+100
+)+"%";
+
 }
 
 
 /* ============================================================
    RENSNING
-   ============================================================ */
+============================================================ */
 
 document.getElementById(
-  "clearBtn"
-).addEventListener(
-  "click",
-  ()=>{
+"clearBtn"
+)
+.addEventListener(
+"click",
+()=>{
 
-    analyzedRaces=[];
-    lastData=null;
-
-
-    document.getElementById(
-      "cardRaces"
-    ).textContent="0";
+analyzedRaces=[];
+lastData=null;
 
 
-    document.getElementById(
-      "cardHorses"
-    ).textContent="0";
+document.getElementById(
+"cardRaces"
+).textContent="0";
 
 
-    document.getElementById(
-      "cardActive"
-    ).textContent="0";
+document.getElementById(
+"cardHorses"
+).textContent="0";
 
 
-    document.getElementById(
-      "cardScratched"
-    ).textContent="0";
+document.getElementById(
+"cardActive"
+).textContent="0";
 
 
-    document.getElementById(
-      "cardTop"
-    ).textContent="–";
+document.getElementById(
+"cardScratched"
+).textContent="0";
 
 
-    document.getElementById(
-      "cardSystem"
-    ).textContent="–";
+document.getElementById(
+"cardTop"
+).textContent="–";
 
 
-    document.getElementById(
-      "results"
-    ).innerHTML=`
+document.getElementById(
+"cardSystem"
+).textContent="–";
+
+
+document.getElementById(
+"results"
+).innerHTML=`
 
 <div class="empty">
 
-<strong>TRAV AI V31</strong>
+<strong>
+TRAV AI V31.1
+</strong>
 
 Analysen är rensad.
 
 </div>
+
 `;
 
 
-    showMessage(
-      "Analysen är rensad.",
-      "info"
-    );
-  }
+showMessage(
+"Analysen är rensad.",
+"info"
+);
+
+}
 );
 
 
 /* ============================================================
-   KNAPP
-   ============================================================ */
+   ANALYSKNAPP
+============================================================ */
 
 document.getElementById(
-  "analyzeBtn"
-).addEventListener(
-  "click",
-  runAnalysis
+"analyzeBtn"
+)
+.addEventListener(
+"click",
+runAnalysis
 );
 
 
 /* ============================================================
    CTRL + ENTER
-   ============================================================ */
+============================================================ */
 
 document.addEventListener(
-  "keydown",
-  e=>{
+"keydown",
+e=>{
 
-    if(
-      e.ctrlKey &&
-      e.key==="Enter"
-    ){
+if(
+e.ctrlKey &&
+e.key==="Enter"
+){
 
-      e.preventDefault();
+e.preventDefault();
 
-      runAnalysis();
-    }
-  }
+runAnalysis();
+
+}
+
+}
 );
 
 
 /* ============================================================
    START
-   ============================================================ */
+============================================================ */
 
 checkProxy();
 

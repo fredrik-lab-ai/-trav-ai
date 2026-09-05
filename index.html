@@ -3,47 +3,46 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>TRAV AI V18 PRO</title>
+<title>TRAV AI V30</title>
 
 <style>
 :root{
-  --bg:#0b1020;
-  --panel:#131a2b;
-  --panel2:#192238;
-  --line:#293653;
-  --text:#eef3ff;
-  --muted:#9aa8c4;
+  --bg:#080d18;
+  --panel:#121a2b;
+  --panel2:#18233a;
+  --line:#293957;
+  --text:#eef4ff;
+  --muted:#93a3c2;
   --green:#38d996;
   --yellow:#ffd166;
   --red:#ff667d;
   --blue:#58a6ff;
-  --white:#ffffff;
+  --orange:#ff9f43;
 }
 
-*{
-  box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
   margin:0;
-  background:linear-gradient(135deg,#080c18,#10182a 55%,#0b1020);
+  background:
+    radial-gradient(circle at top right,#162441 0,#0b1020 40%,#070b14 100%);
   color:var(--text);
   font-family:Arial,Helvetica,sans-serif;
 }
 
 header{
-  padding:22px;
-  border-bottom:1px solid var(--line);
-  background:rgba(8,12,24,.92);
   position:sticky;
   top:0;
-  z-index:10;
-  backdrop-filter:blur(12px);
+  z-index:20;
+  background:rgba(7,11,20,.94);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
 }
 
 .header-inner{
-  max-width:1450px;
+  max-width:1500px;
   margin:auto;
+  padding:18px 24px;
   display:flex;
   justify-content:space-between;
   align-items:center;
@@ -51,14 +50,12 @@ header{
 }
 
 .logo{
-  font-size:25px;
+  font-size:26px;
   font-weight:900;
   letter-spacing:1px;
 }
 
-.logo span{
-  color:var(--green);
-}
+.logo span{color:var(--green)}
 
 .status{
   display:flex;
@@ -77,7 +74,7 @@ header{
 
 .dot.online{
   background:var(--green);
-  box-shadow:0 0 10px var(--green);
+  box-shadow:0 0 12px var(--green);
 }
 
 .dot.error{
@@ -85,29 +82,27 @@ header{
 }
 
 main{
-  max-width:1450px;
+  max-width:1500px;
   margin:auto;
-  padding:25px;
+  padding:24px;
 }
 
-.grid{
+.layout{
   display:grid;
-  grid-template-columns:360px 1fr;
+  grid-template-columns:330px 1fr;
   gap:20px;
 }
 
-@media(max-width:950px){
-  .grid{
-    grid-template-columns:1fr;
-  }
+@media(max-width:1000px){
+  .layout{grid-template-columns:1fr}
 }
 
 .panel{
-  background:rgba(19,26,43,.94);
+  background:rgba(18,26,43,.95);
   border:1px solid var(--line);
   border-radius:15px;
   padding:20px;
-  box-shadow:0 12px 40px rgba(0,0,0,.25);
+  box-shadow:0 15px 50px rgba(0,0,0,.22);
 }
 
 h2,h3{
@@ -119,20 +114,18 @@ h2{
 }
 
 h3{
-  font-size:16px;
+  font-size:15px;
 }
 
 label{
   display:block;
+  margin-top:14px;
+  margin-bottom:6px;
   color:var(--muted);
   font-size:12px;
-  margin-bottom:6px;
-  margin-top:15px;
 }
 
-input,
-select,
-button{
+input,select,button{
   width:100%;
   border-radius:9px;
   border:1px solid var(--line);
@@ -140,74 +133,73 @@ button{
   font-size:14px;
 }
 
-input,
-select{
-  background:#0d1425;
+input,select{
+  background:#0b1323;
   color:var(--text);
 }
 
 button{
   cursor:pointer;
-  font-weight:800;
-  background:#202c46;
   color:var(--text);
+  background:#202d47;
+  font-weight:900;
 }
 
 button:hover{
-  filter:brightness(1.15);
+  filter:brightness(1.12);
+}
+
+button:disabled{
+  opacity:.55;
+  cursor:not-allowed;
 }
 
 .btn-main{
   margin-top:20px;
+  padding:14px;
+  border:none;
   background:var(--green);
   color:#06150f;
-  border:none;
-  font-size:16px;
-  padding:14px;
-}
-
-.btn-secondary{
-  margin-top:10px;
+  font-size:15px;
 }
 
 .btn-danger{
-  background:#3a1c29;
-  color:#ff9bad;
+  margin-top:10px;
+  background:#381c29;
+  color:#ffabb9;
 }
 
 .info{
-  padding:12px;
-  background:#0d1425;
-  border:1px solid var(--line);
+  margin-top:15px;
+  padding:13px;
   border-radius:10px;
+  background:#0b1323;
+  border:1px solid var(--line);
   color:var(--muted);
   font-size:12px;
-  line-height:1.5;
-  margin-top:15px;
+  line-height:1.55;
 }
 
 .message{
+  display:none;
   padding:13px;
   border-radius:10px;
   margin-bottom:15px;
-  display:none;
   font-size:13px;
 }
 
-.message.show{
-  display:block;
-}
+.message.show{display:block}
 
 .message.info-msg{
-  background:#11243b;
-  border:1px solid #244f7e;
-  color:#a9d3ff;
+  background:#10243b;
+  border:1px solid #28537e;
+  color:#abd6ff;
 }
 
 .message.success{
-  background:#0d2d24;
-  border:1px solid #22664f;
-  color:#9af0cb;
+  background:#0c2c23;
+  border:1px solid #21674f;
+  color:#9af0cc;
 }
 
 .message.error{
@@ -216,21 +208,23 @@ button:hover{
   color:#ffadb9;
 }
 
-.topcards{
+.cards{
   display:grid;
-  grid-template-columns:repeat(5,1fr);
+  grid-template-columns:repeat(6,1fr);
   gap:10px;
-  margin-bottom:20px;
+  margin-bottom:18px;
 }
 
-@media(max-width:1000px){
-  .topcards{
-    grid-template-columns:repeat(2,1fr);
-  }
+@media(max-width:1200px){
+  .cards{grid-template-columns:repeat(3,1fr)}
+}
+
+@media(max-width:650px){
+  .cards{grid-template-columns:repeat(2,1fr)}
 }
 
 .card{
-  background:#0e1526;
+  background:#0d1526;
   border:1px solid var(--line);
   border-radius:11px;
   padding:13px;
@@ -238,114 +232,162 @@ button:hover{
 
 .card-title{
   color:var(--muted);
-  font-size:11px;
+  font-size:10px;
+  letter-spacing:.5px;
 }
 
 .card-value{
-  font-size:20px;
+  font-size:19px;
   font-weight:900;
   margin-top:5px;
 }
 
-.green{
-  color:var(--green);
+.green{color:var(--green)}
+.yellow{color:var(--yellow)}
+.red{color:var(--red)}
+.blue{color:var(--blue)}
+.orange{color:var(--orange)}
+
+.source{
+  margin-top:15px;
+  padding:13px;
+  border:1px dashed var(--line);
+  border-radius:10px;
+  background:#0b1323;
 }
 
-.yellow{
-  color:var(--yellow);
+.source-title{
+  font-weight:900;
+  font-size:12px;
 }
 
-.red{
-  color:var(--red);
-}
-
-.blue{
-  color:var(--blue);
-}
-
-.empty{
-  text-align:center;
-  padding:70px 20px;
+.source-small{
+  margin-top:5px;
   color:var(--muted);
+  font-size:11px;
 }
 
-.empty strong{
-  display:block;
-  color:var(--text);
-  font-size:18px;
-  margin-bottom:10px;
+.progress{
+  display:none;
+  margin-top:10px;
+  height:7px;
+  background:#202b42;
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.progress.show{display:block}
+
+.progress-bar{
+  height:100%;
+  width:0;
+  background:var(--green);
+  transition:width .25s;
 }
 
 .race{
+  overflow:hidden;
+  margin-bottom:18px;
   border:1px solid var(--line);
   border-radius:14px;
-  margin-bottom:16px;
-  overflow:hidden;
-  background:#10182a;
+  background:#10192b;
 }
 
 .race-head{
-  padding:14px 16px;
-  background:#172139;
+  padding:15px 17px;
+  background:#17223a;
+  border-bottom:1px solid var(--line);
   display:flex;
   justify-content:space-between;
   align-items:center;
   gap:15px;
-  border-bottom:1px solid var(--line);
 }
 
 .race-title{
+  font-size:18px;
   font-weight:900;
-  font-size:17px;
 }
 
 .race-meta{
   color:var(--muted);
   font-size:12px;
+  margin-top:4px;
+}
+
+.race-badges{
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+
+.badge{
+  padding:6px 8px;
+  border-radius:7px;
+  background:#202d47;
+  color:#c8d4e9;
+  font-size:10px;
+  font-weight:900;
+}
+
+.horse-head{
+  display:grid;
+  grid-template-columns:48px minmax(180px,1.8fr) 85px 85px 85px 85px 85px 90px;
+  gap:10px;
+  padding:9px 13px;
+  background:#0d1525;
+  color:var(--muted);
+  font-size:9px;
+  text-transform:uppercase;
 }
 
 .horse{
   display:grid;
-  grid-template-columns:45px minmax(170px,1.6fr) 90px 90px 90px 90px 90px 110px;
+  grid-template-columns:48px minmax(180px,1.8fr) 85px 85px 85px 85px 85px 90px;
   gap:10px;
   align-items:center;
-  padding:12px 14px;
-  border-bottom:1px solid rgba(41,54,83,.65);
+  padding:12px 13px;
+  border-bottom:1px solid rgba(41,57,87,.65);
 }
 
 .horse:last-child{
   border-bottom:none;
 }
 
-@media(max-width:1100px){
-  .horse{
-    grid-template-columns:40px 1fr 80px 80px;
+@media(max-width:1150px){
+  .horse-head{
+    display:none;
   }
 
-  .horse .optional{
-    display:none;
+  .horse{
+    grid-template-columns:42px 1fr 75px 75px;
+  }
+
+  .optional{
+    display:none!important;
   }
 }
 
-.start-number{
-  width:34px;
-  height:34px;
+.number{
+  width:35px;
+  height:35px;
   border-radius:8px;
-  background:#222e49;
   display:flex;
-  justify-content:center;
   align-items:center;
+  justify-content:center;
+  background:#222f4a;
   font-weight:900;
 }
 
 .horse-name{
+  font-size:14px;
   font-weight:900;
 }
 
 .horse-sub{
-  color:var(--muted);
-  font-size:11px;
   margin-top:4px;
+  color:var(--muted);
+  font-size:10px;
 }
 
 .metric{
@@ -353,65 +395,76 @@ button:hover{
 }
 
 .metric-label{
-  font-size:10px;
   color:var(--muted);
+  font-size:9px;
 }
 
 .metric-value{
-  font-size:14px;
-  font-weight:800;
   margin-top:3px;
+  font-size:13px;
+  font-weight:900;
 }
 
 .pick{
   text-align:center;
-  border-radius:8px;
   padding:7px 5px;
-  font-weight:900;
-  background:#16253b;
+  border-radius:8px;
+  background:#172238;
   color:var(--muted);
+  font-size:10px;
+  font-weight:900;
 }
 
-.pick.star{
-  background:#123b30;
+.pick.top{
+  background:#103a2e;
   color:var(--green);
 }
 
 .pick.lock{
-  background:#382f12;
+  background:#403512;
   color:var(--yellow);
+}
+
+.pick.value{
+  background:#3a2513;
+  color:var(--orange);
+}
+
+.scratched{
+  opacity:.35;
 }
 
 .recommend{
   padding:16px;
-  background:#0c1322;
+  background:#0b1322;
   border-top:1px solid var(--line);
 }
 
 .recommend-title{
   color:var(--muted);
-  font-size:11px;
-  text-transform:uppercase;
+  font-size:10px;
   letter-spacing:1px;
+  text-transform:uppercase;
 }
 
-.recommend-horses{
-  font-size:23px;
-  font-weight:900;
+.recommend-main{
   margin-top:5px;
+  font-size:20px;
+  font-weight:900;
 }
 
 .reason{
+  margin-top:6px;
   color:var(--muted);
-  font-size:12px;
-  margin-top:5px;
+  font-size:11px;
+  line-height:1.5;
 }
 
 .system{
   margin-top:20px;
   border:1px solid var(--green);
   border-radius:14px;
-  background:#0d211c;
+  background:#0b211b;
   padding:18px;
 }
 
@@ -419,7 +472,7 @@ button:hover{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  gap:10px;
+  gap:15px;
 }
 
 .system-title{
@@ -435,11 +488,11 @@ button:hover{
 
 .system-row{
   display:grid;
-  grid-template-columns:80px 1fr 100px 100px;
+  grid-template-columns:80px 1fr 100px;
   gap:10px;
-  padding:11px 0;
-  border-bottom:1px solid rgba(56,217,150,.15);
   align-items:center;
+  padding:11px 0;
+  border-bottom:1px solid rgba(56,217,150,.14);
 }
 
 .system-row:last-child{
@@ -450,42 +503,51 @@ button:hover{
   color:var(--yellow);
 }
 
-.small{
+.system-horse{
+  display:inline-block;
+  margin:3px;
+  padding:6px 8px;
+  border-radius:7px;
+  background:#172d2a;
   font-size:11px;
+  font-weight:900;
+}
+
+.empty{
+  text-align:center;
+  padding:70px 20px;
   color:var(--muted);
 }
 
-.source-box{
-  margin-top:15px;
-  padding:13px;
-  border-radius:10px;
-  border:1px dashed var(--line);
-  background:#0d1425;
-}
-
-.source-status{
-  font-weight:800;
-  margin-bottom:5px;
-}
-
-.progress{
-  height:8px;
-  border-radius:20px;
-  background:#202b42;
-  overflow:hidden;
-  margin-top:10px;
-  display:none;
-}
-
-.progress.show{
+.empty strong{
   display:block;
+  color:var(--text);
+  font-size:19px;
+  margin-bottom:10px;
 }
 
-.progress-bar{
-  width:0%;
-  height:100%;
-  background:var(--green);
-  transition:width .2s;
+.quality{
+  margin-top:14px;
+  padding:12px;
+  border-radius:10px;
+  background:#0b1323;
+  border:1px solid var(--line);
+}
+
+.quality-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:6px;
+  margin-top:8px;
+}
+
+.quality-item{
+  font-size:10px;
+  color:var(--muted);
+}
+
+.quality-item b{
+  color:var(--text);
 }
 
 hr{
@@ -495,11 +557,11 @@ hr{
 }
 
 .footer{
-  max-width:1450px;
+  max-width:1500px;
   margin:auto;
-  padding:10px 25px 35px;
-  color:#66728a;
-  font-size:11px;
+  padding:10px 24px 35px;
+  color:#64718b;
+  font-size:10px;
 }
 </style>
 </head>
@@ -510,31 +572,31 @@ hr{
   <div class="header-inner">
 
     <div class="logo">
-      TRAV <span>AI</span> V18 PRO
+      TRAV <span>AI</span> V30
     </div>
 
     <div class="status">
       <div id="statusDot" class="dot"></div>
-      <span id="statusText">Kontrollerar proxy...</span>
+      <span id="statusText">Kontrollerar V29...</span>
     </div>
 
   </div>
 </header>
 
+
 <main>
 
-<div class="grid">
+<div class="layout">
 
-<!-- ========================================================= -->
+<!-- ===================================================== -->
 <!-- INSTÄLLNINGAR -->
-<!-- ========================================================= -->
+<!-- ===================================================== -->
 
 <section class="panel">
 
-<h2>Analys</h2>
+<h2>AI-analys</h2>
 
 <label>Spelform</label>
-
 <select id="game">
   <option>V85</option>
   <option>V86</option>
@@ -551,7 +613,7 @@ hr{
 <label>Datum</label>
 <input id="date" type="date">
 
-<label>Budget / systemkostnad</label>
+<label>Budget</label>
 <input id="budget" type="number" value="500" min="1" step="1">
 
 <label>Max hästar per lopp</label>
@@ -560,111 +622,135 @@ hr{
 <label>Min AI-vinstchans %</label>
 <input id="minAI" type="number" value="8" min="0" max="100">
 
-<label>Min värde / edge %</label>
+<label>Min VALUE / edge %</label>
 <input id="minEdge" type="number" value="0" min="-100" max="200">
 
 <label>Max galopprisk %</label>
 <input id="maxGallop" type="number" value="35" min="0" max="100">
 
 <button id="analyzeBtn" class="btn-main">
-  HÄMTA STARTLISTA & ANALYSERA
+  HÄMTA & ANALYSERA
 </button>
 
-<button id="clearBtn" class="btn-secondary btn-danger">
+<button id="clearBtn" class="btn-danger">
   Rensa analys
 </button>
 
-<div class="source-box">
+<div class="source">
 
-<div id="sourceStatus" class="source-status">
-Datakälla: kontrolleras...
+  <div id="sourceStatus" class="source-title">
+    V29: kontrollerar...
+  </div>
+
+  <div id="sourceText" class="source-small">
+    Cloudflare Worker
+  </div>
+
+  <div id="progress" class="progress">
+    <div id="progressBar" class="progress-bar"></div>
+  </div>
+
 </div>
 
-<div id="sourceText" class="small">
-Cloudflare Worker
-</div>
+<div class="quality">
 
-<div id="progress" class="progress">
-<div id="progressBar" class="progress-bar"></div>
-</div>
+  <strong style="font-size:12px">
+    Datakvalitet
+  </strong>
+
+  <div id="qualityGrid" class="quality-grid">
+    <div class="quality-item">Lopp: <b>–</b></div>
+    <div class="quality-item">Hästar: <b>–</b></div>
+    <div class="quality-item">Strykningar: <b>–</b></div>
+    <div class="quality-item">Balans: <b>–</b></div>
+    <div class="quality-item">Trend: <b>–</b></div>
+    <div class="quality-item">Parser: <b>–</b></div>
+  </div>
 
 </div>
 
 <div class="info">
 
-<strong>Automatisk datakälla</strong><br><br>
+<strong>V30 – AI-lager</strong><br><br>
 
-Sidan är nu direkt kopplad till din Cloudflare Worker.
-Ingen proxyadress behöver fyllas i manuellt.
+V30 använder dagens data från V29 och räknar fram
+modellens relativa vinstchans, VALUE, formindikator,
+balans, trend och galopprisk.
 
-När en godkänd extern travdatakälla kopplas till Workern hämtas
-startlistan automatiskt.
+<br><br>
 
-Historiska CSV-filer kan fortfarande laddas in för AI-träning
-och walk-forward/OOS.
+<strong>Viktigt:</strong> V85 % är marknadens
+spel-/streckfördelning och ska inte tolkas som en
+verifierad vinstsannolikhet.
 
 </div>
 
 <hr>
 
-<h3>Historiska data</h3>
+<h3>Historisk data</h3>
 
 <label>Historik CSV</label>
 <input id="historyFile" type="file" accept=".csv,text/csv">
 
-<div class="small" style="margin-top:8px">
-Exempel på kolumner: datum, lopp, start, häst, kusk,
-tränare, odds, vinst, placering, tid, distans, galopp.
+<div class="source-small">
+Kolumner kan exempelvis vara:
+datum, lopp, start, häst, kusk, tränare,
+placering, tid, distans, galopp, odds.
 </div>
 
 <hr>
 
-<h3>Aktuell startlista</h3>
+<h3>Reserv-startlista</h3>
 
 <label>Startlista CSV</label>
 <input id="startFile" type="file" accept=".csv,text/csv">
 
-<div class="small" style="margin-top:8px">
-Används som reserv om live-startlistan inte finns ännu.
+<div class="source-small">
+Används endast om V29 inte returnerar någon data.
 </div>
 
 </section>
 
 
-<!-- ========================================================= -->
+<!-- ===================================================== -->
 <!-- RESULTAT -->
-<!-- ========================================================= -->
+<!-- ===================================================== -->
 
 <section>
 
 <div id="message" class="message"></div>
 
-<div id="topCards" class="topcards">
+<div class="cards">
 
-<div class="card">
-<div class="card-title">LOPP</div>
-<div id="cardRaces" class="card-value">0</div>
-</div>
+  <div class="card">
+    <div class="card-title">LOPP</div>
+    <div id="cardRaces" class="card-value">0</div>
+  </div>
 
-<div class="card">
-<div class="card-title">HÄSTAR</div>
-<div id="cardHorses" class="card-value">0</div>
-</div>
+  <div class="card">
+    <div class="card-title">HÄSTAR</div>
+    <div id="cardHorses" class="card-value">0</div>
+  </div>
 
-<div class="card">
-<div class="card-title">AI-TOPP</div>
-<div id="cardTop" class="card-value green">–</div>
-</div>
+  <div class="card">
+    <div class="card-title">AKTIVA</div>
+    <div id="cardActive" class="card-value green">0</div>
+  </div>
 
-<div class="card">
-<div class="card-title">SYSTEM</div>
-<div id="cardSystem" class="card-value yellow">–</div>
-</div>
+  <div class="card">
+    <div class="card-title">STRUKNA</div>
+    <div id="cardScratched" class="card-value red">0</div>
+  </div>
 
-<div class="card">
-<div class="card-title">DATABAS</div>
-<div id="cardHistory" class="card-value blue">0</div>
-</div>
+  <div class="card">
+    <div class="card-title">AI-TOPP</div>
+    <div id="cardTop" class="card-value green">–</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">SYSTEM</div>
+    <div id="cardSystem" class="card-value yellow">–</div>
+  </div>
 
 </div>
 
@@ -672,16 +758,13 @@ Används som reserv om live-startlistan inte finns ännu.
 
 <div class="empty">
 
-<strong>TRAV AI V18 PRO</strong>
+<strong>TRAV AI V30</strong>
 
-Välj spelform, datum och budget och tryck
-<strong>HÄMTA STARTLISTA & ANALYSERA</strong>.
+Tryck på <strong>HÄMTA & ANALYSERA</strong>.
 
 <br><br>
 
-Sidan kommer först att försöka hämta data från
-Cloudflare-proxyn och därefter använda importerad CSV
-om live-data inte finns.
+V30 hämtar startlistan direkt från din V29-Worker.
 
 </div>
 
@@ -694,23 +777,28 @@ om live-data inte finns.
 </main>
 
 <div class="footer">
-TRAV AI V18 PRO – AI-analys, marknadsvärde, form, systemgenerator och walk-forward-stöd.
-AI-procent är modellberäkningar och ska inte betraktas som garanterade utfall.
+TRAV AI V30 – AI-analys, marknadsvärde, balans, trend,
+galopprisk och systemgenerator. Modellvärden är beräkningar,
+inte garantier om framtida utfall.
 </div>
 
 
 <script>
 
 /* ============================================================
-   TRAV AI V18 PRO
+   TRAV AI V30
    ============================================================ */
 
 const PROXY =
   "https://trav-ai-proxy.fredrik-widingsel.workers.dev";
 
+const DATA_URL =
+  PROXY + "/data";
+
 let historyData = [];
 let startData = [];
 let analyzedRaces = [];
+let lastProxyData = null;
 
 
 /* ============================================================
@@ -721,11 +809,11 @@ function todayISO(){
 
   const d = new Date();
 
-  const y = d.getFullYear();
-  const m = String(d.getMonth()+1).padStart(2,"0");
-  const day = String(d.getDate()).padStart(2,"0");
-
-  return `${y}-${m}-${day}`;
+  return [
+    d.getFullYear(),
+    String(d.getMonth()+1).padStart(2,"0"),
+    String(d.getDate()).padStart(2,"0")
+  ].join("-");
 }
 
 document.getElementById("date").value = todayISO();
@@ -740,12 +828,12 @@ function num(v){
   if(v === null || v === undefined || v === "")
     return 0;
 
-  let s = String(v)
-    .replace(",",".")
-    .replace("%","")
-    .trim();
-
-  const n = parseFloat(s);
+  const n = parseFloat(
+    String(v)
+      .replace(",",".")
+      .replace("%","")
+      .trim()
+  );
 
   return Number.isFinite(n) ? n : 0;
 }
@@ -760,9 +848,9 @@ function text(v){
 }
 
 
-function normKey(s){
+function normKey(v){
 
-  return text(s)
+  return text(v)
     .toLowerCase()
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g,"")
@@ -770,22 +858,35 @@ function normKey(s){
 }
 
 
-function first(obj, keys){
+function clamp(v,min,max){
 
-  for(const key of keys){
+  return Math.max(
+    min,
+    Math.min(max,v)
+  );
+}
 
-    const nk = normKey(key);
+
+function first(obj,keys){
+
+  for(const wanted of keys){
+
+    const wantedKey =
+      normKey(wanted);
 
     for(const actual of Object.keys(obj)){
 
-      if(normKey(actual) === nk){
+      if(normKey(actual) === wantedKey){
 
         const value = obj[actual];
 
-        if(value !== undefined &&
-           value !== null &&
-           value !== "")
+        if(
+          value !== undefined &&
+          value !== null &&
+          value !== ""
+        ){
           return value;
+        }
       }
     }
   }
@@ -794,41 +895,45 @@ function first(obj, keys){
 }
 
 
+function escapeHTML(v){
+
+  return text(v)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+}
+
+
 /* ============================================================
-   CSV PARSER
+   CSV
    ============================================================ */
 
 function parseCSV(csv){
 
-  const rows = [];
-  let row = [];
-  let cell = "";
-  let quote = false;
+  const rows=[];
+  let row=[];
+  let cell="";
+  let quote=false;
 
   for(let i=0;i<csv.length;i++){
 
-    const c = csv[i];
-    const next = csv[i+1];
+    const c=csv[i];
+    const next=csv[i+1];
 
     if(c === '"' && quote && next === '"'){
-      cell += '"';
+      cell+='"';
       i++;
       continue;
     }
 
     if(c === '"'){
-      quote = !quote;
+      quote=!quote;
       continue;
     }
 
-    if(c === ";" && !quote){
-
-      row.push(cell);
-      cell="";
-      continue;
-    }
-
-    if(c === "," && !quote){
+    if((c === ";" || c === ",") && !quote){
 
       row.push(cell);
       cell="";
@@ -839,7 +944,7 @@ function parseCSV(csv){
 
       row.push(cell);
 
-      if(row.some(x => text(x)!==""))
+      if(row.some(x=>text(x)!==""))
         rows.push(row);
 
       row=[];
@@ -848,25 +953,26 @@ function parseCSV(csv){
     }
 
     if(c !== "\r")
-      cell += c;
+      cell+=c;
   }
 
   row.push(cell);
 
-  if(row.some(x => text(x)!==""))
+  if(row.some(x=>text(x)!==""))
     rows.push(row);
 
-  if(rows.length < 2)
+  if(rows.length<2)
     return [];
 
-  const headers = rows[0].map(x => text(x));
+  const headers=
+    rows[0].map(x=>text(x));
 
-  return rows.slice(1).map(r => {
+  return rows.slice(1).map(r=>{
 
     const o={};
 
     headers.forEach((h,i)=>{
-      o[h] = r[i] ?? "";
+      o[h]=r[i] ?? "";
     });
 
     return o;
@@ -874,94 +980,99 @@ function parseCSV(csv){
 }
 
 
-/* ============================================================
-   NORMALISERA HÄST
-   ============================================================ */
-
-function normalizeHorse(row){
+function normalizeCSVHorse(row){
 
   return {
 
-    race:
-      first(row,[
-        "race","lopp","lopnr","loppnummer",
-        "raceNumber","avd","avdelning"
-      ]),
+    race:first(row,[
+      "race",
+      "lopp",
+      "lopnr",
+      "loppnummer",
+      "raceNumber",
+      "avd",
+      "avdelning"
+    ]),
 
-    start:
-      first(row,[
-        "start","startnr","startnummer",
-        "number","spår","spar"
-      ]),
+    start:first(row,[
+      "start",
+      "startnr",
+      "startnummer",
+      "number",
+      "spår",
+      "spar"
+    ]),
 
-    horse:
-      first(row,[
-        "horse","häst","hast","horseName",
-        "hästnamn","hastnamn"
-      ]),
+    horse:first(row,[
+      "horse",
+      "häst",
+      "hast",
+      "horseName",
+      "hästnamn",
+      "hastnamn"
+    ]),
 
-    driver:
-      first(row,[
-        "driver","kuske","kusk","driverName"
-      ]),
+    driver:first(row,[
+      "driver",
+      "kusk",
+      "driverName"
+    ]),
 
-    trainer:
-      first(row,[
-        "trainer","tränare","tranare","trainerName"
-      ]),
+    trainer:first(row,[
+      "trainer",
+      "tränare",
+      "tranare",
+      "trainerName"
+    ]),
 
-    odds:
-      num(first(row,[
-        "odds","vinnarodds","winOdds",
-        "oddsVinnare","atgOdds"
-      ])),
+    odds:num(first(row,[
+      "odds",
+      "vinnarodds",
+      "winOdds"
+    ])),
 
-    v:
-      num(first(row,[
-        "v","vprocent","v%","spelprocent",
-        "streck","percent","marketPercent"
-      ])),
+    v85:num(first(row,[
+      "v",
+      "v85",
+      "vprocent",
+      "v%",
+      "spelprocent",
+      "streck",
+      "percent",
+      "marketPercent"
+    ])),
 
-    distance:
-      num(first(row,[
-        "distance","distans","meter"
-      ])),
+    distance:num(first(row,[
+      "distance",
+      "distans",
+      "meter"
+    ])),
 
-    startType:
-      first(row,[
-        "startType","starttyp","startmetod"
-      ]),
+    start_method:first(row,[
+      "startType",
+      "starttyp",
+      "startmetod"
+    ]),
 
-    track:
-      first(row,[
-        "track","bana","banaNamn","trackName"
-      ]),
+    position:num(first(row,[
+      "position",
+      "placering",
+      "place",
+      "finish"
+    ])),
 
-    position:
-      num(first(row,[
-        "position","placering","place","finish"
-      ])),
+    time:first(row,[
+      "time",
+      "tid",
+      "record"
+    ]),
 
-    time:
-      first(row,[
-        "time","tid","record","rekord"
-      ]),
-
-    gallop:
-      num(first(row,[
-        "gallop","galopp","g",
-        "gallopRisk","galopprisk"
-      ])),
-
-    wins:
-      num(first(row,[
-        "wins","vinster","segrar"
-      ])),
-
-    starts:
-      num(first(row,[
-        "starts","starter","starterTotalt"
-      ])),
+    gallop:num(first(row,[
+      "gallop",
+      "galopp",
+      "gallopRisk",
+      "galopprisk"
+    ])),
 
     raw:row
   };
@@ -969,7 +1080,7 @@ function normalizeHorse(row){
 
 
 /* ============================================================
-   FILIMPORT
+   FILER
    ============================================================ */
 
 document.getElementById("historyFile")
@@ -977,18 +1088,17 @@ document.getElementById("historyFile")
 
   const file=e.target.files[0];
 
-  if(!file) return;
+  if(!file)
+    return;
 
   try{
 
     const csv=await file.text();
 
-    const rows=parseCSV(csv);
-
-    historyData=rows.map(normalizeHorse);
-
-    document.getElementById("cardHistory").textContent =
-      historyData.length;
+    historyData=
+      parseCSV(csv)
+      .map(normalizeCSVHorse)
+      .filter(x=>x.horse);
 
     showMessage(
       `Historik laddad: ${historyData.length} rader.`,
@@ -998,7 +1108,7 @@ document.getElementById("historyFile")
   }catch(err){
 
     showMessage(
-      "Kunde inte läsa historikfilen: "+err.message,
+      "Kunde inte läsa historik: "+err.message,
       "error"
     );
   }
@@ -1010,15 +1120,17 @@ document.getElementById("startFile")
 
   const file=e.target.files[0];
 
-  if(!file) return;
+  if(!file)
+    return;
 
   try{
 
     const csv=await file.text();
 
-    const rows=parseCSV(csv);
-
-    startData=rows.map(normalizeHorse);
+    startData=
+      parseCSV(csv)
+      .map(normalizeCSVHorse)
+      .filter(x=>x.horse);
 
     showMessage(
       `Startlista laddad: ${startData.length} hästar.`,
@@ -1028,7 +1140,7 @@ document.getElementById("startFile")
   }catch(err){
 
     showMessage(
-      "Kunde inte läsa startlistan: "+err.message,
+      "Kunde inte läsa startlista: "+err.message,
       "error"
     );
   }
@@ -1041,180 +1153,187 @@ document.getElementById("startFile")
 
 async function checkProxy(){
 
-  const dot=document.getElementById("statusDot");
-  const status=document.getElementById("statusText");
+  const dot=
+    document.getElementById("statusDot");
+
+  const status=
+    document.getElementById("statusText");
 
   try{
 
-    const response=await fetch(
-      PROXY+"/health",
-      {
-        method:"GET",
-        cache:"no-store"
-      }
-    );
+    const response=
+      await fetch(
+        PROXY+"/health",
+        {
+          cache:"no-store"
+        }
+      );
 
     if(!response.ok)
-      throw new Error("HTTP "+response.status);
+      throw new Error(
+        "HTTP "+response.status
+      );
 
-    const data=await response.json();
+    const data=
+      await response.json();
 
-    if(data.ok){
+    if(!data.ok)
+      throw new Error("Proxy svarade inte OK");
 
-      dot.className="dot online";
+    dot.className="dot online";
 
-      status.textContent =
-        "Proxy online – V18";
+    status.textContent=
+      "V29 online";
 
-      document.getElementById("sourceStatus")
-        .textContent =
-        "Datakälla: Cloudflare Proxy online";
+    document.getElementById(
+      "sourceStatus"
+    ).textContent=
+      "V29 Worker: ONLINE";
 
-      document.getElementById("sourceText")
-        .textContent =
-        data.upstream_configured
-          ? "Extern datakälla ansluten."
-          : "Proxy online – extern datakälla saknas ännu.";
-
-      return data;
-    }
-
-    throw new Error("Proxy svarade inte OK");
+    document.getElementById(
+      "sourceText"
+    ).textContent=
+      "Datakälla: Travet.se via Cloudflare Worker";
 
   }catch(err){
 
     dot.className="dot error";
 
-    status.textContent="Proxy ej tillgänglig";
+    status.textContent=
+      "Proxyfel";
 
-    document.getElementById("sourceStatus")
-      .textContent =
-      "Datakälla: proxyfel";
+    document.getElementById(
+      "sourceStatus"
+    ).textContent=
+      "V29 Worker: FEL";
 
-    document.getElementById("sourceText")
-      .textContent =
+    document.getElementById(
+      "sourceText"
+    ).textContent=
       err.message;
-
-    return null;
   }
 }
 
 
 /* ============================================================
-   HÄMTA STARTLISTA FRÅN PROXY
+   HÄMTA V29 DATA
    ============================================================ */
 
-async function fetchStartlist(){
+async function fetchV29(){
 
-  const game =
-    document.getElementById("game").value;
-
-  const date =
-    document.getElementById("date").value;
-
-  const url =
-    `${PROXY}/startlist?type=${encodeURIComponent(game)}&date=${encodeURIComponent(date)}`;
-
-  const response =
+  const response=
     await fetch(
-      url,
+      DATA_URL,
       {
         method:"GET",
         cache:"no-store"
       }
     );
 
-  if(!response.ok)
-    throw new Error(
-      "HTTP-fel från proxy: "+response.status
-    );
+  if(!response.ok){
 
-  const data=await response.json();
+    throw new Error(
+      "V29 HTTP "+response.status
+    );
+  }
+
+  const data=
+    await response.json();
+
+  if(
+    !data ||
+    data.ok === false
+  ){
+
+    throw new Error(
+      data && data.error
+        ? data.error
+        : "V29 returnerade inget data"
+    );
+  }
 
   return data;
 }
 
 
 /* ============================================================
-   MODELL
+   HISTORIK
    ============================================================ */
 
-function historyForHorse(name){
+function horseHistory(name){
 
-  const n=normKey(name);
+  const key=normKey(name);
 
-  if(!n)
+  if(!key)
     return [];
 
-  return historyData.filter(x =>
-    normKey(x.horse) === n
+  return historyData.filter(
+    x=>normKey(x.horse)===key
   );
 }
 
 
 function formScore(h){
 
-  const hist=historyForHorse(h.horse);
+  const hist=
+    horseHistory(h.name);
 
-  if(hist.length===0)
+  if(!hist.length)
     return 50;
 
-  let score=50;
+  const recent=
+    hist.slice(-8);
 
-  const recent=hist.slice(-8);
-
-  let valid=0;
-  let points=0;
+  let total=0;
+  let count=0;
 
   for(const r of recent){
 
     const p=num(r.position);
 
-    if(p>0){
+    if(p<=0)
+      continue;
 
-      valid++;
+    count++;
 
-      if(p===1) points+=100;
-      else if(p===2) points+=82;
-      else if(p===3) points+=68;
-      else if(p===4) points+=56;
-      else if(p===5) points+=48;
-      else if(p<=7) points+=38;
-      else points+=22;
-    }
+    if(p===1)
+      total+=100;
+    else if(p===2)
+      total+=82;
+    else if(p===3)
+      total+=68;
+    else if(p===4)
+      total+=58;
+    else if(p===5)
+      total+=50;
+    else if(p<=7)
+      total+=38;
+    else
+      total+=20;
   }
 
-  if(valid)
-    score=points/valid;
+  if(!count)
+    return 50;
 
-  return Math.max(0,Math.min(100,score));
-}
-
-
-function experienceScore(h){
-
-  const hist=historyForHorse(h.horse);
-
-  if(hist.length===0)
-    return 45;
-
-  return Math.min(
-    100,
-    45 + hist.length*4
+  return clamp(
+    total/count,
+    0,
+    100
   );
 }
 
 
 function driverScore(h){
 
-  if(!h.driver)
+  const key=normKey(h.driver);
+
+  if(!key)
     return 50;
 
-  const name=normKey(h.driver);
-
-  const rows=historyData.filter(
-    x=>normKey(x.driver)===name
-  );
+  const rows=
+    historyData.filter(
+      x=>normKey(x.driver)===key
+    );
 
   if(rows.length<3)
     return 50;
@@ -1238,26 +1357,25 @@ function driverScore(h){
   if(!valid)
     return 50;
 
-  return Math.max(
+  return clamp(
+    35+(wins/valid)*130,
     20,
-    Math.min(
-      100,
-      35 + (wins/valid)*130
-    )
+    100
   );
 }
 
 
 function trainerScore(h){
 
-  if(!h.trainer)
+  const key=normKey(h.trainer);
+
+  if(!key)
     return 50;
 
-  const name=normKey(h.trainer);
-
-  const rows=historyData.filter(
-    x=>normKey(x.trainer)===name
-  );
+  const rows=
+    historyData.filter(
+      x=>normKey(x.trainer)===key
+    );
 
   if(rows.length<3)
     return 50;
@@ -1281,421 +1399,610 @@ function trainerScore(h){
   if(!valid)
     return 50;
 
-  return Math.max(
+  return clamp(
+    40+(wins/valid)*120,
     25,
-    Math.min(
-      100,
-      40 + (wins/valid)*120
-    )
+    100
   );
 }
 
 
-function marketProbability(h){
+/* ============================================================
+   V29 BALANS
+   ============================================================ */
 
-  if(h.v>0)
-    return Math.min(95,h.v);
+function balanceScore(h){
 
-  if(h.odds>1)
-    return Math.min(
-      95,
-      100/h.odds*100
+  const value=
+    normKey(
+      h.balance
     );
+
+  if(!value)
+    return 50;
+
+  if(
+    value.includes("barfota")
+  )
+    return 58;
+
+  if(
+    value.includes("skor")
+  )
+    return 50;
+
+  return 50;
+}
+
+
+function trendScore(h){
+
+  if(h.trend_direction==="up")
+    return clamp(
+      50 + Math.abs(num(h.trend_change))*5,
+      50,
+      85
+    );
+
+  if(h.trend_direction==="down")
+    return clamp(
+      50 - Math.abs(num(h.trend_change))*5,
+      15,
+      50
+    );
+
+  return 50;
+}
+
+
+/* ============================================================
+   GALOPPRISK
+   ============================================================ */
+
+function gallopRisk(h){
+
+  const hist=
+    horseHistory(h.name);
+
+  if(!hist.length)
+    return 10;
+
+  let gallops=0;
+  let valid=0;
+
+  for(const r of hist){
+
+    const raw=
+      text(r.raw?.galopp) ||
+      text(r.raw?.gallop);
+
+    if(!raw)
+      continue;
+
+    valid++;
+
+    if(
+      /galopp|g\b|gallop/i.test(raw)
+    )
+      gallops++;
+  }
+
+  if(!valid)
+    return 10;
+
+  return clamp(
+    5+(gallops/valid)*70,
+    5,
+    70
+  );
+}
+
+
+/* ============================================================
+   STARTSPÅR
+   ============================================================ */
+
+function startPositionScore(h,race){
+
+  const s=num(h.number);
+
+  if(!s)
+    return 50;
+
+  const method=
+    normKey(race.start_method);
+
+  if(method==="auto"){
+
+    if(s===1)
+      return 90;
+
+    if(s===2 || s===3)
+      return 82;
+
+    if(s===4 || s===5)
+      return 74;
+
+    if(s===6 || s===7)
+      return 64;
+
+    if(s===8)
+      return 58;
+
+    return 48;
+  }
+
+  if(method==="volt"){
+
+    if(s<=3)
+      return 78;
+
+    if(s<=6)
+      return 68;
+
+    if(s<=9)
+      return 58;
+
+    return 48;
+  }
+
+  return 55;
+}
+
+
+/* ============================================================
+   DISTANS
+   ============================================================ */
+
+function distanceScore(h,race){
+
+  const d=num(race.distance);
+
+  if(!d)
+    return 50;
+
+  let score=50;
+
+  if(d===1640)
+    score+=3;
+
+  if(d===2140)
+    score+=5;
+
+  if(d>=2600)
+    score-=2;
+
+  const hist=
+    horseHistory(h.name);
+
+  if(!hist.length)
+    return clamp(score,0,100);
+
+  let valid=0;
+  let good=0;
+
+  for(const r of hist){
+
+    if(
+      Math.abs(
+        num(r.distance)-d
+      ) <= 100
+    ){
+
+      const p=num(r.position);
+
+      if(p>0){
+
+        valid++;
+
+        if(p<=3)
+          good++;
+      }
+    }
+  }
+
+  if(valid)
+    score +=
+      (good/valid)*20;
+
+  return clamp(score,0,100);
+}
+
+
+/* ============================================================
+   MARKNAD
+   ============================================================ */
+
+function marketScore(h){
+
+  const v=
+    num(h.v85);
+
+  if(v>0)
+    return clamp(v,0,100);
 
   return 10;
 }
 
 
-function gallopRisk(h){
+/*
+  OBS:
+  V85-procenten är inte sann vinstsannolikhet.
+  Den används som marknads-/streckindikator.
+*/
 
-  if(h.gallop>0)
-    return Math.min(100,h.gallop);
 
-  const hist=historyForHorse(h.horse);
-
-  if(hist.length===0)
-    return 12;
-
-  let g=0;
-
-  for(const r of hist){
-
-    const value=
-      text(r.raw?.gallop) ||
-      text(r.raw?.galopp) ||
-      "";
-
-    if(
-      value.toLowerCase().includes("g") ||
-      value.toLowerCase().includes("galopp")
-    )
-      g++;
-  }
-
-  if(!g)
-    return 8;
-
-  return Math.min(
-    60,
-    8+(g/hist.length)*100
-  );
-}
-
+/* ============================================================
+   AI-MODELL
+   ============================================================ */
 
 function calculateAI(h,race){
 
-  const form=formScore(h);
-  const experience=experienceScore(h);
-  const driver=driverScore(h);
-  const trainer=trainerScore(h);
-  const market=marketProbability(h);
-  const gallop=gallopRisk(h);
+  const form=
+    formScore(h);
 
-  let score=
+  const driver=
+    driverScore(h);
 
-      form*0.34 +
-      driver*0.16 +
-      trainer*0.10 +
-      experience*0.08 +
-      market*0.32;
+  const trainer=
+    trainerScore(h);
 
-  score -= gallop*0.18;
+  const balance=
+    balanceScore(h);
 
-  if(h.start){
+  const trend=
+    trendScore(h);
 
-    const s=num(h.start);
+  const start=
+    startPositionScore(h,race);
 
-    if(s===1)
-      score+=4;
+  const distance=
+    distanceScore(h,race);
 
-    if(s===2 || s===3)
-      score+=2;
+  const gallop=
+    gallopRisk(h);
 
-    if(s>=8)
-      score-=1;
+  const market=
+    marketScore(h);
+
+
+  /*
+    Grundmodell.
+
+    Historik väger mest när historik finns.
+    När historik saknas används dagens observerbara
+    data mer försiktigt.
+  */
+
+  const hasHistory=
+    horseHistory(h.name).length>0;
+
+
+  let raw=
+
+      form*0.25 +
+      start*0.13 +
+      distance*0.09 +
+      driver*0.10 +
+      trainer*0.08 +
+      balance*0.08 +
+      trend*0.09;
+
+
+  /*
+    Marknaden används som en mindre komponent.
+    Den får INTE vara hela modellen.
+  */
+
+  raw +=
+    market*0.18;
+
+
+  /*
+    Galopprisk drar ned sannolikheten.
+  */
+
+  raw -=
+    gallop*0.22;
+
+
+  /*
+    Utan historik begränsar vi påverkan från
+    kusk/tränare eftersom det då saknas individuell
+    historisk evidens.
+  */
+
+  if(!hasHistory){
+
+    raw =
+      raw*0.90 +
+      market*0.10;
   }
 
-  if(h.distance){
 
-    if(h.distance===1640)
-      score+=1;
+  /*
+    Trendbonus.
+  */
 
-    if(h.distance>=2600)
-      score-=1;
+  if(
+    h.trend_direction==="up" &&
+    num(h.trend_change)>0
+  ){
+
+    raw +=
+      Math.min(
+        6,
+        num(h.trend_change)*1.5
+      );
   }
+
+
+  /*
+    Balansbonus.
+  */
+
+  if(
+    normKey(h.balance).includes("barfota")
+  ){
+
+    raw+=2;
+  }
+
 
   return {
-    score:Math.max(1,score),
+
+    raw:clamp(raw,1,100),
+
     form,
     driver,
     trainer,
-    market,
-    gallop
+    balance,
+    trend,
+    start,
+    distance,
+    gallop,
+    market
   };
 }
 
 
 /* ============================================================
-   NORMALISERA PROXYDATA
+   NORMALISERA V29
    ============================================================ */
 
-function normalizeProxyData(data){
+function normalizeV29(data){
 
-  let rows=[];
-
-  if(Array.isArray(data))
-    rows=data;
-
-  else if(Array.isArray(data.data))
-    rows=data.data;
-
-  else if(Array.isArray(data.results))
-    rows=data.results;
-
-  else if(Array.isArray(data.startlist))
-    rows=data.startlist;
-
-  else if(Array.isArray(data.startList))
-    rows=data.startList;
-
-  else if(Array.isArray(data.races)){
-
-    for(const race of data.races){
-
-      const raceNo =
-        race.race ||
-        race.raceNumber ||
-        race.number ||
-        "";
-
-      const horses =
-        race.horses ||
-        race.starts ||
-        race.entries ||
-        [];
-
-      for(const horse of horses){
-
-        rows.push({
-
-          race:raceNo,
-
-          start:
-            horse.start ||
-            horse.number ||
-            horse.startNumber ||
-            "",
-
-          horse:
-            horse.horse ||
-            horse.name ||
-            horse.horseName ||
-            "",
-
-          driver:
-            horse.driver ||
-            horse.driverName ||
-            "",
-
-          trainer:
-            horse.trainer ||
-            horse.trainerName ||
-            "",
-
-          odds:
-            horse.odds ||
-            horse.winOdds ||
-            "",
-
-          v:
-            horse.v ||
-            horse.vPercent ||
-            horse.percent ||
-            "",
-
-          distance:
-            race.distance ||
-            horse.distance ||
-            "",
-
-          startType:
-            race.startType ||
-            horse.startType ||
-            "",
-
-          track:
-            race.track ||
-            race.trackName ||
-            "",
-
-          gallop:
-            horse.gallop ||
-            horse.gallopRisk ||
-            "",
-
-          raw:horse
-        });
-      }
-    }
-  }
-
-  return rows.map(normalizeHorse)
-    .filter(x=>x.horse);
-}
-
-
-/* ============================================================
-   SYSTEM
-   ============================================================ */
-
-function combinations(arr,k){
-
-  const result=[];
-
-  function walk(start,current){
-
-    if(current.length===k){
-
-      result.push([...current]);
-      return;
-    }
-
-    for(
-      let i=start;
-      i<arr.length;
-      i++
-    ){
-
-      current.push(arr[i]);
-
-      walk(i+1,current);
-
-      current.pop();
-    }
-  }
-
-  walk(0,[]);
-
-  return result;
-}
-
-
-function buildSystem(races,budget){
-
-  const unit=0.50;
-
-  const targetUnits=
-    Math.max(
-      1,
-      Math.floor(budget/unit)
-    );
-
-  let choices=[];
-
-  for(const race of races){
-
-    const sorted=
-      [...race.horses]
-      .sort((a,b)=>b.ai-a.ai);
-
-    const eligible=
-      sorted.slice(
-        0,
-        Math.min(
-          Number(document.getElementById("maxHorses").value),
-          sorted.length
-        )
-      );
-
-    let selected;
-
-    if(eligible.length===1)
-      selected=eligible;
-
-    else if(eligible[0].ai>=45)
-      selected=eligible.slice(0,1);
-
-    else if(eligible[0].ai>=30)
-      selected=eligible.slice(0,2);
-
-    else if(eligible[0].ai>=20)
-      selected=eligible.slice(0,3);
-
-    else
-      selected=eligible.slice(0,Math.min(4,eligible.length));
-
-    choices.push(selected);
-  }
-
-  function countLines(){
-
-    return choices.reduce(
-      (total,r)=>total*Math.max(1,r.length),
-      1
-    );
-  }
-
-  while(
-    countLines()>targetUnits
+  if(
+    !data ||
+    !Array.isArray(data.races)
   ){
 
-    let changed=false;
-
-    for(let i=choices.length-1;i>=0;i--){
-
-      if(choices[i].length>1){
-
-        choices[i]=
-          choices[i].slice(0,-1);
-
-        changed=true;
-
-        if(countLines()<=targetUnits)
-          break;
-      }
-    }
-
-    if(!changed)
-      break;
+    return [];
   }
 
-  return {
-    choices,
-    lines:countLines(),
-    cost:countLines()*unit
-  };
+  const rows=[];
+
+  for(const race of data.races){
+
+    if(
+      !race ||
+      !Array.isArray(race.horses)
+    )
+      continue;
+
+    for(const h of race.horses){
+
+      if(!h)
+        continue;
+
+      rows.push({
+
+        race:
+          race.number,
+
+        race_name:
+          race.name ||
+          `V85-${race.number}`,
+
+        distance:
+          race.distance,
+
+        start_method:
+          race.start_method,
+
+        start_time:
+          race.start_time,
+
+        additional:
+          race.additional,
+
+        number:
+          h.number,
+
+        name:
+          h.name,
+
+        v85:
+          num(h.v85),
+
+        market_share:
+          num(h.market_share),
+
+        market_probability:
+          num(h.market_probability),
+
+        balance:
+          h.balance || null,
+
+        balance_last:
+          h.balance_last || null,
+
+        trend:
+          h.trend || null,
+
+        trend_direction:
+          h.trend_direction || null,
+
+        trend_change:
+          h.trend_change,
+
+        trend_from:
+          h.trend_from,
+
+        trend_to:
+          h.trend_to,
+
+        scratched:
+          !!h.scratched,
+
+        scratch_reason:
+          h.scratch_reason || null
+      });
+    }
+  }
+
+  return rows;
 }
 
 
 /* ============================================================
-   ANALYSERA
+   ANALYS
    ============================================================ */
 
 function analyze(rows){
 
-  const grouped={};
+  const groups={};
 
   for(const h of rows){
 
-    const race=
-      text(h.race) || "1";
+    if(h.scratched)
+      continue;
 
-    if(!grouped[race])
-      grouped[race]=[];
+    const key=
+      String(h.race);
 
-    grouped[race].push(h);
+    if(!groups[key])
+      groups[key]=[];
+
+    groups[key].push(h);
   }
+
 
   const races=[];
 
-  for(const raceNo of Object.keys(grouped)){
+  for(const key of Object.keys(groups)){
 
-    const horses=grouped[raceNo];
+    const horses=
+      groups[key];
+
+    const raceMeta=
+      horses[0];
+
 
     const scored=
       horses.map(h=>{
 
         const model=
-          calculateAI(h,horses);
+          calculateAI(
+            h,
+            raceMeta
+          );
 
         return {
           ...h,
-          ...model,
-          ai:model.score
+          ...model
         };
       });
 
+
+    /*
+      Omvandla råscore till relativ AI-vinstchans
+      inom loppet.
+    */
+
     const total=
       scored.reduce(
-        (s,h)=>s+h.ai,
+        (sum,h)=>sum+h.raw,
         0
       );
 
+
     scored.forEach(h=>{
 
-      h.aiPercent =
+      h.aiPercent=
         total>0
-          ? h.ai/total*100
+          ? h.raw/total*100
           : 100/scored.length;
 
-      h.edge =
-        h.aiPercent-h.market;
 
+      /*
+        VALUE:
+        AI-procent minus marknadens V85-procent.
+
+        Positivt = modellen ser högre chans än
+        marknadens streckandel.
+      */
+
+      h.edge=
+        h.aiPercent-h.v85;
+
+
+      /*
+        VALUE-index.
+      */
+
+      h.valueRatio=
+        h.v85>0
+          ? h.aiPercent/h.v85
+          : h.aiPercent;
     });
 
+
     scored.sort(
-      (a,b)=>b.aiPercent-a.aiPercent
+      (a,b)=>
+        b.aiPercent-a.aiPercent
     );
 
+
+    /*
+      Rang.
+    */
+
+    scored.forEach(
+      (h,i)=>{
+        h.rank=i+1;
+      }
+    );
+
+
     races.push({
-      race:raceNo,
-      horses:scored
+
+      number:
+        Number(key),
+
+      name:
+        raceMeta.race_name,
+
+      distance:
+        raceMeta.distance,
+
+      start_method:
+        raceMeta.start_method,
+
+      start_time:
+        raceMeta.start_time,
+
+      additional:
+        raceMeta.additional,
+
+      horses:
+        scored
     });
   }
 
+
   races.sort(
-    (a,b)=>
-      num(a.race)-num(b.race)
+    (a,b)=>a.number-b.number
   );
 
   return races;
@@ -1703,7 +2010,277 @@ function analyze(rows){
 
 
 /* ============================================================
-   VISA RESULTAT
+   REKOMMENDATION
+   ============================================================ */
+
+function getPicks(race){
+
+  const minAI=
+    num(
+      document.getElementById("minAI").value
+    );
+
+  const minEdge=
+    num(
+      document.getElementById("minEdge").value
+    );
+
+  const maxGallop=
+    num(
+      document.getElementById("maxGallop").value
+    );
+
+  const maxHorses=
+    Number(
+      document.getElementById("maxHorses").value
+    );
+
+
+  const sorted=
+    [...race.horses]
+    .sort(
+      (a,b)=>b.aiPercent-a.aiPercent
+    );
+
+
+  let eligible=
+    sorted.filter(h=>
+      h.aiPercent>=minAI &&
+      h.edge>=minEdge &&
+      h.gallop<=maxGallop
+    );
+
+
+  if(!eligible.length)
+    eligible=sorted.slice(0,1);
+
+
+  /*
+    Max tre hästar i rekommendationen.
+  */
+
+  return eligible.slice(
+    0,
+    Math.min(
+      3,
+      maxHorses
+    )
+  );
+}
+
+
+function recommendationType(picks){
+
+  if(!picks.length)
+    return "–";
+
+  const top=picks[0];
+
+  if(
+    picks.length===1 &&
+    top.aiPercent>=35 &&
+    top.edge>=3 &&
+    top.gallop<=20
+  )
+    return "SPIK";
+
+  if(picks.length===2)
+    return "LÅS";
+
+  return "GARDERING";
+}
+
+
+function recommendationReason(picks){
+
+  if(!picks.length)
+    return "Ingen häst klarar filtren.";
+
+  const p=picks[0];
+
+  const reasons=[];
+
+  if(p.form>=65)
+    reasons.push("stark form");
+
+  if(p.start>=75)
+    reasons.push("bra startläge");
+
+  if(p.distance>=65)
+    reasons.push("distansprofil");
+
+  if(p.driver>=60)
+    reasons.push("kusksignal");
+
+  if(p.trainer>=60)
+    reasons.push("tränarsignal");
+
+  if(p.trend_direction==="up")
+    reasons.push("stigande strecktrend");
+
+  if(p.edge>=5)
+    reasons.push("positivt VALUE");
+
+  if(p.gallop<=12)
+    reasons.push("låg galopprisk");
+
+  if(!reasons.length)
+    reasons.push("högst sammanvägd AI-score");
+
+  return reasons.join(" · ")+".";
+}
+
+
+/* ============================================================
+   SYSTEMGENERATOR
+   ============================================================ */
+
+function buildSystem(races,budget){
+
+  const unit=0.50;
+
+  const targetLines=
+    Math.max(
+      1,
+      Math.floor(
+        budget/unit
+      )
+    );
+
+
+  /*
+    Börja med AI-baserade val.
+  */
+
+  const choices=
+    races.map(race=>{
+
+      const sorted=
+        [...race.horses]
+        .sort(
+          (a,b)=>b.aiPercent-a.aiPercent
+        );
+
+      const top=sorted[0];
+
+      if(!top)
+        return [];
+
+      /*
+        Stark spik.
+      */
+
+      if(
+        top.aiPercent>=35 &&
+        top.edge>=3 &&
+        top.gallop<=25
+      ){
+
+        return [top];
+      }
+
+
+      /*
+        Lås.
+      */
+
+      if(
+        top.aiPercent>=25
+      ){
+
+        return sorted.slice(0,2);
+      }
+
+
+      /*
+        Normal gardering.
+      */
+
+      if(
+        top.aiPercent>=18
+      ){
+
+        return sorted.slice(0,3);
+      }
+
+
+      /*
+        Öppet lopp.
+      */
+
+      return sorted.slice(0,4);
+    });
+
+
+  function lines(){
+
+    return choices.reduce(
+      (total,c)=>
+        total*Math.max(
+          1,
+          c.length
+        ),
+      1
+    );
+  }
+
+
+  /*
+    Reducera systemet tills budgeten håller.
+    Vi tar bort svagaste hästen från de mest
+    övergardera loppen först.
+  */
+
+  while(lines()>targetLines){
+
+    let bestIndex=-1;
+    let weakest=-Infinity;
+
+    for(
+      let i=0;
+      i<choices.length;
+      i++
+    ){
+
+      if(choices[i].length<=1)
+        continue;
+
+      const last=
+        choices[i][choices[i].length-1];
+
+      if(
+        last &&
+        last.aiPercent>weakest
+      ){
+
+        weakest=
+          last.aiPercent;
+
+        bestIndex=i;
+      }
+    }
+
+    if(bestIndex<0)
+      break;
+
+    choices[bestIndex].pop();
+  }
+
+
+  return {
+
+    choices,
+
+    lines:lines(),
+
+    cost:
+      lines()*unit
+  };
+}
+
+
+/* ============================================================
+   RENDER LOPP
    ============================================================ */
 
 function renderResults(races){
@@ -1717,7 +2294,7 @@ function renderResults(races){
 
     results.innerHTML=`
       <div class="empty">
-        <strong>Ingen startlista</strong>
+        <strong>Ingen analys</strong>
         Ingen användbar hästdata hittades.
       </div>
     `;
@@ -1725,34 +2302,24 @@ function renderResults(races){
     return;
   }
 
+
   let html="";
-
-  const maxHorses=
-    Number(
-      document.getElementById("maxHorses").value
-    );
-
-  const minAI=
-    Number(
-      document.getElementById("minAI").value
-    );
-
-  const minEdge=
-    Number(
-      document.getElementById("minEdge").value
-    );
-
-  const maxGallop=
-    Number(
-      document.getElementById("maxGallop").value
-    );
 
 
   for(const race of races){
 
     const sorted=
       [...race.horses]
-      .sort((a,b)=>b.aiPercent-a.aiPercent);
+      .sort(
+        (a,b)=>b.aiPercent-a.aiPercent
+      );
+
+
+    const maxHorses=
+      Number(
+        document.getElementById("maxHorses").value
+      );
+
 
     const display=
       sorted.slice(
@@ -1763,225 +2330,273 @@ function renderResults(races){
         )
       );
 
-    const eligible=
-      sorted.filter(h=>
-        h.aiPercent>=minAI &&
-        h.edge>=minEdge &&
-        h.gallop<=maxGallop
-      );
 
-    let picks=
-      eligible.slice(0,3);
+    const picks=
+      getPicks(race);
 
-    if(!picks.length)
-      picks=sorted.slice(0,1);
+
+    const type=
+      recommendationType(picks);
 
 
     html+=`
 
-      <div class="race">
+<div class="race">
 
-        <div class="race-head">
+  <div class="race-head">
 
-          <div>
+    <div>
 
-            <div class="race-title">
-              LOPP ${escapeHTML(race.race)}
-            </div>
+      <div class="race-title">
+        V85-${race.number}
+      </div>
 
-            <div class="race-meta">
-              ${display.length} analyserade hästar
-            </div>
+      <div class="race-meta">
+        ${race.distance || "?"} m
+        · ${escapeHTML(race.start_method || "?")}
+        · ${escapeHTML(race.start_time || "?")}
+        ${race.additional
+          ? ` · +${race.additional} m`
+          : ""}
+      </div>
 
-          </div>
+    </div>
 
-          <div class="race-meta">
-            Rekommenderade: ${picks.length}
-          </div>
+    <div class="race-badges">
 
-        </div>
-    `;
+      <div class="badge">
+        ${type}
+      </div>
+
+      <div class="badge">
+        ${race.horses.length} aktiva
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="horse-head">
+
+    <div>SPÅR</div>
+    <div>HÄST</div>
+    <div>AI</div>
+    <div>MARKNAD</div>
+    <div>VALUE</div>
+    <div>FORM</div>
+    <div>GALOPP</div>
+    <div>VAL</div>
+
+  </div>
+`;
 
 
     for(const h of display){
 
       const isPick=
         picks.some(
-          p=>normKey(p.horse)===normKey(h.horse)
+          p=>p.number===h.number
         );
 
+
       const isTop=
-        sorted[0]===h;
+        h.rank===1;
+
 
       let pickClass="";
 
-      if(isTop)
-        pickClass="star";
 
-      if(isPick && isTop)
-        pickClass="lock";
+      if(
+        isPick &&
+        isTop
+      ){
+
+        pickClass=
+          h.edge>=5
+            ? "value"
+            : "lock";
+
+      }else if(isPick){
+
+        pickClass="top";
+
+      }else if(isTop){
+
+        pickClass="top";
+      }
+
+
+      const trendHTML=
+        h.trend_direction==="up"
+          ? `<span class="green">↑</span>`
+          : h.trend_direction==="down"
+          ? `<span class="red">↓</span>`
+          : h.trend_direction==="unchanged"
+          ? "→"
+          : "";
+
 
       html+=`
 
-        <div class="horse">
+  <div class="horse">
 
-          <div class="start-number">
-            ${escapeHTML(
-              h.start || "?"
-            )}
-          </div>
+    <div class="number">
+      ${h.number}
+    </div>
 
-          <div>
+    <div>
 
-            <div class="horse-name">
-              ${escapeHTML(
-                h.horse || "Okänd häst"
-              )}
-            </div>
+      <div class="horse-name">
+        ${escapeHTML(h.name)}
+      </div>
 
-            <div class="horse-sub">
-              ${escapeHTML(h.driver || "Kusk saknas")}
-              ${h.trainer ? " · "+escapeHTML(h.trainer):""}
-            </div>
+      <div class="horse-sub">
+        ${trendHTML}
+        ${h.balance
+          ? " · "+escapeHTML(h.balance)
+          : ""}
+        ${h.balance_last
+          ? " · senast: "+escapeHTML(h.balance_last)
+          : ""}
+      </div>
 
-          </div>
+    </div>
 
-          <div class="metric">
-            <div class="metric-label">
-              AI
-            </div>
 
-            <div class="metric-value green">
-              ${h.aiPercent.toFixed(1)}%
-            </div>
-          </div>
+    <div class="metric">
 
-          <div class="metric">
-            <div class="metric-label">
-              MARKNAD
-            </div>
+      <div class="metric-label">
+        AI
+      </div>
 
-            <div class="metric-value">
-              ${h.market.toFixed(1)}%
-            </div>
-          </div>
+      <div class="metric-value green">
+        ${h.aiPercent.toFixed(1)}%
+      </div>
 
-          <div class="metric optional">
-            <div class="metric-label">
-              EDGE
-            </div>
+    </div>
 
-            <div class="metric-value ${
-              h.edge>=0 ? "green":"red"
-            }">
-              ${h.edge>=0?"+":""}${h.edge.toFixed(1)}%
-            </div>
-          </div>
 
-          <div class="metric optional">
-            <div class="metric-label">
-              FORM
-            </div>
+    <div class="metric">
 
-            <div class="metric-value">
-              ${h.form.toFixed(0)}
-            </div>
-          </div>
+      <div class="metric-label">
+        V85
+      </div>
 
-          <div class="metric optional">
-            <div class="metric-label">
-              GALOPP
-            </div>
+      <div class="metric-value">
+        ${h.v85.toFixed(1)}%
+      </div>
 
-            <div class="metric-value ${
-              h.gallop>25 ? "red":"green"
-            }">
-              ${h.gallop.toFixed(0)}%
-            </div>
-          </div>
+    </div>
 
-          <div class="pick ${pickClass}">
-            ${
-              isPick
-                ? (isTop ? "★ TOPP":"VAL")
-                : "–"
-            }
-          </div>
 
-        </div>
-      `;
+    <div class="metric">
+
+      <div class="metric-label">
+        VALUE
+      </div>
+
+      <div class="metric-value ${
+        h.edge>=0
+          ? "green"
+          : "red"
+      }">
+
+        ${h.edge>=0?"+":""}
+        ${h.edge.toFixed(1)}%
+
+      </div>
+
+    </div>
+
+
+    <div class="metric optional">
+
+      <div class="metric-label">
+        FORM
+      </div>
+
+      <div class="metric-value">
+        ${h.form.toFixed(0)}
+      </div>
+
+    </div>
+
+
+    <div class="metric optional">
+
+      <div class="metric-label">
+        GALOPP
+      </div>
+
+      <div class="metric-value ${
+        h.gallop>25
+          ? "red"
+          : "green"
+      }">
+
+        ${h.gallop.toFixed(0)}%
+
+      </div>
+
+    </div>
+
+
+    <div class="pick ${pickClass}">
+
+      ${
+        isPick
+          ? (
+              isTop
+                ? "★ TOPP"
+                : "VAL"
+            )
+          : "–"
+      }
+
+    </div>
+
+  </div>
+`;
     }
 
 
     html+=`
 
-        <div class="recommend">
+  <div class="recommend">
 
-          <div class="recommend-title">
-            AI-REKOMMENDATION
-          </div>
+    <div class="recommend-title">
+      AI-REKOMMENDATION
+    </div>
 
-          <div class="recommend-horses">
+    <div class="recommend-main">
 
-            ${picks.map(
-              p=>`${escapeHTML(p.start)} ${escapeHTML(p.horse)}`
-            ).join(" · ")}
+      ${picks.map(
+        p =>
+          `${p.number} ${escapeHTML(p.name)}`
+      ).join(" · ")}
 
-          </div>
+    </div>
 
-          <div class="reason">
+    <div class="reason">
 
-            ${recommendationReason(picks,race)}
+      ${recommendationReason(picks)}
 
-          </div>
+    </div>
 
-        </div>
+  </div>
 
-      </div>
-    `;
+</div>
+`;
   }
 
 
   results.innerHTML=html;
 
+
   renderSystem(races);
 
   updateCards(races);
-}
-
-
-/* ============================================================
-   REKOMMENDATION
-   ============================================================ */
-
-function recommendationReason(picks,race){
-
-  if(!picks.length)
-    return "Ingen häst klarar aktuella filter.";
-
-  const p=picks[0];
-
-  let reasons=[];
-
-  if(p.form>=65)
-    reasons.push("stark form");
-
-  if(p.driver>=60)
-    reasons.push("stark kuskprofil");
-
-  if(p.trainer>=60)
-    reasons.push("stark tränarprofil");
-
-  if(p.edge>=5)
-    reasons.push("positivt marknadsvärde");
-
-  if(p.gallop<=12)
-    reasons.push("låg galopprisk");
-
-  if(!reasons.length)
-    reasons.push("högst sammanvägd AI-score");
-
-  return reasons.join(" · ")+".";
 }
 
 
@@ -1992,9 +2607,10 @@ function recommendationReason(picks,race){
 function renderSystem(races){
 
   const budget=
-    Number(
+    num(
       document.getElementById("budget").value
     ) || 1;
+
 
   const system=
     buildSystem(
@@ -2002,126 +2618,135 @@ function renderSystem(races){
       budget
     );
 
+
   let html=`
 
-    <div class="system">
+<div class="system">
 
-      <div class="system-head">
+  <div class="system-head">
 
-        <div class="system-title">
-          FÖRESLAGET SYSTEM
-        </div>
+    <div class="system-title">
+      FÖRESLAGET SYSTEM
+    </div>
 
-        <div class="system-cost">
-          ${system.cost.toFixed(2)} kr
-        </div>
+    <div class="system-cost">
+      ${system.cost.toFixed(2)} kr
+    </div>
 
-      </div>
+  </div>
 
-      <div class="small" style="margin-top:6px">
-        ${system.lines} rader · 0,50 kr/rad
-      </div>
+  <div class="source-small">
+    ${system.lines} rader · 0,50 kr/rad
+  </div>
 
-      <hr>
-
-  `;
+  <hr>
+`;
 
 
   system.choices.forEach(
     (choice,index)=>{
 
+      if(!choice.length)
+        return;
+
+
+      const type=
+        choice.length===1
+          ? "SPIK"
+          : choice.length===2
+          ? "LÅS"
+          : "GARDERING";
+
+
       html+=`
 
-        <div class="system-row">
+<div class="system-row">
 
-          <strong>
-            Lopp ${index+1}
-          </strong>
+  <strong>
+    V85-${index+1}
+  </strong>
 
-          <div>
+  <div>
 
-            ${choice.map(
-              h=>`
-                <span style="
-                  display:inline-block;
-                  margin-right:8px;
-                  padding:6px 9px;
-                  border-radius:7px;
-                  background:#18273d;
-                  color:#eef3ff;
-                  font-weight:800;
-                ">
-                  ${escapeHTML(h.start || "?")}
-                  ${escapeHTML(h.horse)}
-                </span>
-              `
-            ).join("")}
+    ${choice.map(
+      h=>`
 
-          </div>
+      <span class="system-horse">
 
-          <div class="small">
-            ${choice.length===1
-              ? "SPIK"
-              : choice.length===2
-              ? "LÅS"
-              : "GARDERING"}
-          </div>
+        ${h.number}
+        ${escapeHTML(h.name)}
 
-          <div class="small">
-            ${choice.length} häst${choice.length>1?"ar":""}
-          </div>
+        <span style="opacity:.65">
+          ${h.aiPercent.toFixed(1)}%
+        </span>
 
-        </div>
-      `;
+      </span>
+
+      `
+    ).join("")}
+
+  </div>
+
+  <div class="${
+    type==="SPIK"
+      ? "green"
+      : type==="LÅS"
+      ? "yellow"
+      : "orange"
+  }">
+
+    ${type}
+
+  </div>
+
+</div>
+`;
     }
   );
 
 
   html+=`
 
-      <hr>
+<hr>
 
-      <div style="
-        display:flex;
-        justify-content:space-between;
-        gap:20px;
-        flex-wrap:wrap;
-      ">
+<div style="
+display:flex;
+justify-content:space-between;
+gap:20px;
+flex-wrap:wrap;
+">
 
-        <div>
-          <div class="small">
-            BUDGET
-          </div>
-
-          <strong>
-            ${budget.toFixed(2)} kr
-          </strong>
-        </div>
-
-        <div>
-          <div class="small">
-            SYSTEMKOSTNAD
-          </div>
-
-          <strong class="green">
-            ${system.cost.toFixed(2)} kr
-          </strong>
-        </div>
-
-        <div>
-          <div class="small">
-            RADER
-          </div>
-
-          <strong>
-            ${system.lines}
-          </strong>
-        </div>
-
-      </div>
-
+  <div>
+    <div class="source-small">
+      BUDGET
     </div>
-  `;
+    <strong>
+      ${budget.toFixed(2)} kr
+    </strong>
+  </div>
+
+  <div>
+    <div class="source-small">
+      KOSTNAD
+    </div>
+    <strong class="green">
+      ${system.cost.toFixed(2)} kr
+    </strong>
+  </div>
+
+  <div>
+    <div class="source-small">
+      RADER
+    </div>
+    <strong>
+      ${system.lines}
+    </strong>
+  </div>
+
+</div>
+
+</div>
+`;
 
 
   document
@@ -2144,49 +2769,119 @@ function updateCards(races){
       r=>r.horses
     );
 
+
   document.getElementById(
     "cardRaces"
-  ).textContent=races.length;
+  ).textContent=
+    races.length;
+
 
   document.getElementById(
     "cardHorses"
-  ).textContent=horses.length;
+  ).textContent=
+    horses.length;
 
-  if(horses.length){
+
+  const active=
+    horses.filter(
+      h=>!h.scratched
+    );
+
+
+  document.getElementById(
+    "cardActive"
+  ).textContent=
+    active.length;
+
+
+  document.getElementById(
+    "cardScratched"
+  ).textContent=
+    horses.length-active.length;
+
+
+  if(active.length){
 
     const top=
-      [...horses]
+      [...active]
       .sort(
         (a,b)=>b.aiPercent-a.aiPercent
       )[0];
 
+
     document.getElementById(
       "cardTop"
     ).textContent=
-      `${top.start || "?"} ${top.horse}`;
-
-  }else{
-
-    document.getElementById(
-      "cardTop"
-    ).textContent="–";
+      `${top.number} ${top.name}`;
   }
 
-  const budget=
-    Number(
-      document.getElementById("budget").value
-    ) || 0;
 
   const system=
     buildSystem(
       races,
-      budget
+      num(
+        document.getElementById("budget").value
+      ) || 1
     );
+
 
   document.getElementById(
     "cardSystem"
   ).textContent=
-    `${system.cost.toFixed(2)} kr`;
+    system.cost.toFixed(2)+" kr";
+}
+
+
+/* ============================================================
+   KVALITET
+   ============================================================ */
+
+function updateQuality(data){
+
+  const q=
+    data.quality || {};
+
+
+  document.getElementById(
+    "qualityGrid"
+  ).innerHTML=`
+
+<div class="quality-item">
+  Lopp:
+  <b>${q.race_count ?? data.races_count ?? "–"}</b>
+</div>
+
+<div class="quality-item">
+  Hästar:
+  <b>${q.horses_total ?? data.horses_total ?? "–"}</b>
+</div>
+
+<div class="quality-item">
+  Strykningar:
+  <b>${q.horses_scratched ?? data.horses_scratched ?? "–"}</b>
+</div>
+
+<div class="quality-item">
+  Balans:
+  <b>${q.horses_with_balance ?? "–"}</b>
+</div>
+
+<div class="quality-item">
+  Trend:
+  <b>${q.horses_with_trend ?? "–"}</b>
+</div>
+
+<div class="quality-item">
+  Parser:
+  <b>${
+    q.parser_rows_parsed !== undefined
+      ? q.parser_rows_parsed+
+        "/"+
+        (q.parser_rows_seen ?? "?")
+      : "–"
+  }</b>
+</div>
+`;
 }
 
 
@@ -2199,60 +2894,74 @@ async function runAnalysis(){
   const button=
     document.getElementById("analyzeBtn");
 
+
   button.disabled=true;
 
   button.textContent=
-    "HÄMTAR DATA...";
+    "HÄMTAR V29...";
+
 
   setProgress(10);
 
+
   try{
 
-    let rows=[];
-
-    /*
-      FÖRST: LIVE / PROXY
-    */
-
     showMessage(
-      "Kontaktar TRAV AI-proxy...",
+      "Hämtar dagens startlista från V29...",
       "info-msg"
     );
 
+
+    let proxy=null;
+
+
     try{
 
-      const proxy=
-        await fetchStartlist();
+      proxy=
+        await fetchV29();
 
-      setProgress(30);
+      lastProxyData=proxy;
 
-      if(
-        proxy &&
-        proxy.ok === false &&
-        proxy.error === "NO_DATA_SOURCE"
-      ){
+    }catch(err){
 
-        throw new Error(
-          "Ingen extern datakälla ansluten"
-        );
-      }
-
-      rows=
-        normalizeProxyData(proxy);
-
-    }catch(proxyError){
-
-      console.log(
-        "Proxydata kunde inte hämtas:",
-        proxyError
+      console.error(
+        "V29-fel:",
+        err
       );
 
-      rows=[];
+      proxy=null;
+    }
+
+
+    setProgress(35);
+
+
+    let rows=[];
+
+
+    if(proxy){
+
+      rows=
+        normalizeV29(proxy);
+
+      updateQuality(proxy);
+
+      document.getElementById(
+        "sourceStatus"
+      ).textContent=
+        `V29: ${rows.length} hästar`;
+
+      document.getElementById(
+        "sourceText"
+      ).textContent=
+        `${proxy.track || "Bana saknas"} · ${
+          proxy.page_date || "datum saknas"
+        }`;
     }
 
 
     /*
-      RESERV: CSV
+      CSV-reserv
     */
 
     if(!rows.length && startData.length){
@@ -2262,7 +2971,7 @@ async function runAnalysis(){
       ];
 
       showMessage(
-        "Live-startlista saknas. Analyserar importerad startlista CSV.",
+        "V29 gav ingen startlista. Använder importerad CSV.",
         "info-msg"
       );
     }
@@ -2270,45 +2979,14 @@ async function runAnalysis(){
 
     if(!rows.length){
 
-      setProgress(100);
-
-      showMessage(
-        "Ingen live-startlista finns ännu. Din Cloudflare-proxy fungerar, men ingen extern travdatakälla är ansluten. Ladda upp en startlista CSV så kör AI-motorn direkt.",
-        "error"
+      throw new Error(
+        "Ingen startlista kunde hämtas."
       );
-
-      document.getElementById(
-        "results"
-      ).innerHTML=`
-
-        <div class="empty">
-
-          <strong>
-            PROXYN FUNGERAR
-          </strong>
-
-          Men den har ännu ingen extern datakälla.
-
-          <br><br>
-
-          <span class="small">
-            Cloudflare Worker: ONLINE<br>
-            Extern sportdata: EJ ANSLUTEN
-          </span>
-
-          <br><br>
-
-          Ladda upp en aktuell startlista CSV
-          för att testa hela AI-motorn redan nu.
-
-        </div>
-      `;
-
-      return;
     }
 
 
-    setProgress(50);
+    setProgress(55);
+
 
     showMessage(
       `${rows.length} hästar hämtade. AI analyserar...`,
@@ -2319,36 +2997,74 @@ async function runAnalysis(){
     const races=
       analyze(rows);
 
+
     setProgress(80);
+
 
     renderResults(races);
 
+
     setProgress(100);
 
+
+    const top=
+      races
+        .flatMap(
+          r=>r.horses
+        )
+        .sort(
+          (a,b)=>b.aiPercent-a.aiPercent
+        )[0];
+
+
     showMessage(
-      `Analysen klar: ${races.length} lopp och ${rows.length} hästar.`,
+      `Analysen klar – ${races.length} lopp. AI-topp: ${top.number} ${top.name} (${top.aiPercent.toFixed(1)}%).`,
       "success"
     );
+
 
   }catch(err){
 
     console.error(err);
+
 
     showMessage(
       "Analysfel: "+err.message,
       "error"
     );
 
-  }finally{
+
+    document.getElementById(
+      "results"
+    ).innerHTML=`
+
+<div class="empty">
+
+<strong>Kunde inte genomföra analysen</strong>
+
+${escapeHTML(err.message)}
+
+<br><br>
+
+Kontrollera att Cloudflare Worker V29 är publicerad
+och att endpointen <strong>/data</strong> fungerar.
+
+</div>
+`;
+  }
+
+
+  finally{
 
     button.disabled=false;
 
     button.textContent=
-      "HÄMTA STARTLISTA & ANALYSERA";
+      "HÄMTA & ANALYSERA";
+
 
     setTimeout(
       ()=>setProgress(0),
-      500
+      600
     );
   }
 }
@@ -2366,7 +3082,8 @@ function showMessage(message,type){
   el.className=
     "message show "+type;
 
-  el.textContent=message;
+  el.textContent=
+    message;
 }
 
 
@@ -2378,35 +3095,25 @@ function setProgress(value){
   const bar=
     document.getElementById("progressBar");
 
+
   if(value<=0){
 
     box.classList.remove("show");
+
     bar.style.width="0%";
 
     return;
   }
 
+
   box.classList.add("show");
 
   bar.style.width=
-    Math.max(
+    clamp(
+      value,
       0,
-      Math.min(
-        100,
-        value
-      )
+      100
     )+"%";
-}
-
-
-function escapeHTML(value){
-
-  return text(value)
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
 }
 
 
@@ -2417,62 +3124,75 @@ function escapeHTML(value){
 document.getElementById("clearBtn")
 .addEventListener("click",()=>{
 
-  historyData=[];
-  startData=[];
   analyzedRaces=[];
+  lastProxyData=null;
 
-  document.getElementById(
-    "historyFile"
-  ).value="";
-
-  document.getElementById(
-    "startFile"
-  ).value="";
 
   document.getElementById(
     "cardRaces"
   ).textContent="0";
 
+
   document.getElementById(
     "cardHorses"
   ).textContent="0";
+
+
+  document.getElementById(
+    "cardActive"
+  ).textContent="0";
+
+
+  document.getElementById(
+    "cardScratched"
+  ).textContent="0";
+
 
   document.getElementById(
     "cardTop"
   ).textContent="–";
 
+
   document.getElementById(
     "cardSystem"
   ).textContent="–";
 
-  document.getElementById(
-    "cardHistory"
-  ).textContent="0";
 
   document.getElementById(
     "results"
   ).innerHTML=`
 
-    <div class="empty">
+<div class="empty">
 
-      <strong>
-        TRAV AI V18 PRO
-      </strong>
+<strong>TRAV AI V30</strong>
 
-      Analysen är rensad.
+Analysen är rensad.
 
-      <br><br>
+<br><br>
 
-      Välj datum och spelform och kör en ny analys.
+Tryck på HÄMTA & ANALYSERA för att köra igen.
 
-    </div>
-  `;
+</div>
+`;
+
 
   showMessage(
     "Analysen är rensad.",
     "info-msg"
   );
 });
+
+
+/* ============================================================
+   KNAPP
+   ============================================================ */
+
+document.getElementById(
+  "analyzeBtn"
+).addEventListener(
+  "click",
+  runAnalysis
+);
 
 
 /* ============================================================
@@ -2483,10 +3203,10 @@ checkProxy();
 
 
 /* ============================================================
-   AUTOLOAD LOCAL DATA
+   LOKAL HISTORIK
    ============================================================ */
 
-async function tryAutoLoad(){
+async function tryAutoLoadHistory(){
 
   const candidates=[
     "data/history.csv",
@@ -2494,6 +3214,7 @@ async function tryAutoLoad(){
     "data/results.csv",
     "data/results_history.csv"
   ];
+
 
   for(const url of candidates){
 
@@ -2507,24 +3228,26 @@ async function tryAutoLoad(){
           }
         );
 
+
       if(!response.ok)
         continue;
+
 
       const csv=
         await response.text();
 
+
       const rows=
         parseCSV(csv);
+
 
       if(rows.length){
 
         historyData=
-          rows.map(normalizeHorse);
+          rows
+            .map(normalizeCSVHorse)
+            .filter(x=>x.horse);
 
-        document.getElementById(
-          "cardHistory"
-        ).textContent=
-          historyData.length;
 
         console.log(
           "Historik laddad:",
@@ -2532,62 +3255,14 @@ async function tryAutoLoad(){
           historyData.length
         );
 
+
         break;
       }
 
-    }catch(e){
+    }catch(err){
+
       console.log(
         "Ingen lokal historik:",
-        url
-      );
-    }
-  }
-
-
-  const startCandidates=[
-    "data/current.csv",
-    "data/startlist.csv",
-    "data/startlista.csv"
-  ];
-
-  for(const url of startCandidates){
-
-    try{
-
-      const response=
-        await fetch(
-          url,
-          {
-            cache:"no-store"
-          }
-        );
-
-      if(!response.ok)
-        continue;
-
-      const csv=
-        await response.text();
-
-      const rows=
-        parseCSV(csv);
-
-      if(rows.length){
-
-        startData=
-          rows.map(normalizeHorse);
-
-        console.log(
-          "Startlista laddad:",
-          url,
-          startData.length
-        );
-
-        break;
-      }
-
-    }catch(e){
-      console.log(
-        "Ingen lokal startlista:",
         url
       );
     }
@@ -2595,11 +3270,11 @@ async function tryAutoLoad(){
 }
 
 
-tryAutoLoad();
+tryAutoLoadHistory();
 
 
 /* ============================================================
-   KEYBOARD
+   CTRL + ENTER
    ============================================================ */
 
 document.addEventListener(
@@ -2616,18 +3291,6 @@ document.addEventListener(
       runAnalysis();
     }
   }
-);
-
-
-/* ============================================================
-   BUTTON
-   ============================================================ */
-
-document.getElementById(
-  "analyzeBtn"
-).addEventListener(
-  "click",
-  runAnalysis
 );
 
 </script>

@@ -3,158 +3,181 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Trav AI V3.1</title>
+<title>Trav AI V3.2</title>
 
 <style>
-body{
-  font-family:Arial,Helvetica,sans-serif;
-  margin:0;
-  background:#f4f6f8;
-  color:#18212b;
+* {
+    box-sizing: border-box;
 }
-header{
-  background:#111827;
-  color:white;
-  padding:22px;
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #101318;
+    color: #f2f2f2;
 }
-header h1{
-  margin:0 0 6px 0;
-  font-size:28px;
+
+header {
+    background: #191e26;
+    padding: 20px;
+    border-bottom: 1px solid #303640;
 }
-header p{
-  margin:0;
-  color:#cbd5e1;
+
+h1 {
+    margin: 0 0 6px 0;
+    font-size: 28px;
 }
-main{
-  max-width:1500px;
-  margin:auto;
-  padding:20px;
+
+.subtitle {
+    color: #aeb6c2;
 }
-.card{
-  background:white;
-  border-radius:12px;
-  padding:18px;
-  margin-bottom:18px;
-  box-shadow:0 2px 8px rgba(0,0,0,.07);
+
+main {
+    max-width: 1400px;
+    margin: auto;
+    padding: 20px;
 }
-h2{
-  margin-top:0;
+
+.card {
+    background: #191e26;
+    border: 1px solid #303640;
+    border-radius: 10px;
+    padding: 18px;
+    margin-bottom: 18px;
 }
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-  gap:12px;
+
+h2 {
+    margin-top: 0;
+    font-size: 20px;
 }
-label{
-  display:block;
-  font-size:13px;
-  font-weight:bold;
-  margin-bottom:5px;
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 12px;
 }
-input,select,textarea,button{
-  width:100%;
-  box-sizing:border-box;
-  padding:9px;
-  border:1px solid #cbd5e1;
-  border-radius:7px;
-  font-size:14px;
+
+label {
+    display: block;
+    color: #aeb6c2;
+    font-size: 13px;
+    margin-bottom: 5px;
 }
-textarea{
-  min-height:180px;
-  font-family:monospace;
+
+input,
+select,
+button,
+textarea {
+    width: 100%;
+    border-radius: 6px;
+    border: 1px solid #3a414c;
+    background: #0f1318;
+    color: white;
+    padding: 10px;
 }
-button{
-  background:#111827;
-  color:white;
-  cursor:pointer;
-  font-weight:bold;
+
+button {
+    background: #28303b;
+    cursor: pointer;
+    font-weight: bold;
 }
-button:hover{
-  background:#263244;
+
+button:hover {
+    background: #353f4d;
 }
-button.secondary{
-  background:#64748b;
+
+textarea {
+    min-height: 180px;
+    font-family: monospace;
+    resize: vertical;
 }
-.stats{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-  gap:10px;
+
+.actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 15px;
 }
-.stat{
-  background:#f8fafc;
-  border:1px solid #e2e8f0;
-  border-radius:9px;
-  padding:12px;
+
+.actions button {
+    width: auto;
+    min-width: 150px;
 }
-.stat small{
-  display:block;
-  color:#64748b;
+
+.status {
+    padding: 12px;
+    border-radius: 6px;
+    background: #11161d;
+    margin-top: 12px;
 }
-.stat strong{
-  display:block;
-  font-size:22px;
-  margin-top:4px;
+
+.statgrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
 }
-.tablewrap{
-  overflow:auto;
-  max-height:700px;
+
+.stat {
+    background: #11161d;
+    border: 1px solid #303640;
+    border-radius: 8px;
+    padding: 14px;
 }
-table{
-  width:100%;
-  border-collapse:collapse;
-  font-size:13px;
+
+.stat-title {
+    color: #9ea7b3;
+    font-size: 12px;
 }
-th,td{
-  padding:7px 8px;
-  border-bottom:1px solid #e5e7eb;
-  white-space:nowrap;
-  text-align:left;
+
+.stat-value {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 5px;
 }
-th{
-  background:#f1f5f9;
-  position:sticky;
-  top:0;
-  z-index:1;
+
+.table-wrap {
+    overflow-x: auto;
 }
-.good{
-  font-weight:bold;
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px;
 }
-.bad{
-  font-weight:bold;
+
+th,
+td {
+    border-bottom: 1px solid #303640;
+    padding: 9px;
+    text-align: left;
+    white-space: nowrap;
 }
-.tag{
-  display:inline-block;
-  padding:3px 7px;
-  border-radius:12px;
-  font-size:11px;
-  font-weight:bold;
+
+th {
+    color: #aeb6c2;
+    font-size: 12px;
 }
-.tag.play{
-  background:#dcfce7;
-  color:#166534;
+
+.good {
+    font-weight: bold;
 }
-.tag.no{
-  background:#f1f5f9;
-  color:#475569;
+
+.bad {
+    font-weight: bold;
 }
-.tag.warn{
-  background:#fef3c7;
-  color:#92400e;
+
+.small {
+    color: #9ea7b3;
+    font-size: 12px;
 }
-.note{
-  background:#eff6ff;
-  border-left:4px solid #2563eb;
-  padding:12px;
-  border-radius:6px;
+
+.hidden {
+    display: none;
 }
-.warning{
-  background:#fff7ed;
-  border-left:4px solid #ea580c;
-  padding:12px;
-  border-radius:6px;
-}
-pre{
-  white-space:pre-wrap;
+
+pre {
+    white-space: pre-wrap;
+    word-break: break-word;
 }
 </style>
 </head>
@@ -162,272 +185,255 @@ pre{
 <body>
 
 <header>
-  <h1>🐎 Trav AI V3.1</h1>
-  <p>Form • kusk • tränare • startspår • galopprisk • marknad • ranking • value • EV • OOS</p>
+    <h1>🏇 Trav AI V3.2</h1>
+    <div class="subtitle">
+        Walk-forward analys • AI-probabilitet • marknad • value • OOS
+    </div>
 </header>
 
 <main>
 
 <div class="card">
-<h2>1. Modellinställningar</h2>
+    <h2>⚙️ Inställningar</h2>
 
-<div class="grid">
+    <div class="grid">
 
-<div>
-<label>Spelform</label>
-<select id="game">
-<option>V75</option>
-<option>V86</option>
-<option>V85</option>
-<option>V64</option>
-<option>V65</option>
-<option>V5</option>
-<option>V4</option>
-<option>DD</option>
-</select>
-</div>
+        <div>
+            <label>Spelform</label>
+            <select id="game">
+                <option>V75</option>
+                <option>V86</option>
+                <option>V64</option>
+                <option>V65</option>
+                <option>V5</option>
+                <option>V4</option>
+                <option>DD</option>
+            </select>
+        </div>
 
-<div>
-<label>AI / marknad</label>
-<select id="aiWeight">
-<option value="25">25 % AI / 75 % marknad</option>
-<option value="50" selected>50 % AI / 50 % marknad</option>
-<option value="75">75 % AI / 25 % marknad</option>
-<option value="100">100 % AI</option>
-</select>
-</div>
+        <div>
+            <label>AI-vikt %</label>
+            <input id="aiWeight" type="number" value="70">
+        </div>
 
-<div>
-<label>Minsta EV %</label>
-<select id="minEV">
-<option value="0">0 %</option>
-<option value="3">3 %</option>
-<option value="5" selected>5 %</option>
-<option value="7">7 %</option>
-<option value="10">10 %</option>
-<option value="15">15 %</option>
-</select>
-</div>
+        <div>
+            <label>Min AI %</label>
+            <input id="minAI" type="number" value="10">
+        </div>
 
-<div>
-<label>Minsta odds</label>
-<input id="minOdds" type="number" value="1.80" step="0.1">
-</div>
+        <div>
+            <label>Min EV %</label>
+            <input id="minEV" type="number" value="10">
+        </div>
 
-<div>
-<label>Max odds</label>
-<input id="maxOdds" type="number" value="20" step="0.5">
-</div>
+        <div>
+            <label>Min odds</label>
+            <input id="minOdds" type="number" value="2">
+        </div>
 
-<div>
-<label>Min historik</label>
-<input id="minHistory" type="number" value="5" step="1">
-</div>
+        <div>
+            <label>Max odds</label>
+            <input id="maxOdds" type="number" value="50">
+        </div>
 
-<div>
-<label>Max spel/lopp</label>
-<select id="maxBets">
-<option value="1" selected>1</option>
-<option value="2">2</option>
-<option value="3">3</option>
-</select>
-</div>
+        <div>
+            <label>Min historik</label>
+            <input id="minHistory" type="number" value="3">
+        </div>
 
-<div>
-<label>Min AI-probabilitet</label>
-<input id="minAI" type="number" value="5" step="0.5">
-</div>
+        <div>
+            <label>Max spel/race</label>
+            <input id="maxBets" type="number" value="1">
+        </div>
 
-</div>
-
-<br>
-
-<button onclick="runBacktest()">KÖR BACKTEST</button>
-
+    </div>
 </div>
 
 
 <div class="card">
+    <h2>📂 Data</h2>
 
-<h2>2. Historisk data</h2>
+    <p class="small">
+        CSV-format:
+        date,race,number,horse,driver,trainer,distance,starttype,odds,stake,finish,time,galop,earnings
+    </p>
 
-<div class="note">
-CSV-format:
-<br><br>
-<b>date,race,number,horse,driver,trainer,distance,starttype,odds,stake,finish,time,galop,earnings</b>
-<br><br>
-Odds och stake måste representera information som fanns före start.
-</div>
+    <textarea id="csvInput" placeholder="Klistra in historiska travdata här..."></textarea>
 
-<br>
+    <div class="actions">
+        <button onclick="loadCSV()">Ladda CSV</button>
+        <button onclick="loadTestData()">Ladda testdata</button>
+        <button onclick="runAnalysis()">▶ Kör analys</button>
+        <button onclick="clearAll()">Rensa</button>
+    </div>
 
-<textarea id="csv"></textarea>
-
-<br><br>
-
-<div class="grid">
-<button onclick="loadExample()">LADDA TESTDATA</button>
-<button class="secondary" onclick="clearData()">RENSA</button>
-</div>
-
+    <div id="dataStatus" class="status">
+        Ingen data laddad.
+    </div>
 </div>
 
 
 <div class="card">
-<h2>3. Modellresultat</h2>
-<div id="overallStats" class="stats"></div>
+    <h2>📊 Översikt</h2>
+
+    <div class="statgrid">
+
+        <div class="stat">
+            <div class="stat-title">Lopp</div>
+            <div class="stat-value" id="statRaces">0</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-title">Hästprognoser</div>
+            <div class="stat-value" id="statPredictions">0</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-title">Spel</div>
+            <div class="stat-value" id="statBets">0</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-title">Vinster</div>
+            <div class="stat-value" id="statWins">0</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-title">Träff%</div>
+            <div class="stat-value" id="statHit">0%</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-title">ROI</div>
+            <div class="stat-value" id="statROI">0%</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-title">Resultat</div>
+            <div class="stat-value" id="statProfit">0</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-title">Max DD</div>
+            <div class="stat-value" id="statDD">0</div>
+        </div>
+
+    </div>
 </div>
 
 
 <div class="card">
-<h2>4. Walk-forward</h2>
-<div class="tablewrap">
-<table>
-<thead>
-<tr>
-<th>Del</th>
-<th>Lopp</th>
-<th>Pred.</th>
-<th>Spel</th>
-<th>Vinster</th>
-<th>Träff</th>
-<th>Profit</th>
-<th>ROI</th>
-<th>Max DD</th>
-</tr>
-</thead>
-<tbody id="splitTable"></tbody>
-</table>
-</div>
+    <h2>🧪 Train / Validation / OOS</h2>
 
-<p>
-<b>OOS är den viktigaste delen.</b>
-<br>
-Modellen får inte använda framtida lopp för att skapa sin historik.
-</p>
-</div>
+    <div class="table-wrap">
 
+        <table>
+            <thead>
+                <tr>
+                    <th>Period</th>
+                    <th>Lopp</th>
+                    <th>Prediktioner</th>
+                    <th>Spel</th>
+                    <th>Vinster</th>
+                    <th>Träff%</th>
+                    <th>Resultat</th>
+                    <th>ROI%</th>
+                </tr>
+            </thead>
 
-<div class="card">
-<h2>5. Modellens faktorer</h2>
-<div id="factorStats" class="stats"></div>
+            <tbody id="splitTable"></tbody>
+
+        </table>
+
+    </div>
 </div>
 
 
 <div class="card">
-<h2>6. Värdesignaler</h2>
-<div class="tablewrap">
-<table>
-<thead>
-<tr>
-<th>EV-zon</th>
-<th>Spel</th>
-<th>Vinster</th>
-<th>Träff</th>
-<th>ROI</th>
-</tr>
-</thead>
-<tbody id="valueTable"></tbody>
-</table>
-</div>
-</div>
+    <h2>🎯 Value-spel</h2>
 
+    <div class="table-wrap">
 
-<div class="card">
-<h2>7. Spelförslag</h2>
-<div class="tablewrap">
-<table>
-<thead>
-<tr>
-<th>Datum</th>
-<th>Lopp</th>
-<th>Nr</th>
-<th>Häst</th>
-<th>Rank</th>
-<th>AI-rank</th>
-<th>Marknadsrank</th>
-<th>AI</th>
-<th>Marknad</th>
-<th>Blend</th>
-<th>Edge</th>
-<th>EV</th>
-<th>Odds</th>
-<th>Signal</th>
-<th>Resultat</th>
-</tr>
-</thead>
-<tbody id="betsTable"></tbody>
-</table>
-</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Datum</th>
+                    <th>Lopp</th>
+                    <th>Häst</th>
+                    <th>Nr</th>
+                    <th>Odds</th>
+                    <th>AI%</th>
+                    <th>Marknad%</th>
+                    <th>Final%</th>
+                    <th>EV%</th>
+                    <th>Resultat</th>
+                </tr>
+            </thead>
+
+            <tbody id="betTable"></tbody>
+
+        </table>
+
+    </div>
 </div>
 
 
 <div class="card">
-<h2>8. Hästprediktioner</h2>
+    <h2>🤖 Senaste AI-beslut</h2>
 
-<div class="tablewrap">
-<table>
-<thead>
-<tr>
-<th>Datum</th>
-<th>Lopp</th>
-<th>Nr</th>
-<th>Häst</th>
-<th>Historik</th>
-<th>Form</th>
-<th>Galopprisk</th>
-<th>AI</th>
-<th>Marknad</th>
-<th>Blend</th>
-<th>Edge</th>
-<th>EV</th>
-<th>Odds</th>
-<th>Rank</th>
-<th>Signal</th>
-<th>Del</th>
-</tr>
-</thead>
-<tbody id="predictionTable"></tbody>
-</table>
-</div>
-</div>
+    <div class="table-wrap">
 
+        <table>
+            <thead>
+                <tr>
+                    <th>Datum</th>
+                    <th>Lopp</th>
+                    <th>Nr</th>
+                    <th>Häst</th>
+                    <th>Odds</th>
+                    <th>AI%</th>
+                    <th>Marknad%</th>
+                    <th>Final%</th>
+                    <th>EV%</th>
+                    <th>AI-rank</th>
+                    <th>Final-rank</th>
+                    <th>Beslut</th>
+                </tr>
+            </thead>
 
-<div class="card">
-<h2>9. AI-kalibrering</h2>
+            <tbody id="predictionTable"></tbody>
 
-<div class="tablewrap">
-<table>
-<thead>
-<tr>
-<th>AI-zon</th>
-<th>Antal</th>
-<th>Förväntat</th>
-<th>Faktiskt</th>
-<th>Skillnad</th>
-</tr>
-</thead>
-<tbody id="calibrationTable"></tbody>
-</table>
-</div>
+        </table>
 
-<p>
-Detta är fortfarande en enkel kalibrering.
-När riktig historisk data finns kan vi bygga en statistiskt tränad kalibrator.
-</p>
-
+    </div>
 </div>
 
 
 <div class="card">
-<h2>10. Datakontroll</h2>
-<div id="dataStats" class="stats"></div>
+    <h2>📈 AI-faktorer</h2>
+
+    <div class="table-wrap">
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Faktor</th>
+                    <th>Betydelse</th>
+                </tr>
+            </thead>
+
+            <tbody id="factorTable"></tbody>
+
+        </table>
+
+    </div>
 </div>
 
 
 <div class="card">
-<h2>11. Modellens beslut</h2>
-<div id="modelExplanation"></div>
+    <h2>🧠 Så fungerar modellen</h2>
+
+    <pre id="explanation"></pre>
 </div>
 
 </main>
@@ -435,1608 +441,1765 @@ När riktig historisk data finns kan vi bygga en statistiskt tränad kalibrator.
 
 <script>
 
-let DATA = [];
-let RESULTS = [];
-let STATE = new Map();
-let GLOBAL = null;
+"use strict";
 
 
-/* =========================================================
-   HJÄLPFUNKTIONER
-========================================================= */
+/* ============================================================
+   GLOBAL DATA
+============================================================ */
 
-function num(v, fallback=0){
-  const x = Number(String(v ?? "").replace(",", "."));
-  return Number.isFinite(x) ? x : fallback;
-}
+let races = [];
+let predictions = [];
+let bets = [];
 
-function pct(v){
-  return (v*100).toFixed(1)+"%";
-}
 
-function pct100(v){
-  return v.toFixed(1)+"%";
-}
+/* ============================================================
+   HELPERS
+============================================================ */
 
-function clamp(x,min,max){
-  return Math.max(min,Math.min(max,x));
-}
-
-function escapeHtml(s){
-  return String(s ?? "")
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;");
-}
-
-function keyHorse(row){
-  return String(row.horse || "").trim().toLowerCase();
-}
-
-function keyPerson(v){
-  return String(v || "").trim().toLowerCase();
-}
-
-function splitCSVLine(line){
-  const out=[];
-  let cur="";
-  let quote=false;
-
-  for(let i=0;i<line.length;i++){
-    const c=line[i];
-
-    if(c==='"'){
-      quote=!quote;
-    }else if(c==="," && !quote){
-      out.push(cur.trim());
-      cur="";
-    }else{
-      cur+=c;
-    }
-  }
-
-  out.push(cur.trim());
-  return out;
+function num(value, fallback = 0) {
+    const n = Number(value);
+    return Number.isFinite(n) ? n : fallback;
 }
 
 
-/* =========================================================
+function clamp(value, min, max) {
+    return Math.max(min, Math.min(max, value));
+}
+
+
+function percent(value) {
+    return (value * 100).toFixed(1) + "%";
+}
+
+
+function esc(value) {
+    return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;");
+}
+
+
+/* ============================================================
    CSV
-========================================================= */
+============================================================ */
 
-function parseCSV(text){
+function parseCSV(text) {
 
-  const lines=text
-    .split(/\r?\n/)
-    .map(x=>x.trim())
-    .filter(Boolean);
+    const lines = text
+        .trim()
+        .split(/\r?\n/)
+        .filter(line => line.trim());
 
-  if(!lines.length) return [];
+    if (lines.length < 2) {
+        return [];
+    }
 
-  const headers=splitCSVLine(lines[0])
-    .map(x=>x.toLowerCase().trim());
+    const headers = lines[0]
+        .split(",")
+        .map(x => x.trim().toLowerCase());
 
-  const rows=[];
+    const result = [];
 
-  for(let i=1;i<lines.length;i++){
+    for (let i = 1; i < lines.length; i++) {
 
-    const parts=splitCSVLine(lines[i]);
-    const obj={};
+        const parts = lines[i].split(",");
 
-    headers.forEach((h,j)=>{
-      obj[h]=parts[j] ?? "";
+        const row = {};
+
+        headers.forEach((header, index) => {
+            row[header] = parts[index] !== undefined
+                ? parts[index].trim()
+                : "";
+        });
+
+        row.date = row.date || "";
+        row.race = row.race || "1";
+        row.number = num(row.number);
+        row.horse = row.horse || "Okänd";
+        row.driver = row.driver || "";
+        row.trainer = row.trainer || "";
+        row.distance = num(row.distance);
+        row.starttype = row.starttype || "";
+        row.odds = num(row.odds);
+        row.stake = num(row.stake);
+        row.finish = num(row.finish);
+        row.time = num(row.time);
+        row.galop = num(row.galop);
+        row.earnings = num(row.earnings);
+
+        result.push(row);
+    }
+
+    return result;
+}
+
+
+function groupRaces(rows) {
+
+    const map = new Map();
+
+    rows.forEach(row => {
+
+        const key = row.date + "|" + row.race;
+
+        if (!map.has(key)) {
+            map.set(key, []);
+        }
+
+        map.get(key).push(row);
+
     });
 
-    if(!obj.date) continue;
+    return Array.from(map.entries())
+        .map(([key, horses]) => {
 
-    obj.race=String(obj.race || "1");
-    obj.number=num(obj.number);
-    obj.odds=num(obj.odds);
-    obj.stake=num(obj.stake);
-    obj.finish=num(obj.finish);
-    obj.time=num(obj.time);
-    obj.galop=num(obj.galop);
-    obj.earnings=num(obj.earnings);
-    obj.distance=num(obj.distance);
+            const parts = key.split("|");
 
-    rows.push(obj);
-  }
+            return {
+                date: parts[0],
+                race: parts[1],
+                horses: horses
+            };
 
-  rows.sort((a,b)=>{
+        })
+        .sort((a, b) => {
 
-    const da=new Date(a.date);
-    const db=new Date(b.date);
+            const da = new Date(a.date).getTime();
+            const db = new Date(b.date).getTime();
 
-    if(da-db!==0) return da-db;
+            if (da !== db) {
+                return da - db;
+            }
 
-    return num(a.race)-num(b.race);
+            return Number(a.race) - Number(b.race);
 
-  });
-
-  return rows;
+        });
 }
 
 
-/* =========================================================
-   HISTORIK
-========================================================= */
+/* ============================================================
+   TEST DATA
+============================================================ */
 
-function createState(){
+function loadTestData() {
 
-  return {
-    starts:0,
-    wins:0,
-    places:0,
-    earnings:0,
-    galops:0,
-    finishes:[],
-    times:[],
-    distances:[],
-    starttypes:[],
-    drivers:{},
-    trainers:{}
-  };
+    const rows = [];
+
+    const horses = [
+        "Alpha",
+        "Bravo",
+        "Charlie",
+        "Delta",
+        "Echo",
+        "Foxtrot"
+    ];
+
+    const drivers = [
+        "Driver A",
+        "Driver B",
+        "Driver C",
+        "Driver D",
+        "Driver E",
+        "Driver F"
+    ];
+
+    const trainers = [
+        "Trainer A",
+        "Trainer B",
+        "Trainer C",
+        "Trainer D",
+        "Trainer E",
+        "Trainer F"
+    ];
+
+    for (let day = 1; day <= 60; day++) {
+
+        const date =
+            "2026-01-" +
+            String(day).padStart(2, "0");
+
+        for (let race = 1; race <= 3; race++) {
+
+            for (let i = 0; i < 6; i++) {
+
+                let finish =
+                    ((day + race + i) % 6) + 1;
+
+                if ((day + race) % 9 === 0 && i === 2) {
+                    finish = 1;
+                }
+
+                const odds = [
+                    2.8,
+                    4.2,
+                    5.5,
+                    8.0,
+                    12.0,
+                    20.0
+                ][i];
+
+                rows.push({
+
+                    date: date,
+
+                    race: String(race),
+
+                    number: i + 1,
+
+                    horse: horses[i],
+
+                    driver: drivers[i],
+
+                    trainer: trainers[i],
+
+                    distance: race === 1
+                        ? 2140
+                        : race === 2
+                        ? 1640
+                        : 2640,
+
+                    starttype:
+                        race === 3
+                            ? "volt"
+                            : "auto",
+
+                    odds: odds,
+
+                    stake:
+                        100 / odds,
+
+                    finish: finish,
+
+                    time:
+                        75 +
+                        i * 0.4 +
+                        (finish - 1) * 0.15,
+
+                    galop:
+                        i === 5 && day % 7 === 0
+                            ? 1
+                            : 0,
+
+                    earnings:
+                        finish === 1
+                            ? 50000
+                            : finish <= 3
+                                ? 15000
+                                : 3000
+                });
+
+            }
+
+        }
+
+    }
+
+    races = groupRaces(rows);
+
+    document.getElementById("dataStatus").innerHTML =
+        "Testdata laddad: " +
+        rows.length +
+        " hästar i " +
+        races.length +
+        " lopp.";
+
 }
 
-function ensureState(horse){
 
-  const k=keyHorse(horse);
+/* ============================================================
+   STATE
+============================================================ */
 
-  if(!STATE.has(k)){
-    STATE.set(k,createState());
-  }
+function createState() {
 
-  return STATE.get(k);
-}
+    return {
 
-function getPersonStats(map,name){
+        horses: new Map(),
 
-  const k=keyPerson(name);
+        drivers: new Map(),
 
-  if(!k) return {
-    starts:0,
-    wins:0,
-    places:0
-  };
+        trainers: new Map(),
 
-  if(!map[k]){
-    map[k]={
-      starts:0,
-      wins:0,
-      places:0
+        totalStarts: 0
+
     };
-  }
 
-  return map[k];
-}
-
-function updatePerson(map,name,finish){
-
-  const s=getPersonStats(map,name);
-
-  s.starts++;
-
-  if(finish===1){
-    s.wins++;
-    s.places++;
-  }else if(finish>=2 && finish<=3){
-    s.places++;
-  }
-}
-
-function updateHistory(row){
-
-  const s=ensureState(row.horse);
-
-  const finish=num(row.finish);
-
-  s.starts++;
-
-  if(finish===1){
-    s.wins++;
-    s.places++;
-  }else if(finish>=2 && finish<=3){
-    s.places++;
-  }
-
-  if(num(row.galop)>0){
-    s.galops++;
-  }
-
-  if(Number.isFinite(row.earnings)){
-    s.earnings+=num(row.earnings);
-  }
-
-  if(Number.isFinite(row.finish) && finish>0){
-    s.finishes.push(finish);
-    if(s.finishes.length>20) s.finishes.shift();
-  }
-
-  if(num(row.time)>0){
-    s.times.push(num(row.time));
-    if(s.times.length>20) s.times.shift();
-  }
-
-  if(num(row.distance)>0){
-    s.distances.push(num(row.distance));
-    if(s.distances.length>20) s.distances.shift();
-  }
-
-  if(row.starttype){
-    s.starttypes.push(String(row.starttype).toLowerCase());
-    if(s.starttypes.length>20) s.starttypes.shift();
-  }
-
-  updatePerson(s.drivers,row.driver,finish);
-  updatePerson(s.trainers,row.trainer,finish);
 }
 
 
-/* =========================================================
+function getHorseState(state, horse) {
+
+    if (!state.horses.has(horse)) {
+
+        state.horses.set(horse, {
+
+            starts: 0,
+            wins: 0,
+            places: 0,
+            galops: 0,
+            earnings: 0,
+            times: [],
+            distances: {}
+
+        });
+
+    }
+
+    return state.horses.get(horse);
+}
+
+
+function getPersonState(map, name) {
+
+    if (!name) {
+        return null;
+    }
+
+    if (!map.has(name)) {
+
+        map.set(name, {
+
+            starts: 0,
+            wins: 0,
+            places: 0
+
+        });
+
+    }
+
+    return map.get(name);
+}
+
+
+function updateState(state, horse) {
+
+    const hs = getHorseState(state, horse.horse);
+
+    hs.starts++;
+
+    if (horse.finish === 1) {
+        hs.wins++;
+    }
+
+    if (horse.finish >= 1 && horse.finish <= 3) {
+        hs.places++;
+    }
+
+    if (horse.galop > 0) {
+        hs.galops++;
+    }
+
+    hs.earnings += num(horse.earnings);
+
+    if (horse.time > 0) {
+        hs.times.push(horse.time);
+
+        if (hs.times.length > 10) {
+            hs.times.shift();
+        }
+    }
+
+    if (horse.distance > 0) {
+
+        const d = String(horse.distance);
+
+        hs.distances[d] =
+            (hs.distances[d] || 0) + 1;
+
+    }
+
+
+    const driver = getPersonState(
+        state.drivers,
+        horse.driver
+    );
+
+    if (driver) {
+
+        driver.starts++;
+
+        if (horse.finish === 1) {
+            driver.wins++;
+        }
+
+        if (horse.finish <= 3) {
+            driver.places++;
+        }
+
+    }
+
+
+    const trainer = getPersonState(
+        state.trainers,
+        horse.trainer
+    );
+
+    if (trainer) {
+
+        trainer.starts++;
+
+        if (horse.finish === 1) {
+            trainer.wins++;
+        }
+
+        if (horse.finish <= 3) {
+            trainer.places++;
+        }
+
+    }
+
+    state.totalStarts++;
+
+}
+
+
+/* ============================================================
    FEATURES
-========================================================= */
+============================================================ */
 
-function getHorseFeatures(row){
+function horseFeatures(state, horse) {
 
-  const s=STATE.get(keyHorse(row.horse)) || createState();
+    const hs = state.horses.get(horse.horse);
 
-  const history=s.starts;
+    if (!hs || hs.starts === 0) {
 
-  let form=5;
+        return {
 
-  if(s.finishes.length){
+            history: 0,
+            form: 0.50,
+            winRate: 0.10,
+            placeRate: 0.30,
+            galopRate: 0.10,
+            distanceExp: 0,
+            driverWin: 0.10,
+            trainerWin: 0.10,
+            startFactor: 0.50
 
-    const recent=s.finishes.slice(-5);
-
-    const scores=recent.map(f=>{
-
-      if(f===1) return 10;
-      if(f===2) return 8;
-      if(f===3) return 7;
-      if(f===4) return 5;
-      if(f===5) return 4;
-      if(f===6) return 3;
-
-      return 2;
-    });
-
-    form=scores.reduce((a,b)=>a+b,0)/scores.length;
-  }
-
-  const winRate=history ? s.wins/history : 0;
-  const placeRate=history ? s.places/history : 0;
-  const galopRate=history ? s.galops/history : 0;
-
-  let avgTime=0;
-
-  if(s.times.length){
-    avgTime=s.times.reduce((a,b)=>a+b,0)/s.times.length;
-  }
-
-  let distanceStarts=0;
-
-  if(num(row.distance)>0){
-    distanceStarts=s.distances.filter(d=>Math.abs(d-num(row.distance))<101).length;
-  }
-
-  const driver=getPersonStats(s.drivers,row.driver);
-  const trainer=getPersonStats(s.trainers,row.trainer);
-
-  const driverRate=
-    driver.starts ? driver.wins/driver.starts : 0;
-
-  const trainerRate=
-    trainer.starts ? trainer.wins/trainer.starts : 0;
-
-  return {
-    history,
-    form,
-    winRate,
-    placeRate,
-    galopRate,
-    avgTime,
-    distanceStarts,
-    driverStarts:driver.starts,
-    driverWinRate:driverRate,
-    trainerStarts:trainer.starts,
-    trainerWinRate:trainerRate
-  };
-}
-
-
-/* =========================================================
-   AI-SCORE
-========================================================= */
-
-function rawAIScore(row){
-
-  const f=getHorseFeatures(row);
-
-  /*
-    Viktigt:
-
-    AI använder INTE odds eller stake.
-
-    Marknaden kommer in först senare.
-  */
-
-  let score=1;
-
-  score += f.form*0.34;
-
-  score += f.winRate*8.0;
-
-  score += f.placeRate*3.0;
-
-  score -= f.galopRate*7.0;
-
-  score += f.driverWinRate*2.5;
-
-  score += f.trainerWinRate*1.5;
-
-  if(f.distanceStarts>0){
-    score += Math.min(f.distanceStarts,10)*0.08;
-  }
-
-  const number=num(row.number);
-
-  /*
-    Startnummer påverkar lite,
-    men får inte dominera modellen.
-  */
-
-  if(number===1) score+=0.15;
-  if(number===2) score+=0.10;
-  if(number===3) score+=0.06;
-
-  if(number>=7) score-=0.04;
-
-  /*
-    Galopprisk ska ge tydligt avdrag.
-  */
-
-  score*=clamp(1-f.galopRate*0.35,0.55,1);
-
-  return Math.max(0.05,score);
-}
-
-
-/* =========================================================
-   SOFTMAX
-========================================================= */
-
-function softmax(scores){
-
-  const max=Math.max(...scores);
-
-  const ex=scores.map(x=>Math.exp(x-max));
-
-  const sum=ex.reduce((a,b)=>a+b,0);
-
-  return ex.map(x=>x/sum);
-}
-
-
-/* =========================================================
-   MARKNAD
-========================================================= */
-
-function marketProbabilities(raceRows){
-
-  let raw=raceRows.map(r=>{
-
-    if(num(r.stake)>0){
-      return num(r.stake);
-    }
-
-    if(num(r.odds)>1){
-      return 1/num(r.odds);
-    }
-
-    return 0;
-  });
-
-  const sum=raw.reduce((a,b)=>a+b,0);
-
-  if(sum<=0){
-
-    const n=raceRows.length;
-
-    return raceRows.map(()=>1/n);
-  }
-
-  return raw.map(x=>x/sum);
-}
-
-
-/* =========================================================
-   AI-PROBABILITETER
-========================================================= */
-
-function aiProbabilities(raceRows){
-
-  const scores=raceRows.map(rawAIScore);
-
-  return softmax(scores);
-}
-
-
-/* =========================================================
-   KALIBRERING
-========================================================= */
-
-function calibrateAI(p,n){
-
-  /*
-    Försiktig shrinkage mot loppets
-    jämna grundfördelning.
-
-    Detta är INTE slutlig statistisk kalibrering.
-  */
-
-  const uniform=1/n;
-
-  return 0.90*p + 0.10*uniform;
-}
-
-
-/* =========================================================
-   RACE PREDICTION
-========================================================= */
-
-function predictRace(raceRows,part){
-
-  const ai=aiProbabilities(raceRows);
-  const market=marketProbabilities(raceRows);
-
-  const weight=num(document.getElementById("aiWeight").value)/100;
-
-  const predictions=[];
-
-  for(let i=0;i<raceRows.length;i++){
-
-    const row=raceRows[i];
-
-    const aiCal=calibrateAI(ai[i],raceRows.length);
-
-    const blend=
-      weight*aiCal+
-      (1-weight)*market[i];
-
-    const edge=blend-market[i];
-
-    const odds=num(row.odds);
-
-    const ev=
-      odds>1
-      ? blend*odds-1
-      : -1;
-
-    predictions.push({
-
-      row,
-      ai:aiCal,
-      market:market[i],
-      blend,
-      edge,
-      ev,
-      part,
-      features:getHorseFeatures(row),
-      rank:0,
-      aiRank:0,
-      marketRank:0,
-      selected:false,
-      signal:""
-    });
-  }
-
-  /*
-    AI-rank
-  */
-
-  [...predictions]
-    .sort((a,b)=>b.ai-a.ai)
-    .forEach((p,i)=>p.aiRank=i+1);
-
-  /*
-    Market-rank
-  */
-
-  [...predictions]
-    .sort((a,b)=>b.market-a.market)
-    .forEach((p,i)=>p.marketRank=i+1);
-
-  /*
-    Slutlig rank:
-
-    blend är huvudrankingen.
-  */
-
-  predictions
-    .sort((a,b)=>b.blend-a.blend)
-    .forEach((p,i)=>p.rank=i+1);
-
-  /*
-    Signaler
-  */
-
-  predictions.forEach(p=>{
-
-    const f=p.features;
-
-    if(p.aiRank===1 && p.marketRank>1){
-      p.signal="AI-FAVORIT";
-    }else if(p.marketRank===1 && p.aiRank>1){
-      p.signal="MARKNADSFAVORIT";
-    }else if(p.edge>=0.05){
-      p.signal="UNDERVÄRDERAD";
-    }else if(p.edge<=-0.05){
-      p.signal="ÖVERVÄRDERAD";
-    }else{
-      p.signal="NEUTRAL";
-    }
-
-    /*
-      Galopprisk som extra varning.
-    */
-
-    if(f.galopRate>=0.20){
-      p.signal+=" / GALOPPRISK";
-    }
-
-  });
-
-  return predictions;
-}
-
-
-/* =========================================================
-   BETSELEKTION
-========================================================= */
-
-function chooseBets(predictions){
-
-  const minEV=num(document.getElementById("minEV").value)/100;
-  const minOdds=num(document.getElementById("minOdds").value);
-  const maxOdds=num(document.getElementById("maxOdds").value);
-  const minHistory=num(document.getElementById("minHistory").value);
-  const maxBets=num(document.getElementById("maxBets").value);
-  const minAI=num(document.getElementById("minAI").value)/100;
-
-  /*
-    Först måste hästen ha en rimlig AI-signal.
-
-    Detta är viktigt:
-    en högoddsare får inte spelas enbart
-    för att EV blir stort matematiskt.
-  */
-
-  let candidates=predictions.filter(p=>{
-
-    const odds=num(p.row.odds);
-
-    if(p.features.history<minHistory) return false;
-
-    if(odds<minOdds || odds>maxOdds) return false;
-
-    if(p.ai<minAI) return false;
-
-    if(p.ev<minEV) return false;
-
-    /*
-      Vi vill inte kalla en häst value
-      om AI-rankingen placerar den väldigt långt ned
-      samtidigt som marknaden också gör det.
-
-      Minimikrav:
-      AI eller blend måste vara bland de tre bästa.
-    */
-
-    if(p.aiRank>3 && p.rank>3) return false;
-
-    return true;
-  });
-
-  /*
-    Högst EV först,
-    men rank används som tie-break.
-  */
-
-  candidates.sort((a,b)=>{
-
-    if(b.ev!==a.ev) return b.ev-a.ev;
-
-    if(a.rank!==b.rank) return a.rank-b.rank;
-
-    return b.edge-a.edge;
-  });
-
-  candidates=candidates.slice(0,maxBets);
-
-  candidates.forEach(p=>p.selected=true);
-
-  return candidates;
-}
-
-
-/* =========================================================
-   STATS
-========================================================= */
-
-function emptyStats(){
-  return {
-    races:0,
-    predictions:0,
-    bets:0,
-    wins:0,
-    profit:0,
-    roi:0,
-    maxDD:0,
-    curve:0,
-    peak:0
-  };
-}
-
-function addResult(stats,bet){
-
-  stats.bets++;
-
-  if(num(bet.finish)===1){
-
-    stats.wins++;
-
-    stats.profit+=num(bet.odds)-1;
-
-  }else{
-
-    stats.profit-=1;
-  }
-
-  stats.curve=stats.profit;
-
-  if(stats.curve>stats.peak){
-    stats.peak=stats.curve;
-  }
-
-  const dd=stats.peak-stats.curve;
-
-  if(dd>stats.maxDD){
-    stats.maxDD=dd;
-  }
-}
-
-function finalizeStats(stats){
-
-  stats.roi=
-    stats.bets
-    ? stats.profit/stats.bets
-    : 0;
-
-  return stats;
-}
-
-
-/* =========================================================
-   KALIBRERINGSDATA
-========================================================= */
-
-function calibrationRows(predictions){
-
-  const bins=[
-    {min:0,max:.10},
-    {min:.10,max:.20},
-    {min:.20,max:.30},
-    {min:.30,max:.40},
-    {min:.40,max:.50},
-    {min:.50,max:.60},
-    {min:.60,max:.70},
-    {min:.70,max:.80},
-    {min:.80,max:1.01}
-  ];
-
-  return bins.map(b=>{
-
-    const arr=predictions.filter(p=>
-      p.ai>=b.min && p.ai<b.max
-    );
-
-    const expected=
-      arr.length
-      ? arr.reduce((s,p)=>s+p.ai,0)/arr.length
-      : null;
-
-    const actual=
-      arr.length
-      ? arr.reduce((s,p)=>s+(num(p.row.finish)===1?1:0),0)/arr.length
-      : null;
-
-    return {
-      label:(b.min*100).toFixed(0)+"–"+(b.max*100).toFixed(0)+"%",
-      count:arr.length,
-      expected,
-      actual,
-      difference:
-        expected!==null && actual!==null
-        ? actual-expected
-        : null
-    };
-  });
-}
-
-
-/* =========================================================
-   VALUE-ZONER
-========================================================= */
-
-function valueZones(bets){
-
-  const zones=[
-    {label:"0–5%",min:0,max:.05},
-    {label:"5–10%",min:.05,max:.10},
-    {label:"10–20%",min:.10,max:.20},
-    {label:"20–∞%",min:.20,max:Infinity}
-  ];
-
-  return zones.map(z=>{
-
-    const arr=bets.filter(b=>
-      b.ev>=z.min && b.ev<z.max
-    );
-
-    let wins=0;
-    let profit=0;
-
-    arr.forEach(b=>{
-
-      if(num(b.finish)===1){
-        wins++;
-        profit+=num(b.odds)-1;
-      }else{
-        profit-=1;
-      }
-
-    });
-
-    return {
-      label:z.label,
-      bets:arr.length,
-      wins,
-      hit:arr.length?wins/arr.length:0,
-      roi:arr.length?profit/arr.length:0
-    };
-
-  });
-}
-
-
-/* =========================================================
-   DRAWDOWN
-========================================================= */
-
-function calculateDD(bets){
-
-  let curve=0;
-  let peak=0;
-  let maxDD=0;
-
-  bets.forEach(b=>{
-
-    if(num(b.finish)===1){
-      curve+=num(b.odds)-1;
-    }else{
-      curve-=1;
-    }
-
-    peak=Math.max(peak,curve);
-
-    maxDD=Math.max(maxDD,peak-curve);
-  });
-
-  return maxDD;
-}
-
-
-/* =========================================================
-   BACKTEST
-========================================================= */
-
-function runBacktest(){
-
-  const text=document.getElementById("csv").value.trim();
-
-  DATA=parseCSV(text);
-
-  if(!DATA.length){
-
-    alert("Ingen giltig data hittades.");
-
-    return;
-  }
-
-  RESULTS=[];
-  STATE=new Map();
-
-  const groups=[];
-
-  let currentKey="";
-
-  DATA.forEach(row=>{
-
-    const key=row.date+"|"+row.race;
-
-    if(key!==currentKey){
-
-      groups.push([]);
-
-      currentKey=key;
-    }
-
-    groups[groups.length-1].push(row);
-  });
-
-  /*
-    60 / 20 / 20
-  */
-
-  const total=groups.length;
-
-  const trainEnd=Math.floor(total*.60);
-  const valEnd=Math.floor(total*.80);
-
-  const trainStats=emptyStats();
-  const valStats=emptyStats();
-  const oosStats=emptyStats();
-  const overall=emptyStats();
-
-  const allPredictions=[];
-  const allBets=[];
-
-  const splitData=[
-    {name:"Train",groups:groups.slice(0,trainEnd),stats:trainStats},
-    {name:"Validation",groups:groups.slice(trainEnd,valEnd),stats:valStats},
-    {name:"OOS",groups:groups.slice(valEnd),stats:oosStats}
-  ];
-
-  /*
-    Gå kronologiskt.
-
-    Prediction görs FÖRE history update.
-  */
-
-  splitData.forEach(split=>{
-
-    split.groups.forEach(race=>{
-
-      split.stats.races++;
-      overall.races++;
-
-      const predictions=
-        predictRace(race,split.name);
-
-      split.stats.predictions+=predictions.length;
-      overall.predictions+=predictions.length;
-
-      const selected=chooseBets(predictions);
-
-      predictions.forEach(p=>{
-
-        allPredictions.push(p);
-
-      });
-
-      selected.forEach(p=>{
-
-        const bet={
-          ...p.row,
-          ai:p.ai,
-          market:p.market,
-          blend:p.blend,
-          edge:p.edge,
-          ev:p.ev,
-          rank:p.rank,
-          aiRank:p.aiRank,
-          marketRank:p.marketRank,
-          signal:p.signal,
-          part:p.part
         };
 
-        allBets.push(bet);
-
-        addResult(split.stats,bet);
-        addResult(overall,bet);
-
-      });
-
-      /*
-        Efter prediction och spelval
-        uppdateras historiken.
-      */
-
-      race.forEach(row=>{
-        updateHistory(row);
-      });
-
-    });
-
-  });
-
-  finalizeStats(trainStats);
-  finalizeStats(valStats);
-  finalizeStats(oosStats);
-  finalizeStats(overall);
-
-  /*
-    Kontrollera duplicerade predictioner.
-  */
-
-  const seen=new Set();
-
-  allPredictions.forEach(p=>{
-
-    const k=
-      p.row.date+"|"+
-      p.row.race+"|"+
-      p.row.number+"|"+
-      p.row.horse+"|"+
-      p.part;
-
-    seen.add(k);
-
-  });
-
-  GLOBAL={
-    overall,
-    trainStats,
-    valStats,
-    oosStats,
-    predictions:allPredictions,
-    bets:allBets,
-    calibration:calibrationRows(allPredictions),
-    valueZones:valueZones(allBets),
-    uniquePredictions:seen.size
-  };
-
-  renderAll();
-}
-
-
-/* =========================================================
-   RENDER
-========================================================= */
-
-function renderAll(){
-
-  renderOverall();
-  renderSplits();
-  renderFactors();
-  renderValue();
-  renderBets();
-  renderPredictions();
-  renderCalibration();
-  renderDataStats();
-  renderExplanation();
-}
-
-
-/* =========================================================
-   OVERALL
-========================================================= */
-
-function renderOverall(){
-
-  const s=GLOBAL.overall;
-
-  document.getElementById("overallStats").innerHTML=`
-
-    <div class="stat">
-      <small>Lopp</small>
-      <strong>${s.races}</strong>
-    </div>
-
-    <div class="stat">
-      <small>Hästprediktioner</small>
-      <strong>${s.predictions}</strong>
-    </div>
-
-    <div class="stat">
-      <small>Spel</small>
-      <strong>${s.bets}</strong>
-    </div>
-
-    <div class="stat">
-      <small>Vinster</small>
-      <strong>${s.wins}</strong>
-    </div>
-
-    <div class="stat">
-      <small>Träff</small>
-      <strong>${pct(s.bets?s.wins/s.bets:0)}</strong>
-    </div>
-
-    <div class="stat">
-      <small>Profit</small>
-      <strong>${s.profit.toFixed(2)}</strong>
-    </div>
-
-    <div class="stat">
-      <small>ROI</small>
-      <strong>${pct(s.roi)}</strong>
-    </div>
-
-    <div class="stat">
-      <small>Max DD</small>
-      <strong>${s.maxDD.toFixed(2)}</strong>
-    </div>
-  `;
-}
-
-
-/* =========================================================
-   SPLITS
-========================================================= */
-
-function renderSplits(){
-
-  const rows=[
-    ["Train",GLOBAL.trainStats],
-    ["Validation",GLOBAL.valStats],
-    ["OOS",GLOBAL.oosStats]
-  ];
-
-  document.getElementById("splitTable").innerHTML=
-    rows.map(([name,s])=>`
-
-      <tr>
-        <td><b>${name}</b></td>
-        <td>${s.races}</td>
-        <td>${s.predictions}</td>
-        <td>${s.bets}</td>
-        <td>${s.wins}</td>
-        <td>${pct(s.bets?s.wins/s.bets:0)}</td>
-        <td>${s.profit.toFixed(2)}</td>
-        <td>${pct(s.roi)}</td>
-        <td>${s.maxDD.toFixed(2)}</td>
-      </tr>
-
-    `).join("");
-}
-
-
-/* =========================================================
-   FACTORS
-========================================================= */
-
-function renderFactors(){
-
-  const p=GLOBAL.predictions;
-
-  const avg=field=>{
-
-    if(!p.length) return 0;
-
-    return p.reduce((s,x)=>s+field(x),0)/p.length;
-  };
-
-  const form=avg(x=>x.features.form);
-  const win=avg(x=>x.features.winRate);
-  const place=avg(x=>x.features.placeRate);
-  const galop=avg(x=>x.features.galopRate);
-
-  document.getElementById("factorStats").innerHTML=`
-
-    <div class="stat">
-      <small>Genomsnittlig form</small>
-      <strong>${form.toFixed(2)}</strong>
-    </div>
-
-    <div class="stat">
-      <small>Historisk vinst %</small>
-      <strong>${pct(win)}</strong>
-    </div>
-
-    <div class="stat">
-      <small>Historisk plats %</small>
-      <strong>${pct(place)}</strong>
-    </div>
-
-    <div class="stat">
-      <small>Galopprisk</small>
-      <strong>${pct(galop)}</strong>
-    </div>
-
-    <div class="stat">
-      <small>AI-vikt</small>
-      <strong>${document.getElementById("aiWeight").value}%</strong>
-    </div>
-
-    <div class="stat">
-      <small>Min AI</small>
-      <strong>${document.getElementById("minAI").value}%</strong>
-    </div>
-  `;
-}
-
-
-/* =========================================================
-   VALUE
-========================================================= */
-
-function renderValue(){
-
-  document.getElementById("valueTable").innerHTML=
-    GLOBAL.valueZones.map(z=>`
-
-      <tr>
-        <td>${z.label}</td>
-        <td>${z.bets}</td>
-        <td>${z.wins}</td>
-        <td>${pct(z.hit)}</td>
-        <td>${pct(z.roi)}</td>
-      </tr>
-
-    `).join("");
-}
-
-
-/* =========================================================
-   BETS
-========================================================= */
-
-function renderBets(){
-
-  const arr=GLOBAL.bets
-    .slice()
-    .sort((a,b)=>{
-
-      const da=new Date(a.date);
-      const db=new Date(b.date);
-
-      return db-da || num(b.race)-num(a.race);
-    });
-
-  document.getElementById("betsTable").innerHTML=
-    arr.map(b=>`
-
-      <tr>
-
-        <td>${escapeHtml(b.date)}</td>
-        <td>${escapeHtml(b.race)}</td>
-        <td>${b.number}</td>
-
-        <td><b>${escapeHtml(b.horse)}</b></td>
-
-        <td>${b.rank}</td>
-        <td>${b.aiRank}</td>
-        <td>${b.marketRank}</td>
-
-        <td>${pct(b.ai)}</td>
-        <td>${pct(b.market)}</td>
-        <td>${pct(b.blend)}</td>
-
-        <td>${pct(b.edge)}</td>
-        <td class="${b.ev>=0?'good':'bad'}">${pct(b.ev)}</td>
-
-        <td>${num(b.odds).toFixed(2)}</td>
-
-        <td>
-          <span class="tag play">${escapeHtml(b.signal)}</span>
-        </td>
-
-        <td>
-          ${
-            num(b.finish)===1
-            ? '<b>VINST</b>'
-            : escapeHtml(b.finish)
-          }
-        </td>
-
-      </tr>
-
-    `).join("");
-}
-
-
-/* =========================================================
-   PREDICTIONS
-========================================================= */
-
-function renderPredictions(){
-
-  const arr=GLOBAL.predictions
-    .slice()
-    .sort((a,b)=>{
-
-      const da=new Date(a.row.date);
-      const db=new Date(b.row.date);
-
-      return db-da ||
-        num(a.row.race)-num(b.row.race) ||
-        a.rank-b.rank;
-
-    });
-
-  document.getElementById("predictionTable").innerHTML=
-    arr.map(p=>`
-
-      <tr>
-
-        <td>${escapeHtml(p.row.date)}</td>
-        <td>${escapeHtml(p.row.race)}</td>
-        <td>${p.row.number}</td>
-
-        <td><b>${escapeHtml(p.row.horse)}</b></td>
-
-        <td>${p.features.history}</td>
-
-        <td>${p.features.form.toFixed(2)}</td>
-
-        <td>${pct(p.features.galopRate)}</td>
-
-        <td>${pct(p.ai)}</td>
-        <td>${pct(p.market)}</td>
-        <td>${pct(p.blend)}</td>
-
-        <td>${pct(p.edge)}</td>
-
-        <td class="${p.ev>=0?'good':'bad'}">
-          ${pct(p.ev)}
-        </td>
-
-        <td>${num(p.row.odds).toFixed(2)}</td>
-
-        <td><b>${p.rank}</b></td>
-
-        <td>
-          ${
-            p.selected
-            ? '<span class="tag play">SPEL</span>'
-            : '<span class="tag no">'+escapeHtml(p.signal)+'</span>'
-          }
-        </td>
-
-        <td>${escapeHtml(p.part)}</td>
-
-      </tr>
-
-    `).join("");
-}
-
-
-/* =========================================================
-   CALIBRATION
-========================================================= */
-
-function renderCalibration(){
-
-  document.getElementById("calibrationTable").innerHTML=
-    GLOBAL.calibration.map(c=>`
-
-      <tr>
-
-        <td>${c.label}</td>
-
-        <td>${c.count}</td>
-
-        <td>
-          ${c.expected===null
-            ? "-"
-            : pct(c.expected)}
-        </td>
-
-        <td>
-          ${c.actual===null
-            ? "-"
-            : pct(c.actual)}
-        </td>
-
-        <td>
-          ${c.difference===null
-            ? "-"
-            : pct(c.difference)}
-        </td>
-
-      </tr>
-
-    `).join("");
-}
-
-
-/* =========================================================
-   DATAKONTROLL
-========================================================= */
-
-function renderDataStats(){
-
-  const dates=new Set(DATA.map(x=>x.date));
-  const races=new Set(DATA.map(x=>x.date+"|"+x.race));
-  const horses=new Set(DATA.map(x=>x.horse));
-  const drivers=new Set(DATA.map(x=>x.driver));
-  const trainers=new Set(DATA.map(x=>x.trainer));
-
-  let invalid=0;
-
-  DATA.forEach(r=>{
-
-    if(!r.date ||
-       !r.horse ||
-       !r.race ||
-       !Number.isFinite(r.number) ||
-       !Number.isFinite(r.finish)){
-
-      invalid++;
     }
 
-  });
 
-  document.getElementById("dataStats").innerHTML=`
-
-    <div class="stat">
-      <small>CSV-rader</small>
-      <strong>${DATA.length}</strong>
-    </div>
-
-    <div class="stat">
-      <small>Lopp</small>
-      <strong>${races.size}</strong>
-    </div>
-
-    <div class="stat">
-      <small>Hästar</small>
-      <strong>${horses.size}</strong>
-    </div>
-
-    <div class="stat">
-      <small>Kuskar</small>
-      <strong>${drivers.size}</strong>
-    </div>
-
-    <div class="stat">
-      <small>Tränare</small>
-      <strong>${trainers.size}</strong>
-    </div>
-
-    <div class="stat">
-      <small>Datum</small>
-      <strong>${dates.size}</strong>
-    </div>
-
-    <div class="stat">
-      <small>Ogiltiga</small>
-      <strong>${invalid}</strong>
-    </div>
-
-    <div class="stat">
-      <small>Prediktionsfel</small>
-      <strong>0</strong>
-    </div>
-
-  `;
-}
-
-
-/* =========================================================
-   FÖRKLARING
-========================================================= */
-
-function renderExplanation(){
-
-  const s=GLOBAL.oosStats;
-
-  let text="";
-
-  if(!s.bets){
-
-    text=`
-      <div class="warning">
-        <b>Ingen OOS-spelbar signal.</b><br>
-        Modellen hittar just nu inga hästar som klarar alla krav.
-        Det är bättre än att tvinga fram spel.
-      </div>
-    `;
-
-  }else{
-
-    text=`
-      <div class="note">
-
-        <b>V3.1 beslutlogik</b>
-
-        <ul>
-          <li>AI använder inte odds.</li>
-          <li>Marknad används separat.</li>
-          <li>AI och marknad rangordnas separat.</li>
-          <li>Value kräver positiv edge.</li>
-          <li>Hästen måste ha tillräcklig historik.</li>
-          <li>Hästen måste ha minst angiven AI-probabilitet.</li>
-          <li>En högoddsare får inte längre automatiskt spelstatus.</li>
-          <li>AI-rank och marknadsrank används för att kontrollera extrema value-signaler.</li>
-          <li>Historiken uppdateras först efter att loppet är predikterat.</li>
-          <li>OOS är helt separat från Train och Validation.</li>
-        </ul>
-
-        <b>OOS:</b>
-        ${s.bets} spel,
-        ${s.wins} vinster,
-        ROI ${pct(s.roi)}.
-
-      </div>
-    `;
-  }
-
-  document.getElementById("modelExplanation").innerHTML=text;
-}
-
-
-/* =========================================================
-   TESTDATA
-========================================================= */
-
-function loadExample(){
-
-  const horses=[
-    ["Häst A","Kusk A","Tränare A",2.5],
-    ["Häst B","Kusk B","Tränare B",4],
-    ["Häst C","Kusk C","Tränare C",6],
-    ["Häst D","Kusk D","Tränare D",9],
-    ["Häst E","Kusk E","Tränare E",15],
-    ["Häst F","Kusk F","Tränare F",25]
-  ];
-
-  const lines=[];
-
-  lines.push(
-    "date,race,number,horse,driver,trainer,distance,starttype,odds,stake,finish,time,galop,earnings"
-  );
-
-  const start=new Date("2026-01-01");
-
-  /*
-    60 dagar
-    3 lopp per dag
-
-    Detta ger betydligt mer realistisk
-    struktur än V3-testet med ett lopp per dag.
-  */
-
-  for(let d=0;d<60;d++){
-
-    const date=new Date(start);
-    date.setDate(start.getDate()+d);
-
-    const ds=date.toISOString().slice(0,10);
-
-    for(let race=1;race<=3;race++){
-
-      const distance=
-        race===1 ? 2140 :
-        race===2 ? 1640 :
-        2640;
-
-      /*
-        Olika startnummer och odds.
-      */
-
-      const shuffled=horses.map((h,i)=>({
-        h,
-        n:i+1
-      }));
-
-      /*
-        Enkel deterministisk variation.
-        Testdatan ska INTE ge en enda häst
-        konstant fördel.
-      */
-
-      const winnerIndex=
-        (d*3+race*2)%horses.length;
-
-      shuffled.forEach((x,i)=>{
-
-        const h=x.h;
-
-        let finish=
-          ((i-winnerIndex+horses.length)%horses.length)+1;
-
-        /*
-          Ibland slumpas topp tre inom loppet
-          med deterministisk variation.
-        */
-
-        if((d+race+i)%7===0){
-          finish=3;
-        }
-
-        if((d+race+i)%11===0){
-          finish=2;
-        }
-
-        if(i===winnerIndex){
-          finish=1;
-        }
-
-        const odds=
-          h[3] *
-          (1+
-            (((d*7+race*3+i*5)%9)-4)/20
-          );
-
-        const galop=
-          ((d+race+i)%17===0) ? 1 : 0;
-
-        const time=
-          90+
-          i*0.7+
-          ((d*3+race+i)%8)*0.1;
-
-        const earnings=
-          finish===1
-          ? Math.round(odds*100)
-          : finish<=3
-            ? Math.round(odds*30)
+    const recent =
+        hs.times.length
+            ? hs.times
+                .slice(-5)
+                .reduce((a, b) => a + b, 0)
+                / hs.times.slice(-5).length
             : 0;
 
-        lines.push([
-          ds,
-          race,
-          i+1,
-          h[0],
-          h[1],
-          h[2],
-          distance,
-          "volt",
-          odds.toFixed(2),
-          "",
-          finish,
-          time.toFixed(2),
-          galop,
-          earnings
-        ].join(","));
 
-      });
+    let form = 0.50;
+
+    if (recent > 0) {
+
+        const best =
+            Math.min(...hs.times);
+
+        const spread =
+            Math.max(...hs.times) -
+            best;
+
+        form =
+            clamp(
+                0.80 -
+                spread * 0.08,
+                0.15,
+                0.85
+            );
+
     }
-  }
 
-  document.getElementById("csv").value=lines.join("\n");
 
-  runBacktest();
+    const driver =
+        state.drivers.get(horse.driver);
+
+    const trainer =
+        state.trainers.get(horse.trainer);
+
+
+    const driverWin =
+        driver && driver.starts > 0
+            ? driver.wins / driver.starts
+            : 0.10;
+
+
+    const trainerWin =
+        trainer && trainer.starts > 0
+            ? trainer.wins / trainer.starts
+            : 0.10;
+
+
+    const distanceExp =
+        horse.distance > 0
+            ? (hs.distances[String(horse.distance)] || 0)
+            : 0;
+
+
+    const startFactor =
+        clamp(
+            0.55 -
+            Math.max(0, horse.number - 1) * 0.025,
+            0.25,
+            0.60
+        );
+
+
+    return {
+
+        history: hs.starts,
+
+        form: form,
+
+        winRate:
+            hs.wins / hs.starts,
+
+        placeRate:
+            hs.places / hs.starts,
+
+        galopRate:
+            hs.galops / hs.starts,
+
+        distanceExp:
+
+            distanceExp,
+
+        driverWin:
+
+            driverWin,
+
+        trainerWin:
+
+            trainerWin,
+
+        startFactor:
+
+            startFactor
+
+    };
+
 }
 
 
-/* =========================================================
-   RENSA
-========================================================= */
+/* ============================================================
+   AI SCORE
+============================================================ */
 
-function clearData(){
+function rawAIScore(features) {
 
-  document.getElementById("csv").value="";
+    const galopPenalty =
+        features.galopRate * 0.75;
 
-  DATA=[];
-  RESULTS=[];
-  STATE=new Map();
-  GLOBAL=null;
+    const score =
 
-  document.getElementById("overallStats").innerHTML="";
-  document.getElementById("splitTable").innerHTML="";
-  document.getElementById("factorStats").innerHTML="";
-  document.getElementById("valueTable").innerHTML="";
-  document.getElementById("betsTable").innerHTML="";
-  document.getElementById("predictionTable").innerHTML="";
-  document.getElementById("calibrationTable").innerHTML="";
-  document.getElementById("dataStats").innerHTML="";
-  document.getElementById("modelExplanation").innerHTML="";
+        features.form * 0.24 +
+
+        features.winRate * 0.22 +
+
+        features.placeRate * 0.18 +
+
+        features.driverWin * 0.10 +
+
+        features.trainerWin * 0.08 +
+
+        Math.min(
+            features.distanceExp / 10,
+            1
+        ) * 0.06 +
+
+        features.startFactor * 0.12 -
+
+        galopPenalty;
+
+    return Math.max(0.001, score);
+
 }
 
 
-/* =========================================================
+/* ============================================================
+   SOFTMAX
+============================================================ */
+
+function aiProbabilities(horses, state) {
+
+    const scores = horses.map(horse => {
+
+        const features =
+            horseFeatures(state, horse);
+
+        return {
+
+            horse: horse,
+
+            features: features,
+
+            score:
+                rawAIScore(features)
+
+        };
+
+    });
+
+
+    const temperature = 1.8;
+
+    const values =
+        scores.map(x =>
+            Math.exp(x.score * temperature)
+        );
+
+    const total =
+        values.reduce(
+            (a, b) => a + b,
+            0
+        );
+
+
+    return scores.map((item, index) => {
+
+        return {
+
+            horse: item.horse,
+
+            features: item.features,
+
+            ai:
+                values[index] / total
+
+        };
+
+    });
+
+}
+
+
+/* ============================================================
+   MARKET
+============================================================ */
+
+function marketProbabilities(horses) {
+
+    let weights = [];
+
+    horses.forEach(horse => {
+
+        let w = 0;
+
+        if (horse.stake > 0) {
+
+            w = horse.stake;
+
+        } else if (horse.odds > 0) {
+
+            w = 1 / horse.odds;
+
+        }
+
+        weights.push(w);
+
+    });
+
+
+    const total =
+        weights.reduce(
+            (a, b) => a + b,
+            0
+        );
+
+
+    return horses.map((horse, index) => {
+
+        return {
+
+            horse: horse,
+
+            market:
+                total > 0
+                    ? weights[index] / total
+                    : 1 / horses.length
+
+        };
+
+    });
+
+}
+
+
+/* ============================================================
+   RACE ANALYSIS
+============================================================ */
+
+function analyseRace(race, state) {
+
+    const ai =
+        aiProbabilities(
+            race.horses,
+            state
+        );
+
+    const market =
+        marketProbabilities(
+            race.horses
+        );
+
+
+    const result = [];
+
+
+    race.horses.forEach(horse => {
+
+        const a =
+            ai.find(
+                x => x.horse === horse
+            );
+
+        const m =
+            market.find(
+                x => x.horse === horse
+            );
+
+
+        const aiWeight =
+            clamp(
+                num(
+                    document.getElementById(
+                        "aiWeight"
+                    ).value,
+                    70
+                ) / 100,
+                0,
+                1
+            );
+
+
+        const finalProb =
+            a.ai * aiWeight +
+            m.market * (1 - aiWeight);
+
+
+        const ev =
+            horse.odds > 0
+                ? finalProb * horse.odds - 1
+                : -1;
+
+
+        result.push({
+
+            date: race.date,
+
+            race: race.race,
+
+            horse: horse.horse,
+
+            number: horse.number,
+
+            odds: horse.odds,
+
+            ai: a.ai,
+
+            market: m.market,
+
+            final: finalProb,
+
+            ev: ev,
+
+            history: a.features.history,
+
+            finish: horse.finish,
+
+            features: a.features
+
+        });
+
+    });
+
+
+    result.sort(
+        (a, b) =>
+            b.final - a.final
+    );
+
+
+    result.forEach(
+        (item, index) => {
+            item.finalRank = index + 1;
+        }
+    );
+
+
+    const aiSorted =
+        [...result].sort(
+            (a, b) =>
+                b.ai - a.ai
+        );
+
+
+    aiSorted.forEach(
+        (item, index) => {
+            item.aiRank = index + 1;
+        }
+    );
+
+
+    return result;
+
+}
+
+
+/* ============================================================
+   BET SELECTION
+============================================================ */
+
+function selectBets(items) {
+
+    const minAI =
+        num(
+            document.getElementById(
+                "minAI"
+            ).value,
+            10
+        ) / 100;
+
+
+    const minEV =
+        num(
+            document.getElementById(
+                "minEV"
+            ).value,
+            10
+        ) / 100;
+
+
+    const minOdds =
+        num(
+            document.getElementById(
+                "minOdds"
+            ).value,
+            2
+        );
+
+
+    const maxOdds =
+        num(
+            document.getElementById(
+                "maxOdds"
+            ).value,
+            50
+        );
+
+
+    const minHistory =
+        num(
+            document.getElementById(
+                "minHistory"
+            ).value,
+            3
+        );
+
+
+    const maxBets =
+        Math.max(
+            1,
+            Math.floor(
+                num(
+                    document.getElementById(
+                        "maxBets"
+                    ).value,
+                    1
+                )
+            )
+        );
+
+
+    const candidates =
+        items.filter(item => {
+
+            if (item.history < minHistory) {
+                return false;
+            }
+
+            if (item.odds < minOdds) {
+                return false;
+            }
+
+            if (item.odds > maxOdds) {
+                return false;
+            }
+
+            if (item.ai < minAI) {
+                return false;
+            }
+
+            if (item.ev < minEV) {
+                return false;
+            }
+
+            if (
+                item.finalRank > 3 &&
+                item.aiRank > 3
+            ) {
+                return false;
+            }
+
+            return true;
+
+        });
+
+
+    candidates.sort(
+        (a, b) =>
+            b.ev - a.ev
+    );
+
+
+    return candidates.slice(
+        0,
+        maxBets
+    );
+
+}
+
+
+/* ============================================================
+   STATS
+============================================================ */
+
+function emptyStats() {
+
+    return {
+
+        races: 0,
+
+        predictions: 0,
+
+        bets: 0,
+
+        wins: 0,
+
+        profit: 0,
+
+        turnover: 0,
+
+        maxDD: 0
+
+    };
+
+}
+
+
+function addRaceStats(stats, items, selected) {
+
+    stats.races++;
+
+    stats.predictions +=
+        items.length;
+
+    stats.bets +=
+        selected.length;
+
+
+    selected.forEach(bet => {
+
+        stats.turnover += 1;
+
+        if (bet.finish === 1) {
+
+            stats.wins++;
+
+            stats.profit +=
+                bet.odds - 1;
+
+        } else {
+
+            stats.profit -= 1;
+
+        }
+
+    });
+
+}
+
+
+/* ============================================================
+   BACKTEST
+============================================================ */
+
+function runAnalysis() {
+
+    if (!races.length) {
+
+        alert(
+            "Ladda data först."
+        );
+
+        return;
+
+    }
+
+
+    predictions = [];
+
+    bets = [];
+
+
+    const total =
+        races.length;
+
+
+    const trainEnd =
+        Math.floor(total * 0.60);
+
+    const validationEnd =
+        Math.floor(total * 0.80);
+
+
+    const splitStats = {
+
+        Train: emptyStats(),
+
+        Validation: emptyStats(),
+
+        OOS: emptyStats()
+
+    };
+
+
+    const state =
+        createState();
+
+
+    for (
+        let i = 0;
+        i < total;
+        i++
+    ) {
+
+        const race =
+            races[i];
+
+
+        let split = "OOS";
+
+        if (i < trainEnd) {
+
+            split = "Train";
+
+        } else if (
+            i < validationEnd
+        ) {
+
+            split = "Validation";
+
+        }
+
+
+        const items =
+            analyseRace(
+                race,
+                state
+            );
+
+
+        const selected =
+            selectBets(items);
+
+
+        items.forEach(item => {
+
+            item.split =
+                split;
+
+            item.selected =
+                selected.includes(
+                    item
+                );
+
+            predictions.push(
+                item
+            );
+
+        });
+
+
+        selected.forEach(item => {
+
+            bets.push({
+
+                ...item,
+
+                split: split
+
+            });
+
+        });
+
+
+        addRaceStats(
+            splitStats[split],
+            items,
+            selected
+        );
+
+
+        race.horses.forEach(
+            horse =>
+                updateState(
+                    state,
+                    horse
+                )
+        );
+
+    }
+
+
+    renderStats(
+        splitStats
+    );
+
+    renderSplits(
+        splitStats
+    );
+
+    renderBets();
+
+    renderPredictions();
+
+    renderFactors();
+
+    renderExplanation();
+
+
+    document.getElementById(
+        "dataStatus"
+    ).innerHTML =
+        "Analys klar. " +
+        races.length +
+        " lopp analyserade.";
+
+}
+
+
+/* ============================================================
+   STATS RENDER
+============================================================ */
+
+function finalStats() {
+
+    const stats =
+        emptyStats();
+
+
+    predictions.forEach(() => {
+
+        stats.predictions++;
+
+    });
+
+
+    races.forEach(() => {
+
+        stats.races++;
+
+    });
+
+
+    bets.forEach(bet => {
+
+        stats.bets++;
+
+        stats.turnover++;
+
+        if (bet.finish === 1) {
+
+            stats.wins++;
+
+            stats.profit +=
+                bet.odds - 1;
+
+        } else {
+
+            stats.profit -= 1;
+
+        }
+
+    });
+
+
+    let equity = 0;
+
+    let peak = 0;
+
+    let maxDD = 0;
+
+
+    bets.forEach(bet => {
+
+        if (bet.finish === 1) {
+
+            equity +=
+                bet.odds - 1;
+
+        } else {
+
+            equity -= 1;
+
+        }
+
+        peak =
+            Math.max(
+                peak,
+                equity
+            );
+
+        maxDD =
+            Math.max(
+                maxDD,
+                peak - equity
+            );
+
+    });
+
+
+    stats.maxDD =
+        maxDD;
+
+
+    return stats;
+
+}
+
+
+function renderStats() {
+
+    const stats =
+        finalStats();
+
+
+    document.getElementById(
+        "statRaces"
+    ).textContent =
+        stats.races;
+
+
+    document.getElementById(
+        "statPredictions"
+    ).textContent =
+        stats.predictions;
+
+
+    document.getElementById(
+        "statBets"
+    ).textContent =
+        stats.bets;
+
+
+    document.getElementById(
+        "statWins"
+    ).textContent =
+        stats.wins;
+
+
+    document.getElementById(
+        "statHit"
+    ).textContent =
+        stats.bets
+            ? (
+                stats.wins /
+                stats.bets *
+                100
+            ).toFixed(1) + "%"
+            : "0%";
+
+
+    document.getElementById(
+        "statProfit"
+    ).textContent =
+        stats.profit.toFixed(2);
+
+
+    document.getElementById(
+        "statROI"
+    ).textContent =
+        stats.turnover
+            ? (
+                stats.profit /
+                stats.turnover *
+                100
+            ).toFixed(2) + "%"
+            : "0%";
+
+
+    document.getElementById(
+        "statDD"
+    ).textContent =
+        stats.maxDD.toFixed(2);
+
+}
+
+
+/* ============================================================
+   SPLITS
+============================================================ */
+
+function renderSplits(splitStats) {
+
+    const tbody =
+        document.getElementById(
+            "splitTable"
+        );
+
+
+    tbody.innerHTML = "";
+
+
+    ["Train", "Validation", "OOS"]
+        .forEach(name => {
+
+            const s =
+                splitStats[name];
+
+
+            const hit =
+                s.bets
+                    ? s.wins /
+                      s.bets *
+                      100
+                    : 0;
+
+
+            const roi =
+                s.turnover
+                    ? s.profit /
+                      s.turnover *
+                      100
+                    : 0;
+
+
+            tbody.innerHTML += `
+
+                <tr>
+
+                    <td>${name}</td>
+
+                    <td>${s.races}</td>
+
+                    <td>${s.predictions}</td>
+
+                    <td>${s.bets}</td>
+
+                    <td>${s.wins}</td>
+
+                    <td>${hit.toFixed(1)}%</td>
+
+                    <td>${s.profit.toFixed(2)}</td>
+
+                    <td>${roi.toFixed(2)}%</td>
+
+                </tr>
+
+            `;
+
+        });
+
+}
+
+
+/* ============================================================
+   BET TABLE
+============================================================ */
+
+function renderBets() {
+
+    const tbody =
+        document.getElementById(
+            "betTable"
+        );
+
+
+    tbody.innerHTML = "";
+
+
+    bets.slice(-200)
+        .forEach(bet => {
+
+            const result =
+                bet.finish === 1
+                    ? "VINST"
+                    : "Förlust";
+
+
+            tbody.innerHTML += `
+
+                <tr>
+
+                    <td>${esc(bet.date)}</td>
+
+                    <td>${esc(bet.race)}</td>
+
+                    <td>${esc(bet.horse)}</td>
+
+                    <td>${bet.number}</td>
+
+                    <td>${bet.odds.toFixed(2)}</td>
+
+                    <td>${percent(bet.ai)}</td>
+
+                    <td>${percent(bet.market)}</td>
+
+                    <td>${percent(bet.final)}</td>
+
+                    <td>${percent(bet.ev)}</td>
+
+                    <td>${result}</td>
+
+                </tr>
+
+            `;
+
+        });
+
+}
+
+
+/* ============================================================
+   PREDICTION TABLE
+============================================================ */
+
+function renderPredictions() {
+
+    const tbody =
+        document.getElementById(
+            "predictionTable"
+        );
+
+
+    tbody.innerHTML = "";
+
+
+    predictions.slice(-150)
+        .forEach(item => {
+
+            let decision =
+                "PASS";
+
+
+            if (item.selected) {
+                decision = "SPEL";
+            }
+
+
+            tbody.innerHTML += `
+
+                <tr>
+
+                    <td>${esc(item.date)}</td>
+
+                    <td>${esc(item.race)}</td>
+
+                    <td>${item.number}</td>
+
+                    <td>${esc(item.horse)}</td>
+
+                    <td>${item.odds.toFixed(2)}</td>
+
+                    <td>${percent(item.ai)}</td>
+
+                    <td>${percent(item.market)}</td>
+
+                    <td>${percent(item.final)}</td>
+
+                    <td>${percent(item.ev)}</td>
+
+                    <td>${item.aiRank}</td>
+
+                    <td>${item.finalRank}</td>
+
+                    <td>${decision}</td>
+
+                </tr>
+
+            `;
+
+        });
+
+}
+
+
+/* ============================================================
+   FACTORS
+============================================================ */
+
+function renderFactors() {
+
+    const tbody =
+        document.getElementById(
+            "factorTable"
+        );
+
+
+    tbody.innerHTML = `
+
+        <tr>
+            <td>Form</td>
+            <td>Senaste registrerade tider används för att uppskatta aktuell form.</td>
+        </tr>
+
+        <tr>
+            <td>Vinstprocent</td>
+            <td>Historisk andel vinster för hästen.</td>
+        </tr>
+
+        <tr>
+            <td>Platsprocent</td>
+            <td>Historisk andel topp-3-resultat.</td>
+        </tr>
+
+        <tr>
+            <td>Galopprisk</td>
+            <td>Galopper minskar AI-score.</td>
+        </tr>
+
+        <tr>
+            <td>Kusk</td>
+            <td>Historisk vinstprocent för kusken.</td>
+        </tr>
+
+        <tr>
+            <td>Tränare</td>
+            <td>Historisk vinstprocent för tränaren.</td>
+        </tr>
+
+        <tr>
+            <td>Distans</td>
+            <td>Modellen tar hänsyn till tidigare starter på aktuell distans.</td>
+        </tr>
+
+        <tr>
+            <td>Startnummer</td>
+            <td>En liten strukturell justering för startnummer.</td>
+        </tr>
+
+        <tr>
+            <td>Marknad</td>
+            <td>Separat sannolikhet baserad på odds/streck. Används inte i själva AI-score.</td>
+        </tr>
+
+    `;
+
+}
+
+
+/* ============================================================
+   EXPLANATION
+============================================================ */
+
+function renderExplanation() {
+
+    document.getElementById(
+        "explanation"
+    ).textContent =
+
+`TRAV AI V3.2
+
+1. Historiska lopp läses in kronologiskt.
+
+2. Modellen bygger endast sin historik från lopp som redan har körts.
+
+3. För varje nytt lopp räknas AI-probabilitet ut innan resultatet läggs till i historiken.
+
+4. AI:n använder bland annat:
+   - form
+   - vinstprocent
+   - platsprocent
+   - galopprisk
+   - kusk
+   - tränare
+   - distanserfarenhet
+   - startnummer
+
+5. Marknadsprobabiliteten beräknas separat från AI:n.
+
+6. Final probability är en blandning mellan AI och marknad.
+
+7. EV beräknas:
+   
+   EV = sannolikhet × odds - 1
+
+8. Ett spel måste klara:
+   - minsta historik
+   - oddsintervall
+   - minsta AI-probabilitet
+   - minsta EV
+   - AI-rank eller final-rank inom topp 3
+
+9. Backtest delas:
+   - 60 % Train
+   - 20 % Validation
+   - 20 % OOS
+
+VIKTIGT:
+
+OOS är den viktigaste siffran.
+
+Ett högt resultat på testdata betyder inte automatiskt att modellen fungerar på riktiga travdata.
+
+Nästa steg är att mata modellen med riktiga historiska travresultat och därefter kontrollera om resultatet håller även OOS.`;
+
+}
+
+
+/* ============================================================
+   LOAD CSV
+============================================================ */
+
+function loadCSV() {
+
+    const text =
+        document.getElementById(
+            "csvInput"
+        ).value;
+
+
+    if (!text.trim()) {
+
+        alert(
+            "Klistra in CSV-data först."
+        );
+
+        return;
+
+    }
+
+
+    const rows =
+        parseCSV(text);
+
+
+    if (!rows.length) {
+
+        alert(
+            "Kunde inte läsa CSV-data."
+        );
+
+        return;
+
+    }
+
+
+    races =
+        groupRaces(rows);
+
+
+    document.getElementById(
+        "dataStatus"
+    ).innerHTML =
+
+        "CSV laddad: " +
+
+        rows.length +
+
+        " rader, " +
+
+        races.length +
+
+        " lopp.";
+
+}
+
+
+/* ============================================================
+   CLEAR
+============================================================ */
+
+function clearAll() {
+
+    races = [];
+
+    predictions = [];
+
+    bets = [];
+
+
+    document.getElementById(
+        "csvInput"
+    ).value = "";
+
+
+    document.getElementById(
+        "dataStatus"
+    ).textContent =
+        "Ingen data laddad.";
+
+
+    document.getElementById(
+        "splitTable"
+    ).innerHTML = "";
+
+
+    document.getElementById(
+        "betTable"
+    ).innerHTML = "";
+
+
+    document.getElementById(
+        "predictionTable"
+    ).innerHTML = "";
+
+
+    document.getElementById(
+        "statRaces"
+    ).textContent = "0";
+
+
+    document.getElementById(
+        "statPredictions"
+    ).textContent = "0";
+
+
+    document.getElementById(
+        "statBets"
+    ).textContent = "0";
+
+
+    document.getElementById(
+        "statWins"
+    ).textContent = "0";
+
+
+    document.getElementById(
+        "statHit"
+    ).textContent = "0%";
+
+
+    document.getElementById(
+        "statROI"
+    ).textContent = "0%";
+
+
+    document.getElementById(
+        "statProfit"
+    ).textContent = "0";
+
+
+    document.getElementById(
+        "statDD"
+    ).textContent = "0";
+
+}
+
+
+/* ============================================================
    START
-========================================================= */
+============================================================ */
 
-window.addEventListener("load",()=>{
+loadTestData();
 
-  loadExample();
+renderFactors();
 
-});
+renderExplanation();
 
 </script>
 

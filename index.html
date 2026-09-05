@@ -1,4169 +1,3134 @@
 <!DOCTYPE html>
 <html lang="sv">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>TRAV AI V31.1</title>
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1"
+>
+
+<title>TRAV AI V32</title>
 
 <style>
-:root{
-  --bg:#080d18;
-  --panel:#121a2b;
-  --panel2:#18243b;
-  --line:#2a3958;
-  --text:#eef4ff;
-  --muted:#91a1bf;
-  --green:#38d996;
-  --yellow:#ffd166;
-  --red:#ff667d;
-  --blue:#58a6ff;
-  --orange:#ff9f43;
-}
 
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
 
 body{
   margin:0;
-  color:var(--text);
-  background:
-    radial-gradient(circle at 80% 0,#192947 0,#0b1120 38%,#070b14 100%);
-  font-family:Arial,Helvetica,sans-serif;
+  background:#0d1117;
+  color:#e6edf3;
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
 }
 
 header{
-  position:sticky;
-  top:0;
-  z-index:20;
-  background:rgba(7,11,20,.96);
-  backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--line);
-}
-
-.header-inner{
-  max-width:1550px;
-  margin:auto;
-  padding:17px 24px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+  padding:24px;
+  background:#111827;
+  border-bottom:1px solid #263241;
 }
 
 .logo{
-  font-size:27px;
+  font-size:28px;
   font-weight:900;
-  letter-spacing:1px;
+  letter-spacing:2px;
 }
 
-.logo span{color:var(--green)}
-
-.status{
-  display:flex;
-  gap:8px;
-  align-items:center;
-  color:var(--muted);
-  font-size:12px;
+.sub{
+  margin-top:6px;
+  color:#8b98a9;
+  font-size:13px;
 }
 
-.dot{
-  width:9px;
-  height:9px;
-  border-radius:50%;
-  background:var(--yellow);
-}
-
-.dot.online{
-  background:var(--green);
-  box-shadow:0 0 12px var(--green);
-}
-
-.dot.error{
-  background:var(--red);
-}
-
-main{
-  max-width:1550px;
+.container{
+  max-width:1500px;
   margin:auto;
-  padding:24px;
-}
-
-.layout{
-  display:grid;
-  grid-template-columns:330px 1fr;
-  gap:20px;
-}
-
-@media(max-width:1000px){
-  .layout{
-    grid-template-columns:1fr;
-  }
-}
-
-.panel{
-  background:rgba(18,26,43,.96);
-  border:1px solid var(--line);
-  border-radius:15px;
   padding:20px;
-  box-shadow:0 15px 50px rgba(0,0,0,.25);
 }
 
-h2,h3{
-  margin-top:0;
+.controls{
+  display:grid;
+  grid-template-columns:
+    repeat(auto-fit,minmax(220px,1fr));
+  gap:12px;
+  margin-bottom:18px;
 }
 
-h2{
-  font-size:20px;
-}
-
-h3{
-  font-size:15px;
-}
-
-label{
-  display:block;
-  margin-top:14px;
-  margin-bottom:6px;
-  color:var(--muted);
-  font-size:11px;
-}
-
-input,select,button{
+button,
+input{
   width:100%;
-  border:1px solid var(--line);
-  border-radius:9px;
-  padding:11px 12px;
-  font-size:14px;
-}
-
-input,select{
-  background:#0b1323;
-  color:var(--text);
+  padding:13px;
+  border-radius:8px;
+  border:1px solid #344052;
+  background:#111827;
+  color:#fff;
 }
 
 button{
   cursor:pointer;
-  color:var(--text);
-  background:#202d47;
-  font-weight:900;
+  font-weight:800;
 }
 
 button:hover{
-  filter:brightness(1.12);
+  background:#1a2535;
 }
 
-button:disabled{
-  opacity:.5;
+.primary{
+  background:#172554;
+  border-color:#2563eb;
 }
 
-.btn-main{
-  margin-top:20px;
-  padding:14px;
-  border:0;
-  background:var(--green);
-  color:#06150f;
+.success{
+  color:#4ade80;
 }
 
-.btn-danger{
-  margin-top:10px;
-  background:#391c29;
-  color:#ffadbb;
+.warning{
+  color:#fbbf24;
+}
+
+.danger{
+  color:#fb7185;
 }
 
 .info{
-  margin-top:15px;
-  padding:13px;
-  border:1px solid var(--line);
-  border-radius:10px;
-  background:#0b1323;
-  color:var(--muted);
-  font-size:11px;
-  line-height:1.55;
-}
-
-.source{
-  margin-top:15px;
-  padding:13px;
-  border:1px dashed var(--line);
-  border-radius:10px;
-  background:#0b1323;
-}
-
-.source-title{
-  font-size:12px;
-  font-weight:900;
-}
-
-.source-small{
-  margin-top:5px;
-  color:var(--muted);
-  font-size:10px;
-  line-height:1.45;
+  color:#60a5fa;
 }
 
 .message{
-  display:none;
+  padding:12px;
+  border-radius:8px;
   margin-bottom:15px;
-  padding:13px;
-  border-radius:10px;
-  font-size:12px;
+  display:none;
 }
 
 .message.show{
   display:block;
 }
 
-.message.info{
-  background:#10243b;
-  border:1px solid #28537e;
-  color:#acd7ff;
+.info-msg{
+  background:#172033;
 }
 
-.message.success{
-  background:#0c2d24;
-  border:1px solid #21674f;
-  color:#9af0cc;
+.success-msg{
+  background:#10251a;
 }
 
-.message.error{
-  background:#321923;
-  border:1px solid #743444;
-  color:#ffadb9;
+.error-msg{
+  background:#2a1418;
+}
+
+.warning-msg{
+  background:#2b2110;
 }
 
 .progress{
   display:none;
-  height:7px;
-  margin-top:10px;
+  margin:15px 0;
+  background:#161f2c;
+  height:8px;
+  border-radius:5px;
   overflow:hidden;
-  border-radius:20px;
-  background:#202b42;
 }
 
 .progress.show{
   display:block;
 }
 
-.progress-bar{
+.progressBar{
+  width:0%;
   height:100%;
-  width:0;
-  background:var(--green);
-  transition:width .25s;
+  background:#3b82f6;
+  transition:width .2s;
 }
 
 .cards{
   display:grid;
-  grid-template-columns:repeat(6,1fr);
+  grid-template-columns:
+    repeat(auto-fit,minmax(150px,1fr));
   gap:10px;
-  margin-bottom:18px;
-}
-
-@media(max-width:1200px){
-  .cards{
-    grid-template-columns:repeat(3,1fr);
-  }
-}
-
-@media(max-width:650px){
-  .cards{
-    grid-template-columns:repeat(2,1fr);
-  }
+  margin-bottom:20px;
 }
 
 .card{
-  padding:13px;
-  border:1px solid var(--line);
-  border-radius:11px;
-  background:#0d1526;
-}
-
-.card-title{
-  color:var(--muted);
-  font-size:9px;
-}
-
-.card-value{
-  margin-top:5px;
-  font-size:18px;
-  font-weight:900;
-}
-
-.green{color:var(--green)}
-.yellow{color:var(--yellow)}
-.red{color:var(--red)}
-.blue{color:var(--blue)}
-.orange{color:var(--orange)}
-.muted{color:var(--muted)}
-
-.quality{
-  margin-top:14px;
-  padding:12px;
-  border:1px solid var(--line);
+  background:#111827;
+  border:1px solid #263241;
+  padding:15px;
   border-radius:10px;
-  background:#0b1323;
 }
 
-.quality-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:6px;
-  margin-top:8px;
+.card .label{
+  color:#8190a4;
+  font-size:11px;
+  text-transform:uppercase;
 }
 
-.quality-item{
-  color:var(--muted);
-  font-size:10px;
-}
-
-.quality-item b{
-  color:var(--text);
-}
-
-.history-state{
-  margin-top:12px;
-  padding:10px;
-  border-radius:9px;
-  background:#1b1820;
-  border:1px solid #443346;
-  color:var(--yellow);
-  font-size:10px;
-  line-height:1.45;
-}
-
-.history-state.loaded{
-  background:#0d2922;
-  border-color:#236b55;
-  color:var(--green);
+.card .value{
+  font-size:22px;
+  font-weight:900;
+  margin-top:6px;
 }
 
 .race{
-  margin-bottom:18px;
+  margin:25px 0;
+  border:1px solid #263241;
+  border-radius:12px;
   overflow:hidden;
-  border:1px solid var(--line);
-  border-radius:14px;
-  background:#10192b;
+  background:#0f1621;
 }
 
-.race-head{
+.raceHead{
+  padding:16px;
+  background:#151e2b;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  gap:15px;
-  padding:15px 17px;
-  background:#17233b;
-  border-bottom:1px solid var(--line);
+  gap:10px;
+  flex-wrap:wrap;
 }
 
-.race-title{
-  font-size:18px;
+.raceTitle{
+  font-size:19px;
   font-weight:900;
 }
 
-.race-meta{
-  margin-top:4px;
-  color:var(--muted);
-  font-size:11px;
+.raceMeta{
+  color:#9aa8b9;
+  font-size:12px;
 }
 
-.badges{
-  display:flex;
-  gap:6px;
-  flex-wrap:wrap;
-  justify-content:flex-end;
+table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+th{
+  text-align:left;
+  font-size:11px;
+  color:#8492a4;
+  padding:10px;
+  background:#111827;
+}
+
+td{
+  padding:10px;
+  border-top:1px solid #202b39;
+  font-size:13px;
+}
+
+tr.scratched{
+  opacity:.35;
+  text-decoration:line-through;
+}
+
+.num{
+  width:35px;
+  font-weight:900;
+}
+
+.horse{
+  font-weight:800;
+}
+
+.top{
+  font-weight:900;
 }
 
 .badge{
-  padding:6px 8px;
-  border-radius:7px;
-  background:#202d47;
-  color:#c9d5e9;
-  font-size:9px;
+  display:inline-block;
+  padding:4px 7px;
+  border-radius:5px;
+  background:#1c2634;
+  font-size:11px;
+}
+
+.valuePositive{
+  color:#4ade80;
   font-weight:900;
 }
 
-.badge.spike{
-  background:#403512;
-  color:var(--yellow);
+.valueNegative{
+  color:#fb7185;
 }
 
-.badge.lock{
-  background:#12352d;
-  color:var(--green);
+.prob{
+  font-weight:900;
 }
 
-.badge.guard{
-  background:#252d43;
-  color:#b5c2da;
+.small{
+  color:#8190a4;
+  font-size:11px;
 }
 
-.horse-head,
-.horse{
+.modelBox{
+  padding:16px;
+  background:#111827;
+  border:1px solid #263241;
+  border-radius:10px;
+  margin-bottom:20px;
+}
+
+.modelGrid{
   display:grid;
   grid-template-columns:
-    45px
-    minmax(170px,1.6fr)
-    80px
-    80px
-    80px
-    80px
-    80px
-    80px
-    90px;
-  gap:9px;
-  align-items:center;
+    repeat(auto-fit,minmax(180px,1fr));
+  gap:10px;
 }
 
-.horse-head{
-  padding:8px 12px;
-  background:#0d1525;
-  color:var(--muted);
-  font-size:8px;
-}
-
-.horse{
-  padding:12px;
-  border-bottom:1px solid rgba(42,57,88,.65);
-}
-
-.horse:last-child{
-  border-bottom:0;
-}
-
-@media(max-width:1250px){
-
-  .horse-head{
-    display:none;
-  }
-
-  .horse{
-    grid-template-columns:
-      40px
-      1fr
-      75px
-      75px
-      85px;
-  }
-
-  .optional{
-    display:none!important;
-  }
-}
-
-.number{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  width:34px;
-  height:34px;
+.modelItem{
+  padding:10px;
+  background:#0d141e;
   border-radius:8px;
-  background:#222f4a;
-  font-weight:900;
 }
 
-.name{
-  font-size:13px;
-  font-weight:900;
-}
-
-.sub{
+.modelItem strong{
+  display:block;
   margin-top:4px;
-  color:var(--muted);
-  font-size:9px;
-  line-height:1.45;
-}
-
-.metric{
-  text-align:right;
-}
-
-.metric-label{
-  color:var(--muted);
-  font-size:8px;
-}
-
-.metric-value{
-  margin-top:3px;
-  font-size:12px;
-  font-weight:900;
-}
-
-.pick{
-  padding:7px 4px;
-  border-radius:7px;
-  background:#172238;
-  color:var(--muted);
-  text-align:center;
-  font-size:9px;
-  font-weight:900;
-}
-
-.pick.top{
-  background:#103a2e;
-  color:var(--green);
-}
-
-.pick.value{
-  background:#3d2812;
-  color:var(--orange);
-}
-
-.pick.spike{
-  background:#403512;
-  color:var(--yellow);
-}
-
-.recommend{
-  padding:16px;
-  background:#0b1322;
-  border-top:1px solid var(--line);
-}
-
-.recommend-title{
-  color:var(--muted);
-  font-size:9px;
-  letter-spacing:1px;
-}
-
-.recommend-main{
-  margin-top:5px;
-  font-size:19px;
-  font-weight:900;
-}
-
-.reason{
-  margin-top:6px;
-  color:var(--muted);
-  font-size:10px;
-  line-height:1.5;
 }
 
 .system{
-  margin-top:20px;
+  margin-top:25px;
   padding:18px;
-  border:1px solid var(--green);
-  border-radius:14px;
-  background:#0b211b;
+  background:#101827;
+  border:1px solid #334155;
+  border-radius:12px;
 }
 
-.system-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-.system-title{
-  font-size:20px;
-  font-weight:900;
-}
-
-.system-cost{
-  color:var(--green);
-  font-size:24px;
-  font-weight:900;
-}
-
-.system-row{
+.systemRows{
   display:grid;
-  grid-template-columns:70px 1fr 100px;
-  gap:10px;
-  align-items:center;
-  padding:10px 0;
-  border-bottom:1px solid rgba(56,217,150,.15);
+  grid-template-columns:
+    repeat(auto-fit,minmax(130px,1fr));
+  gap:8px;
+  margin-top:12px;
 }
 
-.system-row:last-child{
-  border-bottom:0;
-}
-
-.system-row strong{
-  color:var(--yellow);
-}
-
-.system-horse{
-  display:inline-block;
-  margin:3px;
-  padding:6px 8px;
+.systemCell{
+  padding:10px;
+  background:#0c121c;
   border-radius:7px;
-  background:#172d2a;
-  font-size:10px;
-  font-weight:900;
 }
 
 .empty{
-  padding:70px 20px;
-  color:var(--muted);
+  padding:35px;
   text-align:center;
+  color:#7e8da0;
 }
 
-.empty strong{
-  display:block;
-  margin-bottom:10px;
-  color:var(--text);
-  font-size:19px;
+.historyBar{
+  height:7px;
+  background:#202a38;
+  border-radius:5px;
+  overflow:hidden;
+  margin-top:5px;
 }
 
-.footer{
-  max-width:1550px;
-  margin:auto;
-  padding:10px 24px 35px;
-  color:#65728b;
-  font-size:9px;
+.historyBar div{
+  height:100%;
+  width:0;
+  background:#3b82f6;
 }
 
-hr{
-  margin:20px 0;
-  border:0;
-  border-top:1px solid var(--line);
+@media(max-width:700px){
+
+  table{
+    font-size:11px;
+  }
+
+  td,th{
+    padding:7px 5px;
+  }
+
+  .hideMobile{
+    display:none;
+  }
 }
+
 </style>
+
 </head>
 
 <body>
 
 <header>
-<div class="header-inner">
 
-<div class="logo">
-TRAV <span>AI</span> V31.1
-</div>
+  <div class="logo">
+    TRAV AI V32
+  </div>
 
-<div class="status">
-<div id="statusDot" class="dot"></div>
-<span id="statusText">Kontrollerar V29...</span>
-</div>
+  <div class="sub">
+    Historik + form + kusk + balans + marknad + VALUE
+  </div>
 
-</div>
 </header>
 
+<div class="container">
+
+  <div class="controls">
+
+    <button
+      id="runBtn"
+      class="primary"
+    >
+      HÄMTA V85 & ANALYSERA
+    </button>
+
+    <button
+      id="historyBtn"
+    >
+      HÄMTA HISTORIK
+    </button>
+
+    <button
+      id="systemBtn"
+    >
+      BYGG SYSTEM
+    </button>
+
+    <button
+      id="clearBtn"
+    >
+      Rensa
+    </button>
+
+  </div>
+
+  <div id="message" class="message"></div>
+
+  <div id="progress" class="progress">
+    <div
+      id="progressBar"
+      class="progressBar"
+    ></div>
+  </div>
+
+  <div class="cards">
+
+    <div class="card">
+      <div class="label">
+        Bana
+      </div>
+      <div
+        id="cardTrack"
+        class="value"
+      >
+        –
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="label">
+        Lopp
+      </div>
+      <div
+        id="cardRaces"
+        class="value"
+      >
+        0
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="label">
+        Hästar
+      </div>
+      <div
+        id="cardHorses"
+        class="value"
+      >
+        0
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="label">
+        Strukna
+      </div>
+      <div
+        id="cardScratched"
+        class="value"
+      >
+        0
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="label">
+        Historik
+      </div>
+      <div
+        id="cardHistory"
+        class="value"
+      >
+        0
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="label">
+        Topp AI
+      </div>
+      <div
+        id="cardTop"
+        class="value"
+      >
+        –
+      </div>
+    </div>
+
+  </div>
+
+  <div
+    id="modelBox"
+    class="modelBox"
+  >
+
+    <strong>
+      AI-MODELL V32
+    </strong>
+
+    <div class="small">
+      Historiken används som huvudsignal.
+      Marknaden används som separat prior.
+      AI % är modellens relativa vinstsannolikhet
+      inom loppet.
+    </div>
+
+    <br>
+
+    <div class="modelGrid">
+
+      <div class="modelItem">
+        Historik
+        <strong id="modelHistory">
+          EJ LADDAD
+        </strong>
+      </div>
+
+      <div class="modelItem">
+        Senaste form
+        <strong id="modelForm">
+          –
+        </strong>
+      </div>
+
+      <div class="modelItem">
+        Kusk
+        <strong id="modelDriver">
+          –
+        </strong>
+      </div>
+
+      <div class="modelItem">
+        Galopprisk
+        <strong id="modelGallop">
+          –
+        </strong>
+      </div>
+
+      <div class="modelItem">
+        Datatäckning
+        <strong id="modelCoverage">
+          0%
+        </strong>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div id="results">
+
+    <div class="empty">
+
+      Tryck på
+      <strong>
+        HÄMTA V85 & ANALYSERA
+      </strong>
+      för att starta.
+
+    </div>
+
+  </div>
+
+  <div
+    id="system"
+    class="system"
+    style="display:none"
+  ></div>
 
-<main>
-
-<div class="layout">
-
-
-<!-- ======================================================
-     VÄNSTER
-====================================================== -->
-
-<section class="panel">
-
-<h2>TRAV AI</h2>
-
-<label>Spelform</label>
-
-<select id="game">
-<option>V85</option>
-<option>V86</option>
-<option>V75</option>
-<option>V65</option>
-<option>V64</option>
-<option>V5</option>
-<option>V4</option>
-<option>V3</option>
-<option>GS75</option>
-<option>DD</option>
-</select>
-
-
-<label>Datum</label>
-
-<input
-id="date"
-type="date"
->
-
-
-<label>Budget kr</label>
-
-<input
-id="budget"
-type="number"
-value="500"
-min="1"
->
-
-
-<label>Max hästar per lopp</label>
-
-<input
-id="maxHorses"
-type="number"
-value="5"
-min="1"
-max="15"
->
-
-
-<label>Min AI-vinstchans %</label>
-
-<input
-id="minAI"
-type="number"
-value="6"
-min="0"
-max="100"
->
-
-
-<label>Min VALUE %</label>
-
-<input
-id="minEdge"
-type="number"
-value="0"
-min="-100"
-max="200"
->
-
-
-<label>Max galopprisk %</label>
-
-<input
-id="maxGallop"
-type="number"
-value="35"
-min="0"
-max="100"
->
-
-
-<button
-id="analyzeBtn"
-class="btn-main"
->
-HÄMTA & ANALYSERA
-</button>
-
-
-<button
-id="clearBtn"
-class="btn-danger"
->
-Rensa
-</button>
-
-
-<div class="source">
-
-<div
-id="sourceStatus"
-class="source-title"
->
-V29 kontrolleras...
-</div>
-
-<div
-id="sourceText"
-class="source-small"
->
-Cloudflare Worker
-</div>
-
-<div
-id="progress"
-class="progress"
->
-<div
-id="progressBar"
-class="progress-bar"
-></div>
-</div>
-
-</div>
-
-
-<div class="quality">
-
-<strong style="font-size:11px">
-DATAKVALITET
-</strong>
-
-<div
-id="qualityGrid"
-class="quality-grid"
->
-
-<div class="quality-item">
-Lopp: <b>–</b>
-</div>
-
-<div class="quality-item">
-Hästar: <b>–</b>
-</div>
-
-<div class="quality-item">
-Aktiva: <b>–</b>
-</div>
-
-<div class="quality-item">
-Strykningar: <b>–</b>
-</div>
-
-<div class="quality-item">
-Balans: <b>–</b>
-</div>
-
-<div class="quality-item">
-Trend: <b>–</b>
-</div>
-
-<div class="quality-item">
-Parser: <b>–</b>
-</div>
-
-<div class="quality-item">
-Datum: <b>–</b>
-</div>
-
-</div>
-
-</div>
-
-
-<div
-id="historyState"
-class="history-state"
->
-⚠ Historik saknas – AI:n kör dagens data
-utan att låtsas att form/kusk/galopp är
-verifierad statistik.
-</div>
-
-
-<div class="info">
-
-<strong>V31.1 – modellstatus</strong>
-
-<br><br>
-
-<strong>AI %</strong> är modellens relativa
-sannolikhetsfördelning inom loppet.
-
-<br><br>
-
-<strong>V85 %</strong> är marknadens streckandel
-och ska inte betraktas som faktisk
-vinstsannolikhet.
-
-<br><br>
-
-<strong>VALUE</strong> =
-AI % − V85 %.
-
-<br><br>
-
-Historik används automatiskt när en
-historik-CSV finns laddad.
-
-</div>
-
-
-<hr>
-
-
-<h3>Historisk data</h3>
-
-<label>
-Historik CSV
-</label>
-
-<input
-id="historyFile"
-type="file"
-accept=".csv,text/csv"
->
-
-<div class="source-small">
-
-Kolumner som stöds:
-
-datum,lopp,start,häst,kusk,tränare,
-placering,tid,distans,galopp,odds
-
-<br><br>
-
-Minst häst + placering krävs för
-formstatistik.
-
-</div>
-
-
-<hr>
-
-
-<h3>Reserv-startlista</h3>
-
-<label>
-Startlista CSV
-</label>
-
-<input
-id="startFile"
-type="file"
-accept=".csv,text/csv"
->
-
-</section>
-
-
-<!-- ======================================================
-     HÖGER
-====================================================== -->
-
-<section>
-
-<div
-id="message"
-class="message"
-></div>
-
-
-<div class="cards">
-
-<div class="card">
-<div class="card-title">LOPP</div>
-<div
-id="cardRaces"
-class="card-value"
->
-0
-</div>
-</div>
-
-<div class="card">
-<div class="card-title">HÄSTAR</div>
-<div
-id="cardHorses"
-class="card-value"
->
-0
-</div>
-</div>
-
-<div class="card">
-<div class="card-title">AKTIVA</div>
-<div
-id="cardActive"
-class="card-value green"
->
-0
-</div>
-</div>
-
-<div class="card">
-<div class="card-title">STRUKNA</div>
-<div
-id="cardScratched"
-class="card-value red"
->
-0
-</div>
-</div>
-
-<div class="card">
-<div class="card-title">AI-TOPP</div>
-<div
-id="cardTop"
-class="card-value green"
->
-–
-</div>
-</div>
-
-<div class="card">
-<div class="card-title">SYSTEM</div>
-<div
-id="cardSystem"
-class="card-value yellow"
->
-–
-</div>
-</div>
-
-</div>
-
-
-<div
-id="results"
-class="panel"
->
-
-<div class="empty">
-
-<strong>
-TRAV AI V31.1
-</strong>
-
-Hämta dagens startlista och kör
-AI-analysen.
-
-</div>
-
-</div>
-
-</section>
-
-</div>
-
-</main>
-
-
-<div class="footer">
-TRAV AI V31.1 – marknad, form, balans,
-trend, startläge, distans, VALUE,
-galopprisk och systemgenerator.
 </div>
 
 
 <script>
 
 /* ============================================================
-   KONFIGURATION
-============================================================ */
+   CONFIG
+   ============================================================ */
 
-const PROXY =
-"https://trav-ai-proxy.fredrik-widingsel.workers.dev";
+const API =
+  "https://trav-ai-proxy.fredrik-widingsel.workers.dev";
 
-const DATA_URL =
-PROXY + "/data";
+let startData = null;
 
+let historyData = {};
 
-let historyData=[];
-let startData=[];
-let analyzedRaces=[];
-let lastData=null;
+let analyzedRaces = [];
 
 
 /* ============================================================
-   BASFUNKTIONER
-============================================================ */
+   HELPERS
+   ============================================================ */
 
-function todayISO(){
-
-const d=new Date();
-
-return [
-d.getFullYear(),
-String(d.getMonth()+1).padStart(2,"0"),
-String(d.getDate()).padStart(2,"0")
-].join("-");
-}
-
-
-document.getElementById("date").value=
-todayISO();
-
-
-function text(v){
-
-if(v===null || v===undefined)
-return "";
-
-return String(v).trim();
+function $(id){
+  return document.getElementById(id);
 }
 
 
 function num(v){
 
-if(v===null || v===undefined || v==="")
-return 0;
+  const n =
+    Number(v);
 
-const n=parseFloat(
-String(v)
-.replace(",",".")
-.replace("%","")
-.trim()
-);
-
-return Number.isFinite(n)?n:0;
+  return Number.isFinite(n) ?
+    n :
+    0;
 }
 
 
 function clamp(v,min,max){
 
-return Math.max(
-min,
-Math.min(max,v)
-);
+  return Math.max(
+    min,
+    Math.min(
+      max,
+      v
+    )
+  );
 }
 
 
-function norm(v){
+function text(v){
 
-return text(v)
-.toLowerCase()
-.normalize("NFD")
-.replace(/[\u0300-\u036f]/g,"")
-.replace(/[^a-z0-9]/g,"");
+  return v == null ?
+    "" :
+    String(v);
 }
 
 
-function escapeHTML(v){
+function esc(v){
 
-return text(v)
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
+  return text(v)
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+    .replace(
+      /</g,
+      "&lt;"
+    )
+    .replace(
+      />/g,
+      "&gt;"
+    )
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+    .replace(
+      /'/g,
+      "&#039;"
+    );
 }
 
 
-/* ============================================================
-   CSV
-============================================================ */
+function mean(values){
 
-function parseCSV(csv){
+  const a =
+    values
+      .filter(
+        x =>
+          Number.isFinite(x)
+      );
 
-const rows=[];
-let row=[];
-let cell="";
-let quote=false;
+  if (!a.length)
+    return null;
 
-for(let i=0;i<csv.length;i++){
-
-const c=csv[i];
-const next=csv[i+1];
-
-if(c==='"' && quote && next==='"'){
-
-cell+='"';
-i++;
-continue;
-
-}
-
-if(c==='"'){
-
-quote=!quote;
-continue;
-
-}
-
-if(
-(c===";" || c===",") &&
-!quote
-){
-
-row.push(cell);
-cell="";
-continue;
-
-}
-
-if(
-c==="\n" &&
-!quote
-){
-
-row.push(cell);
-
-if(
-row.some(
-x=>text(x)!==""
-)
-)
-rows.push(row);
-
-row=[];
-cell="";
-continue;
-
-}
-
-if(c!=="\r")
-cell+=c;
-
-}
-
-row.push(cell);
-
-if(
-row.some(
-x=>text(x)!==""
-)
-)
-rows.push(row);
-
-
-if(rows.length<2)
-return [];
-
-
-const headers=
-rows[0].map(
-x=>text(x)
-);
-
-
-return rows
-.slice(1)
-.map(r=>{
-
-const o={};
-
-headers.forEach(
-(h,i)=>{
-o[h]=r[i]??"";
-}
-);
-
-return o;
-
-});
-
+  return (
+    a.reduce(
+      (s,x)=>s+x,
+      0
+    ) /
+    a.length
+  );
 }
 
 
-function getField(row,keys){
+function sigmoid(x){
 
-for(const wanted of keys){
-
-const wn=norm(wanted);
-
-for(const actual of Object.keys(row)){
-
-if(norm(actual)===wn){
-
-if(
-row[actual]!==undefined &&
-row[actual]!==null &&
-row[actual]!==""
-)
-return row[actual];
-
-}
-
-}
-
-}
-
-return "";
+  return 1 /
+    (
+      1 +
+      Math.exp(-x)
+    );
 }
 
 
-function normalizeHistoryRow(row){
+function normalizeName(value){
 
-return {
-
-date:getField(
-row,
-[
-"datum",
-"date"
-]
-),
-
-race:getField(
-row,
-[
-"lopp",
-"race",
-"avdelning"
-]
-),
-
-start:getField(
-row,
-[
-"start",
-"startnummer",
-"spår",
-"spar"
-]
-),
-
-horse:getField(
-row,
-[
-"häst",
-"hast",
-"horse",
-"horsename"
-]
-),
-
-driver:getField(
-row,
-[
-"kusk",
-"driver"
-]
-),
-
-trainer:getField(
-row,
-[
-"tränare",
-"tranare",
-"trainer"
-]
-),
-
-position:num(
-getField(
-row,
-[
-"placering",
-"position",
-"place",
-"finish"
-]
-)
-),
-
-time:getField(
-row,
-[
-"tid",
-"time",
-"rekord"
-]
-),
-
-distance:num(
-getField(
-row,
-[
-"distans",
-"distance"
-]
-)
-),
-
-gallop:getField(
-row,
-[
-"galopp",
-"gallop",
-"g"
-]
-),
-
-odds:num(
-getField(
-row,
-[
-"odds",
-"vinnarodds"
-]
-)
-),
-
-raw:row
-
-};
-
+  return text(value)
+    .toLowerCase()
+    .replace(
+      /\([^)]*\)/g,
+      ""
+    )
+    .replace(
+      /[^a-zåäö0-9]+/gi,
+      " "
+    )
+    .replace(
+      /\s+/g,
+      " "
+    )
+    .trim();
 }
 
 
 /* ============================================================
-   FILUPPLADDNING
-============================================================ */
+   UI
+   ============================================================ */
 
-document.getElementById(
-"historyFile"
-)
-.addEventListener(
-"change",
-async e=>{
+function message(msg,type="info-msg"){
 
-const file=e.target.files[0];
+  $("message").className =
+    "message show " +
+    type;
 
-if(!file)
-return;
-
-try{
-
-const csv=
-await file.text();
-
-historyData=
-parseCSV(csv)
-.map(
-normalizeHistoryRow
-)
-.filter(
-x=>x.horse
-);
-
-
-const state=
-document.getElementById(
-"historyState"
-);
-
-if(historyData.length){
-
-state.className=
-"history-state loaded";
-
-state.innerHTML=
-"✓ Historik laddad: "+
-historyData.length+
-" starter. AI:n använder nu historisk formdata.";
-
-}else{
-
-state.className=
-"history-state";
-
-state.innerHTML=
-"⚠ CSV-filen innehåller ingen användbar historik.";
-
+  $("message").textContent =
+    msg;
 }
 
 
-showMessage(
-"Historik laddad: "+
-historyData.length+
-" starter.",
-"success"
-);
-
-
-}catch(err){
-
-showMessage(
-"Historikfel: "+
-err.message,
-"error"
-);
-
-}
-
-}
-);
-
-
-document.getElementById(
-"startFile"
-)
-.addEventListener(
-"change",
-async e=>{
-
-const file=e.target.files[0];
-
-if(!file)
-return;
-
-try{
-
-const csv=
-await file.text();
-
-startData=
-parseCSV(csv)
-.map(
-normalizeHistoryRow
-)
-.filter(
-x=>x.horse
-);
-
-showMessage(
-"Reserv-startlista laddad: "+
-startData.length+
-" hästar.",
-"success"
-);
-
-}catch(err){
-
-showMessage(
-"Startlistafel: "+
-err.message,
-"error"
-);
-
-}
-
-}
-);
-
-
-/* ============================================================
-   HISTORIKSÖKNING
-============================================================ */
-
-function historyFor(name){
-
-const n=norm(name);
-
-if(!n)
-return [];
-
-return historyData.filter(
-h=>norm(h.horse)===n
-);
-
-}
-
-
-function historyForm(name){
-
-const hist=
-historyFor(name);
-
-if(!hist.length)
-return null;
-
-
-const recent=
-hist
-.filter(
-x=>x.position>0
-)
-.slice(-10);
-
-
-if(!recent.length)
-return null;
-
-
-let points=0;
-
-for(const r of recent){
-
-const p=r.position;
-
-if(p===1)
-points+=100;
-
-else if(p===2)
-points+=88;
-
-else if(p===3)
-points+=76;
-
-else if(p===4)
-points+=65;
-
-else if(p===5)
-points+=55;
-
-else if(p<=7)
-points+=40;
-
-else
-points+=20;
-
-}
-
-
-return clamp(
-points/recent.length,
-0,
-100
-);
-
-}
-
-
-function historyWinRate(name){
-
-const hist=
-historyFor(name)
-.filter(
-x=>x.position>0
-);
-
-if(!hist.length)
-return null;
-
-return (
-hist.filter(
-x=>x.position===1
-).length /
-hist.length
-)*100;
-
-}
-
-
-function historyPlaceRate(name){
-
-const hist=
-historyFor(name)
-.filter(
-x=>x.position>0
-);
-
-if(!hist.length)
-return null;
-
-return (
-hist.filter(
-x=>x.position<=3
-).length /
-hist.length
-)*100;
-
-}
-
-
-function historyGallopRate(name){
-
-const hist=
-historyFor(name);
-
-if(!hist.length)
-return null;
-
-
-const known=
-hist.filter(
-x=>text(x.gallop)
-);
-
-if(!known.length)
-return null;
-
-
-const galopp=
-known.filter(
-x=>
-/galopp|gallop/i.test(
-text(x.gallop)
-) ||
-/^g$/i.test(
-text(x.gallop)
-)
-);
-
-
-return (
-galopp.length/
-known.length
-)*100;
-
-}
-
-
-function historyDistanceScore(
-name,
-distance
-){
-
-const hist=
-historyFor(name);
-
-if(!hist.length || !distance)
-return null;
-
-
-const same=
-hist.filter(
-h=>
-h.distance &&
-Math.abs(
-h.distance-distance
-)<=100
-);
-
-
-if(!same.length)
-return null;
-
-
-const valid=
-same.filter(
-h=>h.position>0
-);
-
-
-if(!valid.length)
-return null;
-
-
-const good=
-valid.filter(
-h=>h.position<=3
-).length;
-
-
-return clamp(
-35+
-(good/valid.length)*65,
-0,
-100
-);
-
+function progress(value){
+
+  if (value <= 0){
+
+    $("progress")
+      .classList
+      .remove("show");
+
+    $("progressBar")
+      .style
+      .width = "0%";
+
+    return;
+  }
+
+  $("progress")
+    .classList
+    .add("show");
+
+  $("progressBar")
+    .style
+    .width =
+      clamp(
+        value,
+        0,
+        100
+      ) + "%";
 }
 
 
 /* ============================================================
-   KUSK
-============================================================ */
+   LOAD CURRENT DATA
+   ============================================================ */
 
-function driverScore(h){
+async function loadStartData(){
 
-if(!h.driver)
-return null;
+  const response =
+    await fetch(
+      API +
+      "/data?ts=" +
+      Date.now(),
+      {
+        cache:
+          "no-store"
+      }
+    );
 
+  if (!response.ok){
 
-const rows=
-historyData.filter(
-r=>norm(r.driver)===norm(h.driver)
-);
+    throw new Error(
+      "Worker HTTP " +
+      response.status
+    );
+  }
 
+  const data =
+    await response.json();
 
-if(rows.length<5)
-return null;
+  if (!data.ok){
 
+    throw new Error(
+      data.error ||
+      "Worker-fel"
+    );
+  }
 
-const valid=
-rows.filter(
-r=>r.position>0
-);
+  if (
+    !Array.isArray(
+      data.races
+    )
+  ){
 
+    throw new Error(
+      "Startlistan saknar lopp"
+    );
+  }
 
-if(!valid.length)
-return null;
+  startData =
+    data;
 
-
-const win=
-valid.filter(
-r=>r.position===1
-).length /
-valid.length;
-
-
-return clamp(
-35+
-win*130,
-20,
-100
-);
-
+  return data;
 }
 
 
 /* ============================================================
-   TRÄNARE
-============================================================ */
+   LOAD HISTORY
+   ============================================================ */
 
-function trainerScore(h){
+async function loadHistory(){
 
-if(!h.trainer)
-return null;
+  if (!startData){
 
+    await loadStartData();
+  }
 
-const rows=
-historyData.filter(
-r=>norm(r.trainer)===norm(h.trainer)
-);
+  const horses =
+    startData.races
+      .flatMap(
+        race =>
+          race.horses
+            .filter(
+              h =>
+                !h.scratched
+            )
+      );
 
+  const names =
+    [
+      ...new Set(
+        horses.map(
+          h => h.name
+        )
+      )
+    ];
 
-if(rows.length<5)
-return null;
+  if (!names.length){
 
+    throw new Error(
+      "Inga aktiva hästar hittades"
+    );
+  }
 
-const valid=
-rows.filter(
-r=>r.position>0
-);
+  historyData = {};
 
+  let loaded = 0;
 
-if(!valid.length)
-return null;
+  const chunkSize = 5;
 
+  for (
+    let i = 0;
+    i < names.length;
+    i += chunkSize
+  ){
 
-const win=
-valid.filter(
-r=>r.position===1
-).length /
-valid.length;
+    const chunk =
+      names.slice(
+        i,
+        i + chunkSize
+      );
 
+    const encoded =
+      chunk
+        .map(
+          n =>
+            encodeURIComponent(
+              n
+            )
+        )
+        .join("|");
 
-return clamp(
-40+
-win*120,
-25,
-100
-);
+    const response =
+      await fetch(
+        API +
+        "/history?horses=" +
+        encoded +
+        "&ts=" +
+        Date.now(),
+        {
+          cache:
+            "no-store"
+        }
+      );
 
+    if (response.ok){
+
+      const data =
+        await response.json();
+
+      if (
+        data &&
+        data.horses
+      ){
+
+        Object.assign(
+          historyData,
+          data.horses
+        );
+      }
+    }
+
+    loaded +=
+      chunk.length;
+
+    progress(
+      20 +
+      (
+        loaded /
+        names.length
+      ) * 60
+    );
+  }
+
+  updateHistoryCard();
+
+  return historyData;
 }
 
 
 /* ============================================================
-   DAGENS SIGNALER
-============================================================ */
+   HISTORY MATCH
+   ============================================================ */
 
-function balanceScore(h){
+function getHistory(horse){
 
-const b=
-norm(h.balance);
+  const target =
+    normalizeName(
+      horse.name
+    );
 
-if(!b)
-return 50;
+  const exact =
+    Object.keys(
+      historyData
+    ).find(
+      key =>
+        normalizeName(key) ===
+        target
+    );
 
+  if (
+    exact &&
+    historyData[exact]
+  ){
 
-if(
-b.includes("barfota")
-)
-return 58;
+    return historyData[exact];
+  }
 
-
-if(
-b.includes("skor")
-)
-return 50;
-
-
-return 50;
-}
-
-
-function trendScore(h){
-
-if(
-h.trend_direction==="up"
-){
-
-return clamp(
-55+
-Math.abs(
-num(h.trend_change)
-)*4,
-55,
-85
-);
-
-}
-
-
-if(
-h.trend_direction==="down"
-){
-
-return clamp(
-45-
-Math.abs(
-num(h.trend_change)
-)*4,
-15,
-45
-);
-
-}
-
-
-return 50;
-}
-
-
-function startScore(h,race){
-
-const n=
-num(h.number);
-
-if(!n)
-return 50;
-
-
-const method=
-norm(race.start_method);
-
-
-if(method==="auto"){
-
-if(n===1)
-return 90;
-
-if(n===2 || n===3)
-return 82;
-
-if(n<=5)
-return 74;
-
-if(n<=7)
-return 65;
-
-if(n===8)
-return 58;
-
-return 48;
-
-}
-
-
-if(method==="volt"){
-
-if(n<=3)
-return 78;
-
-if(n<=6)
-return 68;
-
-if(n<=9)
-return 58;
-
-return 48;
-
-}
-
-
-return 55;
-
-}
-
-
-function distanceScore(
-h,
-race
-){
-
-const d=
-num(race.distance);
-
-if(!d)
-return 50;
-
-
-const hist=
-historyDistanceScore(
-h.name,
-d
-);
-
-
-if(hist!==null){
-
-return clamp(
-50+
-(hist-50)*0.45,
-0,
-100
-);
-
-}
-
-
-if(d===2140)
-return 54;
-
-if(d===1640)
-return 53;
-
-if(d>=2600)
-return 48;
-
-
-return 50;
-
+  return {
+    ok:false,
+    history_count:0,
+    starts:[]
+  };
 }
 
 
 /* ============================================================
-   GALOPP
-============================================================ */
+   HISTORY FEATURES
+   ============================================================ */
 
-function gallopRisk(h){
+function historyFeatures(
+  horse,
+  race
+){
 
-const hist=
-historyGallopRate(
-h.name
-);
+  const history =
+    getHistory(
+      horse
+    );
+
+  const starts =
+    Array.isArray(
+      history.starts
+    ) ?
+      history.starts :
+      [];
+
+  if (!starts.length){
+
+    return {
+
+      count:0,
+
+      form:50,
+
+      winRate:50,
+
+      placeRate:50,
+
+      gallopRate:0,
+
+      distanceForm:50,
+
+      trackForm:50,
+
+      methodForm:50,
+
+      positionForm:50,
+
+      driverForm:50,
+
+      recentTrend:50,
+
+      averageFinish:null,
+
+      averageTime:null,
+
+      driver:null,
+
+      confidence:0
+    };
+  }
+
+  const recent =
+    starts
+      .slice(
+        0,
+        10
+      );
+
+  const weights =
+    recent.map(
+      (_,i) =>
+        Math.pow(
+          0.86,
+          i
+        )
+    );
+
+  const totalWeight =
+    weights.reduce(
+      (a,b)=>a+b,
+      0
+    );
+
+  /*
+   * Placering:
+   *
+   * 1 = 100
+   * 2 = 85
+   * 3 = 72
+   * 4 = 60
+   * 5 = 52
+   * 6-8 = 42
+   * >8 = 25
+   *
+   * Galopp = 10
+   */
+
+  function finishScore(finish){
+
+    if (
+      !Number.isFinite(
+        finish
+      )
+    )
+      return 40;
+
+    if (finish <= 0)
+      return 10;
+
+    if (finish === 1)
+      return 100;
+
+    if (finish === 2)
+      return 85;
+
+    if (finish === 3)
+      return 72;
+
+    if (finish === 4)
+      return 62;
+
+    if (finish === 5)
+      return 54;
+
+    if (finish <= 8)
+      return 42;
+
+    return 25;
+  }
+
+  const form =
+    recent.reduce(
+      (sum,s,i) =>
+        sum +
+        finishScore(
+          s.finish
+        ) *
+        weights[i],
+      0
+    ) /
+    totalWeight;
+
+  const wins =
+    recent.filter(
+      s =>
+        s.finish === 1
+    ).length;
+
+  const places =
+    recent.filter(
+      s =>
+        Number.isFinite(
+          s.finish
+        ) &&
+        s.finish >= 1 &&
+        s.finish <= 3
+    ).length;
+
+  const gallops =
+    recent.filter(
+      s =>
+        s.gallop
+    ).length;
+
+  const validFinish =
+    recent.filter(
+      s =>
+        Number.isFinite(
+          s.finish
+        )
+    );
+
+  const averageFinish =
+    mean(
+      validFinish.map(
+        s =>
+          s.finish
+      )
+    );
+
+  const averageTime =
+    mean(
+      recent.map(
+        s =>
+          s.time
+      )
+    );
+
+  /*
+   * Distans
+   */
+
+  const distanceStarts =
+    recent.filter(
+      s =>
+        Number.isFinite(
+          s.distance
+        ) &&
+        distanceMatch(
+          s.distance,
+          race.distance
+        )
+    );
+
+  const distanceForm =
+    subForm(
+      distanceStarts,
+      finishScore
+    );
+
+  /*
+   * Bana
+   */
+
+  const trackStarts =
+    recent.filter(
+      s =>
+        normalizeName(
+          s.track
+        ) ===
+        normalizeName(
+          startData.track
+        )
+    );
+
+  const trackForm =
+    subForm(
+      trackStarts,
+      finishScore
+    );
+
+  /*
+   * Startmetod
+   */
+
+  const methodStarts =
+    recent.filter(
+      s =>
+        s.start_method &&
+        race.start_method &&
+        normalizeName(
+          s.start_method
+        ) ===
+        normalizeName(
+          race.start_method
+        )
+    );
+
+  const methodForm =
+    subForm(
+      methodStarts,
+      finishScore
+    );
+
+  /*
+   * Startposition.
+   * Vi delar in i:
+   * 1-4 = framspår
+   * 5-8 = mellan
+   * 9+ = bak
+   */
+
+  const positionStarts =
+    recent.filter(
+      s =>
+        Number.isFinite(
+          s.start_position
+        )
+    );
+
+  const positionForm =
+    subPositionForm(
+      positionStarts,
+      horse.number,
+      finishScore
+    );
+
+  /*
+   * Kusk.
+   */
+
+  const driver =
+    recent.length ?
+      recent[0].driver :
+      null;
+
+  const sameDriver =
+    driver ?
+      recent.filter(
+        s =>
+          normalizeName(
+            s.driver
+          ) ===
+          normalizeName(
+            driver
+          )
+      ) :
+      [];
+
+  const driverForm =
+    subForm(
+      sameDriver,
+      finishScore
+    );
+
+  /*
+   * Trend:
+   * jämför senaste 3 mot äldre 3.
+   */
+
+  const first =
+    recent.slice(
+      0,
+      3
+    );
+
+  const later =
+    recent.slice(
+      3,
+      6
+    );
+
+  const firstScore =
+    mean(
+      first.map(
+        s =>
+          finishScore(
+            s.finish
+          )
+      )
+    );
+
+  const laterScore =
+    mean(
+      later.map(
+        s =>
+          finishScore(
+            s.finish
+          )
+      )
+    );
+
+  let recentTrend = 50;
+
+  if (
+    Number.isFinite(
+      firstScore
+    ) &&
+    Number.isFinite(
+      laterScore
+    )
+  ){
+
+    recentTrend =
+      clamp(
+        50 +
+        (
+          firstScore -
+          laterScore
+        ) *
+        0.8,
+        10,
+        90
+      );
+  }
+
+  /*
+   * Statistik ska krympas mot neutral
+   * vid få observationer.
+   */
+
+  const confidence =
+    clamp(
+      recent.length / 10,
+      0,
+      1
+    );
+
+  const shrink =
+    value =>
+      50 +
+      (
+        value -
+        50
+      ) *
+      confidence;
+
+  return {
+
+    count:
+      recent.length,
+
+    form:
+      clamp(
+        form,
+        0,
+        100
+      ),
+
+    winRate:
+      shrink(
+        (
+          wins /
+          recent.length
+        ) *
+        100
+      ),
+
+    placeRate:
+      shrink(
+        (
+          places /
+          recent.length
+        ) *
+        100
+      ),
+
+    gallopRate:
+      (
+        gallops /
+        recent.length
+      ) *
+      100,
+
+    distanceForm:
+      distanceForm,
+
+    trackForm:
+      trackForm,
+
+    methodForm:
+      methodForm,
+
+    positionForm:
+      positionForm,
+
+    driverForm:
+      driverForm,
+
+    recentTrend,
+
+    averageFinish,
+
+    averageTime,
+
+    driver,
+
+    confidence
+  };
+}
 
 
-/*
-  Utan historik:
+function subForm(
+  starts,
+  finishScore
+){
 
-  Vi visar "okänd" istället för
-  att presentera ett påhittat
-  statistikvärde.
-*/
+  if (
+    !starts.length
+  ){
 
-if(hist===null)
-return null;
+    return 50;
+  }
+
+  const raw =
+    mean(
+      starts.map(
+        s =>
+          finishScore(
+            s.finish
+          )
+      )
+    );
+
+  const confidence =
+    clamp(
+      starts.length /
+      5,
+      0,
+      1
+    );
+
+  return (
+    50 +
+    (
+      raw -
+      50
+    ) *
+    confidence
+  );
+}
 
 
-return clamp(
-hist,
-0,
-100
-);
+function subPositionForm(
+  starts,
+  currentNumber,
+  finishScore
+){
 
+  if (
+    !starts.length
+  ){
+
+    return 50;
+  }
+
+  const group =
+    positionGroup(
+      currentNumber
+    );
+
+  const relevant =
+    starts.filter(
+      s =>
+        positionGroup(
+          s.start_position
+        ) ===
+        group
+    );
+
+  return subForm(
+    relevant,
+    finishScore
+  );
+}
+
+
+function positionGroup(n){
+
+  if (!Number.isFinite(n))
+    return "unknown";
+
+  if (n <= 4)
+    return "front";
+
+  if (n <= 8)
+    return "middle";
+
+  return "back";
+}
+
+
+function distanceMatch(
+  a,
+  b
+){
+
+  if (
+    !Number.isFinite(a) ||
+    !Number.isFinite(b)
+  )
+    return false;
+
+  return (
+    Math.abs(
+      a - b
+    ) <= 80
+  );
 }
 
 
 /* ============================================================
-   MODELL
-============================================================ */
+   SCORE MODEL
+   ============================================================ */
 
-function calculateModel(
-h,
-race
+function scoreHorse(
+  horse,
+  race
 ){
 
-const form=
-historyForm(
-h.name
-);
-
-const wins=
-historyWinRate(
-h.name
-);
-
-const places=
-historyPlaceRate(
-h.name
-);
-
-const driver=
-driverScore(h);
-
-const trainer=
-trainerScore(h);
-
-const balance=
-balanceScore(h);
-
-const trend=
-trendScore(h);
-
-const start=
-startScore(h,race);
-
-const distance=
-distanceScore(
-h,
-race
-);
-
-const gallop=
-gallopRisk(h);
-
-const market=
-num(h.v85);
-
-
-const hasHistory=
-historyFor(h.name).length>0;
-
-
-let score=0;
-
-
-/*
-  HISTORIK FINNS
-*/
-
-if(hasHistory){
-
-score=
-
-(form ?? 50)*0.27 +
-
-start*0.12 +
-
-distance*0.10 +
-
-(driver ?? 50)*0.09 +
-
-(trainer ?? 50)*0.07 +
-
-balance*0.07 +
-
-trend*0.08 +
-
-(places ?? 50)*0.07 +
-
-(wins ?? 50)*0.03 +
-
-market*0.10;
-
-}
-
-
-/*
-  HISTORIK SAKNAS
-
-  Marknaden används som prior,
-  men modellen bygger inte hela
-  sannolikheten på strecken.
-*/
-
-else{
-
-score=
-
-start*0.18 +
-
-distance*0.12 +
-
-balance*0.10 +
-
-trend*0.14 +
-
-market*0.28 +
-
-50*0.18;
-
-}
-
-
-/*
-  Galopp endast som
-  verifierad historik.
-*/
-
-if(gallop!==null){
-
-score -=
-gallop*0.16;
-
-}
-
-
-/*
-  Positiv trend.
-*/
-
-if(
-h.trend_direction==="up"
-){
-
-score+=
-Math.min(
-5,
-Math.abs(
-num(h.trend_change)
-)*1.3
-);
-
-}
-
-
-/*
-  Balansförändring.
-*/
-
-const current=
-norm(h.balance);
-
-const previous=
-norm(h.balance_last);
-
-
-if(
-current.includes("barfota") &&
-previous.includes("skor")
-){
-
-score+=3;
-
-}
-
-
-return {
-
-raw:
-clamp(
-score,
-1,
-100
-),
-
-form,
-wins,
-places,
-driver,
-trainer,
-balance,
-trend,
-start,
-distance,
-gallop,
-market,
-
-historyCount:
-historyFor(
-h.name
-).length
-
-};
-
+  const h =
+    historyFeatures(
+      horse,
+      race
+    );
+
+  /*
+   * Historikbas.
+   */
+
+  const form =
+    h.form;
+
+  /*
+   * Startposition.
+   */
+
+  const startScore =
+    positionStartScore(
+      horse.number,
+      race.start_method
+    );
+
+  /*
+   * Balans.
+   */
+
+  const balanceScore =
+    balanceScoreFor(
+      horse
+    );
+
+  /*
+   * Marknad.
+   *
+   * Detta är INTE vinstsannolikheten.
+   * Den fungerar som en prior.
+   */
+
+  const market =
+    clamp(
+      num(
+        horse.v85
+      ),
+      0,
+      100
+    );
+
+  /*
+   * Trend från V85.
+   */
+
+  const trend =
+    trendScore(
+      horse
+    );
+
+  /*
+   * Galopp:
+   * kraftig negativ faktor.
+   */
+
+  const gallopPenalty =
+    clamp(
+      h.gallopRate,
+      0,
+      70
+    );
+
+  /*
+   * Viktning.
+   *
+   * Historik 42
+   * distans 10
+   * kusk 8
+   * bana 6
+   * start 7
+   * balans 5
+   * trend 4
+   * marknad 18
+   *
+   * Marknaden är alltså betydande,
+   * men modellen får inte bara kopiera V85.
+   */
+
+  let raw = 0;
+
+  raw +=
+    (form / 100) *
+    42;
+
+  raw +=
+    (h.distanceForm / 100) *
+    10;
+
+  raw +=
+    (h.driverForm / 100) *
+    8;
+
+  raw +=
+    (h.trackForm / 100) *
+    6;
+
+  raw +=
+    (startScore / 100) *
+    7;
+
+  raw +=
+    (balanceScore / 100) *
+    5;
+
+  raw +=
+    (trend / 100) *
+    4;
+
+  /*
+   * Marknaden går in logaritmiskt så att
+   * 1 -> 5 inte blir lika viktigt som
+   * 30 -> 34.
+   */
+
+  const marketLog =
+    Math.log(
+      1 +
+      market
+    ) /
+    Math.log(
+      101
+    );
+
+  raw +=
+    marketLog *
+    18;
+
+  raw -=
+    gallopPenalty *
+    0.18;
+
+  /*
+   * Få historiska starter -> lägre confidence.
+   */
+
+  const confidence =
+    h.confidence;
+
+  /*
+   * Om historik saknas går vi inte tillbaka
+   * till en aggressiv låtsashistorik.
+   *
+   * Då använder vi neutral 50 för historiska
+   * komponenter och start/marknad.
+   */
+
+  const historyAvailable =
+    h.count > 0;
+
+  if (
+    !historyAvailable
+  ){
+
+    raw =
+      (
+        50 * 0.50
+      ) +
+      (
+        startScore * 0.12
+      ) +
+      (
+        balanceScore * 0.06
+      ) +
+      (
+        trend * 0.04
+      ) +
+      (
+        marketLog *
+        100 *
+        0.28
+      );
+  }
+
+  return {
+
+    score:
+      raw,
+
+    form,
+    startScore,
+    balanceScore,
+    trend,
+    market,
+    gallopPenalty,
+
+    history:
+      h,
+
+    confidence,
+
+    historyAvailable
+  };
 }
 
 
 /* ============================================================
-   V29 NORMALISERING
-============================================================ */
+   START SCORE
+   ============================================================ */
 
-function normalizeV29(data){
-
-const rows=[];
-
-if(
-!data ||
-!Array.isArray(data.races)
-)
-return rows;
-
-
-for(
-const race of data.races
+function positionStartScore(
+  number,
+  method
 ){
 
-if(
-!race ||
-!Array.isArray(
-race.horses
-)
-)
-continue;
+  const n =
+    num(number);
 
+  if (
+    method === "Auto"
+  ){
 
-for(
-const h of race.horses
-){
+    if (n === 1)
+      return 82;
 
-if(!h)
-continue;
+    if (n === 2)
+      return 79;
 
+    if (n === 3)
+      return 76;
 
-rows.push({
+    if (n === 4)
+      return 73;
 
-race:Number(
-race.number
-),
+    if (n === 5)
+      return 69;
 
-raceName:
-race.name ||
-"V85-"+race.number,
+    if (n === 6)
+      return 65;
 
-distance:
-num(race.distance),
+    if (n === 7)
+      return 62;
 
-start_method:
-race.start_method,
+    if (n === 8)
+      return 59;
 
-start_time:
-race.start_time,
+    if (n <= 10)
+      return 53;
 
-additional:
-race.additional,
+    return 48;
+  }
 
-number:
-Number(h.number),
+  /*
+   * Volt.
+   */
 
-name:
-h.name,
+  if (n <= 5)
+    return 80;
 
-v85:
-num(h.v85),
+  if (n <= 8)
+    return 68;
 
-balance:
-h.balance,
+  if (n <= 12)
+    return 58;
 
-balance_last:
-h.balance_last,
-
-trend:
-h.trend,
-
-trend_direction:
-h.trend_direction,
-
-trend_change:
-h.trend_change,
-
-scratched:
-!!h.scratched,
-
-scratch_reason:
-h.scratch_reason
-
-});
-
-}
-
-}
-
-return rows;
-
+  return 50;
 }
 
 
 /* ============================================================
-   ANALYS
-============================================================ */
+   BALANCE SCORE
+   ============================================================ */
 
-function analyze(rows){
-
-const groups={};
-
-
-for(
-const h of rows
+function balanceScoreFor(
+  horse
 ){
 
-if(h.scratched)
-continue;
+  const current =
+    text(
+      horse.balance
+    )
+      .toLowerCase();
 
+  const previous =
+    text(
+      horse.balance_last
+    )
+      .toLowerCase();
 
-const key=
-String(h.race);
+  if (
+    current.includes(
+      "barfota"
+    )
+  ){
 
+    if (
+      previous &&
+      previous.includes(
+        "skor"
+      )
+    )
+      return 75;
 
-if(!groups[key])
-groups[key]=[];
+    return 62;
+  }
 
+  if (
+    current.includes(
+      "skor"
+    )
+  ){
 
-groups[key].push(h);
+    if (
+      previous &&
+      previous.includes(
+        "barfota"
+      )
+    )
+      return 44;
 
-}
+    return 50;
+  }
 
-
-const races=[];
-
-
-Object.keys(groups)
-.sort(
-(a,b)=>num(a)-num(b)
-)
-.forEach(
-key=>{
-
-const horses=
-groups[key];
-
-const race=
-horses[0];
-
-
-const scored=
-horses.map(
-h=>{
-
-const model=
-calculateModel(
-h,
-race
-);
-
-return {
-...h,
-...model
-};
-
-}
-);
-
-
-const total=
-scored.reduce(
-(sum,h)=>sum+h.raw,
-0
-);
-
-
-scored.forEach(
-h=>{
-
-h.aiPercent=
-total>0
-? h.raw/total*100
-:100/scored.length;
-
-
-h.edge=
-h.aiPercent-h.v85;
-
-
-h.valueRatio=
-h.v85>0
-?h.aiPercent/h.v85
-:0;
-
-}
-);
-
-
-scored.sort(
-(a,b)=>
-b.aiPercent-a.aiPercent
-);
-
-
-races.push({
-
-number:
-race.race,
-
-name:
-race.raceName,
-
-distance:
-race.distance,
-
-start_method:
-race.start_method,
-
-start_time:
-race.start_time,
-
-additional:
-race.additional,
-
-horses:
-scored
-
-});
-
-}
-);
-
-
-return races;
-
+  return 50;
 }
 
 
 /* ============================================================
-   VAL
-============================================================ */
+   TREND SCORE
+   ============================================================ */
 
-function picksForRace(
-race
+function trendScore(
+  horse
 ){
 
-const minAI=
-num(
-document.getElementById(
-"minAI"
-).value
-);
+  const direction =
+    text(
+      horse.trend_direction
+    )
+      .toLowerCase();
 
-const minEdge=
-num(
-document.getElementById(
-"minEdge"
-).value
-);
+  const change =
+    num(
+      horse.trend_change
+    );
 
-const maxGallop=
-num(
-document.getElementById(
-"maxGallop"
-).value
-);
+  if (
+    direction === "up"
+  )
+    return clamp(
+      60 +
+      Math.abs(change) *
+      5,
+      60,
+      90
+    );
 
+  if (
+    direction === "down"
+  )
+    return clamp(
+      50 -
+      Math.abs(change) *
+      4,
+      20,
+      50
+    );
 
-const sorted=
-[...race.horses]
-.sort(
-(a,b)=>
-b.aiPercent-a.aiPercent
-);
-
-
-let eligible=
-sorted.filter(
-h=>{
-
-const gallopOK=
-h.gallop===null ||
-h.gallop<=maxGallop;
-
-
-return (
-h.aiPercent>=minAI &&
-h.edge>=minEdge &&
-gallopOK
-);
-
-}
-);
-
-
-/*
-  Aldrig tomt lopp.
-*/
-
-if(!eligible.length){
-
-eligible=
-sorted.slice(0,1);
-
-}
-
-
-/*
-  SPIK
-
-  Kräver både modellstyrka
-  och positivt VALUE.
-*/
-
-const top=
-eligible[0];
-
-
-if(
-top &&
-top.aiPercent>=28 &&
-top.edge>=2 &&
-(
-top.gallop===null ||
-top.gallop<=25
-)
-){
-
-return [
-top
-];
-
-}
-
-
-/*
-  LÅS
-*/
-
-if(
-top &&
-top.aiPercent>=19
-){
-
-return eligible.slice(
-0,
-Math.min(
-2,
-eligible.length
-)
-);
-
-}
-
-
-/*
-  GARDERING
-*/
-
-return eligible.slice(
-0,
-Math.min(
-4,
-eligible.length
-)
-);
-
+  return 50;
 }
 
 
 /* ============================================================
-   SYSTEM
-============================================================ */
+   ANALYZE RACES
+   ============================================================ */
 
-function buildSystem(
-races,
-budget
-){
+function analyze(){
 
-const unit=0.50;
+  if (!startData)
+    return [];
 
-const target=
-Math.max(
-1,
-Math.floor(
-budget/unit
-)
-);
+  const races =
+    startData.races
+      .map(
+        race =>
+          analyzeRace(
+            race
+          )
+      );
 
+  analyzedRaces =
+    races;
 
-const choices=
-races.map(
-race=>
-picksForRace(
-race
-)
-);
-
-
-function lines(){
-
-return choices.reduce(
-(total,choice)=>
-total*
-Math.max(
-1,
-choice.length
-),
-1
-);
-
+  return races;
 }
 
 
-/*
-  Reducera tills budget
-  klaras.
-*/
-
-while(
-lines()>target
+function analyzeRace(
+  race
 ){
 
-let candidate=null;
+  const active =
+    race.horses
+      .filter(
+        h =>
+          !h.scratched
+      );
 
+  const scored =
+    active.map(
+      horse => {
 
-for(
-let i=0;
-i<choices.length;
-i++
-){
+        const model =
+          scoreHorse(
+            horse,
+            race
+          );
 
-if(
-choices[i].length<=1
-)
-continue;
+        return {
+          ...horse,
+          model
+        };
+      }
+    );
 
+  /*
+   * Softmax.
+   *
+   * Vi vill inte bara normalisera råpoäng,
+   * utan ge topphästarna lite mer separation.
+   */
 
-const weakest=
-choices[i][
-choices[i].length-1
-];
+  const temperature =
+    15;
 
+  const exps =
+    scored.map(
+      x =>
+        Math.exp(
+          (
+            x.model.score -
+            Math.max(
+              ...scored.map(
+                y =>
+                  y.model.score
+              )
+            )
+          ) /
+          temperature
+        )
+    );
 
-if(
-!candidate ||
-weakest.aiPercent>
-candidate.horse.aiPercent
-){
+  const sum =
+    exps.reduce(
+      (a,b)=>a+b,
+      0
+    );
 
-candidate={
-index:i,
-horse:weakest
-};
+  scored.forEach(
+    (x,i) => {
 
-}
+      x.aiProbability =
+        sum > 0 ?
+          (
+            exps[i] /
+            sum
+          ) *
+          100 :
+          0;
 
-}
+      x.value =
+        x.aiProbability -
+        num(
+          x.v85
+        );
 
-if(!candidate)
-break;
+      x.impliedOdds =
+        x.aiProbability > 0 ?
+          100 /
+          x.aiProbability :
+          null;
 
+      x.marketOdds =
+        num(
+          x.v85
+        ) > 0 ?
+          100 /
+          num(
+            x.v85
+          ) :
+          null;
 
-choices[
-candidate.index
-].pop();
+      x.verdict =
+        verdict(
+          x
+        );
+    }
+  );
 
-}
+  scored.sort(
+    (a,b) =>
+      b.aiProbability -
+      a.aiProbability
+  );
 
+  scored.forEach(
+    (x,i) => {
+      x.rank =
+        i + 1;
+    }
+  );
 
-return {
-
-choices,
-
-lines:lines(),
-
-cost:
-lines()*unit
-
-};
-
+  return {
+    ...race,
+    horses:
+      scored
+  };
 }
 
 
 /* ============================================================
-   TYPE
-============================================================ */
+   VERDICT
+   ============================================================ */
 
-function typeFor(
-picks
+function verdict(
+  horse
 ){
 
-if(picks.length===1)
-return "SPIK";
+  const value =
+    horse.value;
 
-if(picks.length===2)
-return "LÅS";
+  const ai =
+    horse.aiProbability;
 
-return "GARDERING";
+  const market =
+    num(
+      horse.v85
+    );
 
+  if (
+    ai >= 35 &&
+    value >= 8
+  )
+    return "SPIK";
+
+  if (
+    ai >= 20 &&
+    value >= 4
+  )
+    return "LÅS";
+
+  if (
+    value >= 5
+  )
+    return "VÄRDE";
+
+  if (
+    market >= 20 &&
+    ai >= 15
+  )
+    return "STARK";
+
+  if (
+    ai >= 8
+  )
+    return "GARD";
+
+  return "ÖVRIG";
 }
 
 
 /* ============================================================
    RENDER
-============================================================ */
+   ============================================================ */
 
-function renderResults(
-races,
-scratchedCount
+function render(){
+
+  if (!analyzedRaces.length){
+
+    $("results").innerHTML =
+      `<div class="empty">
+        Ingen analys ännu.
+      </div>`;
+
+    return;
+  }
+
+  const all =
+    analyzedRaces.flatMap(
+      r =>
+        r.horses
+    );
+
+  const top =
+    [...all]
+      .sort(
+        (a,b) =>
+          b.aiProbability -
+          a.aiProbability
+      )[0];
+
+  $("cardTrack").textContent =
+    startData.track ||
+    "–";
+
+  $("cardRaces").textContent =
+    analyzedRaces.length;
+
+  $("cardHorses").textContent =
+    all.length;
+
+  $("cardScratched").textContent =
+    startData.horses_scratched ||
+    0;
+
+  $("cardTop").textContent =
+    top ?
+      top.name +
+      " " +
+      top.aiProbability.toFixed(1) +
+      "%" :
+      "–";
+
+  renderModelSummary();
+
+  $("results").innerHTML =
+    analyzedRaces
+      .map(
+        renderRace
+      )
+      .join("");
+}
+
+
+function renderRace(
+  race
 ){
 
-analyzedRaces=
-races;
+  const rows =
+    race.horses
+      .map(
+        h =>
+          renderHorse(
+            h
+          )
+      )
+      .join("");
+
+  const top =
+    race.horses[0];
+
+  return `
+
+    <section class="race">
+
+      <div class="raceHead">
+
+        <div>
+
+          <div class="raceTitle">
+            ${esc(
+              race.name
+            )}
+          </div>
+
+          <div class="raceMeta">
+
+            ${esc(
+              race.distance
+            )} m ·
+
+            ${esc(
+              race.start_method
+            )}
+
+            ${
+              race.start_time ?
+                " · " +
+                esc(
+                  race.start_time
+                ) :
+                ""
+            }
+
+          </div>
+
+        </div>
+
+        <div class="raceMeta">
+
+          AI-ledare:
+          <strong>
+            ${
+              top ?
+                esc(
+                  top.name
+                ) :
+                "–"
+            }
+          </strong>
+
+        </div>
+
+      </div>
+
+      <table>
+
+        <thead>
+
+          <tr>
+
+            <th>
+              #
+            </th>
+
+            <th>
+              Häst
+            </th>
+
+            <th>
+              AI %
+            </th>
+
+            <th>
+              V85 %
+            </th>
+
+            <th>
+              VALUE
+            </th>
+
+            <th>
+              Form
+            </th>
+
+            <th>
+              Historik
+            </th>
+
+            <th>
+              Kusk
+            </th>
+
+            <th>
+              Galopp
+            </th>
+
+            <th>
+              Bedömning
+            </th>
+
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          ${rows}
+
+        </tbody>
+
+      </table>
+
+    </section>
+
+  `;
+}
 
 
-let html="";
-
-
-for(
-const race of races
+function renderHorse(
+  h
 ){
 
-const sorted=
-[...race.horses]
-.sort(
-(a,b)=>
-b.aiPercent-a.aiPercent
-);
+  const history =
+    h.model.history;
+
+  const valueClass =
+    h.value >= 0 ?
+      "valuePositive" :
+      "valueNegative";
 
+  const verdictClass =
+    h.verdict === "SPIK" ?
+      "success" :
+      (
+        h.verdict === "VÄRDE" ?
+          "warning" :
+          ""
+      );
 
-const max=
-Number(
-document.getElementById(
-"maxHorses"
-).value
-);
+  const gallop =
+    history.count > 0 ?
+      (
+        history.gallopRate
+          .toFixed(0) +
+        "%"
+      ) :
+      "–";
 
+  const form =
+    history.count > 0 ?
+      history.form.toFixed(0) :
+      "–";
 
-const display=
-sorted.slice(
-0,
-max
-);
+  const driver =
+    history.driver ||
+    "–";
 
+  const confidence =
+    history.count > 0 ?
+      (
+        history.count +
+        " starter"
+      ) :
+      "saknas";
 
-const picks=
-picksForRace(
-race
-);
+  return `
 
+    <tr
+      class="${
+        h.scratched ?
+          "scratched" :
+          ""
+      }"
+    >
 
-const type=
-typeFor(picks);
+      <td class="num">
 
+        ${h.number}
 
-const badgeClass=
-type==="SPIK"
-?"spike"
-:type==="LÅS"
-?"lock"
-:"guard";
+      </td>
 
+      <td class="horse">
 
-html+=`
+        ${esc(
+          h.name
+        )}
 
-<div class="race">
+        ${
+          h.balance ?
+            `<div class="small">
+              ${esc(
+                h.balance
+              )}
+            </div>` :
+            ""
+        }
 
-<div class="race-head">
+      </td>
 
-<div>
+      <td class="prob">
 
-<div class="race-title">
-V85-${race.number}
-</div>
+        ${h.aiProbability
+          .toFixed(1)}%
 
-<div class="race-meta">
+      </td>
 
-${race.distance || "?"} m
-· ${escapeHTML(
-race.start_method || "?"
-)}
-· ${escapeHTML(
-race.start_time || "?"
-)}
+      <td>
 
-${
-race.additional
-?` · +${race.additional} m`
-:""
-}
+        ${num(
+          h.v85
+        ).toFixed(0)}%
 
-</div>
+      </td>
 
-</div>
+      <td class="${valueClass}">
 
+        ${
+          h.value >= 0 ?
+            "+" :
+            ""
+        }${h.value.toFixed(1)}
 
-<div class="badges">
+      </td>
 
-<div class="badge ${badgeClass}">
-${type}
-</div>
+      <td>
 
-<div class="badge">
-${race.horses.length} aktiva
-</div>
+        ${form}
 
-</div>
+      </td>
 
-</div>
+      <td>
 
+        <span class="badge">
 
-<div class="horse-head">
+          ${confidence}
 
-<div>SPÅR</div>
-<div>HÄST</div>
-<div>AI</div>
-<div>MARKNAD</div>
-<div>VALUE</div>
-<div>FORM</div>
-<div>KUSK</div>
-<div>GALOPP</div>
-<div>VAL</div>
+        </span>
 
-</div>
+      </td>
 
-`;
+      <td>
 
+        <span class="small">
 
-for(
-const h of display
-){
+          ${esc(
+            driver
+          )}
 
-const selected=
-picks.some(
-p=>p.number===h.number
-);
+        </span>
 
+      </td>
 
-let pickClass="";
+      <td>
 
+        ${gallop}
 
-if(selected){
+      </td>
 
-if(type==="SPIK")
-pickClass="spike";
+      <td class="${verdictClass}">
 
-else if(h.edge>=5)
-pickClass="value";
+        <strong>
 
-else
-pickClass="top";
+          ${h.verdict}
 
-}
+        </strong>
 
+      </td>
 
-const trend=
-h.trend_direction==="up"
-?`<span class="green">↑</span>`
-:h.trend_direction==="down"
-?`<span class="red">↓</span>`
-:h.trend_direction==="unchanged"
-?"→"
-:"";
+    </tr>
 
-
-const historyLabel=
-h.historyCount>0
-?`Historik ${h.historyCount}`
-:"Ingen historik";
-
-
-const formDisplay=
-h.form!==null
-?h.form.toFixed(0)
-:"–";
-
-
-const driverDisplay=
-h.driver!==null
-?h.driver.toFixed(0)
-:"–";
-
-
-const gallopDisplay=
-h.gallop!==null
-?h.gallop.toFixed(0)+"%"
-:"okänd";
-
-
-const balanceText=
-h.balance
-?escapeHTML(h.balance)
-:"–";
-
-
-const lastBalance=
-cleanBalanceLast(
-h.balance_last
-);
-
-
-html+=`
-
-<div class="horse">
-
-<div class="number">
-${h.number}
-</div>
-
-
-<div>
-
-<div class="name">
-${escapeHTML(h.name)}
-</div>
-
-<div class="sub">
-
-${trend}
-
-${
-balanceText
-? " · "+balanceText
-:""
-}
-
-${
-lastBalance
-? " · senast: "+
-escapeHTML(lastBalance)
-:""
-}
-
- · ${historyLabel}
-
-</div>
-
-</div>
-
-
-<div class="metric">
-
-<div class="metric-label">
-AI
-</div>
-
-<div class="metric-value green">
-${h.aiPercent.toFixed(1)}%
-</div>
-
-</div>
-
-
-<div class="metric">
-
-<div class="metric-label">
-V85
-</div>
-
-<div class="metric-value">
-${h.v85.toFixed(1)}%
-</div>
-
-</div>
-
-
-<div class="metric">
-
-<div class="metric-label">
-VALUE
-</div>
-
-<div class="metric-value ${
-h.edge>=0
-?"green"
-:"red"
-}">
-
-${
-h.edge>=0
-?"+"
-:""
-}${h.edge.toFixed(1)}%
-
-</div>
-
-</div>
-
-
-<div class="metric optional">
-
-<div class="metric-label">
-FORM
-</div>
-
-<div class="metric-value">
-${formDisplay}
-</div>
-
-</div>
-
-
-<div class="metric optional">
-
-<div class="metric-label">
-KUSK
-</div>
-
-<div class="metric-value">
-${driverDisplay}
-</div>
-
-</div>
-
-
-<div class="metric optional">
-
-<div class="metric-label">
-GALOPP
-</div>
-
-<div class="metric-value ${
-h.gallop!==null
-?(
-h.gallop>25
-?"red"
-:"green"
-)
-:"muted"
-}">
-
-${gallopDisplay}
-
-</div>
-
-</div>
-
-
-<div class="pick ${pickClass}">
-
-${
-selected
-?(
-type==="SPIK"
-?"★ SPIK"
-:"VAL"
-)
-:"–"
-}
-
-</div>
-
-</div>
-
-`;
-
-}
-
-
-html+=`
-
-<div class="recommend">
-
-<div class="recommend-title">
-AI-REKOMMENDATION
-</div>
-
-<div class="recommend-main">
-
-${picks.map(
-p=>
-`${p.number} ${escapeHTML(p.name)}`
-).join(" · ")}
-
-</div>
-
-<div class="reason">
-
-${reasonFor(picks)}
-
-</div>
-
-</div>
-
-</div>
-
-`;
-
-}
-
-
-document.getElementById(
-"results"
-).innerHTML=
-html;
-
-
-renderSystem(
-races
-);
-
-
-updateCards(
-races,
-scratchedCount
-);
-
+  `;
 }
 
 
 /* ============================================================
-   BALANSRENSNING
-============================================================ */
+   MODEL SUMMARY
+   ============================================================ */
 
-function cleanBalanceLast(
-value
-){
+function renderModelSummary(){
 
-let s=text(value);
+  const all =
+    analyzedRaces
+      .flatMap(
+        r =>
+          r.horses
+      );
 
-if(!s)
-return "";
+  const historyCount =
+    all.filter(
+      h =>
+        h.model.historyAvailable
+    ).length;
 
+  const total =
+    all.length;
 
-/*
-  V29 kan ibland ge:
+  const coverage =
+    total > 0 ?
+      (
+        historyCount /
+        total
+      ) *
+      100 :
+      0;
 
-  Barfota runt om
-  (Barfota runt om senast)
+  const formValues =
+    all
+      .filter(
+        h =>
+          h.model.historyAvailable
+      )
+      .map(
+        h =>
+          h.model.history.form
+      );
 
-  eller
+  const gallops =
+    all
+      .filter(
+        h =>
+          h.model.historyAvailable
+      )
+      .map(
+        h =>
+          h.model.history.gallopRate
+      );
 
-  Barfota runt om
-  (Skor runt om senast)
-*/
+  const avgForm =
+    mean(
+      formValues
+    );
 
-const match=
-s.match(
-/\((.*?)senast\)/i
-);
+  const avgGallop =
+    mean(
+      gallops
+    );
 
+  $("modelHistory").textContent =
+    historyCount +
+    "/" +
+    total +
+    " hästar";
 
-if(match){
+  $("modelForm").textContent =
+    Number.isFinite(
+      avgForm
+    ) ?
+      avgForm.toFixed(0) +
+      "/100" :
+      "–";
 
-return match[1]
-.trim();
+  $("modelDriver").textContent =
+    historyCount > 0 ?
+      "AKTIV" :
+      "SAKNAS";
 
-}
+  $("modelGallop").textContent =
+    Number.isFinite(
+      avgGallop
+    ) ?
+      avgGallop.toFixed(1) +
+      "%" :
+      "–";
 
-
-/*
-  Om hela strängen innehåller
-  "senast" men ingen parentes.
-*/
-
-s=
-s.replace(
-/\s*senast.*$/i,
-""
-);
-
-return s.trim();
-
-}
-
-
-/* ============================================================
-   MOTIVERING
-============================================================ */
-
-function reasonFor(
-picks
-){
-
-if(!picks.length)
-return "Ingen kvalificerad kandidat.";
-
-
-const p=picks[0];
-
-const reasons=[];
-
-
-if(
-p.historyCount &&
-p.form!==null &&
-p.form>=65
-){
-
-reasons.push(
-"stark historisk form"
-);
-
-}
-
-
-if(
-p.start>=75
-){
-
-reasons.push(
-"bra startläge"
-);
-
-}
-
-
-if(
-p.distance>=65
-){
-
-reasons.push(
-"bra distansprofil"
-);
-
-}
-
-
-if(
-p.driver!==null &&
-p.driver>=60
-){
-
-reasons.push(
-"stark kuskprofil"
-);
-
-}
-
-
-if(
-p.trainer!==null &&
-p.trainer>=60
-){
-
-reasons.push(
-"stark tränarprofil"
-);
-
-}
-
-
-if(
-p.trend_direction==="up"
-){
-
-reasons.push(
-"positiv strecktrend"
-);
-
-}
-
-
-if(
-p.edge>=5
-){
-
-reasons.push(
-"högt VALUE"
-);
-
-}
-
-
-if(
-p.gallop!==null &&
-p.gallop<=12
-){
-
-reasons.push(
-"låg historisk galopprisk"
-);
-
-}
-
-
-if(!reasons.length){
-
-reasons.push(
-"högst sammanvägd modellscore"
-);
-
-}
-
-
-return reasons.join(" · ")+".";
+  $("modelCoverage").textContent =
+    coverage.toFixed(0) +
+    "%";
 }
 
 
 /* ============================================================
-   SYSTEMVISNING
-============================================================ */
+   HISTORY CARD
+   ============================================================ */
 
-function renderSystem(
-races
+function updateHistoryCard(){
+
+  const count =
+    Object.values(
+      historyData
+    ).filter(
+      h =>
+        h &&
+        h.ok &&
+        num(
+          h.history_count
+        ) > 0
+    ).length;
+
+  $("cardHistory").textContent =
+    count;
+}
+
+
+/* ============================================================
+   SYSTEM GENERATOR
+   ============================================================ */
+
+function buildSystem(){
+
+  if (!analyzedRaces.length){
+
+    message(
+      "Kör analysen först.",
+      "warning-msg"
+    );
+
+    return;
+  }
+
+  /*
+   * Budget.
+   */
+
+  const budget =
+    500;
+
+  /*
+   * Radpris V85:
+   * 1 kr.
+   *
+   * Systemet försöker ligga under 500 kr.
+   */
+
+  let picks =
+    analyzedRaces.map(
+      race =>
+        chooseRace(
+          race
+        )
+    );
+
+  let rows =
+    picks.reduce(
+      (a,b) =>
+        a *
+        b.length,
+      1
+    );
+
+  /*
+   * Reducera från sämsta garderingar
+   * tills systemet ryms.
+   */
+
+  while (
+    rows > budget
+  ){
+
+    let changed =
+      false;
+
+    for (
+      let i =
+        picks.length - 1;
+      i >= 0;
+      i--
+    ){
+
+      if (
+        picks[i].length >
+        1
+      ){
+
+        picks[i] =
+          picks[i]
+            .slice(
+              0,
+              picks[i].length - 1
+            );
+
+        rows =
+          picks.reduce(
+            (a,b) =>
+              a *
+              b.length,
+            1
+          );
+
+        changed =
+          true;
+
+        if (
+          rows <=
+          budget
+        )
+          break;
+      }
+    }
+
+    if (!changed)
+      break;
+  }
+
+  const cost =
+    rows;
+
+  const singles =
+    picks.filter(
+      x =>
+        x.length === 1
+    ).length;
+
+  const doubles =
+    picks.filter(
+      x =>
+        x.length === 2
+    ).length;
+
+  const guards =
+    picks.filter(
+      x =>
+        x.length >= 3
+    ).length;
+
+  let html = `
+
+    <h2>
+      SYSTEMFÖRSLAG
+    </h2>
+
+    <div class="small">
+
+      Budget:
+      ${budget} kr ·
+      Rader:
+      ${rows} ·
+      Kostnad:
+      ${cost} kr
+
+    </div>
+
+    <div class="systemRows">
+
+      <div class="systemCell">
+        Spikar
+        <strong>
+          ${singles}
+        </strong>
+      </div>
+
+      <div class="systemCell">
+        Lås
+        <strong>
+          ${doubles}
+        </strong>
+      </div>
+
+      <div class="systemCell">
+        Garderingar
+        <strong>
+          ${guards}
+        </strong>
+      </div>
+
+      <div class="systemCell">
+        Kostnad
+        <strong>
+          ${cost} kr
+        </strong>
+      </div>
+
+    </div>
+
+    <br>
+
+  `;
+
+  analyzedRaces.forEach(
+    (race,i) => {
+
+      const selected =
+        picks[i];
+
+      html += `
+
+        <div class="systemCell">
+
+          <strong>
+            ${esc(
+              race.name
+            )}
+          </strong>
+
+          <br>
+
+          ${selected
+            .map(
+              h =>
+                h.number +
+                " " +
+                esc(
+                  h.name
+                ) +
+                " (" +
+                h.aiProbability
+                  .toFixed(1) +
+                "%)"
+            )
+            .join(
+              " · "
+            )}
+
+        </div>
+
+      `;
+    }
+  );
+
+  html += `
+
+    <br>
+
+    <div class="small">
+
+      Systemet är modellbaserat och
+      ska betraktas som ett analysförslag.
+      Det är inte en garanti för vinst.
+
+    </div>
+
+  `;
+
+  $("system").innerHTML =
+    html;
+
+  $("system").style.display =
+    "block";
+
+  $("cardSystem").textContent =
+    cost +
+    " kr";
+}
+
+
+function chooseRace(
+  race
 ){
 
-const budget=
-num(
-document.getElementById(
-"budget"
-).value
-)||1;
+  const sorted =
+    race.horses
+      .slice()
+      .sort(
+        (a,b) =>
+          b.aiProbability -
+          a.aiProbability
+      );
 
+  if (!sorted.length)
+    return [];
 
-const system=
-buildSystem(
-races,
-budget
-);
+  const first =
+    sorted[0];
 
+  const second =
+    sorted[1];
 
-let html=`
+  const third =
+    sorted[2];
 
-<div class="system">
+  /*
+   * SPIK:
+   *
+   * hög AI %
+   * bra VALUE
+   * tillräcklig historik
+   */
 
-<div class="system-head">
+  if (
+    first.aiProbability >= 32 &&
+    first.value >= 4
+  ){
 
-<div class="system-title">
-FÖRESLAGET SYSTEM
-</div>
+    return [
+      first
+    ];
+  }
 
-<div class="system-cost">
-${system.cost.toFixed(2)} kr
-</div>
+  /*
+   * LÅS:
+   */
 
-</div>
+  if (
+    second &&
+    first.aiProbability >= 22 &&
+    second.aiProbability >= 15
+  ){
 
-<div class="source-small">
-${system.lines} rader · 0,50 kr/rad
-</div>
+    return [
+      first,
+      second
+    ];
+  }
 
-<hr>
+  /*
+   * Tre hästar:
+   */
 
-`;
+  if (
+    third &&
+    first.aiProbability >= 15
+  ){
 
+    return [
+      first,
+      second,
+      third
+    ];
+  }
 
-system.choices.forEach(
-(choice,index)=>{
+  /*
+   * Fyra hästar:
+   */
 
-const type=
-choice.length===1
-?"SPIK"
-:choice.length===2
-?"LÅS"
-:"GARDERING";
-
-
-html+=`
-
-<div class="system-row">
-
-<strong>
-V85-${index+1}
-</strong>
-
-<div>
-
-${choice.map(
-h=>`
-
-<span class="system-horse">
-
-${h.number}
-${escapeHTML(h.name)}
-
-<span style="opacity:.65">
-${h.aiPercent.toFixed(1)}%
-</span>
-
-</span>
-
-`
-).join("")}
-
-</div>
-
-<div class="${
-type==="SPIK"
-?"green"
-:type==="LÅS"
-?"yellow"
-:"orange"
-}">
-
-${type}
-
-</div>
-
-</div>
-
-`;
-
-}
-);
-
-
-html+=`
-
-<hr>
-
-<div style="
-display:flex;
-justify-content:space-between;
-gap:20px;
-flex-wrap:wrap;
-">
-
-<div>
-
-<div class="source-small">
-BUDGET
-</div>
-
-<strong>
-${budget.toFixed(2)} kr
-</strong>
-
-</div>
-
-
-<div>
-
-<div class="source-small">
-SYSTEMKOSTNAD
-</div>
-
-<strong class="green">
-${system.cost.toFixed(2)} kr
-</strong>
-
-</div>
-
-
-<div>
-
-<div class="source-small">
-RADER
-</div>
-
-<strong>
-${system.lines}
-</strong>
-
-</div>
-
-</div>
-
-</div>
-
-`;
-
-
-document.getElementById(
-"results"
-).insertAdjacentHTML(
-"beforeend",
-html
-);
-
+  return sorted
+    .slice(
+      0,
+      4
+    );
 }
 
 
 /* ============================================================
-   KORT
-============================================================ */
+   BUTTONS
+   ============================================================ */
 
-function updateCards(
-races,
-scratchedCount
-){
-
-const horses=
-races.flatMap(
-r=>r.horses
-);
-
-
-document.getElementById(
-"cardRaces"
-).textContent=
-races.length;
-
-
-document.getElementById(
-"cardHorses"
-).textContent=
-horses.length+
-scratchedCount;
-
-
-document.getElementById(
-"cardActive"
-).textContent=
-horses.length;
-
-
-document.getElementById(
-"cardScratched"
-).textContent=
-scratchedCount;
-
-
-if(horses.length){
-
-const top=
-[...horses]
-.sort(
-(a,b)=>
-b.aiPercent-a.aiPercent
-)[0];
-
-
-document.getElementById(
-"cardTop"
-).textContent=
-`${top.number} ${top.name}`;
-
-}
-
-
-const system=
-buildSystem(
-races,
-num(
-document.getElementById(
-"budget"
-).value
-)||1
-);
-
-
-document.getElementById(
-"cardSystem"
-).textContent=
-system.cost.toFixed(2)+
-" kr";
-
-}
-
-
-/* ============================================================
-   KVALITET
-============================================================ */
-
-function updateQuality(
-data
-){
-
-const q=
-data.quality || {};
-
-
-document.getElementById(
-"qualityGrid"
-).innerHTML=`
-
-<div class="quality-item">
-Lopp:
-<b>
-${data.races_count ??
-q.race_count ??
-data.races?.length ??
-"–"}
-</b>
-</div>
-
-<div class="quality-item">
-Hästar:
-<b>
-${data.horses_total ??
-q.horses_total ??
-"–"}
-</b>
-</div>
-
-<div class="quality-item">
-Aktiva:
-<b>
-${data.horses_active ??
-"–"}
-</b>
-</div>
-
-<div class="quality-item">
-Strykningar:
-<b>
-${data.horses_scratched ??
-"–"}
-</b>
-</div>
-
-<div class="quality-item">
-Balans:
-<b>
-${q.horses_with_balance ??
-"–"}
-</b>
-</div>
-
-<div class="quality-item">
-Trend:
-<b>
-${q.horses_with_trend ??
-"–"}
-</b>
-</div>
-
-<div class="quality-item">
-Parser:
-<b>
-${
-q.parser_rows_parsed!==undefined
-?q.parser_rows_parsed+
-"/"+
-(q.parser_rows_seen??"?")
-:"–"
-}
-</b>
-</div>
-
-<div class="quality-item">
-Datum:
-<b>
-${data.page_date||"–"}
-</b>
-</div>
-
-`;
-
-}
-
-
-/* ============================================================
-   HUVUDANALYS
-============================================================ */
-
-async function runAnalysis(){
-
-const btn=
-document.getElementById(
-"analyzeBtn"
-);
-
-btn.disabled=true;
-
-btn.textContent=
-"HÄMTAR DATA...";
-
-
-setProgress(10);
-
-
-try{
-
-showMessage(
-"Hämtar dagens V85 från V29...",
-"info"
-);
-
-
-let data=null;
-
-
-try{
-
-data=
-await fetchV29();
-
-lastData=data;
-
-}catch(err){
-
-console.error(
-"V29:",
-err
-);
-
-}
-
-
-setProgress(35);
-
-
-let rows=[];
-
-
-if(data){
-
-updateQuality(
-data
-);
-
-
-rows=
-normalizeV29(
-data
-);
-
-
-document.getElementById(
-"sourceStatus"
-).textContent=
-`V29: ${rows.length} hästar`;
-
-
-document.getElementById(
-"sourceText"
-).textContent=
-`${data.track||"Bana"} · ${data.page_date||"datum"}`;
-
-}
-
-
-if(
-!rows.length &&
-startData.length
-){
-
-rows=[
-...startData
-];
-
-showMessage(
-"V29 saknar data – använder CSV.",
-"info"
-);
-
-}
-
-
-if(!rows.length){
-
-throw new Error(
-"Ingen startlista kunde hämtas."
-);
-
-}
-
-
-setProgress(55);
-
-
-showMessage(
-`${rows.length} hästar analyseras...`,
-"info"
-);
-
-
-const races=
-analyze(
-rows
-);
-
-
-setProgress(80);
-
-
-/*
-  VIKTIGT:
-
-  V29 innehåller även strukna hästar.
-  De ska inte räknas som aktiva,
-  men de ska räknas i strykningskortet.
-*/
-
-const scratchedCount=
-data &&
-data.horses_scratched!==undefined
-?num(data.horses_scratched)
-:rows.filter(
-x=>x.scratched
-).length;
-
-
-renderResults(
-races,
-scratchedCount
-);
-
-
-setProgress(100);
-
-
-const all=
-races.flatMap(
-r=>r.horses
-);
-
-
-const top=
-[...all]
-.sort(
-(a,b)=>
-b.aiPercent-a.aiPercent
-)[0];
-
-
-showMessage(
-`Analysen klar: ${races.length} lopp. AI-topp: ${top.number} ${top.name} ${top.aiPercent.toFixed(1)}%.`,
-"success"
-);
-
-
-}catch(err){
-
-console.error(err);
-
-
-showMessage(
-"Analysfel: "+
-err.message,
-"error"
-);
-
-
-document.getElementById(
-"results"
-).innerHTML=`
-
-<div class="empty">
-
-<strong>
-ANALYSEN KUNDE INTE KÖRAS
-</strong>
-
-${escapeHTML(
-err.message
-)}
-
-<br><br>
-
-Kontrollera V29 /data.
-
-</div>
-
-`;
-
-}
-
-
-finally{
-
-btn.disabled=false;
-
-btn.textContent=
-"HÄMTA & ANALYSERA";
-
-
-setTimeout(
-()=>setProgress(0),
-700
-);
-
-}
-
-}
-
-
-/* ============================================================
-   V29 HEALTH
-============================================================ */
-
-async function checkProxy(){
-
-try{
-
-const r=
-await fetch(
-PROXY+"/health",
-{
-cache:"no-store"
-}
-);
-
-
-if(!r.ok){
-
-throw new Error(
-"HTTP "+r.status
-);
-
-}
-
-
-const d=
-await r.json();
-
-
-if(!d.ok)
-throw new Error(
-"Proxyfel"
-);
-
-
-document.getElementById(
-"statusDot"
-).className=
-"dot online";
-
-
-document.getElementById(
-"statusText"
-).textContent=
-"V29 online";
-
-
-document.getElementById(
-"sourceStatus"
-).textContent=
-"V29 Worker: ONLINE";
-
-
-document.getElementById(
-"sourceText"
-).textContent=
-"Cloudflare Worker";
-
-
-}catch(err){
-
-document.getElementById(
-"statusDot"
-).className=
-"dot error";
-
-
-document.getElementById(
-"statusText"
-).textContent=
-"Proxyfel";
-
-
-document.getElementById(
-"sourceStatus"
-).textContent=
-"V29: FEL";
-
-
-document.getElementById(
-"sourceText"
-).textContent=
-err.message;
-
-}
-
-}
-
-
-/* ============================================================
-   FETCH
-============================================================ */
-
-async function fetchV29(){
-
-const r=
-await fetch(
-DATA_URL,
-{
-cache:"no-store"
-}
-);
-
-
-if(!r.ok){
-
-throw new Error(
-"V29 HTTP "+
-r.status
-);
-
-}
-
-
-const d=
-await r.json();
-
-
-if(
-!d ||
-d.ok===false
-){
-
-throw new Error(
-d?.error ||
-"V29 returnerade fel"
-);
-
-}
-
-
-return d;
-
-}
-
-
-/* ============================================================
-   MEDDELANDE
-============================================================ */
-
-function showMessage(
-message,
-type
-){
-
-const el=
-document.getElementById(
-"message"
-);
-
-el.className=
-"message show "+
-type;
-
-el.textContent=
-message;
-
-}
-
-
-/* ============================================================
-   PROGRESS
-============================================================ */
-
-function setProgress(
-value
-){
-
-const box=
-document.getElementById(
-"progress"
-);
-
-const bar=
-document.getElementById(
-"progressBar"
-);
-
-
-if(value<=0){
-
-box.classList.remove(
-"show"
-);
-
-bar.style.width=
-"0%";
-
-return;
-
-}
-
-
-box.classList.add(
-"show"
-);
-
-bar.style.width=
-clamp(
-value,
-0,
-100
-)+"%";
-
-}
-
-
-/* ============================================================
-   RENSNING
-============================================================ */
-
-document.getElementById(
-"clearBtn"
-)
+$("runBtn")
 .addEventListener(
-"click",
-()=>{
+  "click",
+  async () => {
 
-analyzedRaces=[];
-lastData=null;
+    const button =
+      $("runBtn");
 
+    button.disabled =
+      true;
 
-document.getElementById(
-"cardRaces"
-).textContent="0";
+    try {
 
+      progress(10);
 
-document.getElementById(
-"cardHorses"
-).textContent="0";
+      message(
+        "Hämtar aktuell V85-startlista...",
+        "info-msg"
+      );
 
+      await loadStartData();
 
-document.getElementById(
-"cardActive"
-).textContent="0";
+      progress(35);
 
+      message(
+        "Startlistan hämtad. Hämtar hästhistorik...",
+        "info-msg"
+      );
 
-document.getElementById(
-"cardScratched"
-).textContent="0";
+      await loadHistory();
 
+      progress(85);
 
-document.getElementById(
-"cardTop"
-).textContent="–";
+      message(
+        "Historiken analyseras...",
+        "info-msg"
+      );
 
+      analyze();
 
-document.getElementById(
-"cardSystem"
-).textContent="–";
+      render();
 
+      progress(100);
 
-document.getElementById(
-"results"
-).innerHTML=`
+      const total =
+        analyzedRaces
+          .flatMap(
+            r =>
+              r.horses
+          )
+          .length;
 
-<div class="empty">
+      const withHistory =
+        analyzedRaces
+          .flatMap(
+            r =>
+              r.horses
+          )
+          .filter(
+            h =>
+              h.model.historyAvailable
+          )
+          .length;
 
-<strong>
-TRAV AI V31.1
-</strong>
+      message(
+        "Analysen klar: " +
+        analyzedRaces.length +
+        " lopp, " +
+        total +
+        " aktiva hästar, " +
+        withHistory +
+        " med historik.",
+        "success-msg"
+      );
 
-Analysen är rensad.
+      setTimeout(
+        () =>
+          progress(0),
+        700
+      );
 
-</div>
+    } catch(err){
 
-`;
+      console.error(
+        err
+      );
 
+      message(
+        "Fel: " +
+        err.message,
+        "error-msg"
+      );
 
-showMessage(
-"Analysen är rensad.",
-"info"
-);
+      progress(0);
 
-}
+    } finally {
+
+      button.disabled =
+        false;
+    }
+  }
 );
 
 
 /* ============================================================
-   ANALYSKNAPP
-============================================================ */
+   MANUAL HISTORY
+   ============================================================ */
 
-document.getElementById(
-"analyzeBtn"
-)
+$("historyBtn")
 .addEventListener(
-"click",
-runAnalysis
+  "click",
+  async () => {
+
+    try {
+
+      if (!startData){
+
+        await loadStartData();
+      }
+
+      message(
+        "Hämtar historik för dagens hästar...",
+        "info-msg"
+      );
+
+      progress(20);
+
+      await loadHistory();
+
+      progress(80);
+
+      analyze();
+
+      render();
+
+      progress(100);
+
+      message(
+        "Historiken är laddad och modellen är omräknad.",
+        "success-msg"
+      );
+
+      setTimeout(
+        () =>
+          progress(0),
+        700
+      );
+
+    } catch(err){
+
+      console.error(
+        err
+      );
+
+      message(
+        "Historikfel: " +
+        err.message,
+        "error-msg"
+      );
+
+      progress(0);
+    }
+  }
 );
 
 
 /* ============================================================
-   CTRL + ENTER
-============================================================ */
+   SYSTEM
+   ============================================================ */
 
-document.addEventListener(
-"keydown",
-e=>{
-
-if(
-e.ctrlKey &&
-e.key==="Enter"
-){
-
-e.preventDefault();
-
-runAnalysis();
-
-}
-
-}
+$("systemBtn")
+.addEventListener(
+  "click",
+  buildSystem
 );
 
 
 /* ============================================================
-   START
-============================================================ */
+   CLEAR
+   ============================================================ */
 
-checkProxy();
+$("clearBtn")
+.addEventListener(
+  "click",
+  () => {
+
+    startData =
+      null;
+
+    historyData =
+      {};
+
+    analyzedRaces =
+      [];
+
+    $("results").innerHTML =
+      `<div class="empty">
+        Analysen är rensad.
+      </div>`;
+
+    $("system").innerHTML =
+      "";
+
+    $("system").style.display =
+      "none";
+
+    $("cardTrack").textContent =
+      "–";
+
+    $("cardRaces").textContent =
+      "0";
+
+    $("cardHorses").textContent =
+      "0";
+
+    $("cardScratched").textContent =
+      "0";
+
+    $("cardHistory").textContent =
+      "0";
+
+    $("cardTop").textContent =
+      "–";
+
+    $("modelHistory").textContent =
+      "EJ LADDAD";
+
+    $("modelForm").textContent =
+      "–";
+
+    $("modelDriver").textContent =
+      "–";
+
+    $("modelGallop").textContent =
+      "–";
+
+    $("modelCoverage").textContent =
+      "0%";
+
+    message(
+      "Analysen är rensad.",
+      "info-msg"
+    );
+  }
+);
 
 </script>
 

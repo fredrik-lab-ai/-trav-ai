@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="sv">
+
 <head>
 
 <meta charset="UTF-8">
@@ -9,7 +10,7 @@
   content="width=device-width,initial-scale=1"
 >
 
-<title>TRAV AI V32</title>
+<title>TRAV AI V32.1</title>
 
 <style>
 
@@ -21,10 +22,7 @@ body{
   margin:0;
   background:#0d1117;
   color:#e6edf3;
-  font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
+  font-family:Arial,Helvetica,sans-serif;
 }
 
 header{
@@ -59,17 +57,13 @@ header{
   margin-bottom:18px;
 }
 
-button,
-input{
+button{
   width:100%;
   padding:13px;
   border-radius:8px;
   border:1px solid #344052;
   background:#111827;
   color:#fff;
-}
-
-button{
   cursor:pointer;
   font-weight:800;
 }
@@ -78,25 +72,14 @@ button:hover{
   background:#1a2535;
 }
 
+button:disabled{
+  opacity:.5;
+  cursor:not-allowed;
+}
+
 .primary{
   background:#172554;
   border-color:#2563eb;
-}
-
-.success{
-  color:#4ade80;
-}
-
-.warning{
-  color:#fbbf24;
-}
-
-.danger{
-  color:#fb7185;
-}
-
-.info{
-  color:#60a5fa;
 }
 
 .message{
@@ -143,7 +126,7 @@ button:hover{
   width:0%;
   height:100%;
   background:#3b82f6;
-  transition:width .2s;
+  transition:width:.2s;
 }
 
 .cards{
@@ -171,6 +154,44 @@ button:hover{
   font-size:22px;
   font-weight:900;
   margin-top:6px;
+}
+
+.statusGrid{
+  display:grid;
+  grid-template-columns:
+    repeat(auto-fit,minmax(180px,1fr));
+  gap:10px;
+  margin-bottom:20px;
+}
+
+.statusBox{
+  padding:13px;
+  border-radius:9px;
+  background:#111827;
+  border:1px solid #263241;
+}
+
+.statusTitle{
+  font-size:11px;
+  color:#8190a4;
+  text-transform:uppercase;
+}
+
+.statusValue{
+  margin-top:5px;
+  font-weight:900;
+}
+
+.ok{
+  color:#4ade80;
+}
+
+.bad{
+  color:#fb7185;
+}
+
+.wait{
+  color:#fbbf24;
 }
 
 .race{
@@ -234,8 +255,13 @@ tr.scratched{
   font-weight:800;
 }
 
-.top{
+.prob{
   font-weight:900;
+}
+
+.small{
+  color:#8190a4;
+  font-size:11px;
 }
 
 .badge{
@@ -253,15 +279,7 @@ tr.scratched{
 
 .valueNegative{
   color:#fb7185;
-}
-
-.prob{
   font-weight:900;
-}
-
-.small{
-  color:#8190a4;
-  font-size:11px;
 }
 
 .modelBox{
@@ -277,6 +295,7 @@ tr.scratched{
   grid-template-columns:
     repeat(auto-fit,minmax(180px,1fr));
   gap:10px;
+  margin-top:12px;
 }
 
 .modelItem{
@@ -310,26 +329,13 @@ tr.scratched{
   padding:10px;
   background:#0c121c;
   border-radius:7px;
+  margin-bottom:7px;
 }
 
 .empty{
   padding:35px;
   text-align:center;
   color:#7e8da0;
-}
-
-.historyBar{
-  height:7px;
-  background:#202a38;
-  border-radius:5px;
-  overflow:hidden;
-  margin-top:5px;
-}
-
-.historyBar div{
-  height:100%;
-  width:0;
-  background:#3b82f6;
 }
 
 @media(max-width:700px){
@@ -345,18 +351,21 @@ tr.scratched{
   .hideMobile{
     display:none;
   }
+
 }
 
 </style>
 
 </head>
 
+
 <body>
+
 
 <header>
 
   <div class="logo">
-    TRAV AI V32
+    TRAV AI V32.1
   </div>
 
   <div class="sub">
@@ -365,7 +374,9 @@ tr.scratched{
 
 </header>
 
+
 <div class="container">
+
 
   <div class="controls">
 
@@ -396,90 +407,201 @@ tr.scratched{
 
   </div>
 
-  <div id="message" class="message"></div>
 
-  <div id="progress" class="progress">
+  <div
+    id="message"
+    class="message"
+  ></div>
+
+
+  <div
+    id="progress"
+    class="progress"
+  >
+
     <div
       id="progressBar"
       class="progressBar"
     ></div>
+
   </div>
+
+
+  <!-- STATUS -->
+
+  <div class="statusGrid">
+
+    <div class="statusBox">
+
+      <div class="statusTitle">
+        Startlista
+      </div>
+
+      <div
+        id="statusStart"
+        class="statusValue wait"
+      >
+        EJ HÄMTAD
+      </div>
+
+    </div>
+
+
+    <div class="statusBox">
+
+      <div class="statusTitle">
+        Historik
+      </div>
+
+      <div
+        id="statusHistory"
+        class="statusValue wait"
+      >
+        EJ HÄMTAD
+      </div>
+
+    </div>
+
+
+    <div class="statusBox">
+
+      <div class="statusTitle">
+        Worker
+      </div>
+
+      <div
+        id="statusWorker"
+        class="statusValue wait"
+      >
+        EJ TESTAD
+      </div>
+
+    </div>
+
+
+    <div class="statusBox">
+
+      <div class="statusTitle">
+        Modell
+      </div>
+
+      <div
+        id="statusModel"
+        class="statusValue wait"
+      >
+        EJ KÖRD
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- CARDS -->
 
   <div class="cards">
 
+
     <div class="card">
+
       <div class="label">
         Bana
       </div>
+
       <div
         id="cardTrack"
         class="value"
       >
         –
       </div>
+
     </div>
 
+
     <div class="card">
+
       <div class="label">
         Lopp
       </div>
+
       <div
         id="cardRaces"
         class="value"
       >
         0
       </div>
+
     </div>
 
+
     <div class="card">
+
       <div class="label">
         Hästar
       </div>
+
       <div
         id="cardHorses"
         class="value"
       >
         0
       </div>
+
     </div>
 
+
     <div class="card">
+
       <div class="label">
         Strukna
       </div>
+
       <div
         id="cardScratched"
         class="value"
       >
         0
       </div>
+
     </div>
 
+
     <div class="card">
+
       <div class="label">
         Historik
       </div>
+
       <div
         id="cardHistory"
         class="value"
       >
         0
       </div>
+
     </div>
 
+
     <div class="card">
+
       <div class="label">
         Topp AI
       </div>
+
       <div
         id="cardTop"
         class="value"
       >
         –
       </div>
+
     </div>
 
+
   </div>
+
+
+  <!-- MODEL -->
 
   <div
     id="modelBox"
@@ -487,58 +609,93 @@ tr.scratched{
   >
 
     <strong>
-      AI-MODELL V32
+      AI-MODELL V32.1
     </strong>
 
     <div class="small">
+
       Historiken används som huvudsignal.
       Marknaden används som separat prior.
       AI % är modellens relativa vinstsannolikhet
       inom loppet.
+
     </div>
 
-    <br>
 
     <div class="modelGrid">
 
+
       <div class="modelItem">
+
         Historik
-        <strong id="modelHistory">
+
+        <strong
+          id="modelHistory"
+        >
           EJ LADDAD
         </strong>
+
       </div>
 
+
       <div class="modelItem">
+
         Senaste form
-        <strong id="modelForm">
+
+        <strong
+          id="modelForm"
+        >
           –
         </strong>
+
       </div>
 
+
       <div class="modelItem">
+
         Kusk
-        <strong id="modelDriver">
+
+        <strong
+          id="modelDriver"
+        >
           –
         </strong>
+
       </div>
 
+
       <div class="modelItem">
+
         Galopprisk
-        <strong id="modelGallop">
+
+        <strong
+          id="modelGallop"
+        >
           –
         </strong>
+
       </div>
 
+
       <div class="modelItem">
+
         Datatäckning
-        <strong id="modelCoverage">
+
+        <strong
+          id="modelCoverage"
+        >
           0%
         </strong>
+
       </div>
+
 
     </div>
 
   </div>
+
+
+  <!-- RESULTS -->
 
   <div id="results">
 
@@ -554,16 +711,22 @@ tr.scratched{
 
   </div>
 
+
+  <!-- SYSTEM -->
+
   <div
     id="system"
     class="system"
     style="display:none"
   ></div>
 
+
 </div>
 
 
+
 <script>
+
 
 /* ============================================================
    CONFIG
@@ -572,19 +735,46 @@ tr.scratched{
 const API =
   "https://trav-ai-proxy.fredrik-widingsel.workers.dev";
 
-let startData = null;
 
-let historyData = {};
+const VERSION =
+  "32.1";
 
-let analyzedRaces = [];
+
+let startData =
+  null;
+
+
+let historyData =
+  {};
+
+
+let analyzedRaces =
+  [];
 
 
 /* ============================================================
-   HELPERS
+   DOM
    ============================================================ */
 
 function $(id){
-  return document.getElementById(id);
+
+  return document.getElementById(
+    id
+  );
+
+}
+
+
+/* ============================================================
+   TEXT / NUMBERS
+   ============================================================ */
+
+function text(v){
+
+  return v == null
+    ? ""
+    : String(v);
+
 }
 
 
@@ -593,13 +783,18 @@ function num(v){
   const n =
     Number(v);
 
-  return Number.isFinite(n) ?
-    n :
-    0;
+  return Number.isFinite(n)
+    ? n
+    : 0;
+
 }
 
 
-function clamp(v,min,max){
+function clamp(
+  v,
+  min,
+  max
+){
 
   return Math.max(
     min,
@@ -608,14 +803,55 @@ function clamp(v,min,max){
       v
     )
   );
+
 }
 
 
-function text(v){
+function mean(values){
 
-  return v == null ?
-    "" :
-    String(v);
+  const arr =
+    values.filter(
+      x =>
+        Number.isFinite(x)
+    );
+
+  if(
+    !arr.length
+  )
+    return null;
+
+  return (
+    arr.reduce(
+      (a,b) =>
+        a+b,
+      0
+    ) /
+    arr.length
+  );
+
+}
+
+
+function normalizeName(
+  value
+){
+
+  return text(value)
+    .toLowerCase()
+    .replace(
+      /\([^)]*\)/g,
+      ""
+    )
+    .replace(
+      /[^a-zåäö0-9]+/gi,
+      " "
+    )
+    .replace(
+      /\s+/g,
+      " "
+    )
+    .trim();
+
 }
 
 
@@ -642,307 +878,936 @@ function esc(v){
       /'/g,
       "&#039;"
     );
-}
 
-
-function mean(values){
-
-  const a =
-    values
-      .filter(
-        x =>
-          Number.isFinite(x)
-      );
-
-  if (!a.length)
-    return null;
-
-  return (
-    a.reduce(
-      (s,x)=>s+x,
-      0
-    ) /
-    a.length
-  );
-}
-
-
-function sigmoid(x){
-
-  return 1 /
-    (
-      1 +
-      Math.exp(-x)
-    );
-}
-
-
-function normalizeName(value){
-
-  return text(value)
-    .toLowerCase()
-    .replace(
-      /\([^)]*\)/g,
-      ""
-    )
-    .replace(
-      /[^a-zåäö0-9]+/gi,
-      " "
-    )
-    .replace(
-      /\s+/g,
-      " "
-    )
-    .trim();
 }
 
 
 /* ============================================================
-   UI
+   STATUS
    ============================================================ */
 
-function message(msg,type="info-msg"){
+function setStatus(
+  id,
+  value,
+  type
+){
 
-  $("message").className =
-    "message show " +
+  const el =
+    $(id);
+
+  el.textContent =
+    value;
+
+  el.className =
+    "statusValue " +
     type;
 
-  $("message").textContent =
-    msg;
 }
 
 
-function progress(value){
+function message(
+  msg,
+  type
+){
 
-  if (value <= 0){
+  const el =
+    $("message");
+
+  el.textContent =
+    msg;
+
+  el.className =
+    "message show " +
+    type;
+
+}
+
+
+function progress(
+  value
+){
+
+  if(
+    value <= 0
+  ){
 
     $("progress")
       .classList
-      .remove("show");
+      .remove(
+        "show"
+      );
 
     $("progressBar")
       .style
-      .width = "0%";
+      .width =
+      "0%";
 
     return;
+
   }
+
 
   $("progress")
     .classList
-    .add("show");
+    .add(
+      "show"
+    );
+
 
   $("progressBar")
     .style
     .width =
-      clamp(
-        value,
-        0,
-        100
-      ) + "%";
+    clamp(
+      value,
+      0,
+      100
+    ) +
+    "%";
+
 }
 
 
 /* ============================================================
-   LOAD CURRENT DATA
+   WORKER TEST
+   ============================================================ */
+
+async function testWorker(){
+
+  try{
+
+    const response =
+      await fetch(
+        API +
+        "/health?ts=" +
+        Date.now(),
+        {
+          method:
+            "GET",
+          cache:
+            "no-store"
+        }
+      );
+
+
+    if(
+      !response.ok
+    ){
+
+      setStatus(
+        "statusWorker",
+        "HTTP " +
+        response.status,
+        "bad"
+      );
+
+      return false;
+
+    }
+
+
+    const data =
+      await response.json();
+
+
+    if(
+      data.ok
+    ){
+
+      setStatus(
+        "statusWorker",
+        "ONLINE V" +
+        (
+          data.version ||
+          "?"
+        ),
+        "ok"
+      );
+
+      return true;
+
+    }
+
+
+    setStatus(
+      "statusWorker",
+      "FEL",
+      "bad"
+    );
+
+    return false;
+
+  }
+  catch(err){
+
+    console.error(
+      "Worker health:",
+      err
+    );
+
+
+    setStatus(
+      "statusWorker",
+      "KAN INTE NÅ",
+      "bad"
+    );
+
+
+    return false;
+
+  }
+
+}
+
+
+/* ============================================================
+   FETCH WITH TIMEOUT
+   ============================================================ */
+
+async function fetchJson(
+  url,
+  timeoutMs = 20000
+){
+
+  const controller =
+    new AbortController();
+
+
+  const timer =
+    setTimeout(
+      () =>
+        controller.abort(),
+      timeoutMs
+    );
+
+
+  try{
+
+    const response =
+      await fetch(
+        url,
+        {
+          method:
+            "GET",
+
+          cache:
+            "no-store",
+
+          signal:
+            controller.signal
+        }
+      );
+
+
+    if(
+      !response.ok
+    ){
+
+      throw new Error(
+        "HTTP " +
+        response.status
+      );
+
+    }
+
+
+    const data =
+      await response.json();
+
+
+    return data;
+
+  }
+  finally{
+
+    clearTimeout(
+      timer
+    );
+
+  }
+
+}
+
+
+/* ============================================================
+   LOAD STARTLIST
    ============================================================ */
 
 async function loadStartData(){
 
-  const response =
-    await fetch(
-      API +
-      "/data?ts=" +
-      Date.now(),
-      {
-        cache:
-          "no-store"
-      }
+  setStatus(
+    "statusStart",
+    "HÄMTAR...",
+    "wait"
+  );
+
+
+  try{
+
+    const data =
+      await fetchJson(
+        API +
+        "/data?ts=" +
+        Date.now(),
+        30000
+      );
+
+
+    if(
+      !data ||
+      !data.ok
+    ){
+
+      throw new Error(
+        data?.error ||
+        "Worker returnerade inget giltigt svar"
+      );
+
+    }
+
+
+    if(
+      !Array.isArray(
+        data.races
+      )
+    ){
+
+      throw new Error(
+        "V85-data saknar lopp"
+      );
+
+    }
+
+
+    if(
+      data.races.length !== 8
+    ){
+
+      throw new Error(
+        "Förväntade 8 lopp men fick " +
+        data.races.length
+      );
+
+    }
+
+
+    startData =
+      data;
+
+
+    setStatus(
+      "statusStart",
+      "OK · " +
+      data.races_count +
+      " lopp",
+      "ok"
     );
 
-  if (!response.ok){
+
+    $("cardTrack")
+      .textContent =
+      data.track ||
+      "–";
+
+
+    $("cardRaces")
+      .textContent =
+      data.races_count ||
+      0;
+
+
+    $("cardHorses")
+      .textContent =
+      data.horses_active ||
+      0;
+
+
+    $("cardScratched")
+      .textContent =
+      data.horses_scratched ||
+      0;
+
+
+    return data;
+
+  }
+  catch(err){
+
+    console.error(
+      "STARTLISTA:",
+      err
+    );
+
+
+    setStatus(
+      "statusStart",
+      "FEL",
+      "bad"
+    );
+
 
     throw new Error(
-      "Worker HTTP " +
-      response.status
+      "Startlistan kunde inte hämtas: " +
+      err.message
     );
+
   }
 
-  const data =
-    await response.json();
-
-  if (!data.ok){
-
-    throw new Error(
-      data.error ||
-      "Worker-fel"
-    );
-  }
-
-  if (
-    !Array.isArray(
-      data.races
-    )
-  ){
-
-    throw new Error(
-      "Startlistan saknar lopp"
-    );
-  }
-
-  startData =
-    data;
-
-  return data;
 }
 
 
 /* ============================================================
-   LOAD HISTORY
+   GET HISTORY FOR ONE HORSE
+   ============================================================ */
+
+async function loadOneHistory(
+  horse
+){
+
+  const name =
+    horse.name;
+
+
+  const url =
+    API +
+    "/history?horse=" +
+    encodeURIComponent(
+      name
+    ) +
+    "&ts=" +
+    Date.now();
+
+
+  try{
+
+    const data =
+      await fetchJson(
+        url,
+        25000
+      );
+
+
+    /*
+     * Även om Worker returnerar ok:false
+     * ska inte hela programmet krascha.
+     */
+
+    if(
+      data &&
+      data.ok
+    ){
+
+      return {
+        name,
+        data
+      };
+
+    }
+
+
+    return {
+      name,
+      data:{
+        ok:false,
+        horse:name,
+        history_count:0,
+        starts:[],
+        error:
+          data?.error ||
+          "Ingen historik"
+      }
+    };
+
+  }
+  catch(err){
+
+    console.warn(
+      "Historik misslyckades:",
+      name,
+      err
+    );
+
+
+    return {
+      name,
+      data:{
+        ok:false,
+        horse:name,
+        history_count:0,
+        starts:[],
+        error:
+          err.message ||
+          "Historikfel"
+      }
+    };
+
+  }
+
+}
+
+
+/* ============================================================
+   HISTORY WITH LIMITED CONCURRENCY
    ============================================================ */
 
 async function loadHistory(){
 
-  if (!startData){
+  if(
+    !startData
+  ){
 
     await loadStartData();
+
   }
+
 
   const horses =
     startData.races
       .flatMap(
         race =>
           race.horses
-            .filter(
-              h =>
-                !h.scratched
-            )
+      )
+      .filter(
+        h =>
+          !h.scratched
       );
 
-  const names =
-    [
-      ...new Set(
-        horses.map(
-          h => h.name
-        )
-      )
-    ];
 
-  if (!names.length){
+  /*
+   * Unika hästar.
+   */
 
-    throw new Error(
-      "Inga aktiva hästar hittades"
-    );
+  const unique = [];
+
+  const seen =
+    new Set();
+
+
+  for(
+    const horse of horses
+  ){
+
+    const key =
+      normalizeName(
+        horse.name
+      );
+
+
+    if(
+      !seen.has(key)
+    ){
+
+      seen.add(key);
+
+      unique.push(
+        horse
+      );
+
+    }
+
   }
+
 
   historyData = {};
 
-  let loaded = 0;
 
-  const chunkSize = 5;
+  let completed =
+    0;
 
-  for (
-    let i = 0;
-    i < names.length;
-    i += chunkSize
-  ){
 
-    const chunk =
-      names.slice(
-        i,
-        i + chunkSize
-      );
+  const total =
+    unique.length;
 
-    const encoded =
-      chunk
-        .map(
-          n =>
-            encodeURIComponent(
-              n
-            )
-        )
-        .join("|");
 
-    const response =
-      await fetch(
-        API +
-        "/history?horses=" +
-        encoded +
-        "&ts=" +
-        Date.now(),
-        {
-          cache:
-            "no-store"
-        }
-      );
+  /*
+   * Endast fyra samtidigt.
+   */
 
-    if (response.ok){
+  const concurrency =
+    4;
 
-      const data =
-        await response.json();
 
-      if (
-        data &&
-        data.horses
-      ){
+  let nextIndex =
+    0;
 
-        Object.assign(
-          historyData,
-          data.horses
+
+  async function worker(){
+
+    while(true){
+
+      const index =
+        nextIndex++;
+
+
+      if(
+        index >= total
+      )
+        return;
+
+
+      const horse =
+        unique[index];
+
+
+      const result =
+        await loadOneHistory(
+          horse
         );
-      }
+
+
+      historyData[
+        result.name
+      ] =
+        result.data;
+
+
+      completed++;
+
+
+      const pct =
+        15 +
+        (
+          completed /
+          total
+        ) *
+        70;
+
+
+      progress(
+        pct
+      );
+
+
+      setStatus(
+        "statusHistory",
+        completed +
+        "/" +
+        total,
+        "wait"
+      );
+
     }
 
-    loaded +=
-      chunk.length;
-
-    progress(
-      20 +
-      (
-        loaded /
-        names.length
-      ) * 60
-    );
   }
 
-  updateHistoryCard();
+
+  const workers =
+    [];
+
+
+  for(
+    let i = 0;
+    i <
+    Math.min(
+      concurrency,
+      total
+    );
+    i++
+  ){
+
+    workers.push(
+      worker()
+    );
+
+  }
+
+
+  await Promise.all(
+    workers
+  );
+
+
+  const successful =
+    Object.values(
+      historyData
+    )
+    .filter(
+      h =>
+        h &&
+        h.ok &&
+        num(
+          h.history_count
+        ) > 0
+    )
+    .length;
+
+
+  $("cardHistory")
+    .textContent =
+    successful;
+
+
+  const coverage =
+    total > 0
+      ? (
+          successful /
+          total
+        ) *
+        100
+      : 0;
+
+
+  setStatus(
+    "statusHistory",
+    successful +
+    "/" +
+    total +
+    " · " +
+    coverage.toFixed(0) +
+    "%",
+    successful > 0
+      ? "ok"
+      : "bad"
+  );
+
 
   return historyData;
+
 }
 
 
 /* ============================================================
-   HISTORY MATCH
+   FIND HISTORY
    ============================================================ */
 
-function getHistory(horse){
+function getHistory(
+  horse
+){
 
   const target =
     normalizeName(
       horse.name
     );
 
-  const exact =
+
+  const key =
     Object.keys(
       historyData
-    ).find(
-      key =>
-        normalizeName(key) ===
+    )
+    .find(
+      k =>
+        normalizeName(k) ===
         target
     );
 
-  if (
-    exact &&
-    historyData[exact]
+
+  if(
+    key
   ){
 
-    return historyData[exact];
+    return historyData[key];
+
   }
+
 
   return {
     ok:false,
     history_count:0,
     starts:[]
   };
+
+}
+
+
+/* ============================================================
+   FINISH SCORE
+   ============================================================ */
+
+function finishScore(
+  finish
+){
+
+  if(
+    !Number.isFinite(
+      finish
+    )
+  )
+    return 40;
+
+
+  if(
+    finish <= 0
+  )
+    return 10;
+
+
+  if(
+    finish === 1
+  )
+    return 100;
+
+
+  if(
+    finish === 2
+  )
+    return 85;
+
+
+  if(
+    finish === 3
+  )
+    return 72;
+
+
+  if(
+    finish === 4
+  )
+    return 62;
+
+
+  if(
+    finish === 5
+  )
+    return 54;
+
+
+  if(
+    finish <= 8
+  )
+    return 42;
+
+
+  return 25;
+
+}
+
+
+/* ============================================================
+   SUB FORM
+   ============================================================ */
+
+function subForm(
+  starts
+){
+
+  if(
+    !starts.length
+  )
+    return 50;
+
+
+  const raw =
+    mean(
+      starts.map(
+        s =>
+          finishScore(
+            s.finish
+          )
+      )
+    );
+
+
+  const confidence =
+    clamp(
+      starts.length /
+      5,
+      0,
+      1
+    );
+
+
+  return (
+    50 +
+    (
+      raw -
+      50
+    ) *
+    confidence
+  );
+
+}
+
+
+/* ============================================================
+   DISTANCE MATCH
+   ============================================================ */
+
+function distanceMatch(
+  a,
+  b
+){
+
+  if(
+    !Number.isFinite(a) ||
+    !Number.isFinite(b)
+  )
+    return false;
+
+
+  return (
+    Math.abs(
+      a-b
+    ) <= 80
+  );
+
+}
+
+
+/* ============================================================
+   POSITION GROUP
+   ============================================================ */
+
+function positionGroup(
+  n
+){
+
+  if(
+    !Number.isFinite(n)
+  )
+    return "unknown";
+
+
+  if(
+    n <= 4
+  )
+    return "front";
+
+
+  if(
+    n <= 8
+  )
+    return "middle";
+
+
+  return "back";
+
+}
+
+
+/* ============================================================
+   POSITION FORM
+   ============================================================ */
+
+function positionForm(
+  starts,
+  currentNumber
+){
+
+  if(
+    !starts.length
+  )
+    return 50;
+
+
+  const group =
+    positionGroup(
+      currentNumber
+    );
+
+
+  const relevant =
+    starts.filter(
+      s =>
+        positionGroup(
+          s.start_position
+        ) ===
+        group
+    );
+
+
+  return subForm(
+    relevant
+  );
+
 }
 
 
@@ -960,14 +1825,18 @@ function historyFeatures(
       horse
     );
 
+
   const starts =
     Array.isArray(
       history.starts
-    ) ?
-      history.starts :
-      [];
+    )
+      ? history.starts
+      : [];
 
-  if (!starts.length){
+
+  if(
+    !starts.length
+  ){
 
     return {
 
@@ -1000,95 +1869,31 @@ function historyFeatures(
       driver:null,
 
       confidence:0
+
     };
+
   }
+
 
   const recent =
-    starts
-      .slice(
-        0,
-        10
-      );
-
-  const weights =
-    recent.map(
-      (_,i) =>
-        Math.pow(
-          0.86,
-          i
-        )
+    starts.slice(
+      0,
+      10
     );
 
-  const totalWeight =
-    weights.reduce(
-      (a,b)=>a+b,
-      0
-    );
-
-  /*
-   * Placering:
-   *
-   * 1 = 100
-   * 2 = 85
-   * 3 = 72
-   * 4 = 60
-   * 5 = 52
-   * 6-8 = 42
-   * >8 = 25
-   *
-   * Galopp = 10
-   */
-
-  function finishScore(finish){
-
-    if (
-      !Number.isFinite(
-        finish
-      )
-    )
-      return 40;
-
-    if (finish <= 0)
-      return 10;
-
-    if (finish === 1)
-      return 100;
-
-    if (finish === 2)
-      return 85;
-
-    if (finish === 3)
-      return 72;
-
-    if (finish === 4)
-      return 62;
-
-    if (finish === 5)
-      return 54;
-
-    if (finish <= 8)
-      return 42;
-
-    return 25;
-  }
 
   const form =
-    recent.reduce(
-      (sum,s,i) =>
-        sum +
-        finishScore(
-          s.finish
-        ) *
-        weights[i],
-      0
-    ) /
-    totalWeight;
+    subForm(
+      recent
+    );
+
 
   const wins =
     recent.filter(
       s =>
         s.finish === 1
     ).length;
+
 
   const places =
     recent.filter(
@@ -1100,11 +1905,13 @@ function historyFeatures(
         s.finish <= 3
     ).length;
 
+
   const gallops =
     recent.filter(
       s =>
         s.gallop
     ).length;
+
 
   const validFinish =
     recent.filter(
@@ -1114,6 +1921,7 @@ function historyFeatures(
         )
     );
 
+
   const averageFinish =
     mean(
       validFinish.map(
@@ -1121,6 +1929,7 @@ function historyFeatures(
           s.finish
       )
     );
+
 
   const averageTime =
     mean(
@@ -1130,9 +1939,6 @@ function historyFeatures(
       )
     );
 
-  /*
-   * Distans
-   */
 
   const distanceStarts =
     recent.filter(
@@ -1146,15 +1952,12 @@ function historyFeatures(
         )
     );
 
+
   const distanceForm =
     subForm(
-      distanceStarts,
-      finishScore
+      distanceStarts
     );
 
-  /*
-   * Bana
-   */
 
   const trackStarts =
     recent.filter(
@@ -1167,15 +1970,12 @@ function historyFeatures(
         )
     );
 
+
   const trackForm =
     subForm(
-      trackStarts,
-      finishScore
+      trackStarts
     );
 
-  /*
-   * Startmetod
-   */
 
   const methodStarts =
     recent.filter(
@@ -1190,83 +1990,66 @@ function historyFeatures(
         )
     );
 
+
   const methodForm =
     subForm(
-      methodStarts,
-      finishScore
+      methodStarts
     );
 
-  /*
-   * Startposition.
-   * Vi delar in i:
-   * 1-4 = framspår
-   * 5-8 = mellan
-   * 9+ = bak
-   */
 
-  const positionStarts =
-    recent.filter(
-      s =>
-        Number.isFinite(
-          s.start_position
-        )
+  const posForm =
+    positionForm(
+      recent,
+      horse.number
     );
 
-  const positionForm =
-    subPositionForm(
-      positionStarts,
-      horse.number,
-      finishScore
-    );
-
-  /*
-   * Kusk.
-   */
 
   const driver =
-    recent.length ?
-      recent[0].driver :
-      null;
+    recent[0]?.driver ||
+    null;
+
 
   const sameDriver =
-    driver ?
-      recent.filter(
-        s =>
-          normalizeName(
-            s.driver
-          ) ===
-          normalizeName(
-            driver
-          )
-      ) :
-      [];
+    driver
+      ? recent.filter(
+          s =>
+            normalizeName(
+              s.driver
+            ) ===
+            normalizeName(
+              driver
+            )
+        )
+      : [];
+
 
   const driverForm =
     subForm(
-      sameDriver,
-      finishScore
+      sameDriver
     );
 
+
   /*
-   * Trend:
-   * jämför senaste 3 mot äldre 3.
+   * Senaste tre mot föregående tre.
    */
 
-  const first =
+  const recent3 =
     recent.slice(
       0,
       3
     );
 
-  const later =
+
+  const older3 =
     recent.slice(
       3,
       6
     );
 
-  const firstScore =
+
+  const recentScore =
     mean(
-      first.map(
+      recent3.map(
         s =>
           finishScore(
             s.finish
@@ -1274,9 +2057,10 @@ function historyFeatures(
       )
     );
 
-  const laterScore =
+
+  const olderScore =
     mean(
-      later.map(
+      older3.map(
         s =>
           finishScore(
             s.finish
@@ -1284,14 +2068,17 @@ function historyFeatures(
       )
     );
 
-  let recentTrend = 50;
 
-  if (
+  let recentTrend =
+    50;
+
+
+  if(
     Number.isFinite(
-      firstScore
+      recentScore
     ) &&
     Number.isFinite(
-      laterScore
+      olderScore
     )
   ){
 
@@ -1299,35 +2086,25 @@ function historyFeatures(
       clamp(
         50 +
         (
-          firstScore -
-          laterScore
+          recentScore -
+          olderScore
         ) *
-        0.8,
+        .8,
         10,
         90
       );
+
   }
 
-  /*
-   * Statistik ska krympas mot neutral
-   * vid få observationer.
-   */
 
   const confidence =
     clamp(
-      recent.length / 10,
+      recent.length /
+      10,
       0,
       1
     );
 
-  const shrink =
-    value =>
-      50 +
-      (
-        value -
-        50
-      ) *
-      confidence;
 
   return {
 
@@ -1342,22 +2119,28 @@ function historyFeatures(
       ),
 
     winRate:
-      shrink(
+      50 +
+      (
         (
           wins /
           recent.length
         ) *
-        100
-      ),
+        100 -
+        50
+      ) *
+      confidence,
 
     placeRate:
-      shrink(
+      50 +
+      (
         (
           places /
           recent.length
         ) *
-        100
-      ),
+        100 -
+        50
+      ) *
+      confidence,
 
     gallopRate:
       (
@@ -1366,20 +2149,16 @@ function historyFeatures(
       ) *
       100,
 
-    distanceForm:
-      distanceForm,
+    distanceForm,
 
-    trackForm:
-      trackForm,
+    trackForm,
 
-    methodForm:
-      methodForm,
+    methodForm,
 
     positionForm:
-      positionForm,
+      posForm,
 
-    driverForm:
-      driverForm,
+    driverForm,
 
     recentTrend,
 
@@ -1390,332 +2169,14 @@ function historyFeatures(
     driver,
 
     confidence
+
   };
-}
 
-
-function subForm(
-  starts,
-  finishScore
-){
-
-  if (
-    !starts.length
-  ){
-
-    return 50;
-  }
-
-  const raw =
-    mean(
-      starts.map(
-        s =>
-          finishScore(
-            s.finish
-          )
-      )
-    );
-
-  const confidence =
-    clamp(
-      starts.length /
-      5,
-      0,
-      1
-    );
-
-  return (
-    50 +
-    (
-      raw -
-      50
-    ) *
-    confidence
-  );
-}
-
-
-function subPositionForm(
-  starts,
-  currentNumber,
-  finishScore
-){
-
-  if (
-    !starts.length
-  ){
-
-    return 50;
-  }
-
-  const group =
-    positionGroup(
-      currentNumber
-    );
-
-  const relevant =
-    starts.filter(
-      s =>
-        positionGroup(
-          s.start_position
-        ) ===
-        group
-    );
-
-  return subForm(
-    relevant,
-    finishScore
-  );
-}
-
-
-function positionGroup(n){
-
-  if (!Number.isFinite(n))
-    return "unknown";
-
-  if (n <= 4)
-    return "front";
-
-  if (n <= 8)
-    return "middle";
-
-  return "back";
-}
-
-
-function distanceMatch(
-  a,
-  b
-){
-
-  if (
-    !Number.isFinite(a) ||
-    !Number.isFinite(b)
-  )
-    return false;
-
-  return (
-    Math.abs(
-      a - b
-    ) <= 80
-  );
 }
 
 
 /* ============================================================
-   SCORE MODEL
-   ============================================================ */
-
-function scoreHorse(
-  horse,
-  race
-){
-
-  const h =
-    historyFeatures(
-      horse,
-      race
-    );
-
-  /*
-   * Historikbas.
-   */
-
-  const form =
-    h.form;
-
-  /*
-   * Startposition.
-   */
-
-  const startScore =
-    positionStartScore(
-      horse.number,
-      race.start_method
-    );
-
-  /*
-   * Balans.
-   */
-
-  const balanceScore =
-    balanceScoreFor(
-      horse
-    );
-
-  /*
-   * Marknad.
-   *
-   * Detta är INTE vinstsannolikheten.
-   * Den fungerar som en prior.
-   */
-
-  const market =
-    clamp(
-      num(
-        horse.v85
-      ),
-      0,
-      100
-    );
-
-  /*
-   * Trend från V85.
-   */
-
-  const trend =
-    trendScore(
-      horse
-    );
-
-  /*
-   * Galopp:
-   * kraftig negativ faktor.
-   */
-
-  const gallopPenalty =
-    clamp(
-      h.gallopRate,
-      0,
-      70
-    );
-
-  /*
-   * Viktning.
-   *
-   * Historik 42
-   * distans 10
-   * kusk 8
-   * bana 6
-   * start 7
-   * balans 5
-   * trend 4
-   * marknad 18
-   *
-   * Marknaden är alltså betydande,
-   * men modellen får inte bara kopiera V85.
-   */
-
-  let raw = 0;
-
-  raw +=
-    (form / 100) *
-    42;
-
-  raw +=
-    (h.distanceForm / 100) *
-    10;
-
-  raw +=
-    (h.driverForm / 100) *
-    8;
-
-  raw +=
-    (h.trackForm / 100) *
-    6;
-
-  raw +=
-    (startScore / 100) *
-    7;
-
-  raw +=
-    (balanceScore / 100) *
-    5;
-
-  raw +=
-    (trend / 100) *
-    4;
-
-  /*
-   * Marknaden går in logaritmiskt så att
-   * 1 -> 5 inte blir lika viktigt som
-   * 30 -> 34.
-   */
-
-  const marketLog =
-    Math.log(
-      1 +
-      market
-    ) /
-    Math.log(
-      101
-    );
-
-  raw +=
-    marketLog *
-    18;
-
-  raw -=
-    gallopPenalty *
-    0.18;
-
-  /*
-   * Få historiska starter -> lägre confidence.
-   */
-
-  const confidence =
-    h.confidence;
-
-  /*
-   * Om historik saknas går vi inte tillbaka
-   * till en aggressiv låtsashistorik.
-   *
-   * Då använder vi neutral 50 för historiska
-   * komponenter och start/marknad.
-   */
-
-  const historyAvailable =
-    h.count > 0;
-
-  if (
-    !historyAvailable
-  ){
-
-    raw =
-      (
-        50 * 0.50
-      ) +
-      (
-        startScore * 0.12
-      ) +
-      (
-        balanceScore * 0.06
-      ) +
-      (
-        trend * 0.04
-      ) +
-      (
-        marketLog *
-        100 *
-        0.28
-      );
-  }
-
-  return {
-
-    score:
-      raw,
-
-    form,
-    startScore,
-    balanceScore,
-    trend,
-    market,
-    gallopPenalty,
-
-    history:
-      h,
-
-    confidence,
-
-    historyAvailable
-  };
-}
-
-
-/* ============================================================
-   START SCORE
+   START POSITION SCORE
    ============================================================ */
 
 function positionStartScore(
@@ -1724,56 +2185,86 @@ function positionStartScore(
 ){
 
   const n =
-    num(number);
+    num(
+      number
+    );
 
-  if (
-    method === "Auto"
+
+  if(
+    method ===
+    "Auto"
   ){
 
-    if (n === 1)
+    if(
+      n === 1
+    )
       return 82;
 
-    if (n === 2)
+    if(
+      n === 2
+    )
       return 79;
 
-    if (n === 3)
+    if(
+      n === 3
+    )
       return 76;
 
-    if (n === 4)
+    if(
+      n === 4
+    )
       return 73;
 
-    if (n === 5)
+    if(
+      n === 5
+    )
       return 69;
 
-    if (n === 6)
+    if(
+      n === 6
+    )
       return 65;
 
-    if (n === 7)
+    if(
+      n === 7
+    )
       return 62;
 
-    if (n === 8)
+    if(
+      n === 8
+    )
       return 59;
 
-    if (n <= 10)
+    if(
+      n <= 10
+    )
       return 53;
 
     return 48;
+
   }
 
-  /*
-   * Volt.
-   */
 
-  if (n <= 5)
+  if(
+    n <= 5
+  )
     return 80;
 
-  if (n <= 8)
+
+  if(
+    n <= 8
+  )
     return 68;
 
-  if (n <= 12)
+
+  if(
+    n <= 12
+  )
     return 58;
 
+
   return 50;
+
 }
 
 
@@ -1788,50 +2279,55 @@ function balanceScoreFor(
   const current =
     text(
       horse.balance
-    )
-      .toLowerCase();
+    ).toLowerCase();
+
 
   const previous =
     text(
       horse.balance_last
-    )
-      .toLowerCase();
+    ).toLowerCase();
 
-  if (
+
+  if(
     current.includes(
       "barfota"
     )
   ){
 
-    if (
-      previous &&
+    if(
       previous.includes(
         "skor"
       )
     )
       return 75;
 
+
     return 62;
+
   }
 
-  if (
+
+  if(
     current.includes(
       "skor"
     )
   ){
 
-    if (
-      previous &&
+    if(
       previous.includes(
         "barfota"
       )
     )
       return 44;
 
+
     return 50;
+
   }
 
+
   return 50;
+
 }
 
 
@@ -1846,185 +2342,262 @@ function trendScore(
   const direction =
     text(
       horse.trend_direction
-    )
-      .toLowerCase();
+    ).toLowerCase();
+
 
   const change =
     num(
       horse.trend_change
     );
 
-  if (
-    direction === "up"
-  )
+
+  if(
+    direction ===
+    "up"
+  ){
+
     return clamp(
       60 +
-      Math.abs(change) *
+      Math.abs(
+        change
+      ) *
       5,
       60,
       90
     );
 
-  if (
-    direction === "down"
-  )
+  }
+
+
+  if(
+    direction ===
+    "down"
+  ){
+
     return clamp(
       50 -
-      Math.abs(change) *
+      Math.abs(
+        change
+      ) *
       4,
       20,
       50
     );
 
+  }
+
+
   return 50;
+
 }
 
 
 /* ============================================================
-   ANALYZE RACES
+   HORSE MODEL
    ============================================================ */
 
-function analyze(){
-
-  if (!startData)
-    return [];
-
-  const races =
-    startData.races
-      .map(
-        race =>
-          analyzeRace(
-            race
-          )
-      );
-
-  analyzedRaces =
-    races;
-
-  return races;
-}
-
-
-function analyzeRace(
+function scoreHorse(
+  horse,
   race
 ){
 
-  const active =
-    race.horses
-      .filter(
-        h =>
-          !h.scratched
-      );
-
-  const scored =
-    active.map(
-      horse => {
-
-        const model =
-          scoreHorse(
-            horse,
-            race
-          );
-
-        return {
-          ...horse,
-          model
-        };
-      }
+  const h =
+    historyFeatures(
+      horse,
+      race
     );
+
+
+  const form =
+    h.form;
+
+
+  const startScore =
+    positionStartScore(
+      horse.number,
+      race.start_method
+    );
+
+
+  const balanceScore =
+    balanceScoreFor(
+      horse
+    );
+
+
+  const market =
+    clamp(
+      num(
+        horse.v85
+      ),
+      0,
+      100
+    );
+
+
+  const trend =
+    trendScore(
+      horse
+    );
+
+
+  const gallopPenalty =
+    clamp(
+      h.gallopRate,
+      0,
+      70
+    );
+
 
   /*
-   * Softmax.
-   *
-   * Vi vill inte bara normalisera råpoäng,
-   * utan ge topphästarna lite mer separation.
+   * Historik 42
+   * Distans 10
+   * Kusk 8
+   * Bana 6
+   * Start 7
+   * Balans 5
+   * Trend 4
+   * Marknad 18
    */
 
-  const temperature =
-    15;
+  let raw =
+    0;
 
-  const exps =
-    scored.map(
-      x =>
-        Math.exp(
-          (
-            x.model.score -
-            Math.max(
-              ...scored.map(
-                y =>
-                  y.model.score
-              )
-            )
-          ) /
-          temperature
-        )
+
+  raw +=
+    (
+      form /
+      100
+    ) *
+    42;
+
+
+  raw +=
+    (
+      h.distanceForm /
+      100
+    ) *
+    10;
+
+
+  raw +=
+    (
+      h.driverForm /
+      100
+    ) *
+    8;
+
+
+  raw +=
+    (
+      h.trackForm /
+      100
+    ) *
+    6;
+
+
+  raw +=
+    (
+      startScore /
+      100
+    ) *
+    7;
+
+
+  raw +=
+    (
+      balanceScore /
+      100
+    ) *
+    5;
+
+
+  raw +=
+    (
+      trend /
+      100
+    ) *
+    4;
+
+
+  const marketLog =
+    Math.log(
+      1 +
+      market
+    ) /
+    Math.log(
+      101
     );
 
-  const sum =
-    exps.reduce(
-      (a,b)=>a+b,
-      0
-    );
 
-  scored.forEach(
-    (x,i) => {
+  raw +=
+    marketLog *
+    18;
 
-      x.aiProbability =
-        sum > 0 ?
-          (
-            exps[i] /
-            sum
-          ) *
-          100 :
-          0;
 
-      x.value =
-        x.aiProbability -
-        num(
-          x.v85
-        );
+  raw -=
+    gallopPenalty *
+    .18;
 
-      x.impliedOdds =
-        x.aiProbability > 0 ?
-          100 /
-          x.aiProbability :
-          null;
 
-      x.marketOdds =
-        num(
-          x.v85
-        ) > 0 ?
-          100 /
-          num(
-            x.v85
-          ) :
-          null;
+  /*
+   * Om historik saknas använder vi
+   * neutral historik istället för att
+   * hitta på statistik.
+   */
 
-      x.verdict =
-        verdict(
-          x
-        );
-    }
-  );
+  if(
+    !h.count
+  ){
 
-  scored.sort(
-    (a,b) =>
-      b.aiProbability -
-      a.aiProbability
-  );
+    raw =
+      50 *
+      .50 +
 
-  scored.forEach(
-    (x,i) => {
-      x.rank =
-        i + 1;
-    }
-  );
+      startScore *
+      .12 +
+
+      balanceScore *
+      .06 +
+
+      trend *
+      .04 +
+
+      marketLog *
+      100 *
+      .28;
+
+  }
+
 
   return {
-    ...race,
-    horses:
-      scored
+
+    score:
+      raw,
+
+    form,
+
+    startScore,
+
+    balanceScore,
+
+    trend,
+
+    market,
+
+    gallopPenalty,
+
+    history:
+      h,
+
+    confidence:
+      h.confidence,
+
+    historyAvailable:
+      h.count > 0
+
   };
+
 }
 
 
@@ -2039,43 +2612,236 @@ function verdict(
   const value =
     horse.value;
 
+
   const ai =
     horse.aiProbability;
+
 
   const market =
     num(
       horse.v85
     );
 
-  if (
+
+  if(
     ai >= 35 &&
     value >= 8
   )
     return "SPIK";
 
-  if (
+
+  if(
     ai >= 20 &&
     value >= 4
   )
     return "LÅS";
 
-  if (
+
+  if(
     value >= 5
   )
     return "VÄRDE";
 
-  if (
+
+  if(
     market >= 20 &&
     ai >= 15
   )
     return "STARK";
 
-  if (
+
+  if(
     ai >= 8
   )
     return "GARD";
 
+
   return "ÖVRIG";
+
+}
+
+
+/* ============================================================
+   ANALYZE
+   ============================================================ */
+
+function analyze(){
+
+  if(
+    !startData
+  )
+    return [];
+
+
+  analyzedRaces =
+    startData.races.map(
+      race =>
+        analyzeRace(
+          race
+        )
+    );
+
+
+  return analyzedRaces;
+
+}
+
+
+/* ============================================================
+   ANALYZE ONE RACE
+   ============================================================ */
+
+function analyzeRace(
+  race
+){
+
+  const active =
+    race.horses.filter(
+      h =>
+        !h.scratched
+    );
+
+
+  const scored =
+    active.map(
+      horse => {
+
+        const model =
+          scoreHorse(
+            horse,
+            race
+          );
+
+
+        return {
+          ...horse,
+          model
+        };
+
+      }
+    );
+
+
+  if(
+    !scored.length
+  ){
+
+    return {
+      ...race,
+      horses:[]
+    };
+
+  }
+
+
+  const maxScore =
+    Math.max(
+      ...scored.map(
+        x =>
+          x.model.score
+      )
+    );
+
+
+  const temperature =
+    15;
+
+
+  const exps =
+    scored.map(
+      x =>
+        Math.exp(
+          (
+            x.model.score -
+            maxScore
+          ) /
+          temperature
+        )
+    );
+
+
+  const sum =
+    exps.reduce(
+      (
+        a,
+        b
+      ) =>
+        a+b,
+      0
+    );
+
+
+  scored.forEach(
+    (
+      x,
+      i
+    ) => {
+
+      x.aiProbability =
+        sum > 0
+          ? (
+              exps[i] /
+              sum
+            ) *
+            100
+          : 0;
+
+
+      x.value =
+        x.aiProbability -
+        num(
+          x.v85
+        );
+
+
+      x.impliedOdds =
+        x.aiProbability > 0
+          ? 100 /
+            x.aiProbability
+          : null;
+
+
+      x.verdict =
+        verdict(
+          x
+        );
+
+    }
+  );
+
+
+  scored.sort(
+    (
+      a,
+      b
+    ) =>
+      b.aiProbability -
+      a.aiProbability
+  );
+
+
+  scored.forEach(
+    (
+      x,
+      i
+    ) => {
+
+      x.rank =
+        i + 1;
+
+    }
+  );
+
+
+  return {
+
+    ...race,
+
+    horses:
+      scored
+
+  };
+
 }
 
 
@@ -2085,15 +2851,21 @@ function verdict(
 
 function render(){
 
-  if (!analyzedRaces.length){
+  if(
+    !analyzedRaces.length
+  ){
 
     $("results").innerHTML =
-      `<div class="empty">
+      `
+      <div class="empty">
         Ingen analys ännu.
-      </div>`;
+      </div>
+      `;
 
     return;
+
   }
+
 
   const all =
     analyzedRaces.flatMap(
@@ -2101,46 +2873,72 @@ function render(){
         r.horses
     );
 
+
   const top =
     [...all]
       .sort(
-        (a,b) =>
+        (
+          a,
+          b
+        ) =>
           b.aiProbability -
           a.aiProbability
       )[0];
 
-  $("cardTrack").textContent =
+
+  $("cardTrack")
+    .textContent =
     startData.track ||
     "–";
 
-  $("cardRaces").textContent =
+
+  $("cardRaces")
+    .textContent =
     analyzedRaces.length;
 
-  $("cardHorses").textContent =
+
+  $("cardHorses")
+    .textContent =
     all.length;
 
-  $("cardScratched").textContent =
+
+  $("cardScratched")
+    .textContent =
     startData.horses_scratched ||
     0;
 
-  $("cardTop").textContent =
-    top ?
-      top.name +
-      " " +
-      top.aiProbability.toFixed(1) +
-      "%" :
-      "–";
+
+  $("cardTop")
+    .textContent =
+    top
+      ? top.name +
+        " " +
+        top.aiProbability.toFixed(
+          1
+        ) +
+        "%"
+      : "–";
+
 
   renderModelSummary();
+
 
   $("results").innerHTML =
     analyzedRaces
       .map(
-        renderRace
+        race =>
+          renderRace(
+            race
+          )
       )
       .join("");
+
 }
 
+
+/* ============================================================
+   RACE RENDER
+   ============================================================ */
 
 function renderRace(
   race
@@ -2156,8 +2954,10 @@ function renderRace(
       )
       .join("");
 
+
   const top =
     race.horses[0];
+
 
   return `
 
@@ -2168,50 +2968,58 @@ function renderRace(
         <div>
 
           <div class="raceTitle">
+
             ${esc(
               race.name
             )}
+
           </div>
 
           <div class="raceMeta">
 
             ${esc(
               race.distance
-            )} m ·
+            )}
+            m ·
 
             ${esc(
               race.start_method
             )}
 
             ${
-              race.start_time ?
-                " · " +
-                esc(
-                  race.start_time
-                ) :
-                ""
+              race.start_time
+                ? " · " +
+                  esc(
+                    race.start_time
+                  )
+                : ""
             }
 
           </div>
 
         </div>
 
+
         <div class="raceMeta">
 
           AI-ledare:
+
           <strong>
+
             ${
-              top ?
-                esc(
-                  top.name
-                ) :
-                "–"
+              top
+                ? esc(
+                    top.name
+                  )
+                : "–"
             }
+
           </strong>
 
         </div>
 
       </div>
+
 
       <table>
 
@@ -2263,6 +3071,7 @@ function renderRace(
 
         </thead>
 
+
         <tbody>
 
           ${rows}
@@ -2274,8 +3083,13 @@ function renderRace(
     </section>
 
   `;
+
 }
 
+
+/* ============================================================
+   HORSE RENDER
+   ============================================================ */
 
 function renderHorse(
   h
@@ -2284,53 +3098,58 @@ function renderHorse(
   const history =
     h.model.history;
 
+
   const valueClass =
-    h.value >= 0 ?
-      "valuePositive" :
-      "valueNegative";
+    h.value >= 0
+      ? "valuePositive"
+      : "valueNegative";
+
 
   const verdictClass =
-    h.verdict === "SPIK" ?
-      "success" :
-      (
-        h.verdict === "VÄRDE" ?
-          "warning" :
-          ""
-      );
+    h.verdict === "SPIK"
+      ? "ok"
+      : (
+          h.verdict === "VÄRDE"
+            ? "wait"
+            : ""
+        );
+
 
   const gallop =
-    history.count > 0 ?
-      (
-        history.gallopRate
-          .toFixed(0) +
-        "%"
-      ) :
-      "–";
+    history.count > 0
+      ? history.gallopRate.toFixed(
+          0
+        ) + "%"
+      : "–";
+
 
   const form =
-    history.count > 0 ?
-      history.form.toFixed(0) :
-      "–";
+    history.count > 0
+      ? history.form.toFixed(
+          0
+        )
+      : "–";
+
 
   const driver =
     history.driver ||
     "–";
 
-  const confidence =
-    history.count > 0 ?
-      (
-        history.count +
+
+  const historyText =
+    history.count > 0
+      ? history.count +
         " starter"
-      ) :
-      "saknas";
+      : "saknas";
+
 
   return `
 
     <tr
       class="${
-        h.scratched ?
-          "scratched" :
-          ""
+        h.scratched
+          ? "scratched"
+          : ""
       }"
     >
 
@@ -2340,6 +3159,7 @@ function renderHorse(
 
       </td>
 
+
       <td class="horse">
 
         ${esc(
@@ -2347,41 +3167,54 @@ function renderHorse(
         )}
 
         ${
-          h.balance ?
-            `<div class="small">
-              ${esc(
-                h.balance
-              )}
-            </div>` :
-            ""
+          h.balance
+            ? `
+              <div class="small">
+                ${esc(
+                  h.balance
+                )}
+              </div>
+            `
+            : ""
         }
 
       </td>
 
+
       <td class="prob">
 
-        ${h.aiProbability
-          .toFixed(1)}%
+        ${h.aiProbability.toFixed(
+          1
+        )}%
 
       </td>
+
 
       <td>
 
         ${num(
           h.v85
-        ).toFixed(0)}%
+        ).toFixed(
+          0
+        )}%
 
       </td>
 
-      <td class="${valueClass}">
+
+      <td
+        class="${valueClass}"
+      >
 
         ${
-          h.value >= 0 ?
-            "+" :
-            ""
-        }${h.value.toFixed(1)}
+          h.value >= 0
+            ? "+"
+            : ""
+        }${h.value.toFixed(
+          1
+        )}
 
       </td>
+
 
       <td>
 
@@ -2389,15 +3222,17 @@ function renderHorse(
 
       </td>
 
+
       <td>
 
         <span class="badge">
 
-          ${confidence}
+          ${historyText}
 
         </span>
 
       </td>
+
 
       <td>
 
@@ -2411,13 +3246,17 @@ function renderHorse(
 
       </td>
 
+
       <td>
 
         ${gallop}
 
       </td>
 
-      <td class="${verdictClass}">
+
+      <td
+        class="${verdictClass}"
+      >
 
         <strong>
 
@@ -2430,6 +3269,7 @@ function renderHorse(
     </tr>
 
   `;
+
 }
 
 
@@ -2440,125 +3280,123 @@ function renderHorse(
 function renderModelSummary(){
 
   const all =
-    analyzedRaces
-      .flatMap(
-        r =>
-          r.horses
-      );
+    analyzedRaces.flatMap(
+      r =>
+        r.horses
+    );
 
-  const historyCount =
+
+  const withHistory =
     all.filter(
       h =>
         h.model.historyAvailable
-    ).length;
+    );
+
 
   const total =
     all.length;
 
-  const coverage =
-    total > 0 ?
-      (
-        historyCount /
-        total
-      ) *
-      100 :
-      0;
 
-  const formValues =
-    all
-      .filter(
-        h =>
-          h.model.historyAvailable
-      )
-      .map(
-        h =>
-          h.model.history.form
-      );
+  const coverage =
+    total > 0
+      ? (
+          withHistory.length /
+          total
+        ) *
+        100
+      : 0;
+
+
+  const forms =
+    withHistory.map(
+      h =>
+        h.model.history.form
+    );
+
 
   const gallops =
-    all
-      .filter(
-        h =>
-          h.model.historyAvailable
-      )
-      .map(
-        h =>
-          h.model.history.gallopRate
-      );
+    withHistory.map(
+      h =>
+        h.model.history.gallopRate
+    );
+
 
   const avgForm =
     mean(
-      formValues
+      forms
     );
+
 
   const avgGallop =
     mean(
       gallops
     );
 
-  $("modelHistory").textContent =
-    historyCount +
-    "/" +
-    total +
-    " hästar";
 
-  $("modelForm").textContent =
+  $("modelHistory")
+    .textContent =
+    withHistory.length +
+    "/" +
+    total;
+
+
+  $("modelForm")
+    .textContent =
     Number.isFinite(
       avgForm
-    ) ?
-      avgForm.toFixed(0) +
-      "/100" :
-      "–";
+    )
+      ? avgForm.toFixed(
+          0
+        ) +
+        "/100"
+      : "–";
 
-  $("modelDriver").textContent =
-    historyCount > 0 ?
-      "AKTIV" :
-      "SAKNAS";
 
-  $("modelGallop").textContent =
+  $("modelDriver")
+    .textContent =
+    withHistory.length
+      ? "AKTIV"
+      : "SAKNAS";
+
+
+  $("modelGallop")
+    .textContent =
     Number.isFinite(
       avgGallop
-    ) ?
-      avgGallop.toFixed(1) +
-      "%" :
-      "–";
+    )
+      ? avgGallop.toFixed(
+          1
+        ) +
+        "%"
+      : "–";
 
-  $("modelCoverage").textContent =
-    coverage.toFixed(0) +
+
+  $("modelCoverage")
+    .textContent =
+    coverage.toFixed(
+      0
+    ) +
     "%";
+
+
+  setStatus(
+    "statusModel",
+    "KLAR",
+    "ok"
+  );
+
 }
 
 
 /* ============================================================
-   HISTORY CARD
-   ============================================================ */
-
-function updateHistoryCard(){
-
-  const count =
-    Object.values(
-      historyData
-    ).filter(
-      h =>
-        h &&
-        h.ok &&
-        num(
-          h.history_count
-        ) > 0
-    ).length;
-
-  $("cardHistory").textContent =
-    count;
-}
-
-
-/* ============================================================
-   SYSTEM GENERATOR
+   SYSTEM
    ============================================================ */
 
 function buildSystem(){
 
-  if (!analyzedRaces.length){
+  if(
+    !analyzedRaces.length
+  ){
 
     message(
       "Kör analysen först.",
@@ -2566,21 +3404,13 @@ function buildSystem(){
     );
 
     return;
+
   }
 
-  /*
-   * Budget.
-   */
 
   const budget =
     500;
 
-  /*
-   * Radpris V85:
-   * 1 kr.
-   *
-   * Systemet försöker ligga under 500 kr.
-   */
 
   let picks =
     analyzedRaces.map(
@@ -2590,70 +3420,93 @@ function buildSystem(){
         )
     );
 
+
   let rows =
     picks.reduce(
-      (a,b) =>
+      (
+        a,
+        b
+      ) =>
         a *
         b.length,
       1
     );
 
+
   /*
-   * Reducera från sämsta garderingar
-   * tills systemet ryms.
+   * Reducera tills under budget.
    */
 
-  while (
-    rows > budget
+  while(
+    rows >
+    budget
   ){
 
     let changed =
       false;
 
-    for (
+
+    for(
       let i =
-        picks.length - 1;
+        picks.length -
+        1;
+
       i >= 0;
+
       i--
     ){
 
-      if (
+      if(
         picks[i].length >
         1
       ){
 
         picks[i] =
-          picks[i]
-            .slice(
-              0,
-              picks[i].length - 1
-            );
+          picks[i].slice(
+            0,
+            picks[i].length -
+            1
+          );
+
 
         rows =
           picks.reduce(
-            (a,b) =>
+            (
+              a,
+              b
+            ) =>
               a *
               b.length,
             1
           );
 
+
         changed =
           true;
 
-        if (
+
+        if(
           rows <=
           budget
         )
           break;
+
       }
+
     }
 
-    if (!changed)
+
+    if(
+      !changed
+    )
       break;
+
   }
+
 
   const cost =
     rows;
+
 
   const singles =
     picks.filter(
@@ -2661,17 +3514,20 @@ function buildSystem(){
         x.length === 1
     ).length;
 
+
   const doubles =
     picks.filter(
       x =>
         x.length === 2
     ).length;
 
+
   const guards =
     picks.filter(
       x =>
         x.length >= 3
     ).length;
+
 
   let html = `
 
@@ -2683,41 +3539,59 @@ function buildSystem(){
 
       Budget:
       ${budget} kr ·
+
       Rader:
       ${rows} ·
+
       Kostnad:
       ${cost} kr
 
     </div>
 
+
     <div class="systemRows">
 
       <div class="systemCell">
+
         Spikar
+
         <strong>
           ${singles}
         </strong>
+
       </div>
 
+
       <div class="systemCell">
+
         Lås
+
         <strong>
           ${doubles}
         </strong>
+
       </div>
 
+
       <div class="systemCell">
+
         Garderingar
+
         <strong>
           ${guards}
         </strong>
+
       </div>
 
+
       <div class="systemCell">
+
         Kostnad
+
         <strong>
           ${cost} kr
         </strong>
+
       </div>
 
     </div>
@@ -2726,46 +3600,58 @@ function buildSystem(){
 
   `;
 
+
   analyzedRaces.forEach(
-    (race,i) => {
+    (
+      race,
+      i
+    ) => {
 
       const selected =
         picks[i];
+
 
       html += `
 
         <div class="systemCell">
 
           <strong>
+
             ${esc(
               race.name
             )}
+
           </strong>
 
           <br>
 
-          ${selected
-            .map(
-              h =>
-                h.number +
-                " " +
-                esc(
-                  h.name
-                ) +
-                " (" +
-                h.aiProbability
-                  .toFixed(1) +
-                "%)"
-            )
-            .join(
-              " · "
-            )}
+          ${
+            selected
+              .map(
+                h =>
+                  h.number +
+                  " " +
+                  esc(
+                    h.name
+                  ) +
+                  " (" +
+                  h.aiProbability.toFixed(
+                    1
+                  ) +
+                  "%)"
+              )
+              .join(
+                " · "
+              )
+          }
 
         </div>
 
       `;
+
     }
   );
+
 
   html += `
 
@@ -2773,25 +3659,31 @@ function buildSystem(){
 
     <div class="small">
 
-      Systemet är modellbaserat och
-      ska betraktas som ett analysförslag.
-      Det är inte en garanti för vinst.
+      Systemet är modellbaserat.
+      AI %-talen är modellens relativa
+      bedömning inom respektive lopp.
 
     </div>
 
   `;
 
-  $("system").innerHTML =
+
+  $("system")
+    .innerHTML =
     html;
 
-  $("system").style.display =
+
+  $("system")
+    .style
+    .display =
     "block";
 
-  $("cardSystem").textContent =
-    cost +
-    " kr";
 }
 
+
+/* ============================================================
+   CHOOSE RACE
+   ============================================================ */
 
 function chooseRace(
   race
@@ -2801,32 +3693,38 @@ function chooseRace(
     race.horses
       .slice()
       .sort(
-        (a,b) =>
+        (
+          a,
+          b
+        ) =>
           b.aiProbability -
           a.aiProbability
       );
 
-  if (!sorted.length)
+
+  if(
+    !sorted.length
+  )
     return [];
+
 
   const first =
     sorted[0];
 
+
   const second =
     sorted[1];
+
 
   const third =
     sorted[2];
 
+
   /*
-   * SPIK:
-   *
-   * hög AI %
-   * bra VALUE
-   * tillräcklig historik
+   * SPIK
    */
 
-  if (
+  if(
     first.aiProbability >= 32 &&
     first.value >= 4
   ){
@@ -2834,13 +3732,15 @@ function chooseRace(
     return [
       first
     ];
+
   }
 
+
   /*
-   * LÅS:
+   * LÅS
    */
 
-  if (
+  if(
     second &&
     first.aiProbability >= 22 &&
     second.aiProbability >= 15
@@ -2850,13 +3750,15 @@ function chooseRace(
       first,
       second
     ];
+
   }
 
+
   /*
-   * Tre hästar:
+   * TRE
    */
 
-  if (
+  if(
     third &&
     first.aiProbability >= 15
   ){
@@ -2866,271 +3768,512 @@ function chooseRace(
       second,
       third
     ];
+
   }
 
+
   /*
-   * Fyra hästar:
+   * FYRA
    */
 
-  return sorted
-    .slice(
-      0,
-      4
-    );
+  return sorted.slice(
+    0,
+    4
+  );
+
 }
 
 
 /* ============================================================
-   BUTTONS
+   MAIN RUN
+   ============================================================ */
+
+async function runAnalysis(){
+
+  const button =
+    $("runBtn");
+
+
+  button.disabled =
+    true;
+
+
+  try{
+
+    /*
+     * 1. Testa Worker
+     */
+
+    progress(
+      5
+    );
+
+
+    message(
+      "Testar anslutningen till Worker...",
+      "info-msg"
+    );
+
+
+    await testWorker();
+
+
+    /*
+     * 2. Hämta V85
+     */
+
+    progress(
+      10
+    );
+
+
+    message(
+      "Hämtar dagens V85-startlista...",
+      "info-msg"
+    );
+
+
+    await loadStartData();
+
+
+    /*
+     * VISA V85 DIREKT.
+     *
+     * Om historiken skulle misslyckas
+     * finns ändå startlistan kvar.
+     */
+
+    analyze();
+
+
+    render();
+
+
+    /*
+     * 3. Historik
+     */
+
+    progress(
+      15
+    );
+
+
+    message(
+      "Startlistan är OK. Hämtar hästhistorik...",
+      "info-msg"
+    );
+
+
+    try{
+
+      await loadHistory();
+
+    }
+    catch(historyError){
+
+      /*
+       * HISTORIK FÅR ALDRIG STOPPA ANALYSEN.
+       */
+
+      console.error(
+        "HISTORIK:",
+        historyError
+      );
+
+
+      setStatus(
+        "statusHistory",
+        "FEL – ANALYS FORTSÄTTER",
+        "bad"
+      );
+
+
+      message(
+        "Historiken kunde inte hämtas. V85-analysen fortsätter med dagens data.",
+        "warning-msg"
+      );
+
+    }
+
+
+    /*
+     * 4. Kör slutlig modell
+     */
+
+    progress(
+      90
+    );
+
+
+    message(
+      "Kör AI-modellen...",
+      "info-msg"
+    );
+
+
+    analyze();
+
+
+    render();
+
+
+    /*
+     * 5. Klar
+     */
+
+    progress(
+      100
+    );
+
+
+    const all =
+      analyzedRaces.flatMap(
+        r =>
+          r.horses
+      );
+
+
+    const historical =
+      all.filter(
+        h =>
+          h.model.historyAvailable
+      ).length;
+
+
+    message(
+      "Analysen klar. " +
+      analyzedRaces.length +
+      " lopp · " +
+      all.length +
+      " aktiva hästar · " +
+      historical +
+      " med historik.",
+      "success-msg"
+    );
+
+
+    setTimeout(
+      () =>
+        progress(
+          0
+        ),
+      800
+    );
+
+  }
+  catch(err){
+
+    console.error(
+      "ANALYSFEL:",
+      err
+    );
+
+
+    message(
+      err.message,
+      "error-msg"
+    );
+
+
+    progress(
+      0
+    );
+
+  }
+  finally{
+
+    button.disabled =
+      false;
+
+  }
+
+}
+
+
+/* ============================================================
+   BUTTON: RUN
    ============================================================ */
 
 $("runBtn")
-.addEventListener(
-  "click",
-  async () => {
-
-    const button =
-      $("runBtn");
-
-    button.disabled =
-      true;
-
-    try {
-
-      progress(10);
-
-      message(
-        "Hämtar aktuell V85-startlista...",
-        "info-msg"
-      );
-
-      await loadStartData();
-
-      progress(35);
-
-      message(
-        "Startlistan hämtad. Hämtar hästhistorik...",
-        "info-msg"
-      );
-
-      await loadHistory();
-
-      progress(85);
-
-      message(
-        "Historiken analyseras...",
-        "info-msg"
-      );
-
-      analyze();
-
-      render();
-
-      progress(100);
-
-      const total =
-        analyzedRaces
-          .flatMap(
-            r =>
-              r.horses
-          )
-          .length;
-
-      const withHistory =
-        analyzedRaces
-          .flatMap(
-            r =>
-              r.horses
-          )
-          .filter(
-            h =>
-              h.model.historyAvailable
-          )
-          .length;
-
-      message(
-        "Analysen klar: " +
-        analyzedRaces.length +
-        " lopp, " +
-        total +
-        " aktiva hästar, " +
-        withHistory +
-        " med historik.",
-        "success-msg"
-      );
-
-      setTimeout(
-        () =>
-          progress(0),
-        700
-      );
-
-    } catch(err){
-
-      console.error(
-        err
-      );
-
-      message(
-        "Fel: " +
-        err.message,
-        "error-msg"
-      );
-
-      progress(0);
-
-    } finally {
-
-      button.disabled =
-        false;
-    }
-  }
-);
+  .addEventListener(
+    "click",
+    runAnalysis
+  );
 
 
 /* ============================================================
-   MANUAL HISTORY
+   BUTTON: HISTORY
    ============================================================ */
 
 $("historyBtn")
-.addEventListener(
-  "click",
-  async () => {
+  .addEventListener(
+    "click",
+    async () => {
 
-    try {
+      const button =
+        $("historyBtn");
 
-      if (!startData){
 
-        await loadStartData();
+      button.disabled =
+        true;
+
+
+      try{
+
+        if(
+          !startData
+        ){
+
+          message(
+            "Hämtar först dagens V85-startlista...",
+            "info-msg"
+          );
+
+
+          await loadStartData();
+
+        }
+
+
+        progress(
+          15
+        );
+
+
+        message(
+          "Hämtar historik för aktiva hästar...",
+          "info-msg"
+        );
+
+
+        await loadHistory();
+
+
+        progress(
+          90
+        );
+
+
+        analyze();
+
+
+        render();
+
+
+        progress(
+          100
+        );
+
+
+        const all =
+          analyzedRaces.flatMap(
+            r =>
+              r.horses
+          );
+
+
+        const historical =
+          all.filter(
+            h =>
+              h.model.historyAvailable
+          ).length;
+
+
+        message(
+          "Historiken är klar: " +
+          historical +
+          " av " +
+          all.length +
+          " aktiva hästar.",
+          "success-msg"
+        );
+
+
+        setTimeout(
+          () =>
+            progress(
+              0
+            ),
+          800
+        );
+
+      }
+      catch(err){
+
+        console.error(
+          err
+        );
+
+
+        message(
+          "Historikfel: " +
+          err.message,
+          "error-msg"
+        );
+
+
+        progress(
+          0
+        );
+
+      }
+      finally{
+
+        button.disabled =
+          false;
+
       }
 
-      message(
-        "Hämtar historik för dagens hästar...",
-        "info-msg"
-      );
-
-      progress(20);
-
-      await loadHistory();
-
-      progress(80);
-
-      analyze();
-
-      render();
-
-      progress(100);
-
-      message(
-        "Historiken är laddad och modellen är omräknad.",
-        "success-msg"
-      );
-
-      setTimeout(
-        () =>
-          progress(0),
-        700
-      );
-
-    } catch(err){
-
-      console.error(
-        err
-      );
-
-      message(
-        "Historikfel: " +
-        err.message,
-        "error-msg"
-      );
-
-      progress(0);
     }
-  }
-);
+  );
 
 
 /* ============================================================
-   SYSTEM
+   BUTTON: SYSTEM
    ============================================================ */
 
 $("systemBtn")
-.addEventListener(
-  "click",
-  buildSystem
-);
+  .addEventListener(
+    "click",
+    buildSystem
+  );
 
 
 /* ============================================================
-   CLEAR
+   BUTTON: CLEAR
    ============================================================ */
 
 $("clearBtn")
-.addEventListener(
-  "click",
-  () => {
+  .addEventListener(
+    "click",
+    () => {
 
-    startData =
-      null;
+      startData =
+        null;
 
-    historyData =
-      {};
 
-    analyzedRaces =
-      [];
+      historyData =
+        {};
 
-    $("results").innerHTML =
-      `<div class="empty">
-        Analysen är rensad.
-      </div>`;
 
-    $("system").innerHTML =
-      "";
+      analyzedRaces =
+        [];
 
-    $("system").style.display =
-      "none";
 
-    $("cardTrack").textContent =
-      "–";
+      $("results")
+        .innerHTML =
+        `
+        <div class="empty">
+          Analysen är rensad.
+        </div>
+        `;
 
-    $("cardRaces").textContent =
-      "0";
 
-    $("cardHorses").textContent =
-      "0";
+      $("system")
+        .innerHTML =
+        "";
 
-    $("cardScratched").textContent =
-      "0";
 
-    $("cardHistory").textContent =
-      "0";
+      $("system")
+        .style
+        .display =
+        "none";
 
-    $("cardTop").textContent =
-      "–";
 
-    $("modelHistory").textContent =
-      "EJ LADDAD";
+      $("cardTrack")
+        .textContent =
+        "–";
 
-    $("modelForm").textContent =
-      "–";
 
-    $("modelDriver").textContent =
-      "–";
+      $("cardRaces")
+        .textContent =
+        "0";
 
-    $("modelGallop").textContent =
-      "–";
 
-    $("modelCoverage").textContent =
-      "0%";
+      $("cardHorses")
+        .textContent =
+        "0";
 
-    message(
-      "Analysen är rensad.",
-      "info-msg"
-    );
-  }
-);
+
+      $("cardScratched")
+        .textContent =
+        "0";
+
+
+      $("cardHistory")
+        .textContent =
+        "0";
+
+
+      $("cardTop")
+        .textContent =
+        "–";
+
+
+      $("modelHistory")
+        .textContent =
+        "EJ LADDAD";
+
+
+      $("modelForm")
+        .textContent =
+        "–";
+
+
+      $("modelDriver")
+        .textContent =
+        "–";
+
+
+      $("modelGallop")
+        .textContent =
+        "–";
+
+
+      $("modelCoverage")
+        .textContent =
+        "0%";
+
+
+      setStatus(
+        "statusStart",
+        "EJ HÄMTAD",
+        "wait"
+      );
+
+
+      setStatus(
+        "statusHistory",
+        "EJ HÄMTAD",
+        "wait"
+      );
+
+
+      setStatus(
+        "statusWorker",
+        "EJ TESTAD",
+        "wait"
+      );
+
+
+      setStatus(
+        "statusModel",
+        "EJ KÖRD",
+        "wait"
+      );
+
+
+      message(
+        "Analysen är rensad.",
+        "info-msg"
+      );
+
+    }
+  );
+
 
 </script>
 
 </body>
+
 </html>
